@@ -1,0 +1,37 @@
+# Hello-world mod: validates the TntRecomp mod build pipeline end to end
+# (clang -> MIPS ELF -> RecompModTool -> .nrm). It hooks Game_Init and prints
+# one line to the game log so we can confirm the mod loaded and its hook fired.
+
+[manifest]
+id = "tnt_hello_world"
+version = "1.0.0"
+display_name = "Hello World (pipeline test)"
+description = """
+Validation mod for the TntRecomp mod build pipeline. When enabled, it prints a \
+line to the game log the first time Game_Init runs. It changes nothing about \
+gameplay — it exists to prove the mod toolchain works."""
+short_description = "Mod-pipeline validation; prints to the log on startup."
+authors = [ "TntRecomp" ]
+
+# Must match the game's mod_game_id (src/main.cpp: game.mod_game_id = "tnt"),
+# NOT the game_id "tnt.n64.us".
+game_id = "tnt"
+
+# Lowest recomp runtime version this mod will load on. Kept low; revisit once
+# we confirm the runtime's reported version.
+minimum_recomp_version = "1.0.0"
+
+[inputs]
+# Paths are resolved relative to this mod directory (build_mod.sh runs the tool
+# with the mod dir as CWD).
+elf_path = "build/mod.elf"
+mod_filename = "tnt_hello_world"
+
+# The game's function symbols — this is what lets the mod reference/hook game
+# functions by name (e.g. "Game_Init"). Already shipped in the repo root.
+func_reference_syms_file = "../../tnt.syms.toml"
+
+# No data reference symbols yet (we don't ship a data-syms file). Required key.
+data_reference_syms_files = [ ]
+
+additional_files = [ ]
