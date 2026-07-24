@@ -352,6 +352,9 @@ int main(int argc, char** argv) {
     recompui::config::create_graphics_tab();
     recompui::config::create_sound_tab();
     recompui::config::create_controls_tab();
+    // Mods tab: the launcher's "Mods" button selects config::mods::id; without this
+    // the tab doesn't exist and the button falls back to the first tab (settings).
+    recompui::config::create_mods_tab();
     recompui::config::finalize();
     TRACE("config finalized");
 
