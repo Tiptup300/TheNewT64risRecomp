@@ -10,7 +10,7 @@
 # Any extra args are passed through to the executable.
 #
 set -euo pipefail
-here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+here="$(cd "$(dirname "$0")" && pwd)"   # POSIX-safe (works with sh and bash)
 cd "$here"
 
 bin="build-cmake/TntRecompiled"
