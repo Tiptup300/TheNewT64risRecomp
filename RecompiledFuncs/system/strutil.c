@@ -496,7 +496,7 @@ L_80080D10:
     // 0x80080D10: jal         0x8007EA2C
     // 0x80080D14: nop
 
-    func_8007EA2C(rdram, ctx);
+    Gfx_DrawScreenFade1(rdram, ctx);
         goto after_11;
     // 0x80080D14: nop
 
@@ -595,7 +595,7 @@ L_80080D98:
     // 0x80080D98: jal         0x8007E750
     // 0x80080D9C: nop
 
-    func_8007E750(rdram, ctx);
+    Gfx_DrawScreenFade0(rdram, ctx);
         goto after_13;
     // 0x80080D9C: nop
 
@@ -669,7 +669,7 @@ L_80080D98:
     // 0x80080DFC: jal         0x8007E750
     // 0x80080E00: sw          $t2, 0x32C8($at)
     MEM_W(0X32C8, ctx->r1) = ctx->r10;
-    func_8007E750(rdram, ctx);
+    Gfx_DrawScreenFade0(rdram, ctx);
         goto after_17;
     // 0x80080E00: sw          $t2, 0x32C8($at)
     MEM_W(0X32C8, ctx->r1) = ctx->r10;

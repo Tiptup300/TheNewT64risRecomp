@@ -5780,7 +5780,7 @@ L_800459EC:
     // 0x800459F4: jal         0x8007ED00
     // 0x800459F8: nop
 
-    func_8007ED00(rdram, ctx);
+    Gfx_DrawScreenFade2(rdram, ctx);
         goto after_3;
     // 0x800459F8: nop
 
@@ -5823,7 +5823,7 @@ L_80045A1C:
     // 0x80045A24: jal         0x8007EFE4
     // 0x80045A28: nop
 
-    func_8007EFE4(rdram, ctx);
+    Gfx_DrawScreenFade3(rdram, ctx);
         goto after_6;
     // 0x80045A28: nop
 
@@ -5937,7 +5937,7 @@ L_80045ABC:
     // 0x80045AC4: jal         0x8007E750
     // 0x80045AC8: nop
 
-    func_8007E750(rdram, ctx);
+    Gfx_DrawScreenFade0(rdram, ctx);
         goto after_11;
     // 0x80045AC8: nop
 
@@ -5980,7 +5980,7 @@ L_80045AEC:
     // 0x80045AF4: jal         0x8007EA2C
     // 0x80045AF8: nop
 
-    func_8007EA2C(rdram, ctx);
+    Gfx_DrawScreenFade1(rdram, ctx);
         goto after_14;
     // 0x80045AF8: nop
 
@@ -6011,7 +6011,7 @@ L_80045B0C:
     // 0x80045B14: jal         0x8007E750
     // 0x80045B18: nop
 
-    func_8007E750(rdram, ctx);
+    Gfx_DrawScreenFade0(rdram, ctx);
         goto after_16;
     // 0x80045B18: nop
 
@@ -6054,7 +6054,7 @@ L_80045B3C:
     // 0x80045B44: jal         0x8007EA2C
     // 0x80045B48: nop
 
-    func_8007EA2C(rdram, ctx);
+    Gfx_DrawScreenFade1(rdram, ctx);
         goto after_19;
     // 0x80045B48: nop
 

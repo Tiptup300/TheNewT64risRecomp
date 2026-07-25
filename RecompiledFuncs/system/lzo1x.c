@@ -2050,7 +2050,7 @@ RECOMP_FUNC void func_80083160(uint8_t* rdram, recomp_context* ctx) {
     // 0x800831B0: jal         0x8007EA2C
     // 0x800831B4: sw          $t8, 0x3324($at)
     MEM_W(0X3324, ctx->r1) = ctx->r24;
-    func_8007EA2C(rdram, ctx);
+    Gfx_DrawScreenFade1(rdram, ctx);
         goto after_2;
     // 0x800831B4: sw          $t8, 0x3324($at)
     MEM_W(0X3324, ctx->r1) = ctx->r24;
@@ -2181,7 +2181,7 @@ L_80083248:
     // 0x80083274: jal         0x8007EA2C
     // 0x80083278: nop
 
-    func_8007EA2C(rdram, ctx);
+    Gfx_DrawScreenFade1(rdram, ctx);
         goto after_5;
     // 0x80083278: nop
 
@@ -2248,7 +2248,7 @@ L_800832C8:
     // 0x800832C8: jal         0x8007E750
     // 0x800832CC: nop
 
-    func_8007E750(rdram, ctx);
+    Gfx_DrawScreenFade0(rdram, ctx);
         goto after_7;
     // 0x800832CC: nop
 

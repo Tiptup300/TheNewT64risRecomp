@@ -631,7 +631,7 @@ L_8004A018:
     // 0x8004A028: jal         0x80084630
     // 0x8004A02C: or          $a3, $zero, $zero
     ctx->r7 = 0 | 0;
-    func_80084630(rdram, ctx);
+    Debug_FaultInit(rdram, ctx);
         goto after_12;
     // 0x8004A02C: or          $a3, $zero, $zero
     ctx->r7 = 0 | 0;

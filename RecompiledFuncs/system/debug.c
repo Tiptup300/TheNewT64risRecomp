@@ -1829,7 +1829,7 @@ L_80083630:
 
 ;}
 
-RECOMP_FUNC void func_8008369C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Debug_DrawChar(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8008369C: addiu       $sp, $sp, -0x28
@@ -2039,7 +2039,7 @@ L_800837A0:
 
 ;}
 
-RECOMP_FUNC void func_800837FC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Debug_DrawString(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800837FC: addiu       $sp, $sp, -0x30
@@ -2155,7 +2155,7 @@ L_80083880:
     // 0x800838B8: jal         0x8008369C
     // 0x800838BC: sw          $t2, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r10;
-    func_8008369C(rdram, ctx);
+    Debug_DrawChar(rdram, ctx);
         goto after_1;
     // 0x800838BC: sw          $t2, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r10;
@@ -2214,7 +2214,7 @@ L_800838F4:
     ctx->r2 = ctx->r25 | ctx->r8;
 ;}
 
-RECOMP_FUNC void func_80083910(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Debug_DrawFaultScreen(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80083910: addiu       $sp, $sp, -0x890
@@ -2479,7 +2479,7 @@ L_80083A00:
     // 0x80083A70: jal         0x80084490
     // 0x80083A74: addiu       $a1, $a1, -0x11D8
     ctx->r5 = ADD32(ctx->r5, -0X11D8);
-    func_80084490(rdram, ctx);
+    Debug_PrintList(rdram, ctx);
         goto after_17;
     // 0x80083A74: addiu       $a1, $a1, -0x11D8
     ctx->r5 = ADD32(ctx->r5, -0X11D8);
@@ -2497,7 +2497,7 @@ L_80083A00:
     // 0x80083A8C: jal         0x80084490
     // 0x80083A90: addiu       $a1, $a1, -0x11D0
     ctx->r5 = ADD32(ctx->r5, -0X11D0);
-    func_80084490(rdram, ctx);
+    Debug_PrintList(rdram, ctx);
         goto after_18;
     // 0x80083A90: addiu       $a1, $a1, -0x11D0
     ctx->r5 = ADD32(ctx->r5, -0X11D0);
@@ -2841,7 +2841,7 @@ L_80083A00:
     // 0x80083CDC: jal         0x80084490
     // 0x80083CE0: addiu       $a1, $a1, -0x1034
     ctx->r5 = ADD32(ctx->r5, -0X1034);
-    func_80084490(rdram, ctx);
+    Debug_PrintList(rdram, ctx);
         goto after_30;
     // 0x80083CE0: addiu       $a1, $a1, -0x1034
     ctx->r5 = ADD32(ctx->r5, -0X1034);
@@ -3295,7 +3295,7 @@ L_80083F60:
     // 0x80083F8C: jal         0x800837FC
     // 0x80083F90: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_32;
     // 0x80083F90: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
@@ -3333,7 +3333,7 @@ L_80083F60:
     // 0x80083FC8: jal         0x800837FC
     // 0x80083FCC: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_34;
     // 0x80083FCC: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
@@ -3696,7 +3696,7 @@ L_800841D0:
     // 0x800841D4: jal         0x800837FC
     // 0x800841D8: sw          $t7, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r15;
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_36;
     // 0x800841D8: sw          $t7, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r15;
@@ -3734,7 +3734,7 @@ L_800841D0:
     // 0x80084210: jal         0x800837FC
     // 0x80084214: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_38;
     // 0x80084214: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
@@ -3772,7 +3772,7 @@ L_800841D0:
     // 0x8008424C: jal         0x800837FC
     // 0x80084250: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_40;
     // 0x80084250: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
@@ -3810,7 +3810,7 @@ L_800841D0:
     // 0x80084288: jal         0x800837FC
     // 0x8008428C: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_42;
     // 0x8008428C: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
@@ -3848,7 +3848,7 @@ L_800841D0:
     // 0x800842C4: jal         0x800837FC
     // 0x800842C8: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_44;
     // 0x800842C8: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
@@ -3886,7 +3886,7 @@ L_800841D0:
     // 0x80084300: jal         0x800837FC
     // 0x80084304: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_46;
     // 0x80084304: sw          $zero, 0x18($sp)
     MEM_W(0X18, ctx->r29) = 0;
@@ -3989,7 +3989,7 @@ L_800841D0:
 
 ;}
 
-RECOMP_FUNC void func_80084390(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Debug_Printf(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80084390: addiu       $sp, $sp, -0x130
@@ -4139,7 +4139,7 @@ L_80084448:
     // 0x80084474: jal         0x800837FC
     // 0x80084478: srl         $a1, $t9, 16
     ctx->r5 = S32(U32(ctx->r25) >> 16);
-    func_800837FC(rdram, ctx);
+    Debug_DrawString(rdram, ctx);
         goto after_2;
     // 0x80084478: srl         $a1, $t9, 16
     ctx->r5 = S32(U32(ctx->r25) >> 16);
@@ -4158,7 +4158,7 @@ L_80084448:
     ctx->r29 = ADD32(ctx->r29, 0X130);
 ;}
 
-RECOMP_FUNC void func_80084490(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Debug_PrintList(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80084490: addiu       $sp, $sp, -0x20
@@ -4326,7 +4326,7 @@ L_80084560:
 
 ;}
 
-RECOMP_FUNC void func_8008457C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Debug_FaultThread(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8008457C: addiu       $sp, $sp, -0x20
@@ -4435,7 +4435,7 @@ L_800845E8:
     // 0x8008460C: jal         0x80083910
     // 0x80084610: or          $a0, $t7, $zero
     ctx->r4 = ctx->r15 | 0;
-    func_80083910(rdram, ctx);
+    Debug_DrawFaultScreen(rdram, ctx);
         goto after_5;
     // 0x80084610: or          $a0, $t7, $zero
     ctx->r4 = ctx->r15 | 0;
@@ -4459,7 +4459,7 @@ L_80084614:
 
 ;}
 
-RECOMP_FUNC void func_80084630(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Debug_FaultInit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80084630: addiu       $sp, $sp, -0x20

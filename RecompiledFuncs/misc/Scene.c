@@ -22459,7 +22459,7 @@ L_80099988:
     // 0x80099988: jal         0x8007E750
     // 0x8009998C: nop
 
-    func_8007E750(rdram, ctx);
+    Gfx_DrawScreenFade0(rdram, ctx);
         goto after_7;
     // 0x8009998C: nop
 
