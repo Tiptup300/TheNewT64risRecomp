@@ -55,17 +55,28 @@ Then copy the `.nrm` into the game's mods folder (`<config dir>/mods/`, e.g.
 
 ## Writing a mod
 
-Include the SDK headers and tag a function with a section macro from `modding.h`:
+Include `modding.h` and tag a function with a section macro:
 
 ```c
 #include "modding.h"
-#include "recomputils.h"
 
 // Runs just before the game's Game_Init.
 RECOMP_HOOK("Game_Init") void my_hook(void) {
-    recomp_printf("hello from a mod\n");
+    // Reach game memory with raw KSEG0 pointers; the recompiler translates
+    // these to game-RAM accesses.
+    *(volatile unsigned int*)0x800CF928 = 9300;
 }
 ```
+
+> **Runtime import limitation.** This build's pinned `librecomp` exports only a
+> small set of mod-callable functions: `recomp_alloc`, `recomp_free`, the
+> `recomp_get_config_*` / config + save-path helpers, and `recomphook_get_return_*`.
+> It does **not** export `recomp_printf` (no mod-side logging) or
+> `recomp_is_dependency_met`. Because `recomputils.h` declares `recomp_printf`
+> (and the others) as *used* imports, including `recomputils.h` makes a mod
+> **fail to load** with `Imported function not found`. So mods here include only
+> `modding.h` and access game state via raw pointers. Provide your own small
+> typedefs instead of pulling in `PR/ultratypes.h` through `recomputils.h`.
 
 Key macros (`modding.h`):
 - `RECOMP_HOOK("Fn")` / `RECOMP_HOOK_RETURN("Fn")` — run before / at the return of
