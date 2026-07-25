@@ -380,27 +380,43 @@ int main(int argc, char** argv) {
     ultramodern::error_handling::callbacks_t error_callbacks{ .message_box = recompui::message_box };
     ultramodern::threads::callbacks_t threads_callbacks{ .get_game_thread_name = get_game_thread_name };
 
-    // Test/dev auto-boot: if TNT_ROM points at a ROM, validate+store it, then
-    // trigger the game the same way the launcher's "Start Game" button does, but
-    // from the launcher update callback so it runs on the UI thread.
-    if (const char* rom_env = std::getenv("TNT_ROM")) {
-        std::u8string gid = game.game_id;
-        recomp::RomValidationError err = recomp::select_rom(std::filesystem::path(rom_env), gid);
-        TRACE("auto-boot: select_rom done");
-        if (err == recomp::RomValidationError::Good) {
-            recompui::register_launcher_update_callback([gid](recompui::LauncherMenu*) {
-                static int frame = 0;
-                static bool started = false;
-                if (!started && ++frame > 120) {
-                    started = true;
-                    fprintf(stderr, "[tnt] auto-boot: start_game (UI thread)\n"); fflush(stderr);
-                    recomp::start_game(gid, {});
-                    recompui::hide_all_contexts();
-                }
-            });
-        } else {
-            fprintf(stderr, "[tnt] auto-boot: ROM validation failed (%d)\n", (int)err); fflush(stderr);
+    // Auto-boot: start the game without a launcher click whenever a ROM is
+    // available — either a previously-stored ROM (the normal case: on first run
+    // the launcher stores a local copy, and every run after skips straight into
+    // the game) or the dev TNT_ROM path (validate+store the ROM at that path).
+    // The game is started from the launcher update callback so it runs on the UI
+    // thread, matching the launcher's "Start Game" button. Set TNT_NO_AUTOBOOT to
+    // force the launcher (e.g. to pick a different ROM); config/mods menus remain
+    // reachable in-game.
+    const std::u8string gid = game.game_id;
+    if (std::getenv("TNT_NO_AUTOBOOT") == nullptr) {
+        // Dev path: if TNT_ROM points at a ROM, validate + store it now so the
+        // auto-boot below picks it up on this run.
+        if (const char* rom_env = std::getenv("TNT_ROM")) {
+            std::u8string sel = gid;
+            recomp::RomValidationError err = recomp::select_rom(std::filesystem::path(rom_env), sel);
+            TRACE("auto-boot: TNT_ROM select_rom done");
+            if (err != recomp::RomValidationError::Good) {
+                fprintf(stderr, "[tnt] TNT_ROM validation failed (%d)\n", (int)err); fflush(stderr);
+            }
         }
+        // Auto-boot: once the launcher is up and a valid ROM is available (stored
+        // from a previous run, or just selected above), start the game without a
+        // launcher click — the normal case after first launch. is_rom_valid must
+        // be checked here (in the launcher callback), not at main() time, because
+        // the ROM subsystem isn't initialized until recomp::start() runs. If no
+        // ROM is stored yet, this does nothing and the launcher stays up.
+        recompui::register_launcher_update_callback([gid](recompui::LauncherMenu*) {
+            static int frame = 0;
+            static bool started = false;
+            if (started) return;
+            std::u8string check = gid;
+            if (recomp::is_rom_valid(check) && ++frame > 120) {
+                started = true;
+                recomp::start_game(gid, {});
+                recompui::hide_all_contexts();
+            }
+        });
     }
 
     TRACE("calling recomp::start");
