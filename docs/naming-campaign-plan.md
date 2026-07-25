@@ -45,6 +45,18 @@ later sweep once a neighbor/global they touch has been named. Functions target
 references a renamed sym (`data_reference_syms_files`) so a broken name fails
 packaging — the datasym analogue of the link.
 
+**Two ranked queues, one loop** (evidence-derived):
+- Functions (toward ~100%): cluster by **call graph + callee semantics, not by
+  file** — `SaveData.c` etc. are grab-bags of math/gfx code co-located by address;
+  renaming to the true prefix re-buckets them via `reorganize` (run once per batch).
+- Variables (toward ≥50%): drive the harvest from `dataxref.py --rank-funcs` (fat
+  state-managers touch dozens of globals; leaf/alloc/math helpers touch ~0). The
+  densest globals live in pages **0x800D / 0x800E** — harvest there first; a global
+  hit by many named functions cascades context to all of them (step-5 feedback).
+  Top harvest target: `FUN_010870_OptionsDataMenu` (~233 unnamed globals).
+- `dataxref` gates emitted addresses to RAM (0x8000_0000–0x8080_0000) so a `lui`
+  that builds a float/GBI constant is never mistaken for a data global.
+
 Prior struct-offset maps (reuse in agent prompts): Board/BoardP cell (`+0x1`
 type, `7`=empty, `+0x2` group id, `+0x3` multisquare idx, `+0x4` ring next,
 `+0x9/0xA` x/y, `+0xC` cube ptr), Minos instance, Garbage/Smoke, Multisquare

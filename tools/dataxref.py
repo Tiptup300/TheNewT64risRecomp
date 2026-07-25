@@ -39,6 +39,12 @@ MEM_RE = re.compile(r"\$(\w+),\s*(-?0[xX][0-9A-Fa-f]+)\((\$\w+)\)")
 LUI_RE = re.compile(r"\$(\w+),\s*(0[xX][0-9A-Fa-f]+)")
 ADDI_RE = re.compile(r"\$(\w+),\s*\$(\w+),\s*(-?0[xX][0-9A-Fa-f]+)")
 
+# Game RAM (KSEG0) range. Addresses outside this are not data globals — they are
+# immediate float/GBI constants a `lui` happens to build (e.g. 0x3F80<<16 = 1.0f,
+# 0xE700<<16 = an RDP command word). Gating on this range prevents fabricating
+# bogus datasyms from constant-building lui sites.
+RAM_LO, RAM_HI = 0x80000000, 0x80800000
+
 LOADS = {"lb", "lbu", "lh", "lhu", "lw", "lwu", "lwc1", "ldc1", "ll",
          "lwl", "lwr", "ld"}
 STORES = {"sb", "sh", "sw", "swc1", "sdc1", "sc", "swl", "swr", "sd"}
@@ -90,7 +96,8 @@ def parse_function(name, body, out):
                     a = (base + imm) & 0xFFFFFFFF
                     addr[rd] = a
                     hi.pop(rd, None)
-                    out.append((a, "A", 0, imm, False))
+                    if RAM_LO <= a < RAM_HI:   # R7: skip constant-building lui (floats/GBI cmds)
+                        out.append((a, "A", 0, imm, False))
                 else:
                     clear(rd)
             else:
@@ -105,7 +112,8 @@ def parse_function(name, body, out):
                 if base is not None:
                     a = (base + off) & 0xFFFFFFFF
                     ptr = (mnem in LOADS and rt == rb)
-                    out.append((a, "W" if mnem in STORES else "R", width_of(mnem), off, ptr))
+                    if RAM_LO <= a < RAM_HI:   # R7: only real RAM addresses are data globals
+                        out.append((a, "W" if mnem in STORES else "R", width_of(mnem), off, ptr))
                     if mnem in LOADS:
                         clear(rt)     # rt now holds loaded data (or a pointer)
                 else:
@@ -173,6 +181,8 @@ def main():
     g.add_argument("--file", metavar="PATH")
     g.add_argument("--addr", metavar="0xADDR")
     g.add_argument("--all", action="store_true")
+    g.add_argument("--rank-funcs", action="store_true",
+                   help="rank functions by # distinct globals touched (drives the variable harvest)")
     ap.add_argument("--unnamed", action="store_true",
                     help="with --all: only addresses whose datasym is D_/unknown")
     args = ap.parse_args()
@@ -237,6 +247,18 @@ def main():
             print(line)
         if not hits:
             print("  (none)")
+        return
+
+    if args.rank_funcs:
+        rows = []
+        for fn, rs in per_func.items():
+            addrs = {a for a, rw, w, off, ptr in rs}
+            unnamed = {a for a in addrs if is_placeholder_sym(names.get(a))}
+            if addrs:
+                rows.append((len(addrs), len(unnamed), fn, func_file.get(fn)))
+        print(f"{'#glob':>5} {'#unnamed':>8}  function  (file)")
+        for tot, un, fn, ff in sorted(rows, reverse=True)[:60]:
+            print(f"{tot:>5} {un:>8}  {fn}  ({ff})")
         return
 
     if args.all:
