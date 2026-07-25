@@ -264,7 +264,20 @@ int main(int argc, char** argv) {
         SDL_setenv("SDL_AUDIODRIVER", "pulseaudio", 1);
     }
 #endif
-    SDL_Init(SDL_INIT_AUDIO);
+    if (SDL_Init(SDL_INIT_AUDIO) != 0) {
+        fprintf(stderr, "[tnt] audio init failed (%s)\n", SDL_GetError());
+#ifdef __linux__
+        // The forced pulseaudio driver can fail if the server is unavailable (e.g.
+        // a WSLg pulse hiccup, or a disconnected device). Retry with SDL's default
+        // auto-detection so the game still runs — silently if no device works —
+        // instead of leaving the audio subsystem uninitialized. The audio callbacks
+        // already degrade to no-ops when no device is open.
+        unsetenv("SDL_AUDIODRIVER");
+        if (SDL_Init(SDL_INIT_AUDIO) != 0) {
+            fprintf(stderr, "[tnt] audio init still failed (%s) — continuing without audio\n", SDL_GetError());
+        }
+#endif
+    }
     NFD_Init();
     fprintf(stderr, "[tnt] audio driver: %s\n", SDL_GetCurrentAudioDriver() ? SDL_GetCurrentAudioDriver() : "(none)");
     TRACE("sdl+nfd init");

@@ -1,0 +1,34 @@
+diff --git a/librecomp/src/overlays.cpp b/librecomp/src/overlays.cpp
+index 8c8e5d1..bb90be3 100644
+--- a/librecomp/src/overlays.cpp
++++ b/librecomp/src/overlays.cpp
+@@ -3,6 +3,7 @@
+ #include <cstdio>
+ #include <cstring>
+ #include <unordered_map>
++#include <unordered_set>
+ #include <vector>
+ 
+ #include "ultramodern/ultramodern.hpp"
+@@ -364,9 +365,18 @@ recomp_func_t* recomp::overlays::get_func_by_section_rom_function_vram(uint32_t
+ extern "C" recomp_func_t * get_function(int32_t addr) {
+     auto func_find = func_map.find(addr);
+     if (func_find == func_map.end()) {
+-        fprintf(stderr, "Failed to find function at 0x%08X\n", addr);
+-        assert(false);
+-        std::exit(EXIT_FAILURE);
++        // Some libultra debug/monitor functions (e.g. rmonPrintf) are in N64Recomp's
++        // reimplemented_funcs set and get omitted from the function table, so an
++        // INDIRECT call to one lands here. Aborting the whole game crashed players
++        // (e.g. an audio-error path indirect-calling rmonPrintf on the gameplay
++        // screen). Instead, log the missing address once and return a no-op so the
++        // game keeps running. Direct calls still resolve to their *_recomp stubs.
++        static std::unordered_set<int32_t> warned;
++        if (warned.insert(addr).second) {
++            fprintf(stderr, "Failed to find function at 0x%08X (returning no-op)\n", addr);
++        }
++        static recomp_func_t* const noop = +[](uint8_t*, recomp_context*) { };
++        return noop;
+     }
+     return func_find->second;
+ }

@@ -12,6 +12,11 @@
 #       chronically underrun (periodic audio buzz/crackle).
 #   RecompFrontend-0001-keyboard-mapping                -> recompinput/src/input_mapping.cpp
 #       Default keyboard layout mapped to this game's controls (arrows -> D-pad, etc.).
+#   N64ModernRuntime-0003-nonfatal-missing-function     -> librecomp/src/overlays.cpp
+#       get_function() no longer assert/std::exit on an unresolved address; it logs
+#       once and returns a no-op. Some libultra debug funcs (rmonPrintf) are omitted
+#       from the func table, so an INDIRECT call to one used to crash the game
+#       (e.g. an audio-error path on the gameplay screen). Now it degrades safely.
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 root="$(cd "$here/../.." && pwd)"
@@ -27,5 +32,6 @@ apply() { # <repo-subdir> <patch>
 
 apply lib/N64ModernRuntime N64ModernRuntime-0001-controller-status-swizzle.patch
 apply lib/N64ModernRuntime N64ModernRuntime-0002-sdl2-audio-buffer-offset.patch
+apply lib/N64ModernRuntime N64ModernRuntime-0003-nonfatal-missing-function.patch
 apply lib/RecompFrontend   RecompFrontend-0001-keyboard-mapping.patch
 echo "done."
