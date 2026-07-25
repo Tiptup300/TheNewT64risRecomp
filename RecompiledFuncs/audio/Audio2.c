@@ -243,7 +243,7 @@ L_80086108:
     // 0x80086120: jal         0x8008756C
     // 0x80086124: nop
 
-    Audio2_8008756c_eightliner(rdram, ctx);
+    Audio2_FillDecodeBuffer(rdram, ctx);
         goto after_6;
     // 0x80086124: nop
 
@@ -260,7 +260,7 @@ L_80086108:
     ctx->r29 = ADD32(ctx->r29, 0X38);
 ;}
 
-RECOMP_FUNC void Audio2_80086138_largeliner_channels(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio2_InitSongPlayer(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80086138: addiu       $sp, $sp, -0x40
@@ -696,7 +696,7 @@ L_800863F8:
     // 0x80086410: jal         0x8008756C
     // 0x80086414: nop
 
-    Audio2_8008756c_eightliner(rdram, ctx);
+    Audio2_FillDecodeBuffer(rdram, ctx);
         goto after_9;
     // 0x80086414: nop
 
@@ -3201,7 +3201,7 @@ L_8008755C:
 
 ;}
 
-RECOMP_FUNC void Audio2_8008756c_eightliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio2_FillDecodeBuffer(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8008756C: addiu       $sp, $sp, -0x20
@@ -3288,7 +3288,7 @@ RECOMP_FUNC void func_800875E4(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r29) = ctx->r4;
 ;}
 
-RECOMP_FUNC void func_800875EC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio2_SetGlobalPitch(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800875EC: andi        $a0, $a0, 0xFFFF

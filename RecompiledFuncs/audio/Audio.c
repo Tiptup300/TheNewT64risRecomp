@@ -397,7 +397,7 @@ RECOMP_FUNC void Audio_InitAudio(uint8_t* rdram, recomp_context* ctx) {
     // 0x8008498C: jal         0x80086138
     // 0x80084990: addiu       $a3, $zero, 0x1
     ctx->r7 = ADD32(0, 0X1);
-    Audio2_80086138_largeliner_channels(rdram, ctx);
+    Audio2_InitSongPlayer(rdram, ctx);
         goto after_16;
     // 0x80084990: addiu       $a3, $zero, 0x1
     ctx->r7 = ADD32(0, 0X1);
@@ -1325,7 +1325,7 @@ L_80084E74:
     // 0x80084F04: jal         0x80086138
     // 0x80084F08: addiu       $a3, $zero, 0x2
     ctx->r7 = ADD32(0, 0X2);
-    Audio2_80086138_largeliner_channels(rdram, ctx);
+    Audio2_InitSongPlayer(rdram, ctx);
         goto after_4;
     // 0x80084F08: addiu       $a3, $zero, 0x2
     ctx->r7 = ADD32(0, 0X2);
@@ -2971,7 +2971,7 @@ L_80085848:
     // 0x800858B4: jal         0x80085B9C
     // 0x800858B8: nop
 
-    Audio_80085b9c_threeliner(rdram, ctx);
+    Audio_CheckAiDrained(rdram, ctx);
         goto after_4;
     // 0x800858B8: nop
 
@@ -3428,7 +3428,7 @@ L_80085B8C:
 
 ;}
 
-RECOMP_FUNC void Audio_80085b9c_threeliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio_CheckAiDrained(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80085B9C: addiu       $sp, $sp, -0x20

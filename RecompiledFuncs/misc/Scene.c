@@ -39450,7 +39450,7 @@ RECOMP_FUNC void func_800A08EC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A0924: jal         0x800875EC
     // 0x800A0928: addiu       $a1, $a1, 0xA70
     ctx->r5 = ADD32(ctx->r5, 0XA70);
-    func_800875EC(rdram, ctx);
+    Audio2_SetGlobalPitch(rdram, ctx);
         goto after_0;
     // 0x800A0928: addiu       $a1, $a1, 0xA70
     ctx->r5 = ADD32(ctx->r5, 0XA70);

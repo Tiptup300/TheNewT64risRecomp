@@ -591,7 +591,7 @@ L_80087A5C:
     // 0x80087A80: jal         0x8008756C
     // 0x80087A84: nop
 
-    Audio2_8008756c_eightliner(rdram, ctx);
+    Audio2_FillDecodeBuffer(rdram, ctx);
         goto after_5;
     // 0x80087A84: nop
 
@@ -843,7 +843,7 @@ L_80087BD8:
     // 0x80087C04: jal         0x8008756C
     // 0x80087C08: nop
 
-    Audio2_8008756c_eightliner(rdram, ctx);
+    Audio2_FillDecodeBuffer(rdram, ctx);
         goto after_10;
     // 0x80087C08: nop
 

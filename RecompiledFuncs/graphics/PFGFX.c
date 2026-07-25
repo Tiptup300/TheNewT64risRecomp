@@ -3844,7 +3844,7 @@ L_80061778:
     // 0x80061810: jal         0x800875EC
     // 0x80061814: addiu       $a0, $zero, 0x6000
     ctx->r4 = ADD32(0, 0X6000);
-    func_800875EC(rdram, ctx);
+    Audio2_SetGlobalPitch(rdram, ctx);
         goto after_9;
     // 0x80061814: addiu       $a0, $zero, 0x6000
     ctx->r4 = ADD32(0, 0X6000);

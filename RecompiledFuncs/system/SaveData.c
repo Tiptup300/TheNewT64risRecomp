@@ -2122,7 +2122,7 @@ L_8007C168:
     // 0x8007C294: jal         0x800875EC
     // 0x8007C298: addiu       $a1, $a1, 0xA70
     ctx->r5 = ADD32(ctx->r5, 0XA70);
-    func_800875EC(rdram, ctx);
+    Audio2_SetGlobalPitch(rdram, ctx);
         goto after_13;
     // 0x8007C298: addiu       $a1, $a1, 0xA70
     ctx->r5 = ADD32(ctx->r5, 0XA70);
@@ -2505,7 +2505,7 @@ L_8007C2DC:
     // 0x8007C4F4: jal         0x800875EC
     // 0x8007C4F8: addiu       $a1, $a1, 0xA70
     ctx->r5 = ADD32(ctx->r5, 0XA70);
-    func_800875EC(rdram, ctx);
+    Audio2_SetGlobalPitch(rdram, ctx);
         goto after_29;
     // 0x8007C4F8: addiu       $a1, $a1, 0xA70
     ctx->r5 = ADD32(ctx->r5, 0XA70);
@@ -2550,7 +2550,7 @@ L_8007C538:
     // 0x8007C544: jal         0x800875EC
     // 0x8007C548: addiu       $a1, $a1, 0xA70
     ctx->r5 = ADD32(ctx->r5, 0XA70);
-    func_800875EC(rdram, ctx);
+    Audio2_SetGlobalPitch(rdram, ctx);
         goto after_30;
     // 0x8007C548: addiu       $a1, $a1, 0xA70
     ctx->r5 = ADD32(ctx->r5, 0XA70);
