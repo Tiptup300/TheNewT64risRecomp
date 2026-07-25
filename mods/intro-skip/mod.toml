@@ -1,22 +1,29 @@
-# Skip Intro Logos — skips the N64 logo + H2O/Blue Planet publisher screens.
+# Skip Intro Logos — configurable: choose where the intro fast-forwards to.
 [manifest]
 id = "tnt_intro_skip"
 version = "1.0.0"
 display_name = "Skip Intro Logos"
 description = """
-Skips the two intro branding screens (the N64 logo and the H2O / Blue Planet \
-Software publisher-credits screen) so the game goes straight into the attract \
-sequence, title, and menu."""
-short_description = "Skip the N64 + publisher intro screens."
+Fast-forwards the intro. Configurable via the "Skip to" option: Off (normal), \
+Publisher (skip the N64 logo, stop on the H2O screen), Attract (skip both branding \
+screens to the flythrough), Start menu, or Menu."""
+short_description = "Skip the N64 + publisher intro (configurable target)."
 authors = [ "TntRecomp" ]
 game_id = "tnt"
 minimum_recomp_version = "1.0.0"
-# Enabled while iterating; final default is a design choice.
 enabled_by_default = true
+
+[[manifest.config_options]]
+id = "skip_to"
+name = "Skip to"
+description = "How far the intro fast-forwards."
+type = "Enum"
+options = [ "Off", "Publisher", "Attract", "Start menu", "Menu" ]
+default = "Attract"
 
 [inputs]
 elf_path = "build/mod.elf"
 mod_filename = "tnt_intro_skip"
 func_reference_syms_file = "../../tnt.syms.toml"
-data_reference_syms_files = [ ]
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
 additional_files = [ ]

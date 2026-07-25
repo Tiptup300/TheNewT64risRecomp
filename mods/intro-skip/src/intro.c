@@ -1,31 +1,38 @@
 #include "modding.h"
+#include "recompconfig.h"   // recomp_get_config_u32 (registered via register_ext_base_export)
 
-// Skip the two intro branding screens (the N64 logo and the H2O / Blue Planet
-// Software publisher-credits screen).
+// Configurable intro skip. A "skip_to" enum config option (see mod.toml) chooses
+// how far the intro fast-forwards:
+//   0 Off        — don't skip anything (normal N64 logo -> publisher -> attract...)
+//   1 Publisher  — skip the N64 logo, stop on the H2O/Blue Planet publisher screen
+//   2 Attract    — skip both branding screens to the attract flythrough (default)
+//   3 Start menu — skip to the title / PRESS START
+//   4 Menu       — skip to the main menu hub
 //
-// The game runs a top-level scene state machine: a single byte at 0x800CFEE8
-// selects the current scene every frame, dispatched by
-// FUN_032F00_MVC_control_menu_choice_process via a jump table at 0x800DD7C0.
-// Boot starts at scene 0 and plays the branding scenes (the low scene values)
-// before reaching scene 3 — the post-branding attract sequence that flows on to
-// the title ("PRESS START") and the menu.
+// The top-level scene is a byte at 0x800CFEE8, dispatched by
+// FUN_032F00_MVC_control_menu_choice_process (jump table 0x800DD7C0). Boot scenes:
+// 0/1/2 = branding, 3 = attract flythrough, 4 = menu hub. 0x800CFD48 is the
+// "scene changed" flag the game sets on transitions.
 //
-// Hooking the dispatcher and fast-forwarding the branding scenes to scene 3
-// lands the player exactly where a normal intro would continue, minus the two
-// logo screens. 0x800CFD48 is the "scene changed" flag the game sets on every
-// top-level transition; we set it too so the renderer is notified.
-//
-// Only modding.h is included on purpose: this runtime does not export
-// recomp_printf / the recomputils.h import set, so pulling in recomputils.h
-// would make the mod fail to load. Game memory is reached via raw KSEG0
-// pointers, which the recompiler translates to game-RAM accesses.
+// NOTE: the exact scene for "publisher" vs "start menu" vs "menu" is inferred and
+// not yet verified in-game — tune the target values below once confirmed.
 #define SCENE       (*(volatile unsigned char*)0x800CFEE8)
 #define SCENE_FLAG  (*(volatile unsigned char*)0x800CFD48)
 
+static void go(unsigned char target) {
+    SCENE = target;
+    SCENE_FLAG = 1;   // notify: top-level scene changed
+}
+
 RECOMP_HOOK("FUN_032F00_MVC_control_menu_choice_process") void tnt_skip_intro(void) {
+    unsigned long mode = recomp_get_config_u32("skip_to");
     unsigned char s = SCENE;
-    if (s <= 2) {          // branding scenes 0/1/2
-        SCENE = 3;         // post-branding attract (continues to title/menu)
-        SCENE_FLAG = 1;    // notify: top-level scene changed
+    switch (mode) {
+        case 0: /* Off */                                         return;
+        case 1: /* Publisher */  if (s == 0)  go(1);              return;
+        case 2: /* Attract   */  if (s <= 2)  go(3);              return;
+        case 3: /* Start menu*/  if (s <= 3)  go(4);              return;
+        case 4: /* Menu      */  if (s <= 3)  go(4);              return;
+        default:                 if (s <= 2)  go(3);              return;
     }
 }
