@@ -11379,7 +11379,7 @@ L_8008FA60:
     // 0x8008FA78: jal         0x8003B5D0
     // 0x8008FA7C: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_22;
     // 0x8008FA7C: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -11391,7 +11391,7 @@ L_8008FA60:
     // 0x8008FA88: jal         0x8003B654
     // 0x8008FA8C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_getControllerStatus(rdram, ctx);
+    Controller_GetStatus(rdram, ctx);
         goto after_23;
     // 0x8008FA8C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -11419,7 +11419,7 @@ L_8008FA60:
     // 0x8008FAB0: jal         0x8003B684
     // 0x8008FAB4: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_24;
     // 0x8008FAB4: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -17363,7 +17363,7 @@ L_80091EF0:
     // 0x80091EF4: jal         0x8003B5D0
     // 0x80091EF8: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_9;
     // 0x80091EF8: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -17377,7 +17377,7 @@ L_80091EF0:
     // 0x80091F08: jal         0x8003B654
     // 0x80091F0C: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_getControllerStatus(rdram, ctx);
+    Controller_GetStatus(rdram, ctx);
         goto after_10;
     // 0x80091F0C: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -17472,7 +17472,7 @@ L_80091F80:
     // 0x80091F98: jal         0x8003B684
     // 0x80091F9C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_11;
     // 0x80091F9C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -17499,7 +17499,7 @@ L_80091FB4:
     // 0x80091FBC: jal         0x8003B684
     // 0x80091FC0: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_12;
     // 0x80091FC0: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -17526,7 +17526,7 @@ L_80091FD8:
     // 0x80091FE0: jal         0x8003B684
     // 0x80091FE4: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_13;
     // 0x80091FE4: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -17553,7 +17553,7 @@ L_80091FFC:
     // 0x80092004: jal         0x8003B684
     // 0x80092008: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_14;
     // 0x80092008: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
@@ -17584,7 +17584,7 @@ L_80092024:
     // 0x8009202C: jal         0x8003B684
     // 0x80092030: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_15;
     // 0x80092030: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -17615,7 +17615,7 @@ L_8009204C:
     // 0x80092054: jal         0x8003B684
     // 0x80092058: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_16;
     // 0x80092058: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -17705,7 +17705,7 @@ L_800920A8:
     // 0x800920DC: jal         0x8003B654
     // 0x800920E0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_getControllerStatus(rdram, ctx);
+    Controller_GetStatus(rdram, ctx);
         goto after_17;
     // 0x800920E0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -17833,7 +17833,7 @@ L_800920A8:
     // 0x800921B4: jal         0x8003B684
     // 0x800921B8: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_21;
     // 0x800921B8: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -17872,7 +17872,7 @@ L_800921C4:
     // 0x800921F8: jal         0x8003B8F4
     // 0x800921FC: addiu       $a1, $sp, 0x1E8
     ctx->r5 = ADD32(ctx->r29, 0X1E8);
-    FUN_001050_cpakFindFile(rdram, ctx);
+    Pfs_FindFile(rdram, ctx);
         goto after_22;
     // 0x800921FC: addiu       $a1, $sp, 0x1E8
     ctx->r5 = ADD32(ctx->r29, 0X1E8);
@@ -17936,7 +17936,7 @@ L_800921C4:
     // 0x80092258: jal         0x8003B6E8
     // 0x8009225C: sw          $t1, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r9;
-    FUN_001050_cpakRead(rdram, ctx);
+    Pfs_ReadFile(rdram, ctx);
         goto after_25;
     // 0x8009225C: sw          $t1, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r9;
@@ -17999,7 +17999,7 @@ L_800922A4:
     // 0x800922B4: jal         0x8003B980
     // 0x800922B8: addiu       $a1, $sp, 0x1E8
     ctx->r5 = ADD32(ctx->r29, 0X1E8);
-    FUN_001050_cpakDeleteFile(rdram, ctx);
+    Pfs_DeleteFile(rdram, ctx);
         goto after_26;
     // 0x800922B8: addiu       $a1, $sp, 0x1E8
     ctx->r5 = ADD32(ctx->r29, 0X1E8);
@@ -18203,7 +18203,7 @@ L_800923C8:
     // 0x800923CC: jal         0x8003B5D0
     // 0x800923D0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_38;
     // 0x800923D0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -18223,7 +18223,7 @@ L_800923C8:
     // 0x800923EC: jal         0x8003B654
     // 0x800923F0: nop
 
-    FUN_001050_getControllerStatus(rdram, ctx);
+    Controller_GetStatus(rdram, ctx);
         goto after_39;
     // 0x800923F0: nop
 
@@ -20351,7 +20351,7 @@ L_80093160:
     // 0x80093220: jal         0x8003B684
     // 0x80093224: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_84;
     // 0x80093224: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -20421,7 +20421,7 @@ L_80093268:
     // 0x8009328C: jal         0x8003B8F4
     // 0x80093290: addiu       $a1, $sp, 0x180
     ctx->r5 = ADD32(ctx->r29, 0X180);
-    FUN_001050_cpakFindFile(rdram, ctx);
+    Pfs_FindFile(rdram, ctx);
         goto after_86;
     // 0x80093290: addiu       $a1, $sp, 0x180
     ctx->r5 = ADD32(ctx->r29, 0X180);
@@ -20467,7 +20467,7 @@ L_80093268:
     // 0x800932D8: jal         0x8003B6E8
     // 0x800932DC: sw          $t1, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r9;
-    FUN_001050_cpakRead(rdram, ctx);
+    Pfs_ReadFile(rdram, ctx);
         goto after_87;
     // 0x800932DC: sw          $t1, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r9;
@@ -20515,7 +20515,7 @@ L_80093268:
     // 0x80093320: jal         0x8003B980
     // 0x80093324: addiu       $a1, $sp, 0x180
     ctx->r5 = ADD32(ctx->r29, 0X180);
-    FUN_001050_cpakDeleteFile(rdram, ctx);
+    Pfs_DeleteFile(rdram, ctx);
         goto after_89;
     // 0x80093324: addiu       $a1, $sp, 0x180
     ctx->r5 = ADD32(ctx->r29, 0X180);
@@ -25357,7 +25357,7 @@ L_80094FF0:
     // 0x80095434: jal         0x8003B5D0
     // 0x80095438: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_192;
     // 0x80095438: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -25369,7 +25369,7 @@ L_80094FF0:
     // 0x80095444: jal         0x8003B684
     // 0x80095448: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_193;
     // 0x80095448: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -25385,7 +25385,7 @@ L_80094FF0:
     // 0x8009545C: jal         0x8003BB24
     // 0x80095460: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
-    FUN_001050_cpakRepairId(rdram, ctx);
+    Pfs_RepairId(rdram, ctx);
         goto after_194;
     // 0x80095460: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
@@ -29436,7 +29436,7 @@ L_80096CD4:
     // 0x80096DB0: jal         0x8003B684
     // 0x80096DB4: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_243;
     // 0x80096DB4: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -29556,7 +29556,7 @@ L_80096E54:
     // 0x80096E78: jal         0x8003B8F4
     // 0x80096E7C: addiu       $a1, $sp, 0xD8
     ctx->r5 = ADD32(ctx->r29, 0XD8);
-    FUN_001050_cpakFindFile(rdram, ctx);
+    Pfs_FindFile(rdram, ctx);
         goto after_246;
     // 0x80096E7C: addiu       $a1, $sp, 0xD8
     ctx->r5 = ADD32(ctx->r29, 0XD8);
@@ -29602,7 +29602,7 @@ L_80096E54:
     // 0x80096EC4: jal         0x8003B6E8
     // 0x80096EC8: sw          $t8, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r24;
-    FUN_001050_cpakRead(rdram, ctx);
+    Pfs_ReadFile(rdram, ctx);
         goto after_247;
     // 0x80096EC8: sw          $t8, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r24;
@@ -29691,7 +29691,7 @@ L_80096F08:
     // 0x80096F48: jal         0x8003B980
     // 0x80096F4C: addiu       $a1, $sp, 0xD8
     ctx->r5 = ADD32(ctx->r29, 0XD8);
-    FUN_001050_cpakDeleteFile(rdram, ctx);
+    Pfs_DeleteFile(rdram, ctx);
         goto after_250;
     // 0x80096F4C: addiu       $a1, $sp, 0xD8
     ctx->r5 = ADD32(ctx->r29, 0XD8);
@@ -29748,7 +29748,7 @@ L_80096F8C:
     // 0x80096F9C: jal         0x8003B868
     // 0x80096FA0: addiu       $a1, $sp, 0xD8
     ctx->r5 = ADD32(ctx->r29, 0XD8);
-    FUN_001050_cpakAllocFile(rdram, ctx);
+    Pfs_AllocateFile(rdram, ctx);
         goto after_252;
     // 0x80096FA0: addiu       $a1, $sp, 0xD8
     ctx->r5 = ADD32(ctx->r29, 0XD8);
@@ -29865,7 +29865,7 @@ L_80096FE0:
     // 0x80097050: jal         0x8003B7A8
     // 0x80097054: sw          $t0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r8;
-    FUN_001050_cpakWrite(rdram, ctx);
+    Pfs_WriteFile(rdram, ctx);
         goto after_257;
     // 0x80097054: sw          $t0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r8;
@@ -30113,7 +30113,7 @@ L_800970EC:
     // 0x800971CC: jal         0x8003B684
     // 0x800971D0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_265;
     // 0x800971D0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -30150,7 +30150,7 @@ L_800971F4:
     // 0x80097200: jal         0x8003BA0C
     // 0x80097204: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_cpakNumFiles(rdram, ctx);
+    Pfs_NumFiles(rdram, ctx);
         goto after_266;
     // 0x80097204: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -30178,7 +30178,7 @@ L_800971F4:
     // 0x80097228: jal         0x8003BBB0
     // 0x8009722C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_cpakFreeBlocks(rdram, ctx);
+    Pfs_FreeBlocks(rdram, ctx);
         goto after_267;
     // 0x8009722C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -30231,7 +30231,7 @@ L_80097254:
     // 0x80097278: jal         0x8003B8F4
     // 0x8009727C: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
-    FUN_001050_cpakFindFile(rdram, ctx);
+    Pfs_FindFile(rdram, ctx);
         goto after_268;
     // 0x8009727C: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
@@ -30281,7 +30281,7 @@ L_80097254:
     // 0x800972C4: jal         0x8003B868
     // 0x800972C8: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
-    FUN_001050_cpakAllocFile(rdram, ctx);
+    Pfs_AllocateFile(rdram, ctx);
         goto after_269;
     // 0x800972C8: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
@@ -30453,7 +30453,7 @@ L_80097354:
     // 0x800973D0: jal         0x8003B7A8
     // 0x800973D4: sw          $t7, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r15;
-    FUN_001050_cpakWrite(rdram, ctx);
+    Pfs_WriteFile(rdram, ctx);
         goto after_271;
     // 0x800973D4: sw          $t7, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r15;
@@ -30487,7 +30487,7 @@ L_80097354:
     // 0x80097404: jal         0x8003B980
     // 0x80097408: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
-    FUN_001050_cpakDeleteFile(rdram, ctx);
+    Pfs_DeleteFile(rdram, ctx);
         goto after_272;
     // 0x80097408: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
@@ -30514,7 +30514,7 @@ L_8009741C:
     // 0x8009742C: jal         0x8003B8F4
     // 0x80097430: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
-    FUN_001050_cpakFindFile(rdram, ctx);
+    Pfs_FindFile(rdram, ctx);
         goto after_273;
     // 0x80097430: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
@@ -30633,7 +30633,7 @@ L_800974DC:
     // 0x800974EC: jal         0x8003B980
     // 0x800974F0: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
-    FUN_001050_cpakDeleteFile(rdram, ctx);
+    Pfs_DeleteFile(rdram, ctx);
         goto after_277;
     // 0x800974F0: addiu       $a1, $sp, 0xA4
     ctx->r5 = ADD32(ctx->r29, 0XA4);
@@ -30860,7 +30860,7 @@ L_8009759C:
     // 0x80097654: jal         0x8003B684
     // 0x80097658: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_282;
     // 0x80097658: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -30957,7 +30957,7 @@ L_800976BC:
     // 0x800976E0: jal         0x8003B8F4
     // 0x800976E4: addiu       $a1, $sp, 0x74
     ctx->r5 = ADD32(ctx->r29, 0X74);
-    FUN_001050_cpakFindFile(rdram, ctx);
+    Pfs_FindFile(rdram, ctx);
         goto after_285;
     // 0x800976E4: addiu       $a1, $sp, 0x74
     ctx->r5 = ADD32(ctx->r29, 0X74);
@@ -31003,7 +31003,7 @@ L_800976BC:
     // 0x8009772C: jal         0x8003B6E8
     // 0x80097730: sw          $t0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r8;
-    FUN_001050_cpakRead(rdram, ctx);
+    Pfs_ReadFile(rdram, ctx);
         goto after_286;
     // 0x80097730: sw          $t0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r8;
@@ -31092,7 +31092,7 @@ L_80097770:
     // 0x800977B0: jal         0x8003B980
     // 0x800977B4: addiu       $a1, $sp, 0x74
     ctx->r5 = ADD32(ctx->r29, 0X74);
-    FUN_001050_cpakDeleteFile(rdram, ctx);
+    Pfs_DeleteFile(rdram, ctx);
         goto after_289;
     // 0x800977B4: addiu       $a1, $sp, 0x74
     ctx->r5 = ADD32(ctx->r29, 0X74);
@@ -36091,7 +36091,7 @@ L_800997AC:
     // 0x800997CC: jal         0x8003B5D0
     // 0x800997D0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_0;
     // 0x800997D0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -36109,7 +36109,7 @@ L_800997AC:
     // 0x800997E8: jal         0x8003B66C
     // 0x800997EC: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_getControllerErrNo(rdram, ctx);
+    Controller_GetErrNo(rdram, ctx);
         goto after_1;
     // 0x800997EC: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -36174,7 +36174,7 @@ L_80099820:
     // 0x8009983C: jal         0x8003B66C
     // 0x80099840: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    FUN_001050_getControllerErrNo(rdram, ctx);
+    Controller_GetErrNo(rdram, ctx);
         goto after_4;
     // 0x80099840: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -37844,7 +37844,7 @@ L_8009A314:
     // 0x8009A31C: jal         0x8003B66C
     // 0x8009A320: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_getControllerErrNo(rdram, ctx);
+    Controller_GetErrNo(rdram, ctx);
         goto after_17;
     // 0x8009A320: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -37876,7 +37876,7 @@ L_8009A314:
     // 0x8009A344: jal         0x8003B66C
     // 0x8009A348: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    FUN_001050_getControllerErrNo(rdram, ctx);
+    Controller_GetErrNo(rdram, ctx);
         goto after_18;
     // 0x8009A348: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -39496,7 +39496,7 @@ L_8009AE00:
     // 0x8009AE08: jal         0x8003B66C
     // 0x8009AE0C: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_getControllerErrNo(rdram, ctx);
+    Controller_GetErrNo(rdram, ctx);
         goto after_26;
     // 0x8009AE0C: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -39528,7 +39528,7 @@ L_8009AE00:
     // 0x8009AE30: jal         0x8003B66C
     // 0x8009AE34: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    FUN_001050_getControllerErrNo(rdram, ctx);
+    Controller_GetErrNo(rdram, ctx);
         goto after_27;
     // 0x8009AE34: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -45255,7 +45255,7 @@ L_8009D298:
     // 0x8009D2AC: jal         0x8003B66C
     // 0x8009D2B0: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    FUN_001050_getControllerErrNo(rdram, ctx);
+    Controller_GetErrNo(rdram, ctx);
         goto after_94;
     // 0x8009D2B0: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -52716,7 +52716,7 @@ RECOMP_FUNC void func_800A04F4(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A0504: jal         0x8003B5D0
     // 0x800A0508: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_0;
     // 0x800A0508: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -52728,7 +52728,7 @@ RECOMP_FUNC void func_800A04F4(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A0514: jal         0x8003B654
     // 0x800A0518: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_getControllerStatus(rdram, ctx);
+    Controller_GetStatus(rdram, ctx);
         goto after_1;
     // 0x800A0518: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -52756,7 +52756,7 @@ RECOMP_FUNC void func_800A04F4(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A053C: jal         0x8003B684
     // 0x800A0540: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_2;
     // 0x800A0540: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -52809,7 +52809,7 @@ L_800A0578:
     // 0x800A057C: jal         0x8003B5D0
     // 0x800A0580: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_3;
     // 0x800A0580: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -52821,7 +52821,7 @@ L_800A0578:
     // 0x800A058C: jal         0x8003B3E4
     // 0x800A0590: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_8003b3e4_motor_sendrecvmsg_3(rdram, ctx);
+    Motor_SendRecvMsg3(rdram, ctx);
         goto after_4;
     // 0x800A0590: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -52858,7 +52858,7 @@ L_800A05B8:
     // 0x800A05C0: jal         0x8003BC3C
     // 0x800A05C4: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_gbpakInit(rdram, ctx);
+    Gbpak_Init(rdram, ctx);
         goto after_5;
     // 0x800A05C4: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -53028,7 +53028,7 @@ RECOMP_FUNC void func_800A06D0(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A06E0: jal         0x8003B5D0
     // 0x800A06E4: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_0;
     // 0x800A06E4: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -53040,7 +53040,7 @@ RECOMP_FUNC void func_800A06D0(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A06F0: jal         0x8003B654
     // 0x800A06F4: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_getControllerStatus(rdram, ctx);
+    Controller_GetStatus(rdram, ctx);
         goto after_1;
     // 0x800A06F4: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -53068,7 +53068,7 @@ RECOMP_FUNC void func_800A06D0(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A0718: jal         0x8003B684
     // 0x800A071C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_2;
     // 0x800A071C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -53155,7 +53155,7 @@ L_800A0754:
     // 0x800A079C: jal         0x8003B5D0
     // 0x800A07A0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_8003b5d0_controller_sendrecvmsg(rdram, ctx);
+    Controller_SendRecvMsg(rdram, ctx);
         goto after_3;
     // 0x800A07A0: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -53167,7 +53167,7 @@ L_800A0754:
     // 0x800A07AC: jal         0x8003B3E4
     // 0x800A07B0: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_8003b3e4_motor_sendrecvmsg_3(rdram, ctx);
+    Motor_SendRecvMsg3(rdram, ctx);
         goto after_4;
     // 0x800A07B0: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -53198,7 +53198,7 @@ L_800A07CC:
     // 0x800A07D4: jal         0x8003BC3C
     // 0x800A07D8: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_001050_gbpakInit(rdram, ctx);
+    Gbpak_Init(rdram, ctx);
         goto after_5;
     // 0x800A07D8: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;

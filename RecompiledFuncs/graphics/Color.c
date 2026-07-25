@@ -2670,7 +2670,7 @@ L_80055C38:
     // 0x80055C44: jal         0x8003B684
     // 0x80055C48: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001050_cpakInit(rdram, ctx);
+    Pfs_InitPak(rdram, ctx);
         goto after_17;
     // 0x80055C48: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
@@ -2832,7 +2832,7 @@ L_80055D2C:
     // 0x80055D50: jal         0x8003B8F4
     // 0x80055D54: addiu       $a1, $sp, 0x7C
     ctx->r5 = ADD32(ctx->r29, 0X7C);
-    FUN_001050_cpakFindFile(rdram, ctx);
+    Pfs_FindFile(rdram, ctx);
         goto after_22;
     // 0x80055D54: addiu       $a1, $sp, 0x7C
     ctx->r5 = ADD32(ctx->r29, 0X7C);
@@ -2878,7 +2878,7 @@ L_80055D2C:
     // 0x80055D9C: jal         0x8003B6E8
     // 0x80055DA0: sw          $t6, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r14;
-    FUN_001050_cpakRead(rdram, ctx);
+    Pfs_ReadFile(rdram, ctx);
         goto after_23;
     // 0x80055DA0: sw          $t6, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r14;
@@ -2992,7 +2992,7 @@ L_80055D2C:
     // 0x80055E50: jal         0x8003B7A8
     // 0x80055E54: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;
-    FUN_001050_cpakWrite(rdram, ctx);
+    Pfs_WriteFile(rdram, ctx);
         goto after_28;
     // 0x80055E54: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;
