@@ -1327,7 +1327,7 @@ L_8003E948:
     // 0x8003E964: jal         0x8003F300
     // 0x8003E968: sw          $t9, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r25;
-    FUN_005580_8003f300_fourteenliner_recursive(rdram, ctx);
+    aisquarelist_FloodFillRegion(rdram, ctx);
         goto after_4;
     // 0x8003E968: sw          $t9, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r25;
@@ -2449,7 +2449,7 @@ L_8003EFCC:
     // 0x8003EFE0: jal         0x8003F300
     // 0x8003EFE4: sw          $t1, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r9;
-    FUN_005580_8003f300_fourteenliner_recursive(rdram, ctx);
+    aisquarelist_FloodFillRegion(rdram, ctx);
         goto after_5;
     // 0x8003EFE4: sw          $t1, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r9;
@@ -2978,7 +2978,7 @@ L_8003F2C8:
 
 ;}
 
-RECOMP_FUNC void FUN_005580_8003f300_fourteenliner_recursive(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void aisquarelist_FloodFillRegion(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8003F300: addiu       $sp, $sp, -0x48
@@ -3168,7 +3168,7 @@ L_8003F390:
     // 0x8003F438: jal         0x8003F300
     // 0x8003F43C: addiu       $a2, $a2, -0x1
     ctx->r6 = ADD32(ctx->r6, -0X1);
-    FUN_005580_8003f300_fourteenliner_recursive(rdram, ctx);
+    aisquarelist_FloodFillRegion(rdram, ctx);
         goto after_0;
     // 0x8003F43C: addiu       $a2, $a2, -0x1
     ctx->r6 = ADD32(ctx->r6, -0X1);
@@ -3190,7 +3190,7 @@ L_8003F390:
     // 0x8003F45C: jal         0x8003F300
     // 0x8003F460: sw          $t0, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r8;
-    FUN_005580_8003f300_fourteenliner_recursive(rdram, ctx);
+    aisquarelist_FloodFillRegion(rdram, ctx);
         goto after_1;
     // 0x8003F460: sw          $t0, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r8;
@@ -3212,7 +3212,7 @@ L_8003F390:
     // 0x8003F480: jal         0x8003F300
     // 0x8003F484: sw          $t9, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r25;
-    FUN_005580_8003f300_fourteenliner_recursive(rdram, ctx);
+    aisquarelist_FloodFillRegion(rdram, ctx);
         goto after_2;
     // 0x8003F484: sw          $t9, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r25;
@@ -3234,7 +3234,7 @@ L_8003F390:
     // 0x8003F4A4: jal         0x8003F300
     // 0x8003F4A8: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;
-    FUN_005580_8003f300_fourteenliner_recursive(rdram, ctx);
+    aisquarelist_FloodFillRegion(rdram, ctx);
         goto after_3;
     // 0x8003F4A8: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;
@@ -3665,7 +3665,7 @@ L_8003F718:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void FUN_005580_8003f720_fiveliner_sets_arg0_elems_to_args1to4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void aisquarelist_SetMoveEntryFields(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8003F720: lb          $t6, 0x0($a0)
@@ -3704,7 +3704,7 @@ RECOMP_FUNC void FUN_005580_8003f720_fiveliner_sets_arg0_elems_to_args1to4(uint8
     MEM_B(0X3, ctx->r8) = ctx->r24;
 ;}
 
-RECOMP_FUNC void FUN_005580_8003f760_twoliner_calls_fun(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void aisquarelist_ResetMoveList(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8003F760: addiu       $sp, $sp, -0x20
@@ -3736,7 +3736,7 @@ RECOMP_FUNC void FUN_005580_8003f760_twoliner_calls_fun(uint8_t* rdram, recomp_c
     // 0x8003F794: jal         0x8003F720
     // 0x8003F798: sw          $t7, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r15;
-    FUN_005580_8003f720_fiveliner_sets_arg0_elems_to_args1to4(rdram, ctx);
+    aisquarelist_SetMoveEntryFields(rdram, ctx);
         goto after_0;
     // 0x8003F798: sw          $t7, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r15;
@@ -3753,7 +3753,7 @@ RECOMP_FUNC void FUN_005580_8003f760_twoliner_calls_fun(uint8_t* rdram, recomp_c
 
 ;}
 
-RECOMP_FUNC void FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void aisquarelist_ExploreMovesRecursive(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8003F7AC: addiu       $sp, $sp, -0x50
@@ -3930,7 +3930,7 @@ L_8003F8AC:
     // 0x8003F8D0: jal         0x800408B0
     // 0x8003F8D4: addiu       $s5, $s5, 0x1
     ctx->r21 = ADD32(ctx->r21, 0X1);
-    FUN_006B30_800408b0_fiveliner_loops_4t(rdram, ctx);
+    aisquarelist_CellBelongsToSquare(rdram, ctx);
         goto after_0;
     // 0x8003F8D4: addiu       $s5, $s5, 0x1
     ctx->r21 = ADD32(ctx->r21, 0X1);
@@ -4430,7 +4430,7 @@ L_8003FB50:
     // 0x8003FB64: jal         0x8003F7AC
     // 0x8003FB68: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_6;
     // 0x8003FB68: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -4455,7 +4455,7 @@ L_8003FB74:
     // 0x8003FB88: jal         0x8003F7AC
     // 0x8003FB8C: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_7;
     // 0x8003FB8C: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -4562,7 +4562,7 @@ L_8003FBDC:
     // 0x8003FC3C: jal         0x800408B0
     // 0x8003FC40: nop
 
-    FUN_006B30_800408b0_fiveliner_loops_4t(rdram, ctx);
+    aisquarelist_CellBelongsToSquare(rdram, ctx);
         goto after_8;
     // 0x8003FC40: nop
 
@@ -4632,7 +4632,7 @@ L_8003FBDC:
     // 0x8003FCA0: jal         0x8003F7AC
     // 0x8003FCA4: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_10;
     // 0x8003FCA4: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -4677,7 +4677,7 @@ L_8003FCB0:
     // 0x8003FCE4: jal         0x8003F7AC
     // 0x8003FCE8: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_11;
     // 0x8003FCE8: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -4743,7 +4743,7 @@ L_8003FD14:
     // 0x8003FD40: jal         0x8003F7AC
     // 0x8003FD44: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_12;
     // 0x8003FD44: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
@@ -4768,7 +4768,7 @@ L_8003FD50:
     // 0x8003FD64: jal         0x8003F7AC
     // 0x8003FD68: addiu       $a1, $zero, 0x4
     ctx->r5 = ADD32(0, 0X4);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_13;
     // 0x8003FD68: addiu       $a1, $zero, 0x4
     ctx->r5 = ADD32(0, 0X4);
@@ -4791,7 +4791,7 @@ L_8003FD74:
     // 0x8003FD84: jal         0x8003F7AC
     // 0x8003FD88: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_14;
     // 0x8003FD88: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -4857,7 +4857,7 @@ L_8003FDB4:
     // 0x8003FDE0: jal         0x8003F7AC
     // 0x8003FDE4: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_15;
     // 0x8003FDE4: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
@@ -4882,7 +4882,7 @@ L_8003FDF0:
     // 0x8003FE04: jal         0x8003F7AC
     // 0x8003FE08: addiu       $a1, $zero, 0x4
     ctx->r5 = ADD32(0, 0X4);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_16;
     // 0x8003FE08: addiu       $a1, $zero, 0x4
     ctx->r5 = ADD32(0, 0X4);
@@ -4927,7 +4927,7 @@ L_8003FE14:
     // 0x8003FE48: jal         0x8003F7AC
     // 0x8003FE4C: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_17;
     // 0x8003FE4C: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -4972,7 +4972,7 @@ L_8003FE58:
     // 0x8003FE8C: jal         0x8003F7AC
     // 0x8003FE90: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_18;
     // 0x8003FE90: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -4995,7 +4995,7 @@ L_8003FE9C:
     // 0x8003FEAC: jal         0x8003F7AC
     // 0x8003FEB0: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_19;
     // 0x8003FEB0: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -5040,7 +5040,7 @@ L_8003FEBC:
     // 0x8003FEF0: jal         0x8003F7AC
     // 0x8003FEF4: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_20;
     // 0x8003FEF4: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -5124,7 +5124,7 @@ L_8003FF30:
     // 0x8003FF70: jal         0x8003F7AC
     // 0x8003FF74: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_21;
     // 0x8003FF74: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -5175,7 +5175,7 @@ L_8003FF88:
     // 0x8003FFC0: jal         0x8003F7AC
     // 0x8003FFC4: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_22;
     // 0x8003FFC4: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -5285,7 +5285,7 @@ L_80040000:
     // 0x80040064: jal         0x8003F7AC
     // 0x80040068: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_24;
     // 0x80040068: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
@@ -5318,7 +5318,7 @@ L_8004007C:
     // 0x80040090: jal         0x8003F7AC
     // 0x80040094: addiu       $a1, $zero, 0x4
     ctx->r5 = ADD32(0, 0X4);
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_25;
     // 0x80040094: addiu       $a1, $zero, 0x4
     ctx->r5 = ADD32(0, 0X4);
@@ -5386,7 +5386,7 @@ L_800400D4:
     ctx->r29 = ADD32(ctx->r29, 0X50);
 ;}
 
-RECOMP_FUNC void FUN_005580_800400fc_largefun_more_currpiece_stuff(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void aisquarelist_FindReachableMoves(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800400FC: addiu       $sp, $sp, -0x40
@@ -5528,7 +5528,7 @@ L_800401B4:
     // 0x800401E4: jal         0x800408B0
     // 0x800401E8: nop
 
-    FUN_006B30_800408b0_fiveliner_loops_4t(rdram, ctx);
+    aisquarelist_CellBelongsToSquare(rdram, ctx);
         goto after_2;
     // 0x800401E8: nop
 
@@ -5550,7 +5550,7 @@ L_800401B4:
     // 0x80040200: jal         0x8003F7AC
     // 0x80040204: or          $a2, $s4, $zero
     ctx->r6 = ctx->r20 | 0;
-    FUN_005580_8003f7ac_hugefun_currpiece_stuff_recursive(rdram, ctx);
+    aisquarelist_ExploreMovesRecursive(rdram, ctx);
         goto after_3;
     // 0x80040204: or          $a2, $s4, $zero
     ctx->r6 = ctx->r20 | 0;
@@ -6731,7 +6731,7 @@ L_8004089C:
 
 ;}
 
-RECOMP_FUNC void FUN_006B30_800408b0_fiveliner_loops_4t(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void aisquarelist_CellBelongsToSquare(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800408B0: andi        $a1, $a1, 0xFF
@@ -6820,7 +6820,7 @@ L_80040920:
 
 ;}
 
-RECOMP_FUNC void FUN_006BB0_80040930_large_eightyliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void aisquarelist_ComputePlacementBounds(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80040930: addiu       $sp, $sp, -0x40
@@ -7996,7 +7996,7 @@ L_80041008:
     // 0x80041090: jal         0x80040930
     // 0x80041094: nop
 
-    FUN_006BB0_80040930_large_eightyliner(rdram, ctx);
+    aisquarelist_ComputePlacementBounds(rdram, ctx);
         goto after_2;
     // 0x80041094: nop
 
@@ -9169,7 +9169,7 @@ RECOMP_FUNC void aisquarelist_TryShiftPiece(uint8_t* rdram, recomp_context* ctx)
     // 0x8004178C: jal         0x800408B0
     // 0x80041790: nop
 
-    FUN_006B30_800408b0_fiveliner_loops_4t(rdram, ctx);
+    aisquarelist_CellBelongsToSquare(rdram, ctx);
         goto after_0;
     // 0x80041790: nop
 
@@ -9584,7 +9584,7 @@ L_800419F0:
     // 0x80041A00: jal         0x8003F760
     // 0x80041A04: sw          $zero, 0x10($sp)
     MEM_W(0X10, ctx->r29) = 0;
-    FUN_005580_8003f760_twoliner_calls_fun(rdram, ctx);
+    aisquarelist_ResetMoveList(rdram, ctx);
         goto after_0;
     // 0x80041A04: sw          $zero, 0x10($sp)
     MEM_W(0X10, ctx->r29) = 0;
@@ -9616,7 +9616,7 @@ L_800419F0:
     // 0x80041A28: jal         0x800400FC
     // 0x80041A2C: addiu       $a0, $sp, 0x40
     ctx->r4 = ADD32(ctx->r29, 0X40);
-    FUN_005580_800400fc_largefun_more_currpiece_stuff(rdram, ctx);
+    aisquarelist_FindReachableMoves(rdram, ctx);
         goto after_2;
     // 0x80041A2C: addiu       $a0, $sp, 0x40
     ctx->r4 = ADD32(ctx->r29, 0X40);

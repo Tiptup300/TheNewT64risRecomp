@@ -453,7 +453,7 @@ L_80042AA4:
     // 0x80042ACC: jal         0x8003F760
     // 0x80042AD0: addiu       $a0, $a0, 0x5
     ctx->r4 = ADD32(ctx->r4, 0X5);
-    FUN_005580_8003f760_twoliner_calls_fun(rdram, ctx);
+    aisquarelist_ResetMoveList(rdram, ctx);
         goto after_3;
     // 0x80042AD0: addiu       $a0, $a0, 0x5
     ctx->r4 = ADD32(ctx->r4, 0X5);
@@ -1224,7 +1224,7 @@ L_80042EF8:
     // 0x80042F18: jal         0x8003F760
     // 0x80042F1C: addiu       $a3, $zero, 0x4
     ctx->r7 = ADD32(0, 0X4);
-    FUN_005580_8003f760_twoliner_calls_fun(rdram, ctx);
+    aisquarelist_ResetMoveList(rdram, ctx);
         goto after_18;
     // 0x80042F1C: addiu       $a3, $zero, 0x4
     ctx->r7 = ADD32(0, 0X4);
@@ -1460,7 +1460,7 @@ L_80043050:
     // 0x8004306C: jal         0x800400FC
     // 0x80043070: or          $a0, $s6, $zero
     ctx->r4 = ctx->r22 | 0;
-    FUN_005580_800400fc_largefun_more_currpiece_stuff(rdram, ctx);
+    aisquarelist_FindReachableMoves(rdram, ctx);
         goto after_24;
     // 0x80043070: or          $a0, $s6, $zero
     ctx->r4 = ctx->r22 | 0;
