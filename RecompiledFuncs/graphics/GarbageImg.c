@@ -563,7 +563,7 @@ L_80074724:
     // 0x80074828: jal         0x80080EC8
     // 0x8007482C: addiu       $a3, $a3, -0x8
     ctx->r7 = ADD32(ctx->r7, -0X8);
-    func_80080EC8(rdram, ctx);
+    strutil_lzo_decompress(rdram, ctx);
         goto after_7;
     // 0x8007482C: addiu       $a3, $a3, -0x8
     ctx->r7 = ADD32(ctx->r7, -0X8);

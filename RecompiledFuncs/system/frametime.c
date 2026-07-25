@@ -19449,7 +19449,7 @@ L_800A9FE8:
     // 0x800AA018: jal         0x80080EC8
     // 0x800AA01C: sw          $t7, 0x20($sp)
     MEM_W(0X20, ctx->r29) = ctx->r15;
-    func_80080EC8(rdram, ctx);
+    strutil_lzo_decompress(rdram, ctx);
         goto after_3;
     // 0x800AA01C: sw          $t7, 0x20($sp)
     MEM_W(0X20, ctx->r29) = ctx->r15;

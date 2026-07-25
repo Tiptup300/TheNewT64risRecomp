@@ -727,7 +727,7 @@ L_80080E30:
 
 ;}
 
-RECOMP_FUNC void func_80080E50(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void strutil_lzo_init(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80080E50: addiu       $sp, $sp, -0x30
@@ -812,7 +812,7 @@ RECOMP_FUNC void func_80080EB4(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0XC, ctx->r29) = ctx->r7;
 ;}
 
-RECOMP_FUNC void func_80080EC8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void strutil_lzo_decompress(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80080EC8: addiu       $sp, $sp, -0x20
@@ -855,7 +855,7 @@ RECOMP_FUNC void func_80080EC8(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_80080F08(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void strutil_alloc(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80080F08: addiu       $sp, $sp, -0x18
@@ -886,7 +886,7 @@ RECOMP_FUNC void func_80080F08(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_80080F30(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void strutil_free(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80080F30: addiu       $sp, $sp, -0x18

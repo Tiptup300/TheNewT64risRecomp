@@ -6686,7 +6686,7 @@ L_80089EC0:
 
 ;}
 
-RECOMP_FUNC void Audio2_80089edc_thirtyfourliner_loops(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio2_FindSFXChannel(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80089EDC: lui         $t7, 0x800D
@@ -7224,7 +7224,7 @@ L_8008A224:
     // 0x8008A230: jal         0x80089EDC
     // 0x8008A234: subu        $a1, $t4, $t6
     ctx->r5 = SUB32(ctx->r12, ctx->r14);
-    Audio2_80089edc_thirtyfourliner_loops(rdram, ctx);
+    Audio2_FindSFXChannel(rdram, ctx);
         goto after_1;
     // 0x8008A234: subu        $a1, $t4, $t6
     ctx->r5 = SUB32(ctx->r12, ctx->r14);
@@ -7248,7 +7248,7 @@ L_8008A224:
     // 0x8008A250: jal         0x80089EDC
     // 0x8008A254: addiu       $a1, $zero, 0xF0
     ctx->r5 = ADD32(0, 0XF0);
-    Audio2_80089edc_thirtyfourliner_loops(rdram, ctx);
+    Audio2_FindSFXChannel(rdram, ctx);
         goto after_2;
     // 0x8008A254: addiu       $a1, $zero, 0xF0
     ctx->r5 = ADD32(0, 0XF0);
