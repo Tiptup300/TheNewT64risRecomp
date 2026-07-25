@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parent.parent
 FUNCS_DIR = ROOT / "RecompiledFuncs"
 SYMS = ROOT / "tnt.syms.toml"
 DATASYMS = ROOT / "tnt.datasyms.toml"
+MODS_DIR = ROOT / "mods"
 
 DEF_RE = re.compile(r"^RECOMP_FUNC\s+\S+\s+(\w+)\(", re.M)
 SYM_NAME_RE = re.compile(r'name\s*=\s*"([^"]+)"')
@@ -72,6 +73,18 @@ def prefix(name):
     return name.split("_", 1)[0] if "_" in name else name
 
 
+def mod_sources():
+    if not MODS_DIR.exists():
+        return []
+    return sorted(p for ext in ("*.c", "*.h") for p in MODS_DIR.rglob(ext))
+
+
+def mods_referencing(old):
+    """Mod source files that whole-word reference a datasym name (extern decls)."""
+    pat = re.compile(r"\b" + re.escape(old) + r"\b")
+    return [p for p in mod_sources() if pat.search(p.read_text())]
+
+
 def preflight_func(old, new, func_names, def_counts, batch_news, errs):
     if not IDENT_RE.match(new):
         errs.append(f"func {old}->{new}: NEW is not a valid C identifier")
@@ -88,7 +101,7 @@ def preflight_func(old, new, func_names, def_counts, batch_news, errs):
     batch_news.add(new)
 
 
-def preflight_data(old, new, data_counts, batch_news, errs):
+def preflight_data(old, new, data_counts, batch_news, errs, update_mods):
     if not IDENT_RE.match(new):
         errs.append(f"data {old}->{new}: NEW is not a valid C identifier")
     if PLACEHOLDER.search(new):
@@ -100,6 +113,14 @@ def preflight_data(old, new, data_counts, batch_news, errs):
     if new in batch_news:
         errs.append(f"data {old}->{new}: NEW targeted twice in this batch")
     batch_news.add(new)
+    # A datasym name may also live in committed mod source (extern decls). Renaming
+    # the toml alone would break those mod builds — the datasym analogue of the
+    # function 5-artifact sweep. Refuse unless --update-mods, then sub the sources too.
+    refs = mods_referencing(old)
+    if refs and not update_mods:
+        rels = ", ".join(p.relative_to(ROOT).as_posix() for p in refs)
+        errs.append(f"data {old}->{new}: referenced by mod source ({rels}); "
+                    f"pass --update-mods to also rewrite them (and rebuild the mod)")
 
 
 def apply_func_renames(renames, dry):
@@ -124,7 +145,7 @@ def apply_func_renames(renames, dry):
     return hits, needs_reorg
 
 
-def apply_data_renames(renames, dry):
+def apply_data_renames(renames, dry, update_mods):
     text = DATASYMS.read_text()
     total = 0
     for o, n in renames:
@@ -133,7 +154,19 @@ def apply_data_renames(renames, dry):
         total += c
     if not dry and total:
         DATASYMS.write_text(text)
-    return total
+    # Second surface: rewrite whole-word references in committed mod source.
+    mod_hits = {}
+    if update_mods:
+        for o, n in renames:
+            wpat = re.compile(r"\b" + re.escape(o) + r"\b")
+            for p in mods_referencing(o):
+                src = p.read_text()
+                new_src, c = wpat.subn(n, src)
+                if c:
+                    mod_hits[p.relative_to(ROOT).as_posix()] = mod_hits.get(p.relative_to(ROOT).as_posix(), 0) + c
+                    if not dry:
+                        p.write_text(new_src)
+    return total, mod_hits
 
 
 def parse_map(path):
@@ -156,6 +189,8 @@ def main():
     g.add_argument("--data", nargs=2, metavar=("OLD", "NEW"))
     g.add_argument("--map", metavar="FILE")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--update-mods", action="store_true",
+                    help="also rewrite datasym references in committed mods/**/src (rebuild the mod after)")
     args = ap.parse_args()
 
     if args.func:
@@ -175,7 +210,7 @@ def main():
     for o, n in func_ren:
         preflight_func(o, n, func_names, def_counts, batch_news, errs)
     for o, n in data_ren:
-        preflight_data(o, n, data_counts, batch_news, errs)
+        preflight_data(o, n, data_counts, batch_news, errs, args.update_mods)
     # A NEW must not also be an OLD in the same batch (no chaining under atomic apply).
     olds = {o for _, o, _ in ops}
     for _, o, n in ops:
@@ -199,10 +234,14 @@ def main():
             for o, n in sorted(needs_reorg):
                 print(f"    {o} -> {n}  ({prefix(o)} -> {prefix(n)})")
     if data_ren:
-        total = apply_data_renames(data_ren, args.dry_run)
+        total, mod_hits = apply_data_renames(data_ren, args.dry_run, args.update_mods)
         print(f"{tag}data: {len(data_ren)} rename(s), {total} entr(y/ies) updated")
         if total != len(data_ren):
             print("  WARNING: updated count != rename count — inspect tnt.datasyms.toml")
+        if mod_hits:
+            print("  also rewrote mod source (rebuild these mods):")
+            for a, c in sorted(mod_hits.items()):
+                print(f"    {c:>5}  {a}")
 
     if args.dry_run:
         print("(dry-run: no files modified)")

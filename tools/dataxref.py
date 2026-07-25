@@ -168,6 +168,8 @@ def main():
     ap = argparse.ArgumentParser()
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--func", metavar="NAME")
+    g.add_argument("--funcs", metavar="F1,F2,...",
+                   help="comma-separated function list (scope a batch without reading a monster .c)")
     g.add_argument("--file", metavar="PATH")
     g.add_argument("--addr", metavar="0xADDR")
     g.add_argument("--all", action="store_true")
@@ -189,6 +191,19 @@ def main():
         print(f"{args.func}  ({func_file.get(args.func)})")
         for line in fmt_rows(sorted(seen.values()), names, show_func=False):
             print(line)
+        return
+
+    if args.funcs:
+        for name in [s.strip() for s in args.funcs.split(",") if s.strip()]:
+            rows = per_func.get(name)
+            if rows is None:
+                print(f"{name}: (no such function)")
+                continue
+            uniq = sorted({(a, off, rw): (a, rw, w, off, ptr)
+                           for a, rw, w, off, ptr in rows}.values())
+            print(f"{name}  ({func_file.get(name)})")
+            for line in fmt_rows(uniq, names, show_func=False):
+                print(line)
         return
 
     if args.file:
