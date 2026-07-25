@@ -27,6 +27,23 @@ the game — using the tooling and struct/callgraph knowledge already built up.
 | `tools/complexity.py` | rank functions. Low complexity = fast near-certain names; high = core logic (name last, with callgraph context). Regenerates `FUNCTION_COMPLEXITY.md`. |
 | `tools/reorganize_recompiled.py` | domain hierarchy + `FUNC_DOMAIN_OVERRIDE`. Re-run to re-bucket when a rename changes a prefix (then reconfigure cmake). |
 | `FUNCTION_INDEX.md` / `FUNCTION_COMPLEXITY.md` | derived data; regenerate when stale. |
+| `tools/rename_sym.py` | **guarded rename** — `--func`/`--data`/`--map` (atomic batch). Preflights refuse collisions/missing source (prevents the dup-symbol link fail); does the whole-word substitution across all artifacts for you; flags NEEDS-REORG on a prefix change. Use this instead of hand-`sed`. |
+| `tools/dataxref.py` | **the variable engine** — reconstructs the absolute global address of every data access (`lui`+offset) and joins it to `tnt.datasyms.toml`. `--func` (globals a fn touches) → name them; `--addr` (every fn touching a global) → cross-confirm + spread context. Read-only. |
+| `tools/datacoverage.py` | variable-naming progress for `tnt.datasyms.toml` + `--check` lint (the datasym-side gate; datasyms aren't in the link). |
+
+### The recursive loop (functions ⇄ variables)
+The batch loop below is now closed into a recursion by `dataxref.py`: after naming a
+function, run `dataxref.py --func` to name the globals it touches (fn→var); then
+`dataxref.py --addr <named-global>` lists every other function touching it, which
+contextualizes nearby placeholders (var→fn). A cluster is "done for now" when a
+batch yields < 3 confident names; deferred placeholders get **re-activated** in a
+later sweep once a neighbor/global they touch has been named. Functions target
+~100% *statically inferable* (honest — genuine evidence-less residue is parked in
+`docs/naming-parking-list.md`, not force-named); variables target ≥50%
+(`datacoverage.py`), reached largely as a byproduct of the `system` clusters.
+**Variable-side gate:** `datacoverage.py --check` every batch + build a mod that
+references a renamed sym (`data_reference_syms_files`) so a broken name fails
+packaging — the datasym analogue of the link.
 
 Prior struct-offset maps (reuse in agent prompts): Board/BoardP cell (`+0x1`
 type, `7`=empty, `+0x2` group id, `+0x3` multisquare idx, `+0x4` ring next,
