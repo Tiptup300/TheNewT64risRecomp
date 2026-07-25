@@ -17,4 +17,4 @@ each cluster completes.
 
 | symbol | cluster | reason | named-neighbor snapshot | notes |
 |---|---|---|---|---|
-| func_8007C650, func_8007C8B0, func_8007CAC4, func_8007CC14, func_8007CF40, func_8007D214, func_8007D25C, func_8007D458, func_8007D510, func_8007D6A8, func_8007DA00 | system/SaveData.c | low-conf (wrong cluster) | SaveData_* anchors adjacent | NOT save code — camera/matrix/anim (cosf/sinf/sqrtf/mtx4/euler), merely co-located by address. Name in a future math/camera batch, then reorganize will re-home them out of SaveData.c. |
+| func_8007C8B0, func_8007CF40, func_8007D214, func_8007D25C, func_8007D458, func_8007DA00 | system/SaveData.c | low-conf | (partly resolved) | Remaining 6 of the math/effect block co-located in SaveData.c. 5 were named (Math_CosineRadialGrid, Math_AdvanceWrapAngles, Math_GridMagnitude, Math_ApplySineWave, Mtx_FromEulerToGfx) and re-homed. These 6 are setup/aggregators mixing scene+save+libultra calls (func_8007DA00 is a broad per-frame aggregator) — need call-graph context once neighbors settle. |
