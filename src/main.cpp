@@ -166,12 +166,26 @@ static void audio_set_frequency(uint32_t freq) {
     want.samples = 256;
     want.callback = nullptr; // queue-based
     g_audio_dev = SDL_OpenAudioDevice(nullptr, 0, &want, &have, 0);
+    if (g_audio_dev == 0) {
+        // No real device could be opened (e.g. the WSLg audio bridge is fully down:
+        // no PulseAudio AND ALSA can't find a card). Fall back to SDL's 'dummy'
+        // driver so there is always a valid (silent) device — otherwise downstream
+        // code that assumes a working audio device can crash. Restore real audio
+        // separately (on WSL: `wsl --shutdown`).
+        fprintf(stderr, "[tnt] SDL_OpenAudioDevice failed: %s — falling back to dummy audio\n", SDL_GetError());
+        SDL_AudioQuit();
+        SDL_setenv("SDL_AUDIODRIVER", "dummy", 1);
+        if (SDL_AudioInit("dummy") == 0) {
+            g_audio_dev = SDL_OpenAudioDevice(nullptr, 0, &want, &have, 0);
+        }
+    }
     if (g_audio_dev != 0) {
         SDL_PauseAudioDevice(g_audio_dev, 0);
-        fprintf(stderr, "[tnt] audio device opened: %d Hz, %d ch, buffer=%d frames\n",
-                have.freq, have.channels, have.samples);
+        fprintf(stderr, "[tnt] audio device opened: %d Hz, %d ch, buffer=%d frames (driver=%s)\n",
+                have.freq, have.channels, have.samples,
+                SDL_GetCurrentAudioDriver() ? SDL_GetCurrentAudioDriver() : "?");
     } else {
-        fprintf(stderr, "[tnt] SDL_OpenAudioDevice failed: %s\n", SDL_GetError());
+        fprintf(stderr, "[tnt] SDL_OpenAudioDevice failed even with dummy: %s\n", SDL_GetError());
     }
 }
 
