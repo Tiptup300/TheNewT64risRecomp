@@ -438,7 +438,7 @@ L_80054198:
     // 0x800541E0: jal         0x80072508
     // 0x800541E4: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
-    func_80072508(rdram, ctx);
+    Landfill_ShrinkRowToTopFilled(rdram, ctx);
         goto after_5;
     // 0x800541E4: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
@@ -461,7 +461,7 @@ L_800541E8:
     // 0x800541FC: jal         0x8007257C
     // 0x80054200: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
-    func_8007257C(rdram, ctx);
+    Landfill_GrowRowToNextFilled(rdram, ctx);
         goto after_6;
     // 0x80054200: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
@@ -1960,7 +1960,7 @@ L_80054A24:
     // 0x80054A28: jal         0x8007240C
     // 0x80054A2C: nop
 
-    Landfill_8007240c_fiveliner(rdram, ctx);
+    Landfill_SetRowLength(rdram, ctx);
         goto after_17;
     // 0x80054A2C: nop
 
@@ -1998,7 +1998,7 @@ L_80054A24:
     // 0x80054A5C: jal         0x8007240C
     // 0x80054A60: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    Landfill_8007240c_fiveliner(rdram, ctx);
+    Landfill_SetRowLength(rdram, ctx);
         goto after_18;
     // 0x80054A60: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -2015,7 +2015,7 @@ L_80054A6C:
     // 0x80054A70: jal         0x8007240C
     // 0x80054A74: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    Landfill_8007240c_fiveliner(rdram, ctx);
+    Landfill_SetRowLength(rdram, ctx);
         goto after_19;
     // 0x80054A74: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -2052,7 +2052,7 @@ L_80054A80:
     // 0x80054AA4: jal         0x8007240C
     // 0x80054AA8: or          $a1, $s1, $zero
     ctx->r5 = ctx->r17 | 0;
-    Landfill_8007240c_fiveliner(rdram, ctx);
+    Landfill_SetRowLength(rdram, ctx);
         goto after_21;
     // 0x80054AA8: or          $a1, $s1, $zero
     ctx->r5 = ctx->r17 | 0;

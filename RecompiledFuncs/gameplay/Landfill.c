@@ -70,7 +70,7 @@ RECOMP_FUNC void Landfill_SetCell(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void Landfill_8007240c_fiveliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Landfill_SetRowLength(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007240C: addiu       $sp, $sp, -0x28
@@ -230,7 +230,7 @@ RECOMP_FUNC void Landfill_GetCell(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_80072508(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Landfill_ShrinkRowToTopFilled(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80072508: addiu       $sp, $sp, -0x28
@@ -306,7 +306,7 @@ L_80072554:
     // 0x80072560: jal         0x8007240C
     // 0x80072564: or          $a1, $s1, $zero
     ctx->r5 = ctx->r17 | 0;
-    Landfill_8007240c_fiveliner(rdram, ctx);
+    Landfill_SetRowLength(rdram, ctx);
         goto after_2;
     // 0x80072564: or          $a1, $s1, $zero
     ctx->r5 = ctx->r17 | 0;
@@ -326,7 +326,7 @@ L_80072568:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_8007257C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Landfill_GrowRowToNextFilled(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007257C: addiu       $sp, $sp, -0x38
@@ -416,7 +416,7 @@ L_800725E0:
     // 0x800725F0: jal         0x8007240C
     // 0x800725F4: or          $a1, $s2, $zero
     ctx->r5 = ctx->r18 | 0;
-    Landfill_8007240c_fiveliner(rdram, ctx);
+    Landfill_SetRowLength(rdram, ctx);
         goto after_2;
     // 0x800725F4: or          $a1, $s2, $zero
     ctx->r5 = ctx->r18 | 0;
@@ -438,7 +438,7 @@ L_800725F8:
     ctx->r29 = ADD32(ctx->r29, 0X38);
 ;}
 
-RECOMP_FUNC void func_80072610(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Landfill_CycleRowToNextFilled(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80072610: addiu       $sp, $sp, -0x38
@@ -529,7 +529,7 @@ L_80072678:
     // 0x80072684: jal         0x8007240C
     // 0x80072688: or          $a1, $s2, $zero
     ctx->r5 = ctx->r18 | 0;
-    Landfill_8007240c_fiveliner(rdram, ctx);
+    Landfill_SetRowLength(rdram, ctx);
         goto after_2;
     // 0x80072688: or          $a1, $s2, $zero
     ctx->r5 = ctx->r18 | 0;
@@ -778,7 +778,7 @@ L_800727CC:
     // 0x800727FC: jal         0x80072610
     // 0x80072800: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
-    func_80072610(rdram, ctx);
+    Landfill_CycleRowToNextFilled(rdram, ctx);
         goto after_3;
     // 0x80072800: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;

@@ -324,7 +324,7 @@ RECOMP_FUNC void EndScroller_font_size_scrolltext(uint8_t* rdram, recomp_context
 
 ;}
 
-RECOMP_FUNC void EndScroller_8007ffb0_doesnothing(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void EndScroller_DeinitLine(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007FFB0: jr          $ra
@@ -680,7 +680,7 @@ L_800801B8:
     // 0x800801B8: jal         0x8007FFB0
     // 0x800801BC: or          $a0, $s1, $zero
     ctx->r4 = ctx->r17 | 0;
-    EndScroller_8007ffb0_doesnothing(rdram, ctx);
+    EndScroller_DeinitLine(rdram, ctx);
         goto after_1;
     // 0x800801BC: or          $a0, $s1, $zero
     ctx->r4 = ctx->r17 | 0;

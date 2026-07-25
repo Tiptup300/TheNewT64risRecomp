@@ -1869,7 +1869,7 @@ L_80073D18:
     // 0x80073D24: jal         0x8007240C
     // 0x80073D28: nop
 
-    Landfill_8007240c_fiveliner(rdram, ctx);
+    Landfill_SetRowLength(rdram, ctx);
         goto after_5;
     // 0x80073D28: nop
 
