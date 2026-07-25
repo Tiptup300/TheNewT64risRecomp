@@ -799,7 +799,7 @@ RECOMP_FUNC void PieceHoldPiece_MakeActive(uint8_t* rdram, recomp_context* ctx) 
     // 0x80065DA4: jal         0x8006553C
     // 0x80065DA8: addiu       $a1, $t5, 0x20
     ctx->r5 = ADD32(ctx->r13, 0X20);
-    MobilePiece_8006553c_nineliner_sets_arg0_struct(rdram, ctx);
+    MobilePiece_InitFromPiece(rdram, ctx);
         goto after_1;
     // 0x80065DA8: addiu       $a1, $t5, 0x20
     ctx->r5 = ADD32(ctx->r13, 0X20);

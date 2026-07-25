@@ -1353,7 +1353,7 @@ L_8006552C:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void MobilePiece_8006553c_nineliner_sets_arg0_struct(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void MobilePiece_InitFromPiece(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006553C: sb          $zero, 0x0($a0)

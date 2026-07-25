@@ -14880,7 +14880,7 @@ L_8006D018:
     // 0x8006D018: jal         0x8006CEDC
     // 0x8006D01C: nop
 
-    FUN_032F00_8006cedc_sets_glb_to_fun_call_glb(rdram, ctx);
+    GameMode_AdvanceGdl(rdram, ctx);
         goto after_14;
     // 0x8006D01C: nop
 

@@ -341,7 +341,7 @@ L_8006683C:
     // 0x800668C8: jal         0x8006553C
     // 0x800668CC: addiu       $a1, $t8, 0x8
     ctx->r5 = ADD32(ctx->r24, 0X8);
-    MobilePiece_8006553c_nineliner_sets_arg0_struct(rdram, ctx);
+    MobilePiece_InitFromPiece(rdram, ctx);
         goto after_1;
     // 0x800668CC: addiu       $a1, $t8, 0x8
     ctx->r5 = ADD32(ctx->r24, 0X8);

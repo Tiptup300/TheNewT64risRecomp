@@ -456,7 +456,7 @@ L_8006CECC:
 
 ;}
 
-RECOMP_FUNC void FUN_032F00_8006cedc_sets_glb_to_fun_call_glb(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GameMode_AdvanceGdl(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006CEDC: addiu       $sp, $sp, -0x18

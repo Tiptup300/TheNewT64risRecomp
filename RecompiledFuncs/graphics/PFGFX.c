@@ -733,7 +733,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_1p(uint8_t* rdram, recomp_context* ctx)
     // 0x8005FEB8: jal         0x80070C70
     // 0x8005FEBC: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
-    Minos_80070c70_threeliner_set_OR_8(rdram, ctx);
+    Minos_SetPosition(rdram, ctx);
         goto after_1;
     // 0x8005FEBC: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
@@ -759,7 +759,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_1p(uint8_t* rdram, recomp_context* ctx)
     // 0x8005FEDC: jal         0x80070A34
     // 0x8005FEE0: nop
 
-    Minos_80070a34_twentyliner(rdram, ctx);
+    Minos_ApplyPendingParams(rdram, ctx);
         goto after_3;
     // 0x8005FEE0: nop
 
@@ -1000,7 +1000,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_2p(uint8_t* rdram, recomp_context* ctx)
     // 0x80060078: jal         0x80070C70
     // 0x8006007C: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
-    Minos_80070c70_threeliner_set_OR_8(rdram, ctx);
+    Minos_SetPosition(rdram, ctx);
         goto after_1;
     // 0x8006007C: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
@@ -1026,7 +1026,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_2p(uint8_t* rdram, recomp_context* ctx)
     // 0x8006009C: jal         0x80070A34
     // 0x800600A0: nop
 
-    Minos_80070a34_twentyliner(rdram, ctx);
+    Minos_ApplyPendingParams(rdram, ctx);
         goto after_3;
     // 0x800600A0: nop
 
@@ -1334,7 +1334,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_3p(uint8_t* rdram, recomp_context* ctx)
     // 0x800602A0: jal         0x80070C70
     // 0x800602A4: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
-    Minos_80070c70_threeliner_set_OR_8(rdram, ctx);
+    Minos_SetPosition(rdram, ctx);
         goto after_1;
     // 0x800602A4: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
@@ -1360,7 +1360,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_3p(uint8_t* rdram, recomp_context* ctx)
     // 0x800602C4: jal         0x80070A34
     // 0x800602C8: nop
 
-    Minos_80070a34_twentyliner(rdram, ctx);
+    Minos_ApplyPendingParams(rdram, ctx);
         goto after_3;
     // 0x800602C8: nop
 
@@ -1569,7 +1569,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_4p(uint8_t* rdram, recomp_context* ctx)
     // 0x80060414: jal         0x80070C70
     // 0x80060418: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
-    Minos_80070c70_threeliner_set_OR_8(rdram, ctx);
+    Minos_SetPosition(rdram, ctx);
         goto after_1;
     // 0x80060418: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
@@ -1595,7 +1595,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_4p(uint8_t* rdram, recomp_context* ctx)
     // 0x80060438: jal         0x80070A34
     // 0x8006043C: nop
 
-    Minos_80070a34_twentyliner(rdram, ctx);
+    Minos_ApplyPendingParams(rdram, ctx);
         goto after_3;
     // 0x8006043C: nop
 

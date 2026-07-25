@@ -3693,7 +3693,7 @@ RECOMP_FUNC void CurrentPiece_Spawn(uint8_t* rdram, recomp_context* ctx) {
     // 0x80067F18: jal         0x8006553C
     // 0x80067F1C: addiu       $a1, $s0, 0x20
     ctx->r5 = ADD32(ctx->r16, 0X20);
-    MobilePiece_8006553c_nineliner_sets_arg0_struct(rdram, ctx);
+    MobilePiece_InitFromPiece(rdram, ctx);
         goto after_7;
     // 0x80067F1C: addiu       $a1, $s0, 0x20
     ctx->r5 = ADD32(ctx->r16, 0X20);

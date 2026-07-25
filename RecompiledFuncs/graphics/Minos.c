@@ -2406,7 +2406,7 @@ L_800702C4:
     ctx->r29 = ADD32(ctx->r29, 0X78);
 ;}
 
-RECOMP_FUNC void Minos_80070a34_twentyliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_ApplyPendingParams(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80070A34: lui         $a0, 0x8012
@@ -2784,7 +2784,7 @@ RECOMP_FUNC void Minos_80070c40_twoliner_set_OR_1(uint8_t* rdram, recomp_context
     MEM_B(0X0, ctx->r15) = ctx->r25;
 ;}
 
-RECOMP_FUNC void Minos_80070c70_threeliner_set_OR_8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_SetPosition(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80070C70: lui         $t6, 0x8012
@@ -3084,7 +3084,7 @@ RECOMP_FUNC void Minos_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80070E7C: jal         0x80070C70
     // 0x80070E80: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
-    Minos_80070c70_threeliner_set_OR_8(rdram, ctx);
+    Minos_SetPosition(rdram, ctx);
         goto after_1;
     // 0x80070E80: addiu       $a1, $zero, 0xA00
     ctx->r5 = ADD32(0, 0XA00);
@@ -3126,7 +3126,7 @@ RECOMP_FUNC void Minos_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80070EA8: jal         0x80070A34
     // 0x80070EAC: nop
 
-    Minos_80070a34_twentyliner(rdram, ctx);
+    Minos_ApplyPendingParams(rdram, ctx);
         goto after_6;
     // 0x80070EAC: nop
 
