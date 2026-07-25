@@ -97,7 +97,23 @@ to auto-enable a bundled mod. `[[manifest.config_options]]` entries become the
 per-mod settings shown in the Mods menu (readable at runtime via `recompconfig.h`).
 
 `[inputs]` needs `elf_path`, `mod_filename`, `func_reference_syms_file`
-(= `../../tnt.syms.toml`), and `data_reference_syms_files` (may be `[]`).
+(= `../../tnt.syms.toml`), and `data_reference_syms_files`.
+
+### Referencing game variables by name
+
+`data_reference_syms_files = [ "../../tnt.datasyms.toml" ]` lets a mod name game
+variables instead of hard-coding addresses. `tnt.datasyms.toml` (699 data symbols,
+ripped from tnt-splat via `tools/gen_datasyms.py`) maps names like `D_800CF928`
+(the wonders threshold table) to their addresses. Declare the symbol `extern` and
+use it directly — RecompModTool resolves the name to the game address at build
+time (an unknown name is a build error, so typos are caught):
+
+```c
+extern volatile unsigned int D_800CF928[7];   // wonder line-requirement table
+// ... D_800CF928[i] = ...;
+```
+
+See `mods/wonders-rebalance` for a working example.
 
 ## Provenance / licensing
 

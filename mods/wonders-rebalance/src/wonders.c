@@ -11,15 +11,14 @@
 // checks. Rewriting the table once at startup rebalances every reader
 // consistently — there is no single getter to patch instead.
 //
-// Address derivation: wonders2_GetLinesRemainingToWonder computes the element
-// address as (0x800D0000 - 0x6D8) + wonder_index*4, so table base = 0x800CF928.
-//
-// Only modding.h is included: this runtime doesn't export the recomputils.h
-// import set (recomp_printf etc.), so including it would make the mod fail to
-// load. Game memory is reached via raw KSEG0 pointers, which the recompiler
-// translates to game-RAM accesses.
-#define WONDER_THRESHOLDS 0x800CF928
+// The table is the data symbol D_800CF928 (tnt.datasyms.toml, confirming the
+// address I derived by RE): wonders2_GetLinesRemainingToWonder computes the
+// element address as (0x800D0000 - 0x6D8) + wonder_index*4 = 0x800CF928 + i*4.
+// Referencing it by name (via the mod's data_reference_syms_files) is cleaner and
+// safer than a raw pointer — the mod recompiler resolves the name to the game
+// address. Only modding.h is included (this runtime doesn't export recomputils.h).
 #define WONDER_COUNT 7
+extern volatile unsigned int D_800CF928[WONDER_COUNT];  // wonder line-requirement table
 
 // Stock values, ascending by wonder. We verify against these before writing so a
 // wrong address or an unexpected ROM revision can never corrupt memory.
@@ -36,16 +35,15 @@ static const unsigned int kRebalanced[WONDER_COUNT] = {
 // always-resident game data, so it's present by now; re-applying each session is
 // harmless and robust.
 RECOMP_HOOK("Game_Init") void tnt_wonders_rebalance(void) {
-    volatile unsigned int* table = (volatile unsigned int*)WONDER_THRESHOLDS;
 
     // Safety guard: only patch a table that matches the known stock values.
     for (int i = 0; i < WONDER_COUNT; i++) {
-        if (table[i] != kOriginal[i]) {
+        if (D_800CF928[i] != kOriginal[i]) {
             return;
         }
     }
 
     for (int i = 0; i < WONDER_COUNT; i++) {
-        table[i] = kRebalanced[i];
+        D_800CF928[i] = kRebalanced[i];
     }
 }

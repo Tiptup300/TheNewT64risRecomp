@@ -22,5 +22,5 @@ enabled_by_default = false
 elf_path = "build/mod.elf"
 mod_filename = "tnt_wonders_rebalance"
 func_reference_syms_file = "../../tnt.syms.toml"
-data_reference_syms_files = [ ]
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
 additional_files = [ ]
