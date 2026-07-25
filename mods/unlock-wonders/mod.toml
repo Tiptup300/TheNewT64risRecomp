@@ -1,0 +1,21 @@
+# Unlock All Wonders — bundled, OFF by default (opt-in from the Mods menu).
+[manifest]
+id = "tnt_unlock_wonders"
+version = "1.0.0"
+display_name = "Unlock All Wonders"
+description = """
+Unlocks all seven Wonders from the start by setting your saved total wonder-lines \
+above every threshold. Bundled but disabled by default — enable it from the Mods \
+menu. (This runtime can't read per-mod config at runtime, so it's a fixed toggle.)"""
+short_description = "Unlock all Wonders at the start."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+enabled_by_default = false
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_unlock_wonders"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
+additional_files = [ ]
