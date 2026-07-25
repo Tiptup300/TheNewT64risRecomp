@@ -1170,7 +1170,7 @@ L_8006CF68:
     // 0x8006CF68: jal         0x80080B50
     // 0x8006CF6C: nop
 
-    func_80080B50(rdram, ctx);
+    Gfx_DrawScreenFadeOverlay(rdram, ctx);
         goto after_2;
     // 0x8006CF6C: nop
 

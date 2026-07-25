@@ -37,7 +37,7 @@ RECOMP_FUNC void Minos_800702e4_nineliner(uint8_t* rdram, recomp_context* ctx) {
     // 0x80070318: jal         0x800A2F30
     // 0x8007031C: addiu       $a0, $t7, 0x24
     ctx->r4 = ADD32(ctx->r15, 0X24);
-    func_800A2F30(rdram, ctx);
+    Minos_CopyGrid(rdram, ctx);
         goto after_1;
     // 0x8007031C: addiu       $a0, $t7, 0x24
     ctx->r4 = ADD32(ctx->r15, 0X24);
@@ -264,7 +264,7 @@ RECOMP_FUNC void Minos_Mino_Copy(uint8_t* rdram, recomp_context* ctx) {
     // 0x800704C8: jal         0x800A2F30
     // 0x800704CC: addiu       $a0, $a0, 0x24
     ctx->r4 = ADD32(ctx->r4, 0X24);
-    func_800A2F30(rdram, ctx);
+    Minos_CopyGrid(rdram, ctx);
         goto after_0;
     // 0x800704CC: addiu       $a0, $a0, 0x24
     ctx->r4 = ADD32(ctx->r4, 0X24);
