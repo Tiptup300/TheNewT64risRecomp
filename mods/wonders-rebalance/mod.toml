@@ -1,0 +1,26 @@
+# Wonders line-requirement rebalance. Included but OFF by default — the player
+# opts in from the Mods menu.
+
+[manifest]
+id = "tnt_wonders_rebalance"
+version = "1.0.0"
+display_name = "Rebalanced Wonder Requirements"
+description = """
+The seven Wonders normally require a wildly escalating number of lines \
+(…99999, 249999, 499999). This mod rewrites the requirements to a gentler, more \
+reasonable curve that still tops out at 99999, so completing the later Wonders \
+is achievable without changing the early game."""
+short_description = "Gentler line requirements for the later Wonders."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+
+# Bundled but not forced on — the user enables it from the Mods menu.
+enabled_by_default = false
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_wonders_rebalance"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ ]
+additional_files = [ ]
