@@ -48,7 +48,7 @@
 - [ ] FIX crash: func_80090E08 -> func_8009D5E4 -> func_800A0228 -> func_8009EED4+0x128 (jal guTranslate on a bad scene-object pointer). Triggered whenever the menu-hub / start-playing scene (byte 0x800CFEE8 = 4) is entered without its normal setup — e.g. skip-intro forcing scene 4, or the attract demo starting a game. This is the central blocker for skip-to-menu and reliable gameplay boot. Needs RE of func_8009EED4's scene-object init.
 - [ ] open-mods-folder button does nothing under WSLg (no xdg-open/Windows shell bridge). Wire it to the right per-OS folder-open (xdg-open / explorer.exe / open) or hide it where unsupported.
 - [ ] song/playlist selector mod — list all available songs and let the user choose which songs play; when enabled, disable the in-game Audio "select music" menu option
-- [ ] a way to configure mods without relaunching — mods only toggle at the launcher, but auto-start skips it and in-game Quit exits the app (needs an in-game "return to launcher"/stop-game, or launch with TNT_NO_AUTOBOOT)
+- [~] configure mods without hand-relaunching — DONE via the in-game "Restart" button (config-menu header, shown while playing): re-execs the app with TNT_NO_AUTOBOOT so it lands at the launcher to toggle mods, then Start Game again. Still open: a true IN-PLACE return-to-launcher (tear down the game thread without a full process restart) + a Windows re-exec path (Linux-only /proc/self/exe today).
 
 ## Packaging / release
 - [ ] cut a release with both Linux (tar.gz) + Windows (zip) once Windows runtime/audio are verified
