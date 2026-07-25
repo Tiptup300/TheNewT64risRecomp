@@ -498,7 +498,7 @@ L_80042AFC:
     // 0x80042B04: jal         0x8003DFA0
     // 0x80042B08: nop
 
-    FUN_004220_8003dfa0_sixliner_allocs_heap_x962(rdram, ctx);
+    aisquarelist_AllocSquareBuffer(rdram, ctx);
         goto after_6;
     // 0x80042B08: nop
 
@@ -552,7 +552,7 @@ RECOMP_FUNC void OpponentPlayer_Deinit(uint8_t* rdram, recomp_context* ctx) {
     // 0x80042B50: jal         0x8003E004
     // 0x80042B54: nop
 
-    FUN_004220_8003e004_threeliner_unallocs_heap(rdram, ctx);
+    aisquarelist_FreeSquareBuffer(rdram, ctx);
         goto after_0;
     // 0x80042B54: nop
 
@@ -827,7 +827,7 @@ L_80042CA8:
     // 0x80042CF8: jal         0x8003E038
     // 0x80042CFC: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    FUN_004220_8003e038_twentytwoliner_nested_loops(rdram, ctx);
+    aisquarelist_BuildDropTable(rdram, ctx);
         goto after_1;
     // 0x80042CFC: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
@@ -847,7 +847,7 @@ L_80042CA8:
     // 0x80042D10: jal         0x8003E038
     // 0x80042D14: addiu       $a0, $zero, 0x1
     ctx->r4 = ADD32(0, 0X1);
-    FUN_004220_8003e038_twentytwoliner_nested_loops(rdram, ctx);
+    aisquarelist_BuildDropTable(rdram, ctx);
         goto after_3;
     // 0x80042D14: addiu       $a0, $zero, 0x1
     ctx->r4 = ADD32(0, 0X1);
