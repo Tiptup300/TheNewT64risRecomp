@@ -491,7 +491,7 @@ L_8007C8CC:
     // 0x8007C8D8: jal         0x800A36F0
     // 0x8007C8DC: nop
 
-    func_800A36F0(rdram, ctx);
+    Scene_RandFloatRange(rdram, ctx);
         goto after_0;
     // 0x8007C8DC: nop
 
@@ -521,7 +521,7 @@ L_8007C8CC:
     // 0x8007C90C: jal         0x800A36F0
     // 0x8007C910: nop
 
-    func_800A36F0(rdram, ctx);
+    Scene_RandFloatRange(rdram, ctx);
         goto after_1;
     // 0x8007C910: nop
 
@@ -535,7 +535,7 @@ L_8007C8CC:
     // 0x8007C91C: jal         0x800A35EC
     // 0x8007C920: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_2;
     // 0x8007C920: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
@@ -691,7 +691,7 @@ L_8007C8CC:
     // 0x8007CA20: jal         0x800A36F0
     // 0x8007CA24: nop
 
-    func_800A36F0(rdram, ctx);
+    Scene_RandFloatRange(rdram, ctx);
         goto after_5;
     // 0x8007CA24: nop
 
@@ -721,7 +721,7 @@ L_8007C8CC:
     // 0x8007CA54: jal         0x800A36F0
     // 0x8007CA58: nop
 
-    func_800A36F0(rdram, ctx);
+    Scene_RandFloatRange(rdram, ctx);
         goto after_6;
     // 0x8007CA58: nop
 
@@ -735,7 +735,7 @@ L_8007C8CC:
     // 0x8007CA64: jal         0x800A35EC
     // 0x8007CA68: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_7;
     // 0x8007CA68: addiu       $a1, $zero, 0x2
     ctx->r5 = ADD32(0, 0X2);

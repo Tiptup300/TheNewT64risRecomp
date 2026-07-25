@@ -11158,7 +11158,7 @@ RECOMP_FUNC void aisquarelist_PartitionRandomPivot(uint8_t* rdram, recomp_contex
     // 0x80042314: jal         0x800A35EC
     // 0x80042318: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_0;
     // 0x80042318: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;

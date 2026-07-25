@@ -606,7 +606,7 @@ L_80043BAC:
     // 0x80043BB0: jal         0x800A35EC
     // 0x80043BB4: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_10;
     // 0x80043BB4: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);

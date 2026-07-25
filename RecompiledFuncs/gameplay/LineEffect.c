@@ -73,7 +73,7 @@ RECOMP_FUNC void LineEffect_State2_SpawnColumnCubes(uint8_t* rdram, recomp_conte
     // 0x8006905C: jal         0x800A35EC
     // 0x80069060: addiu       $a1, $zero, 0xC
     ctx->r5 = ADD32(0, 0XC);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_2;
     // 0x80069060: addiu       $a1, $zero, 0xC
     ctx->r5 = ADD32(0, 0XC);
@@ -304,7 +304,7 @@ L_80069198:
     // 0x800691C4: jal         0x800A35EC
     // 0x800691C8: addiu       $a1, $zero, 0xC
     ctx->r5 = ADD32(0, 0XC);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_0;
     // 0x800691C8: addiu       $a1, $zero, 0xC
     ctx->r5 = ADD32(0, 0XC);

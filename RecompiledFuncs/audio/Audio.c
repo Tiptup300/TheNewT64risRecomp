@@ -3616,7 +3616,7 @@ L_80085C9C:
     // 0x80085CAC: jal         0x800A2F00
     // 0x80085CB0: nop
 
-    func_800A2F00(rdram, ctx);
+    Scene_ExpandBytesToHalfwords(rdram, ctx);
         goto after_0;
     // 0x80085CB0: nop
 

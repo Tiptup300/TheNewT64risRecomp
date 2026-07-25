@@ -4562,7 +4562,7 @@ L_8003DB3C:
     ctx->r29 = ADD32(ctx->r29, 0XA8);
 ;}
 
-RECOMP_FUNC void FUN_001050_Create_and_Start_ControllerThread(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Controller_CreateThread(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8003DB60: addiu       $sp, $sp, -0x20

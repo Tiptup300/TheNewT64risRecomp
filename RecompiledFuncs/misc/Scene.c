@@ -707,7 +707,7 @@ RECOMP_FUNC void MenuHub_StartPlaying(uint8_t* rdram, recomp_context* ctx) {
     // 0x80090E64: jal         0x800A35EC
     // 0x80090E68: addiu       $a1, $zero, 0x7
     ctx->r5 = ADD32(0, 0X7);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_2;
     // 0x80090E68: addiu       $a1, $zero, 0x7
     ctx->r5 = ADD32(0, 0X7);
@@ -728,7 +728,7 @@ L_80090E78:
     // 0x80090E80: jal         0x800A35EC
     // 0x80090E84: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_3;
     // 0x80090E84: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
@@ -843,7 +843,7 @@ L_80090EEC:
     // 0x80090F14: jal         0x800A35EC
     // 0x80090F18: addiu       $a1, $zero, 0xA
     ctx->r5 = ADD32(0, 0XA);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_10;
     // 0x80090F18: addiu       $a1, $zero, 0xA
     ctx->r5 = ADD32(0, 0XA);
@@ -891,7 +891,7 @@ L_80090EEC:
     // 0x80090F5C: jal         0x800A35EC
     // 0x80090F60: addiu       $a1, $zero, 0x7
     ctx->r5 = ADD32(0, 0X7);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_11;
     // 0x80090F60: addiu       $a1, $zero, 0x7
     ctx->r5 = ADD32(0, 0X7);
@@ -912,7 +912,7 @@ L_80090F70:
     // 0x80090F78: jal         0x800A35EC
     // 0x80090F7C: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_12;
     // 0x80090F7C: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
@@ -1761,7 +1761,7 @@ RECOMP_FUNC void func_80091440(uint8_t* rdram, recomp_context* ctx) {
     // 0x80091464: jal         0x800A35EC
     // 0x80091468: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_0;
     // 0x80091468: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
@@ -2235,7 +2235,7 @@ RECOMP_FUNC void func_80091744(uint8_t* rdram, recomp_context* ctx) {
     // 0x80091768: jal         0x800A35EC
     // 0x8009176C: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_0;
     // 0x8009176C: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
@@ -19989,7 +19989,7 @@ L_800989C0:
     // 0x80098A74: jal         0x800A35EC
     // 0x80098A78: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_319;
     // 0x80098A78: addiu       $a1, $zero, 0x3
     ctx->r5 = ADD32(0, 0X3);
@@ -38675,7 +38675,7 @@ L_800A0464:
 
 ;}
 
-RECOMP_FUNC void func_800A0480(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SetLoadFlag2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A0480: addiu       $t6, $zero, 0x2
@@ -38692,7 +38692,7 @@ RECOMP_FUNC void func_800A0480(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X3CF0, ctx->r1) = ctx->r14;
 ;}
 
-RECOMP_FUNC void func_800A0494(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SetLoadFlag5(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A0494: addiu       $t6, $zero, 0x5
@@ -38754,7 +38754,7 @@ RECOMP_FUNC void func_800A04A8(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r12) = ctx->r11;
 ;}
 
-RECOMP_FUNC void func_800A04F4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_DetectPeripherals(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A04F4: addiu       $sp, $sp, -0x20
@@ -45313,7 +45313,7 @@ RECOMP_FUNC void func_800A2E2C(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X3DD8, ctx->r1) = 0;
 ;}
 
-RECOMP_FUNC void func_800A2EF0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_FloatToInt(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A2EF0: cvt.w.s     $f4, $f12
@@ -45330,7 +45330,7 @@ RECOMP_FUNC void func_800A2EF0(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A2F00(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_ExpandBytesToHalfwords(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A2F00: beq         $a2, $zero, L_800A2F20
@@ -46379,7 +46379,7 @@ RECOMP_FUNC void func_800A3534(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A3550(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SeedRand(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3550: addiu       $sp, $sp, -0x18
@@ -46449,7 +46449,7 @@ L_800A3598:
     ctx->r29 = ADD32(ctx->r29, 0X18);
 ;}
 
-RECOMP_FUNC void func_800A35AC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandNext(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A35AC: lui         $v1, 0x8013
@@ -46488,7 +46488,7 @@ RECOMP_FUNC void func_800A35AC(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r3) = ctx->r2;
 ;}
 
-RECOMP_FUNC void func_800A35EC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandRange(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A35EC: addiu       $sp, $sp, -0x18
@@ -46528,7 +46528,7 @@ L_800A3614:
     // 0x800A3618: jal         0x800A35AC
     // 0x800A361C: sw          $a1, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->r5;
-    func_800A35AC(rdram, ctx);
+    Scene_RandNext(rdram, ctx);
         goto after_0;
     // 0x800A361C: sw          $a1, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->r5;
@@ -46570,7 +46570,7 @@ L_800A3648:
 
 ;}
 
-RECOMP_FUNC void func_800A3658(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandSymmetric(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3658: or          $a2, $a0, $zero
@@ -46595,7 +46595,7 @@ L_800A3674:
     // 0x800A3674: jal         0x800A35EC
     // 0x800A3678: negu        $a0, $a1
     ctx->r4 = SUB32(0, ctx->r5);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_0;
     // 0x800A3678: negu        $a0, $a1
     ctx->r4 = SUB32(0, ctx->r5);
@@ -46612,7 +46612,7 @@ L_800A3674:
 
 ;}
 
-RECOMP_FUNC void func_800A368C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandFloat01(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A368C: addiu       $sp, $sp, -0x18
@@ -46622,7 +46622,7 @@ RECOMP_FUNC void func_800A368C(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A3694: jal         0x800A35AC
     // 0x800A3698: nop
 
-    func_800A35AC(rdram, ctx);
+    Scene_RandNext(rdram, ctx);
         goto after_0;
     // 0x800A3698: nop
 
@@ -46690,7 +46690,7 @@ L_800A36D0:
     ctx->r29 = ADD32(ctx->r29, 0X18);
 ;}
 
-RECOMP_FUNC void func_800A36F0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandFloatRange(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A36F0: c.eq.s      $f12, $f14
@@ -46760,7 +46760,7 @@ L_800A372C:
     // 0x800A372C: jal         0x800A368C
     // 0x800A3730: swc1        $f14, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f14.u32l;
-    func_800A368C(rdram, ctx);
+    Scene_RandFloat01(rdram, ctx);
         goto after_0;
     // 0x800A3730: swc1        $f14, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f14.u32l;

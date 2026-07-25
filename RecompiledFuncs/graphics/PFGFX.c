@@ -4454,7 +4454,7 @@ L_80061B68:
     // 0x80061B88: jal         0x800A35EC
     // 0x80061B8C: addiu       $a1, $zero, 0x32
     ctx->r5 = ADD32(0, 0X32);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_0;
     // 0x80061B8C: addiu       $a1, $zero, 0x32
     ctx->r5 = ADD32(0, 0X32);
@@ -4491,7 +4491,7 @@ L_80061BB4:
     // 0x80061BBC: jal         0x800A35EC
     // 0x80061BC0: addiu       $a1, $a1, 0x9
     ctx->r5 = ADD32(ctx->r5, 0X9);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_1;
     // 0x80061BC0: addiu       $a1, $a1, 0x9
     ctx->r5 = ADD32(ctx->r5, 0X9);
@@ -4510,7 +4510,7 @@ L_80061BCC:
     // 0x80061BD4: jal         0x800A35EC
     // 0x80061BD8: addiu       $a1, $a1, 0x9
     ctx->r5 = ADD32(ctx->r5, 0X9);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_2;
     // 0x80061BD8: addiu       $a1, $a1, 0x9
     ctx->r5 = ADD32(ctx->r5, 0X9);

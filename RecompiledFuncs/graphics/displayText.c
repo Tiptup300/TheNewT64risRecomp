@@ -5920,7 +5920,7 @@ L_8007A0B0:
     // 0x8007A0D0: jal         0x800A35EC
     // 0x8007A0D4: addiu       $a1, $zero, 0xFF
     ctx->r5 = ADD32(0, 0XFF);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_1;
     // 0x8007A0D4: addiu       $a1, $zero, 0xFF
     ctx->r5 = ADD32(0, 0XFF);
@@ -6017,7 +6017,7 @@ L_8007A150:
     // 0x8007A154: jal         0x800A35EC
     // 0x8007A158: addiu       $a1, $zero, 0xFF
     ctx->r5 = ADD32(0, 0XFF);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_2;
     // 0x8007A158: addiu       $a1, $zero, 0xFF
     ctx->r5 = ADD32(0, 0XFF);
@@ -7088,7 +7088,7 @@ RECOMP_FUNC void displayText_AddTimestampedEntry(uint8_t* rdram, recomp_context*
     // 0x8007A7C8: jal         0x800A35EC
     // 0x8007A7CC: sb          $t0, 0x9($t1)
     MEM_B(0X9, ctx->r9) = ctx->r8;
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_5;
     // 0x8007A7CC: sb          $t0, 0x9($t1)
     MEM_B(0X9, ctx->r9) = ctx->r8;

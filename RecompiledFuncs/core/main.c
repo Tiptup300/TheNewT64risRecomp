@@ -1553,7 +1553,7 @@ L_8004A4F4:
     // 0x8004A580: jal         0x8003DB60
     // 0x8004A584: addiu       $a2, $zero, 0xB
     ctx->r6 = ADD32(0, 0XB);
-    FUN_001050_Create_and_Start_ControllerThread(rdram, ctx);
+    Controller_CreateThread(rdram, ctx);
         goto after_13;
     // 0x8004A584: addiu       $a2, $zero, 0xB
     ctx->r6 = ADD32(0, 0XB);

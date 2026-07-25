@@ -101,7 +101,7 @@ L_8005296C:
     // 0x8005297C: jal         0x800A2EF0
     // 0x80052980: nop
 
-    func_800A2EF0(rdram, ctx);
+    Scene_FloatToInt(rdram, ctx);
         goto after_0;
     // 0x80052980: nop
 

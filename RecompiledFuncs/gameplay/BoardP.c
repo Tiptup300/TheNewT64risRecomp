@@ -934,7 +934,7 @@ RECOMP_FUNC void BoardP_RefreshGroupTiles(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006D93C: jal         0x800A35EC
     // 0x8006D940: addiu       $a1, $zero, 0x7
     ctx->r5 = ADD32(0, 0X7);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_0;
     // 0x8006D940: addiu       $a1, $zero, 0x7
     ctx->r5 = ADD32(0, 0X7);

@@ -199,7 +199,7 @@ L_800428FC:
     // 0x80042920: jal         0x800A35EC
     // 0x80042924: addiu       $a1, $zero, 0x4
     ctx->r5 = ADD32(0, 0X4);
-    func_800A35EC(rdram, ctx);
+    Scene_RandRange(rdram, ctx);
         goto after_1;
     // 0x80042924: addiu       $a1, $zero, 0x4
     ctx->r5 = ADD32(0, 0X4);

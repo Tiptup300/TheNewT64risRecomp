@@ -13375,7 +13375,7 @@ L_800905FC:
     // 0x800906C4: jal         0x800A3550
     // 0x800906C8: nop
 
-    func_800A3550(rdram, ctx);
+    Scene_SeedRand(rdram, ctx);
         goto after_3;
     // 0x800906C8: nop
 
@@ -13425,7 +13425,7 @@ L_800905FC:
     // 0x80090720: jal         0x800A36F0
     // 0x80090724: nop
 
-    func_800A36F0(rdram, ctx);
+    Scene_RandFloatRange(rdram, ctx);
         goto after_4;
     // 0x80090724: nop
 
@@ -13521,7 +13521,7 @@ L_800905FC:
     // 0x800907B0: jal         0x800A36F0
     // 0x800907B4: nop
 
-    func_800A36F0(rdram, ctx);
+    Scene_RandFloatRange(rdram, ctx);
         goto after_10;
     // 0x800907B4: nop
 
@@ -13537,7 +13537,7 @@ L_800905FC:
     // 0x800907C8: jal         0x800A36F0
     // 0x800907CC: nop
 
-    func_800A36F0(rdram, ctx);
+    Scene_RandFloatRange(rdram, ctx);
         goto after_11;
     // 0x800907CC: nop
 
