@@ -1174,7 +1174,7 @@ L_80046A90:
     // 0x80046AB8: jal         0x8009F338
     // 0x80046ABC: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8009F338(rdram, ctx);
+    Scene_FreeObjectBuffers(rdram, ctx);
         goto after_2;
     // 0x80046ABC: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
@@ -2781,7 +2781,7 @@ L_80047348:
     // 0x8004742C: jal         0x8009FA2C
     // 0x80047430: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8009FA2C(rdram, ctx);
+    Scene_PlaceObjects(rdram, ctx);
         goto after_12;
     // 0x80047430: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);

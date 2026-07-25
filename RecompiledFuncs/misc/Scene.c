@@ -419,7 +419,7 @@ L_80090BA8:
     // 0x80090CA0: jal         0x8009FA2C
     // 0x80090CA4: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8009FA2C(rdram, ctx);
+    Scene_PlaceObjects(rdram, ctx);
         goto after_10;
     // 0x80090CA4: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
@@ -1824,7 +1824,7 @@ L_800914A4:
     // 0x800914BC: jal         0x8009DDF4
     // 0x800914C0: or          $a0, $t8, $zero
     ctx->r4 = ctx->r24 | 0;
-    func_8009DDF4(rdram, ctx);
+    Scene_ClearAllObjectEntries(rdram, ctx);
         goto after_2;
     // 0x800914C0: or          $a0, $t8, $zero
     ctx->r4 = ctx->r24 | 0;
@@ -2298,7 +2298,7 @@ L_800917A8:
     // 0x800917C0: jal         0x8009DDF4
     // 0x800917C4: or          $a0, $t8, $zero
     ctx->r4 = ctx->r24 | 0;
-    func_8009DDF4(rdram, ctx);
+    Scene_ClearAllObjectEntries(rdram, ctx);
         goto after_2;
     // 0x800917C4: or          $a0, $t8, $zero
     ctx->r4 = ctx->r24 | 0;
@@ -3137,7 +3137,7 @@ L_80091D50:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_80091D60(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SaveDataScreen(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80091D60: addiu       $sp, $sp, -0x220
@@ -21917,7 +21917,7 @@ L_80099660:
     ctx->r29 = ADD32(ctx->r29, 0X220);
 ;}
 
-RECOMP_FUNC void func_80099674(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Main(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80099674: addiu       $sp, $sp, -0xC8
@@ -30443,7 +30443,7 @@ L_8009CCD0:
     // 0x8009CD0C: jal         0x8009DDF4
     // 0x8009CD10: swc1        $f16, 0x3E2C($at)
     MEM_W(0X3E2C, ctx->r1) = ctx->f16.u32l;
-    func_8009DDF4(rdram, ctx);
+    Scene_ClearAllObjectEntries(rdram, ctx);
         goto after_85;
     // 0x8009CD10: swc1        $f16, 0x3E2C($at)
     MEM_W(0X3E2C, ctx->r1) = ctx->f16.u32l;
@@ -31436,7 +31436,7 @@ L_8009D2BC:
     // 0x8009D37C: jal         0x80091D60
     // 0x8009D380: or          $a2, $s2, $zero
     ctx->r6 = ctx->r18 | 0;
-    func_80091D60(rdram, ctx);
+    Scene_SaveDataScreen(rdram, ctx);
         goto after_95;
     // 0x8009D380: or          $a2, $s2, $zero
     ctx->r6 = ctx->r18 | 0;
@@ -31475,7 +31475,7 @@ L_8009D38C:
     // 0x8009D3BC: jal         0x80091D60
     // 0x8009D3C0: or          $a2, $s2, $zero
     ctx->r6 = ctx->r18 | 0;
-    func_80091D60(rdram, ctx);
+    Scene_SaveDataScreen(rdram, ctx);
         goto after_96;
     // 0x8009D3C0: or          $a2, $s2, $zero
     ctx->r6 = ctx->r18 | 0;
@@ -32130,7 +32130,7 @@ L_8009D6E8:
     // 0x8009D710: jal         0x8009F338
     // 0x8009D714: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8009F338(rdram, ctx);
+    Scene_FreeObjectBuffers(rdram, ctx);
         goto after_14;
     // 0x8009D714: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
@@ -32429,7 +32429,7 @@ L_8009D914:
     // 0x8009D924: jal         0x80099674
     // 0x8009D928: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_80099674(rdram, ctx);
+    Scene_Main(rdram, ctx);
         goto after_20;
     // 0x8009D928: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
@@ -32808,7 +32808,7 @@ RECOMP_FUNC void func_8009D948(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0XC, ctx->r24) = ctx->f16.u32l;
 ;}
 
-RECOMP_FUNC void func_8009DBEC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_InitObjectEntries(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009DBEC: addiu       $sp, $sp, -0x28
@@ -33078,7 +33078,7 @@ L_8009DDAC:
     // 0x8009DDC4: jal         0x8009DE40
     // 0x8009DDC8: nop
 
-    func_8009DE40(rdram, ctx);
+    Scene_ClearObjectEntry(rdram, ctx);
         goto after_1;
     // 0x8009DDC8: nop
 
@@ -33111,7 +33111,7 @@ L_8009DDAC:
 
 ;}
 
-RECOMP_FUNC void func_8009DDF4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_ClearAllObjectEntries(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009DDF4: addiu       $sp, $sp, -0x20
@@ -33132,7 +33132,7 @@ L_8009DE08:
     // 0x8009DE10: jal         0x8009DE40
     // 0x8009DE14: nop
 
-    func_8009DE40(rdram, ctx);
+    Scene_ClearObjectEntry(rdram, ctx);
         goto after_0;
     // 0x8009DE14: nop
 
@@ -33165,7 +33165,7 @@ L_8009DE08:
 
 ;}
 
-RECOMP_FUNC void func_8009DE40(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_ClearObjectEntry(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009DE40: andi        $a1, $a1, 0xFF
@@ -36015,7 +36015,7 @@ L_8009F2CC:
     ctx->r29 = ADD32(ctx->r29, 0X38);
 ;}
 
-RECOMP_FUNC void func_8009F2DC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_AllocObjectBuffers(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009F2DC: addiu       $sp, $sp, -0x18
@@ -36067,7 +36067,7 @@ RECOMP_FUNC void func_8009F2DC(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F320: jal         0x8009DBEC
     // 0x8009F324: addiu       $a0, $a0, 0x3ED0
     ctx->r4 = ADD32(ctx->r4, 0X3ED0);
-    func_8009DBEC(rdram, ctx);
+    Scene_InitObjectEntries(rdram, ctx);
         goto after_3;
     // 0x8009F324: addiu       $a0, $a0, 0x3ED0
     ctx->r4 = ADD32(ctx->r4, 0X3ED0);
@@ -36084,7 +36084,7 @@ RECOMP_FUNC void func_8009F2DC(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_8009F338(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_FreeObjectBuffers(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009F338: addiu       $sp, $sp, -0x18
@@ -36165,7 +36165,7 @@ L_8009F398:
 
 ;}
 
-RECOMP_FUNC void func_8009F3A8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SetObjectEntry(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009F3A8: andi        $a1, $a1, 0xFF
@@ -36424,7 +36424,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F594: jal         0x8009F3A8
     // 0x8009F598: swc1        $f10, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f10.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_0;
     // 0x8009F598: swc1        $f10, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f10.u32l;
@@ -36466,7 +36466,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F5E0: jal         0x8009F3A8
     // 0x8009F5E4: swc1        $f8, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f8.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_1;
     // 0x8009F5E4: swc1        $f8, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f8.u32l;
@@ -36508,7 +36508,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F62C: jal         0x8009F3A8
     // 0x8009F630: swc1        $f6, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f6.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_2;
     // 0x8009F630: swc1        $f6, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f6.u32l;
@@ -36550,7 +36550,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F678: jal         0x8009F3A8
     // 0x8009F67C: swc1        $f4, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f4.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_3;
     // 0x8009F67C: swc1        $f4, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f4.u32l;
@@ -36592,7 +36592,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F6C4: jal         0x8009F3A8
     // 0x8009F6C8: swc1        $f18, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f18.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_4;
     // 0x8009F6C8: swc1        $f18, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f18.u32l;
@@ -36634,7 +36634,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F710: jal         0x8009F3A8
     // 0x8009F714: swc1        $f16, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f16.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_5;
     // 0x8009F714: swc1        $f16, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f16.u32l;
@@ -36676,7 +36676,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F75C: jal         0x8009F3A8
     // 0x8009F760: swc1        $f10, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f10.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_6;
     // 0x8009F760: swc1        $f10, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f10.u32l;
@@ -36728,7 +36728,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F7B4: jal         0x8009F3A8
     // 0x8009F7B8: swc1        $f8, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f8.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_7;
     // 0x8009F7B8: swc1        $f8, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f8.u32l;
@@ -36770,7 +36770,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F800: jal         0x8009F3A8
     // 0x8009F804: swc1        $f10, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f10.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_8;
     // 0x8009F804: swc1        $f10, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f10.u32l;
@@ -36812,7 +36812,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F84C: jal         0x8009F3A8
     // 0x8009F850: swc1        $f8, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f8.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_9;
     // 0x8009F850: swc1        $f8, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f8.u32l;
@@ -36854,7 +36854,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F898: jal         0x8009F3A8
     // 0x8009F89C: swc1        $f6, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f6.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_10;
     // 0x8009F89C: swc1        $f6, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f6.u32l;
@@ -36896,7 +36896,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F8E4: jal         0x8009F3A8
     // 0x8009F8E8: swc1        $f4, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f4.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_11;
     // 0x8009F8E8: swc1        $f4, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f4.u32l;
@@ -36938,7 +36938,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F930: jal         0x8009F3A8
     // 0x8009F934: swc1        $f18, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f18.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_12;
     // 0x8009F934: swc1        $f18, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f18.u32l;
@@ -36980,7 +36980,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F97C: jal         0x8009F3A8
     // 0x8009F980: swc1        $f16, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f16.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_13;
     // 0x8009F980: swc1        $f16, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f16.u32l;
@@ -37022,7 +37022,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F9C8: jal         0x8009F3A8
     // 0x8009F9CC: swc1        $f10, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f10.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_14;
     // 0x8009F9CC: swc1        $f10, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f10.u32l;
@@ -37064,7 +37064,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FA14: jal         0x8009F3A8
     // 0x8009FA18: swc1        $f8, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f8.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_15;
     // 0x8009FA18: swc1        $f8, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f8.u32l;
@@ -37081,7 +37081,7 @@ RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_PlaceObjects(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009FA2C: addiu       $sp, $sp, -0x30
@@ -37127,7 +37127,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FA7C: jal         0x8009F3A8
     // 0x8009FA80: swc1        $f8, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f8.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_0;
     // 0x8009FA80: swc1        $f8, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f8.u32l;
@@ -37169,7 +37169,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FAC8: jal         0x8009F3A8
     // 0x8009FACC: swc1        $f6, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f6.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_1;
     // 0x8009FACC: swc1        $f6, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f6.u32l;
@@ -37211,7 +37211,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FB14: jal         0x8009F3A8
     // 0x8009FB18: swc1        $f4, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f4.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_2;
     // 0x8009FB18: swc1        $f4, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f4.u32l;
@@ -37253,7 +37253,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FB60: jal         0x8009F3A8
     // 0x8009FB64: swc1        $f18, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f18.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_3;
     // 0x8009FB64: swc1        $f18, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f18.u32l;
@@ -37295,7 +37295,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FBAC: jal         0x8009F3A8
     // 0x8009FBB0: swc1        $f16, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f16.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_4;
     // 0x8009FBB0: swc1        $f16, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f16.u32l;
@@ -37337,7 +37337,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FBF8: jal         0x8009F3A8
     // 0x8009FBFC: swc1        $f10, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f10.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_5;
     // 0x8009FBFC: swc1        $f10, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f10.u32l;
@@ -37379,7 +37379,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FC44: jal         0x8009F3A8
     // 0x8009FC48: swc1        $f8, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f8.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_6;
     // 0x8009FC48: swc1        $f8, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f8.u32l;
@@ -37421,7 +37421,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FC90: jal         0x8009F3A8
     // 0x8009FC94: swc1        $f6, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f6.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_7;
     // 0x8009FC94: swc1        $f6, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f6.u32l;
@@ -37463,7 +37463,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FCDC: jal         0x8009F3A8
     // 0x8009FCE0: swc1        $f4, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f4.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_8;
     // 0x8009FCE0: swc1        $f4, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f4.u32l;
@@ -37505,7 +37505,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FD28: jal         0x8009F3A8
     // 0x8009FD2C: swc1        $f18, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f18.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_9;
     // 0x8009FD2C: swc1        $f18, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f18.u32l;
@@ -37547,7 +37547,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FD74: jal         0x8009F3A8
     // 0x8009FD78: swc1        $f16, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f16.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_10;
     // 0x8009FD78: swc1        $f16, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f16.u32l;
@@ -37589,7 +37589,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FDC0: jal         0x8009F3A8
     // 0x8009FDC4: swc1        $f10, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f10.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_11;
     // 0x8009FDC4: swc1        $f10, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f10.u32l;
@@ -37631,7 +37631,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FE0C: jal         0x8009F3A8
     // 0x8009FE10: swc1        $f8, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f8.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_12;
     // 0x8009FE10: swc1        $f8, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f8.u32l;
@@ -37673,7 +37673,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FE58: jal         0x8009F3A8
     // 0x8009FE5C: swc1        $f6, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f6.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_13;
     // 0x8009FE5C: swc1        $f6, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f6.u32l;
@@ -37715,7 +37715,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FEA4: jal         0x8009F3A8
     // 0x8009FEA8: swc1        $f4, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f4.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_14;
     // 0x8009FEA8: swc1        $f4, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f4.u32l;
@@ -37757,7 +37757,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009FEF0: jal         0x8009F3A8
     // 0x8009FEF4: swc1        $f18, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f18.u32l;
-    func_8009F3A8(rdram, ctx);
+    Scene_SetObjectEntry(rdram, ctx);
         goto after_15;
     // 0x8009FEF4: swc1        $f18, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f18.u32l;
@@ -37774,7 +37774,7 @@ RECOMP_FUNC void func_8009FA2C(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_8009FF08(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_UpdateObject(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009FF08: addiu       $sp, $sp, -0x40
@@ -38556,7 +38556,7 @@ L_800A03BC:
     // 0x800A03CC: jal         0x8009FF08
     // 0x800A03D0: or          $a1, $s0, $zero
     ctx->r5 = ctx->r16 | 0;
-    func_8009FF08(rdram, ctx);
+    Scene_UpdateObject(rdram, ctx);
         goto after_4;
     // 0x800A03D0: or          $a1, $s0, $zero
     ctx->r5 = ctx->r16 | 0;
