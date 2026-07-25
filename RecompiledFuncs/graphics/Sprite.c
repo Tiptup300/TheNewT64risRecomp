@@ -606,7 +606,7 @@ L_800573E8:
     // 0x80057444: jal         0x8005DB90
     // 0x80057448: sw          $t7, 0x28($sp)
     MEM_W(0X28, ctx->r29) = ctx->r15;
-    func_8005DB90(rdram, ctx);
+    Color_DrawTexRect(rdram, ctx);
         goto after_1;
     // 0x80057448: sw          $t7, 0x28($sp)
     MEM_W(0X28, ctx->r29) = ctx->r15;

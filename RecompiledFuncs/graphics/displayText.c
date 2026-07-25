@@ -4215,7 +4215,7 @@ L_800795C8:
     ctx->r29 = ADD32(ctx->r29, 0X40);
 ;}
 
-RECOMP_FUNC void FUN_SRAM_800795d8_fourteenliner_loops_8t(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void displayText_CopyEntry(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800795D8: or          $t0, $zero, $zero
@@ -4439,7 +4439,7 @@ L_800796E4:
     // 0x80079728: jal         0x800795D8
     // 0x8007972C: addiu       $a1, $t9, 0x1704
     ctx->r5 = ADD32(ctx->r25, 0X1704);
-    FUN_SRAM_800795d8_fourteenliner_loops_8t(rdram, ctx);
+    displayText_CopyEntry(rdram, ctx);
         goto after_0;
     // 0x8007972C: addiu       $a1, $t9, 0x1704
     ctx->r5 = ADD32(ctx->r25, 0X1704);
@@ -4675,7 +4675,7 @@ L_80079894:
     // 0x800798B8: jal         0x800795D8
     // 0x800798BC: addiu       $a1, $a1, 0x1704
     ctx->r5 = ADD32(ctx->r5, 0X1704);
-    FUN_SRAM_800795d8_fourteenliner_loops_8t(rdram, ctx);
+    displayText_CopyEntry(rdram, ctx);
         goto after_1;
     // 0x800798BC: addiu       $a1, $a1, 0x1704
     ctx->r5 = ADD32(ctx->r5, 0X1704);
@@ -4892,7 +4892,7 @@ L_800799D4:
     // 0x800799FC: jal         0x800795D8
     // 0x80079A00: or          $a3, $zero, $zero
     ctx->r7 = 0 | 0;
-    FUN_SRAM_800795d8_fourteenliner_loops_8t(rdram, ctx);
+    displayText_CopyEntry(rdram, ctx);
         goto after_5;
     // 0x80079A00: or          $a3, $zero, $zero
     ctx->r7 = 0 | 0;
@@ -5619,7 +5619,7 @@ L_80079EF0:
     // 0x80079F14: jal         0x800795D8
     // 0x80079F18: or          $a3, $zero, $zero
     ctx->r7 = 0 | 0;
-    FUN_SRAM_800795d8_fourteenliner_loops_8t(rdram, ctx);
+    displayText_CopyEntry(rdram, ctx);
         goto after_10;
     // 0x80079F18: or          $a3, $zero, $zero
     ctx->r7 = 0 | 0;

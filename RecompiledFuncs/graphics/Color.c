@@ -5864,7 +5864,7 @@ RECOMP_FUNC void Color_SetSpriteRenderMode(uint8_t* rdram, recomp_context* ctx) 
     MEM_W(0X4, ctx->r13) = ctx->r12;
 ;}
 
-RECOMP_FUNC void func_8005BEE0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Color_DrawTexRectScaled(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8005BEE0: beq         $a1, $zero, L_8005DB88
@@ -9783,7 +9783,7 @@ L_8005DB88:
     ctx->r29 = ADD32(ctx->r29, 0X170);
 ;}
 
-RECOMP_FUNC void func_8005DB90(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Color_DrawTexRect(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8005DB90: beq         $a1, $zero, L_8005EBFC
