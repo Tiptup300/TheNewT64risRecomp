@@ -271,7 +271,7 @@ L_800507C8:
     ctx->r29 = ADD32(ctx->r29, 0X38);
 ;}
 
-RECOMP_FUNC void FUN_800507e4_twoliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Ids_Release(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800507E4: lw          $t6, 0x0($a0)
@@ -292,7 +292,7 @@ RECOMP_FUNC void FUN_800507e4_twoliner(uint8_t* rdram, recomp_context* ctx) {
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void FUN_80050800_oneliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Ids_IncRef(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80050800: lw          $t6, 0x0($a0)
@@ -315,7 +315,7 @@ RECOMP_FUNC void FUN_80050800_oneliner(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X0, ctx->r6) = ctx->r24;
 ;}
 
-RECOMP_FUNC void FUN_80050820_oneliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Ids_AddRef(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80050820: lw          $t6, 0x0($a0)
@@ -338,7 +338,7 @@ RECOMP_FUNC void FUN_80050820_oneliner(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X0, ctx->r7) = ctx->r24;
 ;}
 
-RECOMP_FUNC void FUN_80050840_fiveliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Ids_DecRef(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80050840: addiu       $sp, $sp, -0x28
@@ -388,7 +388,7 @@ RECOMP_FUNC void FUN_80050840_fiveliner(uint8_t* rdram, recomp_context* ctx) {
     // 0x80050890: jal         0x800507E4
     // 0x80050894: nop
 
-    FUN_800507e4_twoliner(rdram, ctx);
+    Ids_Release(rdram, ctx);
         goto after_0;
     // 0x80050894: nop
 
@@ -406,7 +406,7 @@ L_80050898:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void FUN_800508a8_fiveliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Ids_SubRef(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800508A8: lw          $t6, 0x0($a0)

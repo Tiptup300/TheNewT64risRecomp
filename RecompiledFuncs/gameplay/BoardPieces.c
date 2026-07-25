@@ -614,7 +614,7 @@ RECOMP_FUNC void BoardPieces_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006E77C: jal         0x80050800
     // 0x8006E780: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
-    FUN_80050800_oneliner(rdram, ctx);
+    Ids_IncRef(rdram, ctx);
         goto after_2;
     // 0x8006E780: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);

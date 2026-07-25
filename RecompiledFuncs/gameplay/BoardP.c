@@ -143,7 +143,7 @@ L_8006D48C:
     // 0x8006D498: jal         0x80050840
     // 0x8006D49C: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
-    FUN_80050840_fiveliner(rdram, ctx);
+    Ids_DecRef(rdram, ctx);
         goto after_0;
     // 0x8006D49C: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
@@ -159,7 +159,7 @@ L_8006D48C:
     // 0x8006D4B0: jal         0x80050800
     // 0x8006D4B4: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
-    FUN_80050800_oneliner(rdram, ctx);
+    Ids_IncRef(rdram, ctx);
         goto after_1;
     // 0x8006D4B4: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
@@ -245,7 +245,7 @@ RECOMP_FUNC void BoardP_SplitCellToNewGroup(uint8_t* rdram, recomp_context* ctx)
     // 0x8006D534: jal         0x80050840
     // 0x8006D538: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
-    FUN_80050840_fiveliner(rdram, ctx);
+    Ids_DecRef(rdram, ctx);
         goto after_0;
     // 0x8006D538: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
@@ -277,7 +277,7 @@ RECOMP_FUNC void BoardP_SplitCellToNewGroup(uint8_t* rdram, recomp_context* ctx)
     // 0x8006D564: jal         0x80050800
     // 0x8006D568: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
-    FUN_80050800_oneliner(rdram, ctx);
+    Ids_IncRef(rdram, ctx);
         goto after_2;
     // 0x8006D568: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
@@ -502,7 +502,7 @@ RECOMP_FUNC void BoardP_ConvertCellToFalling(uint8_t* rdram, recomp_context* ctx
     // 0x8006D6B4: jal         0x80050840
     // 0x8006D6B8: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
-    FUN_80050840_fiveliner(rdram, ctx);
+    Ids_DecRef(rdram, ctx);
         goto after_1;
     // 0x8006D6B8: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
@@ -1931,7 +1931,7 @@ RECOMP_FUNC void BoardP_SetCubeAt(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006DED8: jal         0x80050800
     // 0x8006DEDC: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);
-    FUN_80050800_oneliner(rdram, ctx);
+    Ids_IncRef(rdram, ctx);
         goto after_1;
     // 0x8006DEDC: addiu       $a0, $a0, 0x1608
     ctx->r4 = ADD32(ctx->r4, 0X1608);

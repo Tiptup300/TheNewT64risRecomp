@@ -8819,7 +8819,7 @@ L_8004151C:
     // 0x8004154C: jal         0x80050800
     // 0x80041550: addiu       $a0, $a0, 0x258
     ctx->r4 = ADD32(ctx->r4, 0X258);
-    FUN_80050800_oneliner(rdram, ctx);
+    Ids_IncRef(rdram, ctx);
         goto after_1;
     // 0x80041550: addiu       $a0, $a0, 0x258
     ctx->r4 = ADD32(ctx->r4, 0X258);
@@ -8894,7 +8894,7 @@ L_8004155C:
     // 0x800415CC: jal         0x80050840
     // 0x800415D0: addiu       $a0, $t4, 0x258
     ctx->r4 = ADD32(ctx->r12, 0X258);
-    FUN_80050840_fiveliner(rdram, ctx);
+    Ids_DecRef(rdram, ctx);
         goto after_2;
     // 0x800415D0: addiu       $a0, $t4, 0x258
     ctx->r4 = ADD32(ctx->r12, 0X258);

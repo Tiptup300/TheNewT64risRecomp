@@ -586,7 +586,7 @@ L_80065FAC:
 
 ;}
 
-RECOMP_FUNC void PieceHold_80065fbc_oneliner_calls_fun1(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_CopyPiece(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80065FBC: addiu       $sp, $sp, -0x18
@@ -623,7 +623,7 @@ RECOMP_FUNC void PieceHold_80065fbc_oneliner_calls_fun1(uint8_t* rdram, recomp_c
 
 ;}
 
-RECOMP_FUNC void PieceHold_80065ff8_oneliner_calls_fun2_wunk518(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_EnableAltColor(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80065FF8: addiu       $sp, $sp, -0x18
@@ -654,7 +654,7 @@ RECOMP_FUNC void PieceHold_80065ff8_oneliner_calls_fun2_wunk518(uint8_t* rdram, 
 
 ;}
 
-RECOMP_FUNC void PieceHold_80066020_oneliner_calls_fun3_wunk518(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_DisableAltColor(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80066020: addiu       $sp, $sp, -0x18
@@ -1370,7 +1370,7 @@ RECOMP_FUNC void PieceHold_Enable(uint8_t* rdram, recomp_context* ctx) {
     // 0x800664A8: jal         0x80066020
     // 0x800664AC: addu        $a0, $t8, $t0
     ctx->r4 = ADD32(ctx->r24, ctx->r8);
-    PieceHold_80066020_oneliner_calls_fun3_wunk518(rdram, ctx);
+    PieceHold_DisableAltColor(rdram, ctx);
         goto after_0;
     // 0x800664AC: addu        $a0, $t8, $t0
     ctx->r4 = ADD32(ctx->r24, ctx->r8);
@@ -1425,7 +1425,7 @@ RECOMP_FUNC void PieceHold_Disable(uint8_t* rdram, recomp_context* ctx) {
     // 0x80066500: jal         0x80065FF8
     // 0x80066504: addu        $a0, $t7, $t9
     ctx->r4 = ADD32(ctx->r15, ctx->r25);
-    PieceHold_80065ff8_oneliner_calls_fun2_wunk518(rdram, ctx);
+    PieceHold_EnableAltColor(rdram, ctx);
         goto after_0;
     // 0x80066504: addu        $a0, $t7, $t9
     ctx->r4 = ADD32(ctx->r15, ctx->r25);

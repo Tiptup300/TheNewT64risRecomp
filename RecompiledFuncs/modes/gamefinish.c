@@ -431,7 +431,7 @@ RECOMP_FUNC void gamefinish_80052D40_doesnothing(uint8_t* rdram, recomp_context*
     MEM_W(0X0, ctx->r29) = ctx->r4;
 ;}
 
-RECOMP_FUNC void gamefinish_80052D48_twoliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_SetPhase4(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80052D48: addiu       $t6, $zero, 0x4
@@ -448,7 +448,7 @@ RECOMP_FUNC void gamefinish_80052D48_twoliner(uint8_t* rdram, recomp_context* ct
     MEM_B(0X1, ctx->r4) = ctx->r15;
 ;}
 
-RECOMP_FUNC void gamefinish_magic_number_180_sprint_twoliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_SetPhase3(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80052D5C: addiu       $t6, $zero, 0x3
@@ -465,7 +465,7 @@ RECOMP_FUNC void gamefinish_magic_number_180_sprint_twoliner(uint8_t* rdram, rec
     MEM_W(0X8, ctx->r4) = ctx->r15;
 ;}
 
-RECOMP_FUNC void gamefinish_80052D70_twoliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_SetPhase2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80052D70: addiu       $t6, $zero, 0x2
@@ -486,7 +486,7 @@ RECOMP_FUNC void gamefinish_80052D70_twoliner(uint8_t* rdram, recomp_context* ct
     MEM_W(0X8, ctx->r4) = ctx->r24;
 ;}
 
-RECOMP_FUNC void gamefinish_80052D8C_nevercalled(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_SetPhase1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80052D8C: addiu       $t6, $zero, 0x1
@@ -746,7 +746,7 @@ L_80052EDC:
     // 0x80052EF8: jal         0x80052D5C
     // 0x80052EFC: or          $a0, $t3, $zero
     ctx->r4 = ctx->r11 | 0;
-    gamefinish_magic_number_180_sprint_twoliner(rdram, ctx);
+    gamefinish_SetPhase3(rdram, ctx);
         goto after_3;
     // 0x80052EFC: or          $a0, $t3, $zero
     ctx->r4 = ctx->r11 | 0;
@@ -926,7 +926,7 @@ RECOMP_FUNC void gamefinish_UpdateWaitPhase(uint8_t* rdram, recomp_context* ctx)
     // 0x80053008: jal         0x80052D48
     // 0x8005300C: or          $a0, $t8, $zero
     ctx->r4 = ctx->r24 | 0;
-    gamefinish_80052D48_twoliner(rdram, ctx);
+    gamefinish_SetPhase4(rdram, ctx);
         goto after_0;
     // 0x8005300C: or          $a0, $t8, $zero
     ctx->r4 = ctx->r24 | 0;
@@ -1535,7 +1535,7 @@ RECOMP_FUNC void gamefinish_Start(uint8_t* rdram, recomp_context* ctx) {
     // 0x80053378: jal         0x80052D70
     // 0x8005337C: nop
 
-    gamefinish_80052D70_twoliner(rdram, ctx);
+    gamefinish_SetPhase2(rdram, ctx);
         goto after_1;
     // 0x8005337C: nop
 

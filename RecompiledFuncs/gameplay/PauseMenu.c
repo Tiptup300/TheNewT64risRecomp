@@ -676,7 +676,7 @@ RECOMP_FUNC void PauseMenu_ResetLabel(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X14, ctx->r4) = 0;
 ;}
 
-RECOMP_FUNC void func_80071B44(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PauseMenu_SelectResume(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80071B44: addiu       $sp, $sp, -0x18
@@ -729,7 +729,7 @@ RECOMP_FUNC void func_80071B44(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_80071B88(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PauseMenu_SelectRestart(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80071B88: addiu       $sp, $sp, -0x18
@@ -766,7 +766,7 @@ RECOMP_FUNC void func_80071B88(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_80071BBC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PauseMenu_SelectQuit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80071BBC: addiu       $sp, $sp, -0x18

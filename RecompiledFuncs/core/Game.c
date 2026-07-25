@@ -2603,7 +2603,7 @@ L_800518A8:
     // 0x800518BC: jal         0x80052D48
     // 0x800518C0: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
-    gamefinish_80052D48_twoliner(rdram, ctx);
+    gamefinish_SetPhase4(rdram, ctx);
         goto after_0;
     // 0x800518C0: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
