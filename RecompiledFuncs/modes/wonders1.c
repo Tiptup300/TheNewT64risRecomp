@@ -291,7 +291,7 @@ L_8004399C:
     // 0x800439D0: jal         0x800A4654
     // 0x800439D4: nop
 
-    func_800A4654(rdram, ctx);
+    wonders1_ObjClearFlag80(rdram, ctx);
         goto after_3;
     // 0x800439D4: nop
 
@@ -480,7 +480,7 @@ L_80043ACC:
     // 0x80043B00: jal         0x800A4654
     // 0x80043B04: nop
 
-    func_800A4654(rdram, ctx);
+    wonders1_ObjClearFlag80(rdram, ctx);
         goto after_6;
     // 0x80043B04: nop
 
@@ -921,7 +921,7 @@ L_80043D80:
     // 0x80043DAC: jal         0x800A4654
     // 0x80043DB0: nop
 
-    func_800A4654(rdram, ctx);
+    wonders1_ObjClearFlag80(rdram, ctx);
         goto after_5;
     // 0x80043DB0: nop
 
@@ -1106,7 +1106,7 @@ L_80043E98:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void wonders1_80043ed8_thirtyliner_loop(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_SetupWonderColumn(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80043ED8: addiu       $sp, $sp, -0x30
@@ -1227,7 +1227,7 @@ L_80043F64:
     // 0x80043FA4: jal         0x800A4654
     // 0x80043FA8: nop
 
-    func_800A4654(rdram, ctx);
+    wonders1_ObjClearFlag80(rdram, ctx);
         goto after_2;
     // 0x80043FA8: nop
 
@@ -1572,7 +1572,7 @@ L_80044194:
     // 0x800441D4: jal         0x800A4654
     // 0x800441D8: nop
 
-    func_800A4654(rdram, ctx);
+    wonders1_ObjClearFlag80(rdram, ctx);
         goto after_1;
     // 0x800441D8: nop
 
@@ -1864,7 +1864,7 @@ L_8004434C:
     // 0x80044380: jal         0x80043ED8
     // 0x80044384: nop
 
-    wonders1_80043ed8_thirtyliner_loop(rdram, ctx);
+    wonders1_SetupWonderColumn(rdram, ctx);
         goto after_2;
     // 0x80044384: nop
 
@@ -1923,7 +1923,7 @@ L_800443B0:
     // 0x800443D0: jal         0x80043ED8
     // 0x800443D4: nop
 
-    wonders1_80043ed8_thirtyliner_loop(rdram, ctx);
+    wonders1_SetupWonderColumn(rdram, ctx);
         goto after_5;
     // 0x800443D4: nop
 
@@ -1986,7 +1986,7 @@ L_80044414:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void wonders1_80044424_threeliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_ShowWonderDisplay(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80044424: addiu       $sp, $sp, -0x18
@@ -2029,7 +2029,7 @@ RECOMP_FUNC void wonders1_80044424_threeliner(uint8_t* rdram, recomp_context* ct
 
 ;}
 
-RECOMP_FUNC void wonders1_80044464_threeliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_ShowColumnTiles(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80044464: addiu       $sp, $sp, -0x18
@@ -2190,7 +2190,7 @@ L_80044524:
     // 0x80044524: jal         0x80044464
     // 0x80044528: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    wonders1_80044464_threeliner(rdram, ctx);
+    wonders1_ShowColumnTiles(rdram, ctx);
         goto after_2;
     // 0x80044528: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -2236,7 +2236,7 @@ L_8004454C:
     // 0x80044554: jal         0x80044424
     // 0x80044558: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    wonders1_80044424_threeliner(rdram, ctx);
+    wonders1_ShowWonderDisplay(rdram, ctx);
         goto after_6;
     // 0x80044558: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -2285,7 +2285,7 @@ L_80044564:
     // 0x80044598: jal         0x80044464
     // 0x8004459C: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    wonders1_80044464_threeliner(rdram, ctx);
+    wonders1_ShowColumnTiles(rdram, ctx);
         goto after_8;
     // 0x8004459C: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -2310,7 +2310,7 @@ L_800445AC:
     // 0x800445B4: jal         0x80044464
     // 0x800445B8: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    wonders1_80044464_threeliner(rdram, ctx);
+    wonders1_ShowColumnTiles(rdram, ctx);
         goto after_10;
     // 0x800445B8: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -2343,7 +2343,7 @@ L_800445CC:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void wonders1_800445dc_calls_4_funcs(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_ConfigTileObject(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800445DC: addiu       $sp, $sp, -0x18
@@ -2404,7 +2404,7 @@ RECOMP_FUNC void wonders1_800445dc_calls_4_funcs(uint8_t* rdram, recomp_context*
 
 ;}
 
-RECOMP_FUNC void wonders1_80044628_eightliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_CreateColumnTileObject(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80044628: addiu       $sp, $sp, -0x18
@@ -2480,7 +2480,7 @@ L_80044688:
     // 0x80044694: jal         0x800445DC
     // 0x80044698: nop
 
-    wonders1_800445dc_calls_4_funcs(rdram, ctx);
+    wonders1_ConfigTileObject(rdram, ctx);
         goto after_2;
     // 0x80044698: nop
 
@@ -3282,7 +3282,7 @@ L_80044AD8:
     // 0x80044B28: jal         0x80044628
     // 0x80044B2C: nop
 
-    wonders1_80044628_eightliner(rdram, ctx);
+    wonders1_CreateColumnTileObject(rdram, ctx);
         goto after_11;
     // 0x80044B2C: nop
 
@@ -6658,7 +6658,7 @@ RECOMP_FUNC void wonders1_ObjSetFlag80(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r4) = ctx->r15;
 ;}
 
-RECOMP_FUNC void func_800A4654(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_ObjClearFlag80(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4654: lw          $t6, 0x0($a0)
@@ -6675,7 +6675,7 @@ RECOMP_FUNC void func_800A4654(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r4) = ctx->r15;
 ;}
 
-RECOMP_FUNC void func_800A4668(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_ObjSetFlag200(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4668: lw          $t6, 0x0($a0)
@@ -6690,7 +6690,7 @@ RECOMP_FUNC void func_800A4668(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r4) = ctx->r15;
 ;}
 
-RECOMP_FUNC void func_800A4678(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_ObjClearFlag200(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4678: lw          $t6, 0x0($a0)
@@ -6707,7 +6707,7 @@ RECOMP_FUNC void func_800A4678(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r4) = ctx->r15;
 ;}
 
-RECOMP_FUNC void func_800A468C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_ObjSetByte4(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A468C: andi        $t6, $a1, 0x1

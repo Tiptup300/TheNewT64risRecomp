@@ -184,7 +184,7 @@ RECOMP_FUNC void Credits_Init(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void Credits_80083450_oneliner_calls_80090a44(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Credits_Deinit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80083450: addiu       $sp, $sp, -0x18
@@ -211,7 +211,7 @@ RECOMP_FUNC void Credits_80083450_oneliner_calls_80090a44(uint8_t* rdram, recomp
 
 ;}
 
-RECOMP_FUNC void Credits_StateMachine_q(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Credits_Update(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80083470: addiu       $sp, $sp, -0x28
@@ -345,7 +345,7 @@ L_80083504:
     // 0x80083510: jal         0x80083450
     // 0x80083514: nop
 
-    Credits_80083450_oneliner_calls_80090a44(rdram, ctx);
+    Credits_Deinit(rdram, ctx);
         goto after_5;
     // 0x80083514: nop
 

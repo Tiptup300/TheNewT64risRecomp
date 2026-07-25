@@ -1321,7 +1321,7 @@ L_8006D008:
     // 0x8006D008: jal         0x80083470
     // 0x8006D00C: nop
 
-    Credits_StateMachine_q(rdram, ctx);
+    Credits_Update(rdram, ctx);
         goto after_13;
     // 0x8006D00C: nop
 

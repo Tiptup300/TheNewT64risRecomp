@@ -561,7 +561,7 @@ L_80046714:
     // 0x8004673C: jal         0x800A4654
     // 0x80046740: nop
 
-    func_800A4654(rdram, ctx);
+    wonders1_ObjClearFlag80(rdram, ctx);
         goto after_1;
     // 0x80046740: nop
 
@@ -2148,7 +2148,7 @@ L_80047054:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void wonders3_no_idea_menu_img_button(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders3_DrawWonderViewer(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80047064: addiu       $sp, $sp, -0x48
@@ -2441,7 +2441,7 @@ L_80047234:
     // 0x80047244: jal         0x80047064
     // 0x80047248: nop
 
-    wonders3_no_idea_menu_img_button(rdram, ctx);
+    wonders3_DrawWonderViewer(rdram, ctx);
         goto after_1;
     // 0x80047248: nop
 

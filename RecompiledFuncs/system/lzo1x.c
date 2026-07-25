@@ -1940,7 +1940,7 @@ RECOMP_FUNC void func_80083100(uint8_t* rdram, recomp_context* ctx) {
     // 0x80083120: jal         0x800A4654
     // 0x80083124: nop
 
-    func_800A4654(rdram, ctx);
+    wonders1_ObjClearFlag80(rdram, ctx);
         goto after_1;
     // 0x80083124: nop
 

@@ -83,7 +83,7 @@ L_8007452C:
     // 0x80074544: jal         0x800ABFF0
     // 0x80074548: addiu       $a2, $zero, 0x2
     ctx->r6 = ADD32(0, 0X2);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_1;
     // 0x80074548: addiu       $a2, $zero, 0x2
     ctx->r6 = ADD32(0, 0X2);
@@ -103,7 +103,7 @@ L_8007452C:
     // 0x80074564: jal         0x800ABFF0
     // 0x80074568: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_2;
     // 0x80074568: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -127,7 +127,7 @@ L_8007452C:
     // 0x8007458C: jal         0x800ABFF0
     // 0x80074590: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_3;
     // 0x80074590: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -153,7 +153,7 @@ L_8007452C:
     // 0x800745B8: jal         0x800ABFF0
     // 0x800745BC: addu        $a0, $t2, $t4
     ctx->r4 = ADD32(ctx->r10, ctx->r12);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_4;
     // 0x800745BC: addu        $a0, $t2, $t4
     ctx->r4 = ADD32(ctx->r10, ctx->r12);
@@ -260,7 +260,7 @@ L_80074634:
     // 0x8007464C: jal         0x800ABFF0
     // 0x80074650: addiu       $a2, $zero, 0x2
     ctx->r6 = ADD32(0, 0X2);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_1;
     // 0x80074650: addiu       $a2, $zero, 0x2
     ctx->r6 = ADD32(0, 0X2);
@@ -280,7 +280,7 @@ L_80074634:
     // 0x8007466C: jal         0x800ABFF0
     // 0x80074670: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_2;
     // 0x80074670: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -304,7 +304,7 @@ L_80074634:
     // 0x80074694: jal         0x800ABFF0
     // 0x80074698: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_3;
     // 0x80074698: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -417,7 +417,7 @@ L_80074724:
     // 0x8007473C: jal         0x800ABFF0
     // 0x80074740: addiu       $a2, $zero, 0x2
     ctx->r6 = ADD32(0, 0X2);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_1;
     // 0x80074740: addiu       $a2, $zero, 0x2
     ctx->r6 = ADD32(0, 0X2);
@@ -437,7 +437,7 @@ L_80074724:
     // 0x8007475C: jal         0x800ABFF0
     // 0x80074760: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_2;
     // 0x80074760: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -461,7 +461,7 @@ L_80074724:
     // 0x80074784: jal         0x800ABFF0
     // 0x80074788: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_3;
     // 0x80074788: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -481,7 +481,7 @@ L_80074724:
     // 0x800747A4: jal         0x800ABFF0
     // 0x800747A8: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_4;
     // 0x800747A8: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -499,7 +499,7 @@ L_80074724:
     // 0x800747C0: jal         0x800ABFF0
     // 0x800747C4: addu        $a0, $t2, $t4
     ctx->r4 = ADD32(ctx->r10, ctx->r12);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_5;
     // 0x800747C4: addu        $a0, $t2, $t4
     ctx->r4 = ADD32(ctx->r10, ctx->r12);
@@ -545,7 +545,7 @@ L_80074724:
     // 0x8007480C: jal         0x800ABFF0
     // 0x80074810: addu        $a0, $t3, $t2
     ctx->r4 = ADD32(ctx->r11, ctx->r10);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_6;
     // 0x80074810: addu        $a0, $t3, $t2
     ctx->r4 = ADD32(ctx->r11, ctx->r10);
@@ -592,7 +592,7 @@ L_80074838:
     // 0x80074854: jal         0x800ABFF0
     // 0x80074858: addiu       $a2, $a2, -0x8
     ctx->r6 = ADD32(ctx->r6, -0X8);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_8;
     // 0x80074858: addiu       $a2, $a2, -0x8
     ctx->r6 = ADD32(ctx->r6, -0X8);
@@ -712,7 +712,7 @@ L_800748E0:
     // 0x800748F8: jal         0x800ABFF0
     // 0x800748FC: addiu       $a2, $zero, 0x2
     ctx->r6 = ADD32(0, 0X2);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_1;
     // 0x800748FC: addiu       $a2, $zero, 0x2
     ctx->r6 = ADD32(0, 0X2);
@@ -732,7 +732,7 @@ L_800748E0:
     // 0x80074918: jal         0x800ABFF0
     // 0x8007491C: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_2;
     // 0x8007491C: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -756,7 +756,7 @@ L_800748E0:
     // 0x80074940: jal         0x800ABFF0
     // 0x80074944: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_3;
     // 0x80074944: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -776,7 +776,7 @@ L_800748E0:
     // 0x80074960: jal         0x800ABFF0
     // 0x80074964: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_4;
     // 0x80074964: addiu       $a2, $zero, 0x4
     ctx->r6 = ADD32(0, 0X4);
@@ -794,7 +794,7 @@ L_800748E0:
     // 0x8007497C: jal         0x800ABFF0
     // 0x80074980: addu        $a0, $t2, $t4
     ctx->r4 = ADD32(ctx->r10, ctx->r12);
-    func_800ABFF0(rdram, ctx);
+    Main_RequestRomDma(rdram, ctx);
         goto after_5;
     // 0x80074980: addu        $a0, $t2, $t4
     ctx->r4 = ADD32(ctx->r10, ctx->r12);
