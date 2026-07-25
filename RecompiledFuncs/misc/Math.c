@@ -3276,7 +3276,7 @@ L_8007D8B8:
     // 0x8007D908: jal         0x800AFBBC
     // 0x8007D90C: swc1        $f10, 0x5C($sp)
     MEM_W(0X5C, ctx->r29) = ctx->f10.u32l;
-    func_800AFBBC(rdram, ctx);
+    mtx4_mult_vec3(rdram, ctx);
         goto after_2;
     // 0x8007D90C: swc1        $f10, 0x5C($sp)
     MEM_W(0X5C, ctx->r29) = ctx->f10.u32l;
