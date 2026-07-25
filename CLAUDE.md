@@ -72,12 +72,29 @@ WSLg apps are real Windows windows). Helper scripts live in `C:\Users\Public\`:
 
 Then copy frames from `/mnt/c/Users/Public/...` and view with the Read tool.
 
+**What you can/can't drive:**
+- The game **auto-boots** into the attract flythrough → title → cycling attract
+  **demos** (auto-played gameplay). All of that is capturable with **no input**.
+- **Input injection does NOT work:** Windows-side SendKeys/PostMessage do not reach
+  the SDL app under WSLg (confirmed: keypresses don't register). So you **cannot**
+  drive menus or start a real game — anything gated behind menu navigation
+  (level select, the data/options submenus, in-game settings toggles) can't be
+  self-verified without the user or a real input path.
+- **Graphics settings ARE verifiable without input:** edit
+  `~/.local/share/N64Recomp/TheNewTiptris/graphics.json` (keys: `msaa_option`
+  None/MSAA2X/4X/8X, `res_option` Original/Original2x/Auto, `hr_option`
+  Original/Clamp16x9/Full, `ds_option`, `ar_option`), relaunch, and screenshot the
+  flythrough. NOTE: the RmlUi launcher/menus always render at native window res —
+  only the **game** rendering reflects `res_option`, so capture a game frame.
+- `controls.json` holds keyboard mappings (SDL scancodes; input_type 1 = keyboard).
+
 **Gotchas:**
 - Linux `sleep` is SIGSTKFLT-blocked (exit 144) — pace loops with PowerShell
   `Start-Sleep` (Windows side), not Linux `sleep`.
 - The app exits 139 (segfault) on window close under Dozen — **not** a real failure.
-- Launch the game with `run_in_background: true`; kill with
-  `kill -9 $(pgrep -f build-cmake/TntRecompiled)`.
+- Launch the game **alone** in `run_in_background: true` (combining a `kill`/`&`
+  in the same backgrounded command trips exit 144/1). Kill separately with
+  `ps aux | grep '[b]uild-cmake/TntRecompiled' | awk '{print $2}' | xargs -r kill -9`.
 - `zip` isn't installed; `build_mod.sh` has a Python zip fallback (`.nrm` is a zip).
 
 ## Persistent memory
