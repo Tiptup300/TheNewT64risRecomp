@@ -21,6 +21,11 @@
 #       VI::cropRectangle() crops ~2px off the framebuffer's right edge. That column
 #       is uninitialized on the N64 (a TV's overscan hid it); presenting the full
 #       width showed it as flickering garbage every other frame.
+#   RecompFrontend-0002-restart-button                  -> recompui/src/config/ui_config.cpp
+#       Adds a "Restart" (Reset.svg) button to the config-menu header, shown only
+#       while a game is running. Re-execs the app with TNT_NO_AUTOBOOT so it lands
+#       at the launcher, where mods can be toggled (mods only toggle pre-game), then
+#       the player can Start Game again. The runtime has no in-place return-to-menu.
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 root="$(cd "$here/../.." && pwd)"
@@ -38,5 +43,6 @@ apply lib/N64ModernRuntime N64ModernRuntime-0001-controller-status-swizzle.patch
 apply lib/N64ModernRuntime N64ModernRuntime-0002-sdl2-audio-buffer-offset.patch
 apply lib/N64ModernRuntime N64ModernRuntime-0003-nonfatal-missing-function.patch
 apply lib/RecompFrontend   RecompFrontend-0001-keyboard-mapping.patch
+apply lib/RecompFrontend   RecompFrontend-0002-restart-button.patch
 apply lib/rt64             rt64-0001-crop-right-edge-garbage.patch
 echo "done."

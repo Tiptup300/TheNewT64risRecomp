@@ -1,0 +1,64 @@
+diff --git a/recompui/src/config/ui_config.cpp b/recompui/src/config/ui_config.cpp
+index 6c84c05..a27a998 100644
+--- a/recompui/src/config/ui_config.cpp
++++ b/recompui/src/config/ui_config.cpp
+@@ -6,6 +6,25 @@
+ #include "util/file.h"
+ #include "librecomp/game.hpp"
+ 
++#include <cstdlib>
++#if defined(__linux__)
++#include <unistd.h>
++#endif
++
++// Restart the application back to the launcher. Used by the in-game "Restart"
++// button so the player can reconfigure mods (which only toggle before a game is
++// started) and boot again — the runtime has no in-place return-to-launcher.
++// We re-exec the same binary with TNT_NO_AUTOBOOT set so it stops at the
++// launcher instead of auto-booting straight back into the game.
++static void tnt_restart_to_launcher() {
++#if defined(__linux__)
++    setenv("TNT_NO_AUTOBOOT", "1", 1);
++    execl("/proc/self/exe", "/proc/self/exe", (char *)nullptr);
++    // If exec somehow fails, fall through to a plain quit.
++#endif
++    ultramodern::quit();
++}
++
+ static std::vector<std::pair<std::string, recomp::config::Config>> configs;
+ 
+ struct PendingTab {
+@@ -19,6 +38,8 @@ static bool loaded_configs = false;
+ 
+ namespace recompui {
+     static recompui::TabbedModal *config_modal = nullptr;
++    // Header "Restart" button; only shown while a game is running (see config::open()).
++    static recompui::IconButton *restart_button = nullptr;
+ 
+     recomp::config::Config &config::get_config(const std::string &id) {
+         for (auto &[config_id, config] : configs) {
+@@ -154,6 +175,12 @@ namespace recompui {
+         }
+         config_modal->set_selected_tab(0);
+         auto header_right = config_modal->get_header()->get_right();
++        // Restart-to-launcher button (hidden until a game is started, see config::open()).
++        restart_button = config_modal->modal_root_context.create_element<IconButton>(header_right, "icons/Reset.svg", ButtonStyle::Basic);
++        restart_button->add_pressed_callback([]() {
++            tnt_restart_to_launcher();
++        });
++        restart_button->set_display(Display::None);
+         auto quit_button = config_modal->modal_root_context.create_element<IconButton>(header_right, "icons/Quit.svg", ButtonStyle::Basic);
+         quit_button->add_pressed_callback([]() {
+             if (ultramodern::is_game_started()) {
+@@ -190,6 +217,11 @@ namespace recompui {
+             throw std::runtime_error("Config modal has not been initialized.");
+         }
+ 
++        // Only offer "Restart" while a game is running (the launcher has no game to restart).
++        if (restart_button != nullptr) {
++            restart_button->set_display(ultramodern::is_game_started() ? Display::Flex : Display::None);
++        }
++
+         config_modal->open();
+     }
+ 
