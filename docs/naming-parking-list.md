@@ -17,4 +17,4 @@ each cluster completes.
 
 | symbol | cluster | reason | named-neighbor snapshot | notes |
 |---|---|---|---|---|
-| _(none yet — first batch in progress)_ | | | | |
+| func_8007C650, func_8007C8B0, func_8007CAC4, func_8007CC14, func_8007CF40, func_8007D214, func_8007D25C, func_8007D458, func_8007D510, func_8007D6A8, func_8007DA00 | system/SaveData.c | low-conf (wrong cluster) | SaveData_* anchors adjacent | NOT save code — camera/matrix/anim (cosf/sinf/sqrtf/mtx4/euler), merely co-located by address. Name in a future math/camera batch, then reorganize will re-home them out of SaveData.c. |
