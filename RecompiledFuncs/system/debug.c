@@ -14759,7 +14759,7 @@ L_8006CF98:
     // 0x8006CF98: jal         0x80090E08
     // 0x8006CF9C: nop
 
-    func_80090E08(rdram, ctx);
+    MenuHub_StartPlaying(rdram, ctx);
         goto after_5;
     // 0x8006CF9C: nop
 

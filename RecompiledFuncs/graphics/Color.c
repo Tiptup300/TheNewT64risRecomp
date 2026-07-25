@@ -1785,7 +1785,7 @@ RECOMP_FUNC void FUN_80055704_threeliner(uint8_t* rdram, recomp_context* ctx) {
     // 0x8005572C: jal         0x80090A44
     // 0x80055730: nop
 
-    func_80090A44(rdram, ctx);
+    Scene_FreeResources(rdram, ctx);
         goto after_2;
     // 0x80055730: nop
 
@@ -2555,7 +2555,7 @@ L_80055B9C:
     // 0x80055B9C: jal         0x8009D5E4
     // 0x80055BA0: nop
 
-    func_8009D5E4(rdram, ctx);
+    Scene_Init(rdram, ctx);
         goto after_15;
     // 0x80055BA0: nop
 

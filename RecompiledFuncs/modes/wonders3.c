@@ -2174,7 +2174,7 @@ RECOMP_FUNC void wonders3_no_idea_menu_img_button(uint8_t* rdram, recomp_context
     // 0x80047084: jal         0x800A0228
     // 0x80047088: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_800A0228(rdram, ctx);
+    Scene_SetupCameraAndObjects(rdram, ctx);
         goto after_0;
     // 0x80047088: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);

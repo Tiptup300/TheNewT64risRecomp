@@ -194,7 +194,7 @@ RECOMP_FUNC void Credits_80083450_oneliner_calls_80090a44(uint8_t* rdram, recomp
     // 0x80083458: jal         0x80090A44
     // 0x8008345C: nop
 
-    func_80090A44(rdram, ctx);
+    Scene_FreeResources(rdram, ctx);
         goto after_0;
     // 0x8008345C: nop
 
@@ -277,7 +277,7 @@ L_800834BC:
     // 0x800834BC: jal         0x8009D5E4
     // 0x800834C0: nop
 
-    func_8009D5E4(rdram, ctx);
+    Scene_Init(rdram, ctx);
         goto after_1;
     // 0x800834C0: nop
 
