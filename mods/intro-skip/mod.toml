@@ -1,0 +1,22 @@
+# Skip Intro Logos — skips the N64 logo + H2O/Blue Planet publisher screens.
+[manifest]
+id = "tnt_intro_skip"
+version = "1.0.0"
+display_name = "Skip Intro Logos"
+description = """
+Skips the two intro branding screens (the N64 logo and the H2O / Blue Planet \
+Software publisher-credits screen) so the game goes straight into the attract \
+sequence, title, and menu."""
+short_description = "Skip the N64 + publisher intro screens."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+# Enabled while iterating; final default is a design choice.
+enabled_by_default = true
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_intro_skip"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ ]
+additional_files = [ ]
