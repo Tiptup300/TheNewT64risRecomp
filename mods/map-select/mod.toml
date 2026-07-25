@@ -1,0 +1,29 @@
+# Map Selector — force which background/map the game uses (for testing all maps).
+[manifest]
+id = "tnt_map_select"
+version = "1.0.0"
+display_name = "Map Selector"
+description = """
+Forces the game to use a chosen background/map instead of picking one randomly. \
+Set "Map" to Random for normal behavior, or pick a specific map to play/test it. \
+The map names are best-guesses from the decomp — verify and relabel in-game."""
+short_description = "Choose which map/background the game uses."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+enabled_by_default = false
+
+[[manifest.config_options]]
+id = "map"
+name = "Map"
+description = "Which background to force (Random = normal)."
+type = "Enum"
+options = [ "Random", "0 Main", "1 Mayan", "2 Japanese", "3 Egyptian", "4 Celtic", "5 African", "6 Greek", "7 Russian" ]
+default = "Random"
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_map_select"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
+additional_files = [ ]
