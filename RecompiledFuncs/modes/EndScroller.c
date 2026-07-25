@@ -1173,7 +1173,7 @@ L_80080440:
     // 0x80080484: jal         0x8005BBFC
     // 0x80080488: addu        $s1, $t1, $t2
     ctx->r17 = ADD32(ctx->r9, ctx->r10);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_2;
     // 0x80080488: addu        $s1, $t1, $t2
     ctx->r17 = ADD32(ctx->r9, ctx->r10);
@@ -2069,7 +2069,7 @@ L_80080950:
     // 0x800809E4: jal         0x8005BBFC
     // 0x800809E8: sw          $t2, 0x4($t3)
     MEM_W(0X4, ctx->r11) = ctx->r10;
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_5;
     // 0x800809E8: sw          $t2, 0x4($t3)
     MEM_W(0X4, ctx->r11) = ctx->r10;

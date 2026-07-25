@@ -3472,7 +3472,7 @@ L_80076C94:
     // 0x80076C98: jal         0x8005BBFC
     // 0x80076C9C: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_0;
     // 0x80076C9C: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -3723,7 +3723,7 @@ L_80076E10:
     // 0x80076E14: jal         0x8005BBFC
     // 0x80076E18: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_3;
     // 0x80076E18: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -4708,7 +4708,7 @@ RECOMP_FUNC void CubeTiles_ObjSetVec3(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X44, ctx->r4) = ctx->f4.u32l;
 ;}
 
-RECOMP_FUNC void func_800A3B20(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjAddVec3(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3B20: sw          $a3, 0xC($sp)
@@ -4755,7 +4755,7 @@ RECOMP_FUNC void func_800A3B20(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X44, ctx->r4) = ctx->f4.u32l;
 ;}
 
-RECOMP_FUNC void func_800A3B58(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjAddVec3Rotated(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3B58: sw          $a3, 0xC($sp)

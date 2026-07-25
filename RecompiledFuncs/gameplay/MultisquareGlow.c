@@ -158,7 +158,7 @@ L_8006AFE4:
     // 0x8006AFE8: jal         0x8005BBFC
     // 0x8006AFEC: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_1;
     // 0x8006AFEC: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);

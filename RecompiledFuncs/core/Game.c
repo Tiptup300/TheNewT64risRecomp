@@ -5453,7 +5453,7 @@ RECOMP_FUNC void displayLineCount(uint8_t* rdram, recomp_context* ctx) {
     // 0x80052894: jal         0x8005BBFC
     // 0x80052898: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_2;
     // 0x80052898: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);

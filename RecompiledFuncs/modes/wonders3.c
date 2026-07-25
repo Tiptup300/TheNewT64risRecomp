@@ -1309,7 +1309,7 @@ RECOMP_FUNC void wonders3_RenderWondersHallText(uint8_t* rdram, recomp_context* 
     // 0x80046B60: jal         0x8005BBFC
     // 0x80046B64: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_0;
     // 0x80046B64: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -2184,7 +2184,7 @@ RECOMP_FUNC void wonders3_no_idea_menu_img_button(uint8_t* rdram, recomp_context
     // 0x80047090: jal         0x8005BBFC
     // 0x80047094: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_1;
     // 0x80047094: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -2483,7 +2483,7 @@ L_80047274:
     // 0x80047278: jal         0x8005BBFC
     // 0x8004727C: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_2;
     // 0x8004727C: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);

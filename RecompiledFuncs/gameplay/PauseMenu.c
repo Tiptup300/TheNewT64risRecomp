@@ -1921,7 +1921,7 @@ RECOMP_FUNC void PauseMenu_Draw(uint8_t* rdram, recomp_context* ctx) {
     // 0x80072280: jal         0x8005BBFC
     // 0x80072284: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_0;
     // 0x80072284: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);

@@ -3985,7 +3985,7 @@ L_80061874:
     // 0x800618F8: jal         0x8005BBFC
     // 0x800618FC: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_13;
     // 0x800618FC: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -9592,7 +9592,7 @@ L_80063790:
     // 0x800637B0: jal         0x8005BBFC
     // 0x800637B4: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_1;
     // 0x800637B4: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -9674,7 +9674,7 @@ L_80063790:
     // 0x80063834: jal         0x8005BBFC
     // 0x80063838: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_5;
     // 0x80063838: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -9948,7 +9948,7 @@ L_80063790:
     // 0x800639E8: jal         0x80075180
     // 0x800639EC: nop
 
-    func_80075180(rdram, ctx);
+    Gfx_CallDisplayList(rdram, ctx);
         goto after_19;
     // 0x800639EC: nop
 
@@ -10004,7 +10004,7 @@ L_80063790:
     // 0x80063A30: jal         0x800751C0
     // 0x80063A34: nop
 
-    func_800751C0(rdram, ctx);
+    Gfx_PipeSyncSetOtherModeH(rdram, ctx);
         goto after_24;
     // 0x80063A34: nop
 
@@ -10049,7 +10049,7 @@ L_80063A40:
     // 0x80063A6C: jal         0x8005BBFC
     // 0x80063A70: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_26;
     // 0x80063A70: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -10188,7 +10188,7 @@ L_80063B48:
     // 0x80063B4C: jal         0x8005BBFC
     // 0x80063B50: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_32;
     // 0x80063B50: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -10347,7 +10347,7 @@ L_80063C34:
     // 0x80063C44: jal         0x8005BBFC
     // 0x80063C48: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_40;
     // 0x80063C48: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -10496,7 +10496,7 @@ L_80063D20:
     // 0x80063D30: jal         0x8005BBFC
     // 0x80063D34: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_47;
     // 0x80063D34: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -10653,7 +10653,7 @@ L_80063E00:
     // 0x80063E2C: jal         0x8005BBFC
     // 0x80063E30: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_53;
     // 0x80063E30: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -10852,7 +10852,7 @@ L_80063F44:
     // 0x80063F54: jal         0x8005BBFC
     // 0x80063F58: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_65;
     // 0x80063F58: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -11111,7 +11111,7 @@ L_800640C0:
     // 0x800640C4: jal         0x8005BBFC
     // 0x800640C8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_83;
     // 0x800640C8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -11392,7 +11392,7 @@ L_80064258:
     // 0x8006425C: jal         0x8005BBFC
     // 0x80064260: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_99;
     // 0x80064260: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -11463,7 +11463,7 @@ L_800642A8:
     // 0x800642C8: jal         0x8005BBFC
     // 0x800642CC: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_102;
     // 0x800642CC: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -11588,7 +11588,7 @@ L_80064378:
     // 0x80064390: jal         0x8005BBFC
     // 0x80064394: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_107;
     // 0x80064394: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -12057,7 +12057,7 @@ L_800646AC:
     // 0x800646C4: jal         0x8005BBFC
     // 0x800646C8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_118;
     // 0x800646C8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -12440,7 +12440,7 @@ L_8006493C:
     // 0x80064954: jal         0x8005BBFC
     // 0x80064958: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_128;
     // 0x80064958: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -12877,7 +12877,7 @@ L_80064C10:
     // 0x80064C40: jal         0x8005BBFC
     // 0x80064C44: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_139;
     // 0x80064C44: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);

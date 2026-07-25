@@ -1751,7 +1751,7 @@ RECOMP_FUNC void calls_game_deinit(uint8_t* rdram, recomp_context* ctx) {
     ctx->r29 = ADD32(ctx->r29, 0X30);
 ;}
 
-RECOMP_FUNC void FUN_80055704_threeliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GameOver_FreeResources(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80055704: addiu       $sp, $sp, -0x20
@@ -2264,7 +2264,7 @@ L_800559C0:
     // 0x800559F0: jal         0x80055704
     // 0x800559F4: sb          $t2, 0x158($at)
     MEM_B(0X158, ctx->r1) = ctx->r10;
-    FUN_80055704_threeliner(rdram, ctx);
+    GameOver_FreeResources(rdram, ctx);
         goto after_6;
     // 0x800559F4: sb          $t2, 0x158($at)
     MEM_B(0X158, ctx->r1) = ctx->r10;
@@ -2486,7 +2486,7 @@ L_80055B2C:
     // 0x80055B30: jal         0x8005BBFC
     // 0x80055B34: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_12;
     // 0x80055B34: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -2591,7 +2591,7 @@ L_80055B9C:
     // 0x80055BD4: jal         0x8005BBFC
     // 0x80055BD8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_16;
     // 0x80055BD8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -4536,7 +4536,7 @@ L_800568B0:
     // 0x800568B4: jal         0x8005BBFC
     // 0x800568B8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_66;
     // 0x800568B8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);

@@ -3555,7 +3555,7 @@ L_80044C8C:
     // 0x80044C90: jal         0x8005BBFC
     // 0x80044C94: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_25;
     // 0x80044C94: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -4252,7 +4252,7 @@ L_800450C8:
     // 0x800450E4: jal         0x8005BBFC
     // 0x800450E8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_6;
     // 0x800450E8: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -4702,7 +4702,7 @@ L_80045378:
     // 0x8004537C: jal         0x8005BBFC
     // 0x80045380: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_5;
     // 0x80045380: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
@@ -5299,7 +5299,7 @@ L_800456FC:
     // 0x80045714: jal         0x8005BBFC
     // 0x80045718: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_4;
     // 0x80045718: addiu       $a0, $a0, 0x20C0
     ctx->r4 = ADD32(ctx->r4, 0X20C0);

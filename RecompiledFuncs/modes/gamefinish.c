@@ -138,7 +138,7 @@ RECOMP_FUNC void gamefinish_DrawResultSprite(uint8_t* rdram, recomp_context* ctx
     // 0x80052B7C: jal         0x8005BBFC
     // 0x80052B80: sh          $t3, 0x36($sp)
     MEM_H(0X36, ctx->r29) = ctx->r11;
-    func_8005BBFC(rdram, ctx);
+    Gfx_SetupRenderState(rdram, ctx);
         goto after_1;
     // 0x80052B80: sh          $t3, 0x36($sp)
     MEM_H(0X36, ctx->r29) = ctx->r11;
