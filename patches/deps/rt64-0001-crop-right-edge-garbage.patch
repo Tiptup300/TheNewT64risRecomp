@@ -1,0 +1,21 @@
+diff --git a/src/hle/rt64_vi.cpp b/src/hle/rt64_vi.cpp
+index a870166..bd3728e 100644
+--- a/src/hle/rt64_vi.cpp
++++ b/src/hle/rt64_vi.cpp
+@@ -20,7 +20,15 @@ namespace RT64 {
+     }
+ 
+     hlslpp::float4 VI::cropRectangle() const {
+-        return { 0.0f, 0.0f, 1.0f, 1.0f };
++        // Crop a couple source pixels off the right edge to hide the uninitialized
++        // right-edge column the N64 framebuffer leaves there. A real TV's overscan
++        // hid it; presenting the full width shows it as flickering garbage every
++        // other frame (one double-buffer's edge column is never written). The
++        // viewport expands the cropped region back to fill the screen, so this only
++        // discards ~2px of overscan, not real content.
++        const float rightCropPixels = 2.0f;
++        float right = (width > 0) ? (1.0f - rightCropPixels / float(width)) : 1.0f;
++        return { 0.0f, 0.0f, right, 1.0f };
+     }
+ 
+     float VI::gamma() const {

@@ -17,6 +17,10 @@
 #       once and returns a no-op. Some libultra debug funcs (rmonPrintf) are omitted
 #       from the func table, so an INDIRECT call to one used to crash the game
 #       (e.g. an audio-error path on the gameplay screen). Now it degrades safely.
+#   rt64-0001-crop-right-edge-garbage                   -> src/hle/rt64_vi.cpp
+#       VI::cropRectangle() crops ~2px off the framebuffer's right edge. That column
+#       is uninitialized on the N64 (a TV's overscan hid it); presenting the full
+#       width showed it as flickering garbage every other frame.
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 root="$(cd "$here/../.." && pwd)"
@@ -34,4 +38,5 @@ apply lib/N64ModernRuntime N64ModernRuntime-0001-controller-status-swizzle.patch
 apply lib/N64ModernRuntime N64ModernRuntime-0002-sdl2-audio-buffer-offset.patch
 apply lib/N64ModernRuntime N64ModernRuntime-0003-nonfatal-missing-function.patch
 apply lib/RecompFrontend   RecompFrontend-0001-keyboard-mapping.patch
+apply lib/rt64             rt64-0001-crop-right-edge-garbage.patch
 echo "done."
