@@ -664,6 +664,7 @@ symbols = [
     { name = "D_801295EC", vram = 0x801295EC },
     { name = "D_801295F0", vram = 0x801295F0 },
     { name = "D_8012AA10", vram = 0x8012AA10 },
+    { name = "g_saveIoMesgQueue", vram = 0x8012CA10 },
     { name = "__osEventStateTab", vram = 0x8012CC80 },
     { name = "__osContPifRam", vram = 0x8012CD00 },
     { name = "__osContLastCmd", vram = 0x8012CD40 },

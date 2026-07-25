@@ -57,16 +57,21 @@ def load_func_names():
     return names, def_counts
 
 
+DATA_ENTRY_RE = re.compile(r'\{\s*name\s*=\s*"([^"]+)"\s*,\s*vram\s*=\s*(0[xX][0-9A-Fa-f]+)\s*\}')
+SECTION_LO, SECTION_HI = 0x80000000, 0x80800000
+
+
 def load_data_syms():
-    """name -> count and name -> vram, from tnt.datasyms.toml."""
-    counts, name_vram = {}, {}
+    """name -> count, name -> vram, and the set of all vrams, from tnt.datasyms.toml."""
+    counts, name_vram, vrams = {}, {}, set()
     for line in DATASYMS.read_text().splitlines():
-        m = re.search(r'name\s*=\s*"([^"]+)".*vram\s*=\s*(0[xX][0-9A-Fa-f]+)', line)
+        m = DATA_ENTRY_RE.search(line)
         if m:
             n = m.group(1)
             counts[n] = counts.get(n, 0) + 1
             name_vram[n] = int(m.group(2), 16)
-    return counts, name_vram
+            vrams.add(int(m.group(2), 16))
+    return counts, name_vram, vrams
 
 
 def prefix(name):
@@ -145,6 +150,55 @@ def apply_func_renames(renames, dry):
     return hits, needs_reorg
 
 
+def preflight_add(name, vram_s, data_counts, data_vrams, batch_news, errs):
+    if not IDENT_RE.match(name):
+        errs.append(f"add {name}: not a valid C identifier")
+    if PLACEHOLDER.search(name):
+        errs.append(f"add {name}: looks like a placeholder")
+    try:
+        vram = int(vram_s, 16)
+    except ValueError:
+        errs.append(f"add {name} {vram_s}: VRAM is not hex")
+        return
+    if not (SECTION_LO <= vram < SECTION_HI):
+        errs.append(f"add {name} 0x{vram:08X}: VRAM outside the data section range")
+    if name in data_counts:
+        errs.append(f"add {name}: NAME already exists in datasyms")
+    if vram in data_vrams:
+        errs.append(f"add {name} 0x{vram:08X}: VRAM already has a symbol")
+    if name in batch_news:
+        errs.append(f"add {name}: NAME targeted twice in this batch")
+    batch_news.add(name)
+
+
+def apply_adds(adds, dry):
+    """adds: list of (name, vram_int). Insert in vram-sorted position; minimal diff."""
+    lines = DATASYMS.read_text().splitlines(keepends=True)
+    # Find the symbols array: the entry lines between `symbols = [` and the closing `]`.
+    start = next(i for i, l in enumerate(lines) if l.strip().startswith("symbols"))
+    end = next(i for i in range(start, len(lines)) if lines[i].strip() == "]")
+    entries = []  # (vram, line_index) for existing entries
+    for i in range(start, end):
+        m = DATA_ENTRY_RE.search(lines[i])
+        if m:
+            entries.append((int(m.group(2), 16), i))
+    for name, vram in sorted(adds):
+        new_line = f'    {{ name = "{name}", vram = 0x{vram:08X} }},\n'
+        # insert before the first existing entry with a greater vram, else before `]`
+        pos = end
+        for ev, ei in entries:
+            if ev > vram:
+                pos = ei
+                break
+        lines.insert(pos, new_line)
+        entries.append((vram, pos))
+        entries.sort()
+        end += 1
+    if not dry:
+        DATASYMS.write_text("".join(lines))
+    return len(adds)
+
+
 def apply_data_renames(renames, dry, update_mods):
     text = DATASYMS.read_text()
     total = 0
@@ -176,8 +230,8 @@ def parse_map(path):
         if not line:
             continue
         parts = line.split()
-        if len(parts) != 3 or parts[0] not in ("func", "data"):
-            sys.exit(f"map line {ln}: expected 'func OLD NEW' or 'data OLD NEW', got: {raw!r}")
+        if len(parts) != 3 or parts[0] not in ("func", "data", "add"):
+            sys.exit(f"map line {ln}: expected 'func|data|add A B', got: {raw!r}")
         ops.append(tuple(parts))
     return ops
 
@@ -187,6 +241,8 @@ def main():
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--func", nargs=2, metavar=("OLD", "NEW"))
     g.add_argument("--data", nargs=2, metavar=("OLD", "NEW"))
+    g.add_argument("--add-data", nargs=2, metavar=("NAME", "VRAM"),
+                   help="add a newly-discovered global to tnt.datasyms.toml")
     g.add_argument("--map", metavar="FILE")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--update-mods", action="store_true",
@@ -197,20 +253,25 @@ def main():
         ops = [("func", *args.func)]
     elif args.data:
         ops = [("data", *args.data)]
+    elif args.add_data:
+        ops = [("add", *args.add_data)]
     else:
         ops = parse_map(args.map)
 
     func_ren = [(o, n) for k, o, n in ops if k == "func"]
     data_ren = [(o, n) for k, o, n in ops if k == "data"]
+    data_add = [(a, b) for k, a, b in ops if k == "add"]
 
     func_names, def_counts = load_func_names() if func_ren else (set(), {})
-    data_counts, _ = load_data_syms() if data_ren else ({}, {})
+    data_counts, _, data_vrams = load_data_syms() if (data_ren or data_add) else ({}, {}, set())
 
     errs, batch_news = [], set()
     for o, n in func_ren:
         preflight_func(o, n, func_names, def_counts, batch_news, errs)
     for o, n in data_ren:
         preflight_data(o, n, data_counts, batch_news, errs, args.update_mods)
+    for name, vram_s in data_add:
+        preflight_add(name, vram_s, data_counts, data_vrams, batch_news, errs)
     # A NEW must not also be an OLD in the same batch (no chaining under atomic apply).
     olds = {o for _, o, _ in ops}
     for _, o, n in ops:
@@ -242,6 +303,9 @@ def main():
             print("  also rewrote mod source (rebuild these mods):")
             for a, c in sorted(mod_hits.items()):
                 print(f"    {c:>5}  {a}")
+    if data_add:
+        n = apply_adds([(name, int(v, 16)) for name, v in data_add], args.dry_run)
+        print(f"{tag}data: {n} new global(s) added to tnt.datasyms.toml")
 
     if args.dry_run:
         print("(dry-run: no files modified)")
