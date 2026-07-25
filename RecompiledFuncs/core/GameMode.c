@@ -171,7 +171,7 @@ L_8006CD1C:
     // 0x8006CD64: jal         0x800472F0
     // 0x8006CD68: or          $a2, $s0, $zero
     ctx->r6 = ctx->r16 | 0;
-    wonders3_wonder_viewer(rdram, ctx);
+    wonders3_LoadWonderViewer(rdram, ctx);
         goto after_8;
     // 0x8006CD68: or          $a2, $s0, $zero
     ctx->r6 = ctx->r16 | 0;

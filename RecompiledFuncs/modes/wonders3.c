@@ -736,7 +736,7 @@ RECOMP_FUNC void wonders3_ReloadBlockTile(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void wonders3_init_tuples(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders3_LoadResources(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80046840: addiu       $sp, $sp, -0x28
@@ -1065,7 +1065,7 @@ L_80046A18:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void wonders3_switch_0to7_6and7are_same(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders3_Update(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80046A34: addiu       $sp, $sp, -0x28
@@ -1208,7 +1208,7 @@ L_80046AE0:
     // 0x80046AE0: jal         0x80046840
     // 0x80046AE4: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    wonders3_init_tuples(rdram, ctx);
+    wonders3_LoadResources(rdram, ctx);
         goto after_4;
     // 0x80046AE4: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -1271,7 +1271,7 @@ L_80046B18:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void wonders3_display_wonders_hall_text(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders3_RenderWondersHallText(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80046B28: addiu       $sp, $sp, -0x78
@@ -2120,7 +2120,7 @@ RECOMP_FUNC void wonders3_RenderWondersHall(uint8_t* rdram, recomp_context* ctx)
     // 0x80047040: jal         0x80046B28
     // 0x80047044: nop
 
-    wonders3_display_wonders_hall_text(rdram, ctx);
+    wonders3_RenderWondersHallText(rdram, ctx);
         goto after_0;
     // 0x80047044: nop
 
@@ -2378,7 +2378,7 @@ L_800471E8:
     ctx->r29 = ADD32(ctx->r29, 0X48);
 ;}
 
-RECOMP_FUNC void wonders3_switch_0to3_2and3are_same(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders3_Draw(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800471F8: addiu       $sp, $sp, -0x40
@@ -2546,7 +2546,7 @@ L_800472D8:
     // 0x800472D8: jal         0x80046B28
     // 0x800472DC: nop
 
-    wonders3_display_wonders_hall_text(rdram, ctx);
+    wonders3_RenderWondersHallText(rdram, ctx);
         goto after_5;
     // 0x800472DC: nop
 
@@ -2564,7 +2564,7 @@ L_800472E0:
     ctx->r29 = ADD32(ctx->r29, 0X40);
 ;}
 
-RECOMP_FUNC void wonders3_wonder_viewer(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders3_LoadWonderViewer(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800472F0: addiu       $sp, $sp, -0x30

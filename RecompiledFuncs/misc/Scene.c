@@ -1737,7 +1737,7 @@ L_8009142C:
     ctx->r29 = ADD32(ctx->r29, 0X50);
 ;}
 
-RECOMP_FUNC void func_80091440(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_ShowObjectsReverse(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80091440: addiu       $sp, $sp, -0x30
@@ -2211,7 +2211,7 @@ L_80091734:
     ctx->r29 = ADD32(ctx->r29, 0X30);
 ;}
 
-RECOMP_FUNC void func_80091744(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_ShowObjectsForward(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80091744: addiu       $sp, $sp, -0x30
@@ -2719,7 +2719,7 @@ L_80091A7C:
     ctx->r29 = ADD32(ctx->r29, 0X30);
 ;}
 
-RECOMP_FUNC void func_80091A8C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_ShowSelectedObject(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80091A8C: addiu       $sp, $sp, -0x28
@@ -13324,7 +13324,7 @@ L_80096094:
     // 0x80096098: jal         0x80091A8C
     // 0x8009609C: nop
 
-    func_80091A8C(rdram, ctx);
+    Scene_ShowSelectedObject(rdram, ctx);
         goto after_220;
     // 0x8009609C: nop
 
@@ -13615,7 +13615,7 @@ L_80096230:
     // 0x80096250: jal         0x80091440
     // 0x80096254: addu        $a2, $t2, $t1
     ctx->r6 = ADD32(ctx->r10, ctx->r9);
-    func_80091440(rdram, ctx);
+    Scene_ShowObjectsReverse(rdram, ctx);
         goto after_225;
     // 0x80096254: addu        $a2, $t2, $t1
     ctx->r6 = ADD32(ctx->r10, ctx->r9);
@@ -13729,7 +13729,7 @@ L_800962D4:
     // 0x80096304: jal         0x80091744
     // 0x80096308: addu        $a2, $t1, $t3
     ctx->r6 = ADD32(ctx->r9, ctx->r11);
-    func_80091744(rdram, ctx);
+    Scene_ShowObjectsForward(rdram, ctx);
         goto after_227;
     // 0x80096308: addu        $a2, $t1, $t3
     ctx->r6 = ADD32(ctx->r9, ctx->r11);
@@ -13799,7 +13799,7 @@ L_80096354:
     // 0x80096374: jal         0x80091744
     // 0x80096378: addu        $a2, $t3, $t0
     ctx->r6 = ADD32(ctx->r11, ctx->r8);
-    func_80091744(rdram, ctx);
+    Scene_ShowObjectsForward(rdram, ctx);
         goto after_228;
     // 0x80096378: addu        $a2, $t3, $t0
     ctx->r6 = ADD32(ctx->r11, ctx->r8);
@@ -14246,7 +14246,7 @@ L_80096624:
     // 0x80096628: jal         0x80091A8C
     // 0x8009662C: nop
 
-    func_80091A8C(rdram, ctx);
+    Scene_ShowSelectedObject(rdram, ctx);
         goto after_231;
     // 0x8009662C: nop
 
@@ -15966,7 +15966,7 @@ L_80097094:
     // 0x80097094: jal         0x80045FDC
     // 0x80097098: nop
 
-    wonders2_80045fdc_sets_num_won_compl_q(rdram, ctx);
+    wonders2_UpdateWonderProgress(rdram, ctx);
         goto after_259;
     // 0x80097098: nop
 
@@ -20386,7 +20386,7 @@ L_80098BC0:
     // 0x80098CC0: jal         0x80045E50
     // 0x80098CC4: nop
 
-    wonders2_80045e50_sets_num_won_compl_q(rdram, ctx);
+    wonders2_InitWonderProgress(rdram, ctx);
         goto after_330;
     // 0x80098CC4: nop
 
@@ -20583,7 +20583,7 @@ L_80098CE0:
     // 0x80098DE0: jal         0x80045E50
     // 0x80098DE4: nop
 
-    wonders2_80045e50_sets_num_won_compl_q(rdram, ctx);
+    wonders2_InitWonderProgress(rdram, ctx);
         goto after_335;
     // 0x80098DE4: nop
 
@@ -22556,7 +22556,7 @@ L_80099988:
     // 0x80099A28: jal         0x80091A8C
     // 0x80099A2C: nop
 
-    func_80091A8C(rdram, ctx);
+    Scene_ShowSelectedObject(rdram, ctx);
         goto after_8;
     // 0x80099A2C: nop
 
@@ -30998,7 +30998,7 @@ L_8009D0AC:
     // 0x8009D0C0: jal         0x80091440
     // 0x8009D0C4: addiu       $a2, $a2, 0x3D10
     ctx->r6 = ADD32(ctx->r6, 0X3D10);
-    func_80091440(rdram, ctx);
+    Scene_ShowObjectsReverse(rdram, ctx);
         goto after_89;
     // 0x8009D0C4: addiu       $a2, $a2, 0x3D10
     ctx->r6 = ADD32(ctx->r6, 0X3D10);
@@ -31031,7 +31031,7 @@ L_8009D0E0:
     // 0x8009D0F4: jal         0x80091440
     // 0x8009D0F8: addiu       $a2, $a2, 0x3D10
     ctx->r6 = ADD32(ctx->r6, 0X3D10);
-    func_80091440(rdram, ctx);
+    Scene_ShowObjectsReverse(rdram, ctx);
         goto after_90;
     // 0x8009D0F8: addiu       $a2, $a2, 0x3D10
     ctx->r6 = ADD32(ctx->r6, 0X3D10);
@@ -31226,7 +31226,7 @@ L_8009D224:
     // 0x8009D238: jal         0x80091744
     // 0x8009D23C: addiu       $a2, $a2, 0x3D10
     ctx->r6 = ADD32(ctx->r6, 0X3D10);
-    func_80091744(rdram, ctx);
+    Scene_ShowObjectsForward(rdram, ctx);
         goto after_92;
     // 0x8009D23C: addiu       $a2, $a2, 0x3D10
     ctx->r6 = ADD32(ctx->r6, 0X3D10);
@@ -31259,7 +31259,7 @@ L_8009D258:
     // 0x8009D26C: jal         0x80091744
     // 0x8009D270: addiu       $a2, $a2, 0x3D10
     ctx->r6 = ADD32(ctx->r6, 0X3D10);
-    func_80091744(rdram, ctx);
+    Scene_ShowObjectsForward(rdram, ctx);
         goto after_93;
     // 0x8009D270: addiu       $a2, $a2, 0x3D10
     ctx->r6 = ADD32(ctx->r6, 0X3D10);

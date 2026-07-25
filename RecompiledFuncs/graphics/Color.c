@@ -2288,7 +2288,7 @@ L_800559C0:
     // 0x80055A10: jal         0x80045FDC
     // 0x80055A14: nop
 
-    wonders2_80045fdc_sets_num_won_compl_q(rdram, ctx);
+    wonders2_UpdateWonderProgress(rdram, ctx);
         goto after_7;
     // 0x80055A14: nop
 

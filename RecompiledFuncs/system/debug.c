@@ -1230,7 +1230,7 @@ L_8006CFA8:
     // 0x8006CFA8: jal         0x800444A4
     // 0x8006CFAC: nop
 
-    wonders1_case6_calls_music_magic(rdram, ctx);
+    wonders1_Update(rdram, ctx);
         goto after_6;
     // 0x8006CFAC: nop
 
@@ -1238,7 +1238,7 @@ L_8006CFA8:
     // 0x8006CFB0: jal         0x80045968
     // 0x8006CFB4: nop
 
-    wonders1_something_hall_or_exit_case(rdram, ctx);
+    wonders1_Draw(rdram, ctx);
         goto after_7;
     // 0x8006CFB4: nop
 
@@ -1253,7 +1253,7 @@ L_8006CFC0:
     // 0x8006CFC0: jal         0x80046A34
     // 0x8006CFC4: nop
 
-    wonders3_switch_0to7_6and7are_same(rdram, ctx);
+    wonders3_Update(rdram, ctx);
         goto after_8;
     // 0x8006CFC4: nop
 
@@ -1261,7 +1261,7 @@ L_8006CFC0:
     // 0x8006CFC8: jal         0x800471F8
     // 0x8006CFCC: nop
 
-    wonders3_switch_0to3_2and3are_same(rdram, ctx);
+    wonders3_Draw(rdram, ctx);
         goto after_9;
     // 0x8006CFCC: nop
 

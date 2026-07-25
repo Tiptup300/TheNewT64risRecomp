@@ -2578,7 +2578,7 @@ L_8007C538:
     // 0x8007C56C: jal         0x80045E50
     // 0x8007C570: sb          $t2, 0x4DD0($at)
     MEM_B(0X4DD0, ctx->r1) = ctx->r10;
-    wonders2_80045e50_sets_num_won_compl_q(rdram, ctx);
+    wonders2_InitWonderProgress(rdram, ctx);
         goto after_32;
     // 0x8007C570: sb          $t2, 0x4DD0($at)
     MEM_B(0X4DD0, ctx->r1) = ctx->r10;

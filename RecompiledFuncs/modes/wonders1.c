@@ -1771,7 +1771,7 @@ L_800442E8:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void wonders1_checks_num_wonders_completed_q(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_CheckWonderProgress(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800442F8: lui         $t6, 0x800D
@@ -2072,7 +2072,7 @@ RECOMP_FUNC void wonders1_80044464_threeliner(uint8_t* rdram, recomp_context* ct
 
 ;}
 
-RECOMP_FUNC void wonders1_case6_calls_music_magic(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_Update(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800444A4: addiu       $sp, $sp, -0x28
@@ -2175,7 +2175,7 @@ L_80044500:
     // 0x80044514: jal         0x800442F8
     // 0x80044518: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    wonders1_checks_num_wonders_completed_q(rdram, ctx);
+    wonders1_CheckWonderProgress(rdram, ctx);
         goto after_1;
     // 0x80044518: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -2213,7 +2213,7 @@ L_80044534:
     // 0x8004453C: jal         0x800442F8
     // 0x80044540: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    wonders1_checks_num_wonders_completed_q(rdram, ctx);
+    wonders1_CheckWonderProgress(rdram, ctx);
         goto after_4;
     // 0x80044540: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -2325,7 +2325,7 @@ L_800445C4:
     // 0x800445C4: jal         0x80045C9C
     // 0x800445C8: nop
 
-    wonders1_calls_music_400x300_magic(rdram, ctx);
+    wonders1_Exit(rdram, ctx);
         goto after_11;
     // 0x800445C8: nop
 
@@ -5660,7 +5660,7 @@ L_800457BC:
     ctx->r29 = ADD32(ctx->r29, 0X68);
 ;}
 
-RECOMP_FUNC void wonders1_something_hall_or_exit_case(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_Draw(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80045968: addiu       $sp, $sp, -0x28
@@ -6313,7 +6313,7 @@ L_80045C78:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void wonders1_calls_music_400x300_magic(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders1_Exit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80045C9C: addiu       $sp, $sp, -0x30
@@ -6423,7 +6423,7 @@ RECOMP_FUNC void wonders1_calls_music_400x300_magic(uint8_t* rdram, recomp_conte
     // 0x80045D34: jal         0x800472F0
     // 0x80045D38: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
-    wonders3_wonder_viewer(rdram, ctx);
+    wonders3_LoadWonderViewer(rdram, ctx);
         goto after_6;
     // 0x80045D38: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;

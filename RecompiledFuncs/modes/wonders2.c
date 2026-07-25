@@ -1,7 +1,7 @@
 #include "recomp.h"
 #include "funcs.h"
 
-RECOMP_FUNC void wonders2_80045e50_sets_num_won_compl_q(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders2_InitWonderProgress(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80045E50: addiu       $sp, $sp, -0x30
@@ -258,7 +258,7 @@ L_80045FA4:
     ctx->r29 = ADD32(ctx->r29, 0X30);
 ;}
 
-RECOMP_FUNC void wonders2_80045fdc_sets_num_won_compl_q(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders2_UpdateWonderProgress(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80045FDC: addiu       $sp, $sp, -0x30
