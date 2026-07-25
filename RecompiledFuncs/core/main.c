@@ -727,7 +727,7 @@ RECOMP_FUNC void main_infinite_loop_at_end_3(uint8_t* rdram, recomp_context* ctx
     // 0x8004A0B8: jal         0x800AC06C
     // 0x8004A0BC: addiu       $a1, $zero, 0x5
     ctx->r5 = ADD32(0, 0X5);
-    func_800AC06C(rdram, ctx);
+    Main_StartRomDmaThread(rdram, ctx);
         goto after_0;
     // 0x8004A0BC: addiu       $a1, $zero, 0x5
     ctx->r5 = ADD32(0, 0X5);
@@ -743,7 +743,7 @@ RECOMP_FUNC void main_infinite_loop_at_end_3(uint8_t* rdram, recomp_context* ctx
     // 0x8004A0C8: jal         0x800AC0F8
     // 0x8004A0CC: nop
 
-    func_800AC0F8(rdram, ctx);
+    Main_InitCartPiHandle(rdram, ctx);
         goto after_2;
     // 0x8004A0CC: nop
 
