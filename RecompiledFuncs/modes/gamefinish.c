@@ -1043,7 +1043,7 @@ L_800530A8:
     // 0x800530AC: jal         0x80060770
     // 0x800530B0: nop
 
-    FUN_026900_80060770_sevenliner(rdram, ctx);
+    PFGFX_StepValueToTarget(rdram, ctx);
         goto after_0;
     // 0x800530B0: nop
 

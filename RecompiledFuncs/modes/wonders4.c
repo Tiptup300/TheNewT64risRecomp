@@ -5552,7 +5552,7 @@ RECOMP_FUNC void four_arguments_get_debug_printed(uint8_t* rdram, recomp_context
     // 0x80049B64: jal         0x80061124
     // 0x80049B68: nop
 
-    func_80061124(rdram, ctx);
+    PFGFX_SetViModeRequest(rdram, ctx);
         goto after_9;
     // 0x80049B68: nop
 

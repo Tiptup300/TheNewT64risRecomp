@@ -2169,7 +2169,7 @@ RECOMP_FUNC void PFGFX_InitBounds(uint8_t* rdram, recomp_context* ctx) {
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void FUN_026900_80060770_sevenliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_StepValueToTarget(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80060770: sw          $a1, 0x4($sp)
@@ -2779,7 +2779,7 @@ RECOMP_FUNC void PFGFX_RequestViModeChange(uint8_t* rdram, recomp_context* ctx) 
     MEM_W(0X288, ctx->r1) = ctx->r14;
 ;}
 
-RECOMP_FUNC void func_80061124(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_SetViModeRequest(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80061124: addiu       $t6, $zero, 0x1

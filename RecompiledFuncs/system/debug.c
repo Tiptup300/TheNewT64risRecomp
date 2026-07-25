@@ -219,7 +219,7 @@ L_8004A664:
     // 0x8004A6E0: jal         0x80061124
     // 0x8004A6E4: nop
 
-    func_80061124(rdram, ctx);
+    PFGFX_SetViModeRequest(rdram, ctx);
         goto after_3;
     // 0x8004A6E4: nop
 

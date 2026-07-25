@@ -440,7 +440,7 @@ L_800733D4:
     ctx->r29 = ADD32(ctx->r29, 0X58);
 ;}
 
-RECOMP_FUNC void func_800733F0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GarbageFx_BuildBlocksDL(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800733F0: lui         $a1, 0x800E
@@ -733,7 +733,7 @@ RECOMP_FUNC void GarbageFx_DrawBlocks(uint8_t* rdram, recomp_context* ctx) {
     // 0x80073604: jal         0x800733F0
     // 0x80073608: nop
 
-    func_800733F0(rdram, ctx);
+    GarbageFx_BuildBlocksDL(rdram, ctx);
         goto after_0;
     // 0x80073608: nop
 
@@ -1918,7 +1918,7 @@ L_80073D50:
     ctx->r29 = ADD32(ctx->r29, 0X48);
 ;}
 
-RECOMP_FUNC void func_80073D70(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GarbageFx_DrawBlockAnim2P(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80073D70: addiu       $sp, $sp, -0x50
@@ -2275,7 +2275,7 @@ RECOMP_FUNC void func_80073D70(uint8_t* rdram, recomp_context* ctx) {
     ctx->r29 = ADD32(ctx->r29, 0X50);
 ;}
 
-RECOMP_FUNC void func_80074024(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GarbageFx_DrawBlockAnim3P4P(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80074024: addiu       $sp, $sp, -0x58
@@ -2774,7 +2774,7 @@ L_800743AC:
     // 0x800743B0: jal         0x80073D70
     // 0x800743B4: nop
 
-    func_80073D70(rdram, ctx);
+    GarbageFx_DrawBlockAnim2P(rdram, ctx);
         goto after_1;
     // 0x800743B4: nop
 
@@ -2791,7 +2791,7 @@ L_800743C0:
     // 0x800743C4: jal         0x80074024
     // 0x800743C8: nop
 
-    func_80074024(rdram, ctx);
+    GarbageFx_DrawBlockAnim3P4P(rdram, ctx);
         goto after_2;
     // 0x800743C8: nop
 

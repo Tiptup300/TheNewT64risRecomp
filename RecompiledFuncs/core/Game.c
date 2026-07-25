@@ -3399,7 +3399,7 @@ L_80051D54:
     // 0x80051D58: jal         0x80060770
     // 0x80051D5C: nop
 
-    FUN_026900_80060770_sevenliner(rdram, ctx);
+    PFGFX_StepValueToTarget(rdram, ctx);
         goto after_1;
     // 0x80051D5C: nop
 
