@@ -3800,7 +3800,7 @@ L_80051F6C:
     // 0x80051F84: jal         0x800636C0
     // 0x80051F88: nop
 
-    FUN_027BF0_800636C0_display_game_stats_screen_q(rdram, ctx);
+    PFGFX_DrawPlayfield(rdram, ctx);
         goto after_1;
     // 0x80051F88: nop
 

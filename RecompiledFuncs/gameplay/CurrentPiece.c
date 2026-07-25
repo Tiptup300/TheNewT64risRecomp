@@ -3229,7 +3229,7 @@ RECOMP_FUNC void CurrentPiece_GetMinoBounds(uint8_t* rdram, recomp_context* ctx)
     // 0x80067C48: jal         0x8006073C
     // 0x80067C4C: nop
 
-    FUN_026900_sets_arg0_struct_to_arg1_arg2(rdram, ctx);
+    PFGFX_InitBounds(rdram, ctx);
         goto after_0;
     // 0x80067C4C: nop
 

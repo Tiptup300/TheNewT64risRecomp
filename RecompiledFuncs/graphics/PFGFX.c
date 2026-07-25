@@ -2136,7 +2136,7 @@ RECOMP_FUNC void PFGFX_GetRectCellCount(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void FUN_026900_sets_arg0_struct_to_arg1_arg2(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_InitBounds(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006073C: sll         $a3, $a1, 16
@@ -4059,7 +4059,7 @@ L_8006195C:
 
 ;}
 
-RECOMP_FUNC void FUN_027BF0_convert_decimal_q(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_DrawNumberRightAligned(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80061970: addiu       $sp, $sp, -0x18
@@ -4224,7 +4224,7 @@ RECOMP_FUNC void FUN_027BF0_80061A34_does_nothing(uint8_t* rdram, recomp_context
 
 ;}
 
-RECOMP_FUNC void FUN_027BF0_80061a3c_tenliner_allocs_heap(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_DecodeSpriteImages(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80061A3C: addiu       $sp, $sp, -0x28
@@ -7866,7 +7866,7 @@ L_80062D8C:
     // 0x80062DAC: jal         0x80061A3C
     // 0x80062DB0: addu        $a1, $t7, $t3
     ctx->r5 = ADD32(ctx->r15, ctx->r11);
-    FUN_027BF0_80061a3c_tenliner_allocs_heap(rdram, ctx);
+    PFGFX_DecodeSpriteImages(rdram, ctx);
         goto after_59;
     // 0x80062DB0: addu        $a1, $t7, $t3
     ctx->r5 = ADD32(ctx->r15, ctx->r11);
@@ -7894,7 +7894,7 @@ L_80062D8C:
     // 0x80062DDC: jal         0x80061A3C
     // 0x80062DE0: addu        $a1, $t9, $t0
     ctx->r5 = ADD32(ctx->r25, ctx->r8);
-    FUN_027BF0_80061a3c_tenliner_allocs_heap(rdram, ctx);
+    PFGFX_DecodeSpriteImages(rdram, ctx);
         goto after_60;
     // 0x80062DE0: addu        $a1, $t9, $t0
     ctx->r5 = ADD32(ctx->r25, ctx->r8);
@@ -7922,7 +7922,7 @@ L_80062D8C:
     // 0x80062E0C: jal         0x80061A3C
     // 0x80062E10: addu        $a1, $t7, $t3
     ctx->r5 = ADD32(ctx->r15, ctx->r11);
-    FUN_027BF0_80061a3c_tenliner_allocs_heap(rdram, ctx);
+    PFGFX_DecodeSpriteImages(rdram, ctx);
         goto after_61;
     // 0x80062E10: addu        $a1, $t7, $t3
     ctx->r5 = ADD32(ctx->r15, ctx->r11);
@@ -8057,7 +8057,7 @@ L_80062E58:
     // 0x80062EE4: jal         0x80061A3C
     // 0x80062EE8: addu        $a1, $t0, $t1
     ctx->r5 = ADD32(ctx->r8, ctx->r9);
-    FUN_027BF0_80061a3c_tenliner_allocs_heap(rdram, ctx);
+    PFGFX_DecodeSpriteImages(rdram, ctx);
         goto after_62;
     // 0x80062EE8: addu        $a1, $t0, $t1
     ctx->r5 = ADD32(ctx->r8, ctx->r9);
@@ -8139,7 +8139,7 @@ L_80062E58:
     // 0x80062F80: jal         0x80061A3C
     // 0x80062F84: addu        $a1, $t4, $t2
     ctx->r5 = ADD32(ctx->r12, ctx->r10);
-    FUN_027BF0_80061a3c_tenliner_allocs_heap(rdram, ctx);
+    PFGFX_DecodeSpriteImages(rdram, ctx);
         goto after_63;
     // 0x80062F84: addu        $a1, $t4, $t2
     ctx->r5 = ADD32(ctx->r12, ctx->r10);
@@ -8276,7 +8276,7 @@ L_80062FD0:
     // 0x8006305C: jal         0x80061A3C
     // 0x80063060: addu        $a1, $t1, $t3
     ctx->r5 = ADD32(ctx->r9, ctx->r11);
-    FUN_027BF0_80061a3c_tenliner_allocs_heap(rdram, ctx);
+    PFGFX_DecodeSpriteImages(rdram, ctx);
         goto after_64;
     // 0x80063060: addu        $a1, $t1, $t3
     ctx->r5 = ADD32(ctx->r9, ctx->r11);
@@ -8298,7 +8298,7 @@ L_80063064:
     MEM_B(-0X4A4, ctx->r1) = ctx->r15;
 ;}
 
-RECOMP_FUNC void FUN_027BF0_8006307c_sixliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_FreeSpriteImages(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006307C: addiu       $sp, $sp, -0x18
@@ -8747,7 +8747,7 @@ L_8006329C:
     // 0x800632A0: jal         0x8006307C
     // 0x800632A4: addiu       $a0, $a0, -0x520
     ctx->r4 = ADD32(ctx->r4, -0X520);
-    FUN_027BF0_8006307c_sixliner(rdram, ctx);
+    PFGFX_FreeSpriteImages(rdram, ctx);
         goto after_25;
     // 0x800632A4: addiu       $a0, $a0, -0x520
     ctx->r4 = ADD32(ctx->r4, -0X520);
@@ -8759,7 +8759,7 @@ L_8006329C:
     // 0x800632B0: jal         0x8006307C
     // 0x800632B4: addiu       $a0, $a0, 0x20
     ctx->r4 = ADD32(ctx->r4, 0X20);
-    FUN_027BF0_8006307c_sixliner(rdram, ctx);
+    PFGFX_FreeSpriteImages(rdram, ctx);
         goto after_26;
     // 0x800632B4: addiu       $a0, $a0, 0x20
     ctx->r4 = ADD32(ctx->r4, 0X20);
@@ -8771,7 +8771,7 @@ L_8006329C:
     // 0x800632C0: jal         0x8006307C
     // 0x800632C4: addiu       $a0, $a0, 0x40
     ctx->r4 = ADD32(ctx->r4, 0X40);
-    FUN_027BF0_8006307c_sixliner(rdram, ctx);
+    PFGFX_FreeSpriteImages(rdram, ctx);
         goto after_27;
     // 0x800632C4: addiu       $a0, $a0, 0x40
     ctx->r4 = ADD32(ctx->r4, 0X40);
@@ -8796,7 +8796,7 @@ L_800632C8:
     // 0x800632E0: jal         0x8006307C
     // 0x800632E4: addiu       $a0, $a0, -0x520
     ctx->r4 = ADD32(ctx->r4, -0X520);
-    FUN_027BF0_8006307c_sixliner(rdram, ctx);
+    PFGFX_FreeSpriteImages(rdram, ctx);
         goto after_28;
     // 0x800632E4: addiu       $a0, $a0, -0x520
     ctx->r4 = ADD32(ctx->r4, -0X520);
@@ -8808,7 +8808,7 @@ L_800632C8:
     // 0x800632F0: jal         0x8006307C
     // 0x800632F4: addiu       $a0, $a0, 0x20
     ctx->r4 = ADD32(ctx->r4, 0X20);
-    FUN_027BF0_8006307c_sixliner(rdram, ctx);
+    PFGFX_FreeSpriteImages(rdram, ctx);
         goto after_29;
     // 0x800632F4: addiu       $a0, $a0, 0x20
     ctx->r4 = ADD32(ctx->r4, 0X20);
@@ -8835,7 +8835,7 @@ L_800632F8:
     // 0x80063314: jal         0x8006307C
     // 0x80063318: addiu       $a0, $a0, -0x520
     ctx->r4 = ADD32(ctx->r4, -0X520);
-    FUN_027BF0_8006307c_sixliner(rdram, ctx);
+    PFGFX_FreeSpriteImages(rdram, ctx);
         goto after_30;
     // 0x80063318: addiu       $a0, $a0, -0x520
     ctx->r4 = ADD32(ctx->r4, -0X520);
@@ -8853,7 +8853,7 @@ L_8006331C:
 
 ;}
 
-RECOMP_FUNC void FUN_027BF0_8006332c_thirtyfiveliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_UpdateScaleWobble(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006332C: addiu       $sp, $sp, -0x30
@@ -9324,7 +9324,7 @@ L_80063608:
     ctx->r29 = ADD32(ctx->r29, 0X30);
 ;}
 
-RECOMP_FUNC void func_80063618(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_TriggerScaleWobble(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80063618: sll         $a0, $a0, 16
@@ -9357,7 +9357,7 @@ RECOMP_FUNC void func_80063618(uint8_t* rdram, recomp_context* ctx) {
     MEM_H(0X4A4, ctx->r1) = ctx->r24;
 ;}
 
-RECOMP_FUNC void func_8006364C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_InitScaleWobble(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006364C: lui         $t6, 0x800D
@@ -9422,7 +9422,7 @@ RECOMP_FUNC void func_8006364C(uint8_t* rdram, recomp_context* ctx) {
     MEM_H(0X2, ctx->r15) = ctx->r14;
 ;}
 
-RECOMP_FUNC void FUN_027BF0_800636C0_display_game_stats_screen_q(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_DrawPlayfield(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800636C0: lui         $t7, 0x800D
