@@ -119,7 +119,7 @@ RECOMP_FUNC void Credits_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x800833E8: jal         0x8008F280
     // 0x800833EC: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;
-    func_8008F280(rdram, ctx);
+    Scene_LoadObjectSprite(rdram, ctx);
         goto after_3;
     // 0x800833EC: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;

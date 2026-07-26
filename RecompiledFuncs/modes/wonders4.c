@@ -5116,7 +5116,7 @@ L_800A9DC4:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_800A9DD8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders4_CreateThread(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A9DD8: addiu       $sp, $sp, -0x20

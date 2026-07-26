@@ -2687,7 +2687,7 @@ L_80047348:
     // 0x800473A8: jal         0x8008F280
     // 0x800473AC: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;
-    func_8008F280(rdram, ctx);
+    Scene_LoadObjectSprite(rdram, ctx);
         goto after_5;
     // 0x800473AC: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;
@@ -3213,7 +3213,7 @@ L_80047664:
     // 0x80047678: jal         0x800905E8
     // 0x8004767C: addiu       $a0, $zero, 0x1
     ctx->r4 = ADD32(0, 0X1);
-    func_800905E8(rdram, ctx);
+    Scene_LoadResources(rdram, ctx);
         goto after_17;
     // 0x8004767C: addiu       $a0, $zero, 0x1
     ctx->r4 = ADD32(0, 0X1);

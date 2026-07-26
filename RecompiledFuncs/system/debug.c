@@ -1394,7 +1394,7 @@ L_8006D038:
     // 0x8006D068: jal         0x800905E8
     // 0x8006D06C: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    func_800905E8(rdram, ctx);
+    Scene_LoadResources(rdram, ctx);
         goto after_16;
     // 0x8006D06C: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;

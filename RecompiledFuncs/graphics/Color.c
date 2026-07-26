@@ -1580,7 +1580,7 @@ RECOMP_FUNC void calls_game_deinit(uint8_t* rdram, recomp_context* ctx) {
     // 0x80055608: jal         0x8008F280
     // 0x8005560C: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;
-    func_8008F280(rdram, ctx);
+    Scene_LoadObjectSprite(rdram, ctx);
         goto after_6;
     // 0x8005560C: sw          $t8, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r24;

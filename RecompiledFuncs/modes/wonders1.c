@@ -6542,7 +6542,7 @@ L_80045DCC:
     // 0x80045DE0: jal         0x800905E8
     // 0x80045DE4: addiu       $a0, $zero, 0x1
     ctx->r4 = ADD32(0, 0X1);
-    func_800905E8(rdram, ctx);
+    Scene_LoadResources(rdram, ctx);
         goto after_9;
     // 0x80045DE4: addiu       $a0, $zero, 0x1
     ctx->r4 = ADD32(0, 0X1);
