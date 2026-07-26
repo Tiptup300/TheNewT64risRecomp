@@ -2773,7 +2773,7 @@ L_8007DB40:
     // 0x8007DB68: jal         0x800A4304
     // 0x8007DB6C: swc1        $f8, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f8.u32l;
-    func_800A4304(rdram, ctx);
+    CubeTiles_ObjSetLookAtF(rdram, ctx);
         goto after_3;
     // 0x8007DB6C: swc1        $f8, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f8.u32l;

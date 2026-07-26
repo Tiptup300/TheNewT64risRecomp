@@ -1263,7 +1263,7 @@ L_80043F64:
     // 0x80043FDC: jal         0x800A6A74
     // 0x80043FE0: swc1        $f4, 0x18($t4)
     MEM_W(0X18, ctx->r12) = ctx->f4.u32l;
-    func_800A6A74(rdram, ctx);
+    CubeTiles_ObjInstantiateScoped(rdram, ctx);
         goto after_3;
     // 0x80043FE0: swc1        $f4, 0x18($t4)
     MEM_W(0X18, ctx->r12) = ctx->f4.u32l;
@@ -1310,7 +1310,7 @@ L_80043FF0:
     // 0x80044024: jal         0x800A6A74
     // 0x80044028: swc1        $f6, 0x18($t1)
     MEM_W(0X18, ctx->r9) = ctx->f6.u32l;
-    func_800A6A74(rdram, ctx);
+    CubeTiles_ObjInstantiateScoped(rdram, ctx);
         goto after_4;
     // 0x80044028: swc1        $f6, 0x18($t1)
     MEM_W(0X18, ctx->r9) = ctx->f6.u32l;
