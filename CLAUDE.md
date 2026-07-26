@@ -75,11 +75,19 @@ Then copy frames from `/mnt/c/Users/Public/...` and view with the Read tool.
 **What you can/can't drive:**
 - The game **auto-boots** into the attract flythrough → title → cycling attract
   **demos** (auto-played gameplay). All of that is capturable with **no input**.
-- **Input injection does NOT work:** Windows-side SendKeys/PostMessage do not reach
-  the SDL app under WSLg (confirmed: keypresses don't register). So you **cannot**
-  drive menus or start a real game — anything gated behind menu navigation
-  (level select, the data/options submenus, in-game settings toggles) can't be
-  self-verified without the user or a real input path.
+- **Input injection WORKS via the in-app `TNT_INPUT` overlay** (RecompFrontend-0003
+  dep patch). WSLg/Wayland blocks *external* synthetic input (Windows SendKeys/
+  PostMessage hit the RAIL proxy, not the Wayland stream; xdotool is X11-only;
+  ydotool needs root uinput the compositor ignores) — so input is injected from
+  *inside* the app instead. Launch with `TNT_INPUT=/path/to/file`; `poll_inputs()`
+  ORs the SDL scancodes listed in that file onto the real keyboard each controller
+  poll. Drive it from bash: write scancodes to hold keys, empty the file to release
+  (pace with PowerShell `Start-Sleep`). Key scancodes: **Start=40** (RETURN),
+  **A=29** (Z, accept), **B=27** (X, back), **D-pad Up/Down/Left/Right=82/81/80/79**.
+  Tip: hold ~1-2s to land the press on the intended screen (a brief tap can fall in
+  a transition). Verified: holding Start on the title advances to the main menu. So
+  menus, level select, data/options submenus, and real gameplay ARE now drivable and
+  self-verifiable.
 - **Graphics settings ARE verifiable without input:** edit
   `~/.local/share/N64Recomp/TheNewTiptris/graphics.json` (keys: `msaa_option`
   None/MSAA2X/4X/8X, `res_option` Original/Original2x/Auto, `hr_option`
