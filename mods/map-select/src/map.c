@@ -16,7 +16,7 @@
 // hook point after testing.
 #define MAP_BYTE (*(volatile unsigned char*)0x8011E4F8)
 
-RECOMP_HOOK("FUN_032F00_MVC_control_menu_choice_process") void tnt_force_map(void) {
+RECOMP_HOOK("Scene_Update") void tnt_force_map(void) {
     unsigned long sel = recomp_get_config_u32("map");   // 0 = Random/off, 1..8 => map 0..7
     if (sel >= 1 && sel <= 8) {
         MAP_BYTE = (unsigned char)(sel - 1);

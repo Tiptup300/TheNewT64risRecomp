@@ -6,7 +6,7 @@
 //   1 Attract  — skip the branding screens to the attract flythrough
 //
 // The top-level scene is a byte at 0x800CFEE8, dispatched by
-// FUN_032F00_MVC_control_menu_choice_process. Boot scenes 0/1/2 = branding,
+// Scene_Update. Boot scenes 0/1/2 = branding,
 // 3 = attract flythrough, 4 = menu hub. 0x800CFD48 is the "scene changed" flag.
 //
 // NOTE: only Off/Attract are offered. Forcing the menu-hub scene (4) directly
@@ -16,7 +16,7 @@
 #define SCENE       (*(volatile unsigned char*)0x800CFEE8)
 #define SCENE_FLAG  (*(volatile unsigned char*)0x800CFD48)
 
-RECOMP_HOOK("FUN_032F00_MVC_control_menu_choice_process") void tnt_skip_intro(void) {
+RECOMP_HOOK("Scene_Update") void tnt_skip_intro(void) {
     unsigned long mode = recomp_get_config_u32("skip_to");
     if (mode == 0) return;                 // Off
     // Attract (default): fast-forward the branding scenes to the flythrough.

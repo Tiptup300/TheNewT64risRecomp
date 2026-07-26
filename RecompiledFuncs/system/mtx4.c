@@ -970,7 +970,7 @@ RECOMP_FUNC void mtx4_mult(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X3C, ctx->r4) = ctx->f8.u32l;
 ;}
 
-RECOMP_FUNC void func_800AF95C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void mtx4_mult_affine(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AF95C: lwc1        $f4, 0x0($a1)

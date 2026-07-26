@@ -4085,7 +4085,7 @@ RECOMP_FUNC void PFGFX_DrawNumberRightAligned(uint8_t* rdram, recomp_context* ct
     // 0x80061990: jal         0x800AC308
     // 0x80061994: addiu       $a0, $zero, 0x106
     ctx->r4 = ADD32(0, 0X106);
-    func_800AC308(rdram, ctx);
+    Gfx_SetTextFont(rdram, ctx);
         goto after_0;
     // 0x80061994: addiu       $a0, $zero, 0x106
     ctx->r4 = ADD32(0, 0X106);
@@ -4116,7 +4116,7 @@ L_800619A0:
     // 0x800619B8: jal         0x800AC308
     // 0x800619BC: addiu       $a0, $zero, 0xFE
     ctx->r4 = ADD32(0, 0XFE);
-    func_800AC308(rdram, ctx);
+    Gfx_SetTextFont(rdram, ctx);
         goto after_1;
     // 0x800619BC: addiu       $a0, $zero, 0xFE
     ctx->r4 = ADD32(0, 0XFE);
@@ -4147,7 +4147,7 @@ L_800619C8:
     // 0x800619E0: jal         0x800AC308
     // 0x800619E4: addiu       $a0, $zero, 0xF6
     ctx->r4 = ADD32(0, 0XF6);
-    func_800AC308(rdram, ctx);
+    Gfx_SetTextFont(rdram, ctx);
         goto after_2;
     // 0x800619E4: addiu       $a0, $zero, 0xF6
     ctx->r4 = ADD32(0, 0XF6);
@@ -4178,7 +4178,7 @@ L_800619F0:
     // 0x80061A08: jal         0x800AC308
     // 0x80061A0C: addiu       $a0, $zero, 0xEE
     ctx->r4 = ADD32(0, 0XEE);
-    func_800AC308(rdram, ctx);
+    Gfx_SetTextFont(rdram, ctx);
         goto after_3;
     // 0x80061A0C: addiu       $a0, $zero, 0xEE
     ctx->r4 = ADD32(0, 0XEE);
@@ -4195,7 +4195,7 @@ L_80061A18:
     // 0x80061A1C: jal         0x800AC308
     // 0x80061A20: addiu       $a0, $zero, 0xE6
     ctx->r4 = ADD32(0, 0XE6);
-    func_800AC308(rdram, ctx);
+    Gfx_SetTextFont(rdram, ctx);
         goto after_4;
     // 0x80061A20: addiu       $a0, $zero, 0xE6
     ctx->r4 = ADD32(0, 0XE6);

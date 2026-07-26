@@ -1022,7 +1022,7 @@ RECOMP_FUNC void PieceHold_Swap(uint8_t* rdram, recomp_context* ctx) {
     // 0x80066248: jal         0x8006D090
     // 0x8006624C: nop
 
-    FUN_033310_setPieceDef(rdram, ctx);
+    CurPiece_SetDef(rdram, ctx);
         goto after_0;
     // 0x8006624C: nop
 
@@ -1034,7 +1034,7 @@ RECOMP_FUNC void PieceHold_Swap(uint8_t* rdram, recomp_context* ctx) {
     // 0x80066258: jal         0x8006D0AC
     // 0x8006625C: addiu       $a1, $a1, 0x1498
     ctx->r5 = ADD32(ctx->r5, 0X1498);
-    FUN_033310_getPhysicalCurPieceSpawnPos(rdram, ctx);
+    CurPiece_GetPhysicalSpawnPos(rdram, ctx);
         goto after_1;
     // 0x8006625C: addiu       $a1, $a1, 0x1498
     ctx->r5 = ADD32(ctx->r5, 0X1498);
@@ -1046,7 +1046,7 @@ RECOMP_FUNC void PieceHold_Swap(uint8_t* rdram, recomp_context* ctx) {
     // 0x80066268: jal         0x8006D11C
     // 0x8006626C: addiu       $a1, $a1, 0x1498
     ctx->r5 = ADD32(ctx->r5, 0X1498);
-    FUN_033310_getPhysicalStartingRotOrigin(rdram, ctx);
+    CurPiece_GetPhysicalRotOrigin(rdram, ctx);
         goto after_2;
     // 0x8006626C: addiu       $a1, $a1, 0x1498
     ctx->r5 = ADD32(ctx->r5, 0X1498);
@@ -1470,7 +1470,7 @@ RECOMP_FUNC void PieceHold_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80066544: jal         0x8006D17C
     // 0x80066548: addiu       $a0, $a0, 0x1498
     ctx->r4 = ADD32(ctx->r4, 0X1498);
-    FUN_033310_Init(rdram, ctx);
+    CurPiece_Init(rdram, ctx);
         goto after_0;
     // 0x80066548: addiu       $a0, $a0, 0x1498
     ctx->r4 = ADD32(ctx->r4, 0X1498);
@@ -1695,7 +1695,7 @@ RECOMP_FUNC void PieceHold_Deinit(uint8_t* rdram, recomp_context* ctx) {
     // 0x800666B8: jal         0x8006D194
     // 0x800666BC: addiu       $a0, $a0, 0x1498
     ctx->r4 = ADD32(ctx->r4, 0X1498);
-    FUN_033310_Deinit(rdram, ctx);
+    CurPiece_Deinit(rdram, ctx);
         goto after_0;
     // 0x800666BC: addiu       $a0, $a0, 0x1498
     ctx->r4 = ADD32(ctx->r4, 0X1498);

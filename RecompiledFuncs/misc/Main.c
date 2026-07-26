@@ -1381,7 +1381,7 @@ L_800490BC:
     // 0x800490E4: jal         0x8004A5F0
     // 0x800490E8: sw          $t4, -0xDF0($at)
     MEM_W(-0XDF0, ctx->r1) = ctx->r12;
-    FUN_010870_interesting_stuff_large_liner(rdram, ctx);
+    System_Init(rdram, ctx);
         goto after_5;
     // 0x800490E8: sw          $t4, -0xDF0($at)
     MEM_W(-0XDF0, ctx->r1) = ctx->r12;
@@ -1449,7 +1449,7 @@ L_80049124:
     // 0x8004914C: jal         0x8004A5F0
     // 0x80049150: sw          $t2, -0xDF0($at)
     MEM_W(-0XDF0, ctx->r1) = ctx->r10;
-    FUN_010870_interesting_stuff_large_liner(rdram, ctx);
+    System_Init(rdram, ctx);
         goto after_6;
     // 0x80049150: sw          $t2, -0xDF0($at)
     MEM_W(-0XDF0, ctx->r1) = ctx->r10;
@@ -1476,7 +1476,7 @@ L_80049170:
     // 0x80049170: jal         0x8006CF14
     // 0x80049174: nop
 
-    FUN_032F00_MVC_control_menu_choice_process(rdram, ctx);
+    Scene_Update(rdram, ctx);
         goto after_7;
     // 0x80049174: nop
 

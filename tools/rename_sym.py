@@ -90,7 +90,7 @@ def mods_referencing(old):
     return [p for p in mod_sources() if pat.search(p.read_text())]
 
 
-def preflight_func(old, new, func_names, def_counts, batch_news, errs):
+def preflight_func(old, new, func_names, def_counts, batch_news, errs, update_mods):
     if not IDENT_RE.match(new):
         errs.append(f"func {old}->{new}: NEW is not a valid C identifier")
     if PLACEHOLDER.search(new):
@@ -104,6 +104,14 @@ def preflight_func(old, new, func_names, def_counts, batch_news, errs):
     if new in batch_news:
         errs.append(f"func {old}->{new}: NEW targeted twice in this batch")
     batch_news.add(new)
+    # A function name can be referenced by committed mod source — a RECOMP_HOOK("name")
+    # / RECOMP_PATCH string or an extern decl. Renaming the symbol without updating the
+    # mod breaks that mod's build (hook name won't resolve). Refuse unless --update-mods.
+    refs = mods_referencing(old)
+    if refs and not update_mods:
+        rels = ", ".join(p.relative_to(ROOT).as_posix() for p in refs)
+        errs.append(f"func {old}->{new}: hooked/referenced by mod source ({rels}); "
+                    f"pass --update-mods to also rewrite them (and rebuild the mod)")
 
 
 def preflight_data(old, new, data_counts, batch_news, errs, update_mods):
@@ -128,8 +136,8 @@ def preflight_data(old, new, data_counts, batch_news, errs, update_mods):
                     f"pass --update-mods to also rewrite them (and rebuild the mod)")
 
 
-def apply_func_renames(renames, dry):
-    """renames: list of (old,new). Returns (per_artifact_hits, needs_reorg set)."""
+def apply_func_renames(renames, dry, update_mods):
+    """renames: list of (old,new). Returns (per_artifact_hits, needs_reorg, mod_hits)."""
     hits = {}
     needs_reorg = set()
     patterns = [(o, n, re.compile(r"\b" + re.escape(o) + r"\b")) for o, n in renames]
@@ -147,7 +155,19 @@ def apply_func_renames(renames, dry):
             hits[art.relative_to(ROOT).as_posix()] = art_hits
         if not dry and new_text != text:
             art.write_text(new_text)
-    return hits, needs_reorg
+    # Second surface: rewrite function-name references in committed mod source.
+    mod_hits = {}
+    if update_mods:
+        for o, n, pat in patterns:
+            for p in mods_referencing(o):
+                src = p.read_text()
+                new_src, c = pat.subn(n, src)
+                if c:
+                    rel = p.relative_to(ROOT).as_posix()
+                    mod_hits[rel] = mod_hits.get(rel, 0) + c
+                    if not dry:
+                        p.write_text(new_src)
+    return hits, needs_reorg, mod_hits
 
 
 def preflight_add(name, vram_s, data_counts, data_vrams, batch_news, errs):
@@ -267,7 +287,7 @@ def main():
 
     errs, batch_news = [], set()
     for o, n in func_ren:
-        preflight_func(o, n, func_names, def_counts, batch_news, errs)
+        preflight_func(o, n, func_names, def_counts, batch_news, errs, args.update_mods)
     for o, n in data_ren:
         preflight_data(o, n, data_counts, batch_news, errs, args.update_mods)
     for name, vram_s in data_add:
@@ -286,10 +306,14 @@ def main():
 
     tag = "[dry-run] " if args.dry_run else ""
     if func_ren:
-        hits, needs_reorg = apply_func_renames(func_ren, args.dry_run)
+        hits, needs_reorg, fmod_hits = apply_func_renames(func_ren, args.dry_run, args.update_mods)
         print(f"{tag}functions: {len(func_ren)} rename(s) across {len(hits)} artifact(s)")
         for a, c in sorted(hits.items()):
             print(f"    {c:>5}  {a}")
+        if fmod_hits:
+            print("  also rewrote mod source (rebuild these mods):")
+            for a, c in sorted(fmod_hits.items()):
+                print(f"    {c:>5}  {a}")
         if needs_reorg:
             print("  NEEDS-REORG (prefix changed) — run tools/reorganize_recompiled.py then verify.sh:")
             for o, n in sorted(needs_reorg):

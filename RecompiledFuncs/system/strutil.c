@@ -378,3 +378,83 @@ RECOMP_FUNC void strutil_free(uint8_t* rdram, recomp_context* ctx) {
     // 0x80080F5C: nop
 
 ;}
+
+RECOMP_FUNC void strutil_charindex(uint8_t* rdram, recomp_context* ctx) {
+    uint64_t hi = 0, lo = 0, result = 0;
+    int c1cs = 0;
+    // 0x800AC2B0: sw          $a1, 0x4($sp)
+    MEM_W(0X4, ctx->r29) = ctx->r5;
+    // 0x800AC2B4: lbu         $v0, 0x0($a0)
+    ctx->r2 = MEM_BU(ctx->r4, 0X0);
+    // 0x800AC2B8: andi        $t6, $a1, 0xFF
+    ctx->r14 = ctx->r5 & 0XFF;
+    // 0x800AC2BC: or          $v1, $zero, $zero
+    ctx->r3 = 0 | 0;
+    // 0x800AC2C0: beq         $v0, $zero, L_800AC2EC
+    if (ctx->r2 == 0) {
+        // 0x800AC2C4: nop
+    
+            goto L_800AC2EC;
+    }
+    // 0x800AC2C4: nop
+
+    // 0x800AC2C8: beq         $t6, $v0, L_800AC2EC
+    if (ctx->r14 == ctx->r2) {
+        // 0x800AC2CC: or          $a2, $t6, $zero
+        ctx->r6 = ctx->r14 | 0;
+            goto L_800AC2EC;
+    }
+    // 0x800AC2CC: or          $a2, $t6, $zero
+    ctx->r6 = ctx->r14 | 0;
+    // 0x800AC2D0: lbu         $v0, 0x1($a0)
+    ctx->r2 = MEM_BU(ctx->r4, 0X1);
+L_800AC2D4:
+    // 0x800AC2D4: addiu       $a0, $a0, 0x1
+    ctx->r4 = ADD32(ctx->r4, 0X1);
+    // 0x800AC2D8: addiu       $v1, $v1, 0x1
+    ctx->r3 = ADD32(ctx->r3, 0X1);
+    // 0x800AC2DC: beq         $v0, $zero, L_800AC2EC
+    if (ctx->r2 == 0) {
+        // 0x800AC2E0: nop
+    
+            goto L_800AC2EC;
+    }
+    // 0x800AC2E0: nop
+
+    // 0x800AC2E4: bnel        $a2, $v0, L_800AC2D4
+    if (ctx->r6 != ctx->r2) {
+        // 0x800AC2E8: lbu         $v0, 0x1($a0)
+        ctx->r2 = MEM_BU(ctx->r4, 0X1);
+            goto L_800AC2D4;
+    }
+    goto skip_0;
+    // 0x800AC2E8: lbu         $v0, 0x1($a0)
+    ctx->r2 = MEM_BU(ctx->r4, 0X1);
+    skip_0:
+L_800AC2EC:
+    // 0x800AC2EC: beql        $v0, $zero, L_800AC300
+    if (ctx->r2 == 0) {
+        // 0x800AC2F0: addiu       $v0, $zero, -0x1
+        ctx->r2 = ADD32(0, -0X1);
+            goto L_800AC300;
+    }
+    goto skip_1;
+    // 0x800AC2F0: addiu       $v0, $zero, -0x1
+    ctx->r2 = ADD32(0, -0X1);
+    skip_1:
+    // 0x800AC2F4: jr          $ra
+    // 0x800AC2F8: or          $v0, $v1, $zero
+    ctx->r2 = ctx->r3 | 0;
+    return;
+    // 0x800AC2F8: or          $v0, $v1, $zero
+    ctx->r2 = ctx->r3 | 0;
+    // 0x800AC2FC: addiu       $v0, $zero, -0x1
+    ctx->r2 = ADD32(0, -0X1);
+L_800AC300:
+    // 0x800AC300: jr          $ra
+    // 0x800AC304: nop
+
+    return;
+    // 0x800AC304: nop
+
+;}
