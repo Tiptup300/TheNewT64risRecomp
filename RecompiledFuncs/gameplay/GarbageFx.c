@@ -1734,7 +1734,7 @@ RECOMP_FUNC void GarbageFx_ChooseColor(uint8_t* rdram, recomp_context* ctx) {
     // 0x80073C7C: jal         0x8007232C
     // 0x80073C80: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
-    func_8007232C(rdram, ctx);
+    Landfill_CountActivePlayers(rdram, ctx);
         goto after_0;
     // 0x80073C80: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
@@ -1779,7 +1779,7 @@ L_80073CB0:
     // 0x80073CB0: jal         0x8007232C
     // 0x80073CB4: nop
 
-    func_8007232C(rdram, ctx);
+    Landfill_CountActivePlayers(rdram, ctx);
         goto after_2;
     // 0x80073CB4: nop
 

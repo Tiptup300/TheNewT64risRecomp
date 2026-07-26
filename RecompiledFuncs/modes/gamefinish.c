@@ -1920,7 +1920,7 @@ RECOMP_FUNC void gamefinish_LoadResultImage(uint8_t* rdram, recomp_context* ctx)
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_8007FC14(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_UpdateFade(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007FC14: lw          $t6, 0x0($a0)
@@ -1989,7 +1989,7 @@ L_8007FC6C:
 
 ;}
 
-RECOMP_FUNC void func_8007FC74(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_DrawFade(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007FC74: addiu       $sp, $sp, -0x30
@@ -2097,7 +2097,7 @@ L_8007FD04:
 
 ;}
 
-RECOMP_FUNC void func_8007FD14(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_StartFadeOut(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007FD14: sw          $a2, 0x8($sp)
@@ -2166,7 +2166,7 @@ L_8007FD64:
 
 ;}
 
-RECOMP_FUNC void func_8007FD74(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_ResetFade(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007FD74: sw          $zero, 0x8($a0)
@@ -2181,7 +2181,7 @@ RECOMP_FUNC void func_8007FD74(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r4) = 0;
 ;}
 
-RECOMP_FUNC void func_8007FD84(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_InitFade(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007FD84: addiu       $sp, $sp, -0x18
@@ -2195,7 +2195,7 @@ RECOMP_FUNC void func_8007FD84(uint8_t* rdram, recomp_context* ctx) {
     // 0x8007FD94: jal         0x8007FD74
     // 0x8007FD98: nop
 
-    func_8007FD74(rdram, ctx);
+    gamefinish_ResetFade(rdram, ctx);
         goto after_0;
     // 0x8007FD98: nop
 

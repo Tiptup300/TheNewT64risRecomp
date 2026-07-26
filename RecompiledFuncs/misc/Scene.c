@@ -48400,7 +48400,7 @@ L_800A285C:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_800A286C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SetSelectedGameType(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A286C: lbu         $t6, 0xC($a0)
@@ -49938,7 +49938,7 @@ L_800A3748:
 
 ;}
 
-RECOMP_FUNC void func_800A3758(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SeedRandFromTime(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3758: addiu       $sp, $sp, -0x18
@@ -50043,7 +50043,7 @@ L_800A37B0:
 
 ;}
 
-RECOMP_FUNC void func_800A37F0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandNextIndexed(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A37F0: andi        $t6, $a0, 0xFF
@@ -50090,7 +50090,7 @@ RECOMP_FUNC void func_800A37F0(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r3) = ctx->r2;
 ;}
 
-RECOMP_FUNC void func_800A3840(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandRangeIndexed(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3840: addiu       $sp, $sp, -0x18
@@ -50136,7 +50136,7 @@ L_800A3874:
     // 0x800A3878: jal         0x800A37F0
     // 0x800A387C: sw          $a2, 0x20($sp)
     MEM_W(0X20, ctx->r29) = ctx->r6;
-    func_800A37F0(rdram, ctx);
+    Scene_RandNextIndexed(rdram, ctx);
         goto after_0;
     // 0x800A387C: sw          $a2, 0x20($sp)
     MEM_W(0X20, ctx->r29) = ctx->r6;
@@ -50178,7 +50178,7 @@ L_800A38A8:
 
 ;}
 
-RECOMP_FUNC void func_800A38B8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandFloat01Indexed(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A38B8: addiu       $sp, $sp, -0x18
@@ -50190,7 +50190,7 @@ RECOMP_FUNC void func_800A38B8(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A38C4: jal         0x800A37F0
     // 0x800A38C8: lbu         $a0, 0x1B($sp)
     ctx->r4 = MEM_BU(ctx->r29, 0X1B);
-    func_800A37F0(rdram, ctx);
+    Scene_RandNextIndexed(rdram, ctx);
         goto after_0;
     // 0x800A38C8: lbu         $a0, 0x1B($sp)
     ctx->r4 = MEM_BU(ctx->r29, 0X1B);
@@ -50266,7 +50266,7 @@ L_800A38F8:
     ctx->f0.fl = ctx->f2.fl;
 ;}
 
-RECOMP_FUNC void func_800A3928(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_RandFloatRangeIndexed(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3928: mtc1        $a1, $f14
@@ -50346,7 +50346,7 @@ L_800A3978:
     // 0x800A3978: jal         0x800A38B8
     // 0x800A397C: swc1        $f14, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f14.u32l;
-    func_800A38B8(rdram, ctx);
+    Scene_RandFloat01Indexed(rdram, ctx);
         goto after_0;
     // 0x800A397C: swc1        $f14, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->f14.u32l;

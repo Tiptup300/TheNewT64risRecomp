@@ -810,7 +810,7 @@ L_80069CA0:
     // 0x80069CA8: jal         0x80072300
     // 0x80069CAC: nop
 
-    func_80072300(rdram, ctx);
+    Landfill_FlagIfCurrentPlayer(rdram, ctx);
         goto after_24;
     // 0x80069CAC: nop
 
