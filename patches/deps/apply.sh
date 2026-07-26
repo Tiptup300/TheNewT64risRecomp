@@ -17,6 +17,10 @@
 #       once and returns a no-op. Some libultra debug funcs (rmonPrintf) are omitted
 #       from the func table, so an INDIRECT call to one used to crash the game
 #       (e.g. an audio-error path on the gameplay screen). Now it degrades safely.
+#       ALSO adds the indirect-call tracer (a naming aid): inert unless the
+#       TNT_INDIRECT_TRACE env var names an output file, in which case every indirect
+#       call logs its target vram + native call stack (nearest named ancestor) so
+#       tools/tracemap.py can attribute jump-table-reached residue to a subsystem.
 #   rt64-0001-crop-right-edge-garbage                   -> src/hle/rt64_vi.cpp
 #       VI::cropRectangle() crops ~2px off the framebuffer's right edge. That column
 #       is uninitialized on the N64 (a TV's overscan hid it); presenting the full

@@ -1,5 +1,5 @@
 diff --git a/librecomp/src/overlays.cpp b/librecomp/src/overlays.cpp
-index 8c8e5d1..bb90be3 100644
+index 8c8e5d1..9fa9b61 100644
 --- a/librecomp/src/overlays.cpp
 +++ b/librecomp/src/overlays.cpp
 @@ -3,6 +3,7 @@
@@ -10,8 +10,55 @@ index 8c8e5d1..bb90be3 100644
  #include <vector>
  
  #include "ultramodern/ultramodern.hpp"
-@@ -364,9 +365,18 @@ recomp_func_t* recomp::overlays::get_func_by_section_rom_function_vram(uint32_t
+@@ -361,12 +362,65 @@ recomp_func_t* recomp::overlays::get_func_by_section_rom_function_vram(uint32_t
+     return get_func_by_section_index_function_offset(find_section_it->second, func_offset);
+ }
+ 
++// --- Indirect-call tracer (a naming aid for the symbol campaign). Inert unless the
++// TNT_INDIRECT_TRACE env var names an output file. Every indirect call routes through
++// get_function(), so this captures the DYNAMIC caller->target edges that a static call
++// graph cannot see (jump-table / function-pointer reached functions). The caller is
++// recovered from the native return address via dladdr (recompiled functions are real
++// exported symbols). Unique edges are appended immediately so the log survives the
++// segfault-on-close exit. See tools/tracemap.py.
++#include <dlfcn.h>
++#include <execinfo.h>
++#include <set>
++namespace {
++    struct TntIndirectTracer {
++        bool on = false;
++        const char* out = nullptr;
++        std::set<int32_t> seen;   // one representative native call stack per target
++        TntIndirectTracer() {
++            if (const char* e = getenv("TNT_INDIRECT_TRACE")) {
++                on = true; out = e;
++                if (FILE* f = fopen(out, "w")) fclose(f); // truncate at start
++            }
++        }
++        void record(int32_t addr) {
++            if (!on) return;
++            if (!seen.insert(addr).second) return;   // first stack per target is enough
++            // Walk the native stack and log each frame's symbol so tracemap.py can pick
++            // the nearest NAMED game-function ancestor (the immediate caller is often
++            // itself a placeholder dispatcher). Frame 0 is record() itself; skip it.
++            void* bt[24];
++            int n = backtrace(bt, 24);
++            FILE* f = fopen(out, "a");
++            if (!f) return;
++            fprintf(f, "0x%08X", (uint32_t)addr);
++            for (int i = 2; i < n; ++i) {   // 2 = skip record() + get_function()
++                Dl_info info;
++                if (dladdr(bt[i], &info) && info.dli_sname) fprintf(f, "\t%s", info.dli_sname);
++            }
++            fprintf(f, "\n");
++            fclose(f);
++        }
++    };
++    TntIndirectTracer g_tnt_indirect_tracer;
++}
++
  extern "C" recomp_func_t * get_function(int32_t addr) {
++    g_tnt_indirect_tracer.record(addr);
      auto func_find = func_map.find(addr);
      if (func_find == func_map.end()) {
 -        fprintf(stderr, "Failed to find function at 0x%08X\n", addr);
