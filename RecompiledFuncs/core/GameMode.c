@@ -470,7 +470,7 @@ RECOMP_FUNC void GameMode_AdvanceGdl(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006CEEC: jal         0x8007DA00
     // 0x8006CEF0: nop
 
-    func_8007DA00(rdram, ctx);
+    Gfx_RenderBackground3D(rdram, ctx);
         goto after_0;
     // 0x8006CEF0: nop
 

@@ -20936,7 +20936,7 @@ L_800AA184:
     // 0x800AA204: jal         0x800A9F9C
     // 0x800AA208: sw          $t9, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r25;
-    func_800A9F9C(rdram, ctx);
+    Main_LoadRomAsset(rdram, ctx);
         goto after_2;
     // 0x800AA208: sw          $t9, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r25;
@@ -21141,7 +21141,7 @@ L_800AA2F4:
     // 0x800AA340: jal         0x800A9F9C
     // 0x800AA344: sw          $t5, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r13;
-    func_800A9F9C(rdram, ctx);
+    Main_LoadRomAsset(rdram, ctx);
         goto after_7;
     // 0x800AA344: sw          $t5, 0x10($sp)
     MEM_W(0X10, ctx->r29) = ctx->r13;

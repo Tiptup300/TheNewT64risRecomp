@@ -3832,7 +3832,7 @@ L_80061778:
     // 0x80061800: jal         0x8007CF40
     // 0x80061804: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    func_8007CF40(rdram, ctx);
+    Gfx_InitBackground3D(rdram, ctx);
         goto after_8;
     // 0x80061804: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
@@ -3919,7 +3919,7 @@ L_80061874:
     // 0x8006187C: jal         0x8007DA00
     // 0x80061880: nop
 
-    func_8007DA00(rdram, ctx);
+    Gfx_RenderBackground3D(rdram, ctx);
         goto after_12;
     // 0x80061880: nop
 
