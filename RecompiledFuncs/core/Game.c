@@ -2317,7 +2317,7 @@ L_800516C0:
     // 0x800516F4: jal         0x800A3460
     // 0x800516F8: addiu       $a0, $s1, 0x4
     ctx->r4 = ADD32(ctx->r17, 0X4);
-    func_800A3460(rdram, ctx);
+    Minos_Reset(rdram, ctx);
         goto after_2;
     // 0x800516F8: addiu       $a0, $s1, 0x4
     ctx->r4 = ADD32(ctx->r17, 0X4);

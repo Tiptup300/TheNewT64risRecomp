@@ -3648,7 +3648,7 @@ L_8007DB40:
     // 0x8007DB7C: jal         0x800A724C
     // 0x8007DB80: nop
 
-    func_800A724C(rdram, ctx);
+    CubeTiles_ObjSetupCamera(rdram, ctx);
         goto after_4;
     // 0x8007DB80: nop
 

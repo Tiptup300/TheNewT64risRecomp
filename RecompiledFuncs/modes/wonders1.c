@@ -1362,7 +1362,7 @@ L_80044040:
     // 0x80044074: jal         0x800A678C
     // 0x80044078: nop
 
-    func_800A678C(rdram, ctx);
+    CubeTiles_ObjLinkChild(rdram, ctx);
         goto after_5;
     // 0x80044078: nop
 
@@ -2357,7 +2357,7 @@ RECOMP_FUNC void wonders1_ConfigTileObject(uint8_t* rdram, recomp_context* ctx) 
     // 0x800445EC: jal         0x800A4590
     // 0x800445F0: nop
 
-    func_800A4590(rdram, ctx);
+    CubeTiles_ObjSetFlags_0x04(rdram, ctx);
         goto after_0;
     // 0x800445F0: nop
 
@@ -2367,7 +2367,7 @@ RECOMP_FUNC void wonders1_ConfigTileObject(uint8_t* rdram, recomp_context* ctx) 
     // 0x800445F8: jal         0x800A45D8
     // 0x800445FC: nop
 
-    func_800A45D8(rdram, ctx);
+    CubeTiles_ObjSetFlags_0x10(rdram, ctx);
         goto after_1;
     // 0x800445FC: nop
 
@@ -2442,7 +2442,7 @@ RECOMP_FUNC void wonders1_CreateColumnTileObject(uint8_t* rdram, recomp_context*
     // 0x80044660: jal         0x800A6990
     // 0x80044664: addiu       $a0, $zero, 0x421
     ctx->r4 = ADD32(0, 0X421);
-    func_800A6990(rdram, ctx);
+    CubeTiles_ObjInstanceAlloc(rdram, ctx);
         goto after_0;
     // 0x80044664: addiu       $a0, $zero, 0x421
     ctx->r4 = ADD32(0, 0X421);
@@ -2459,7 +2459,7 @@ L_80044674:
     // 0x80044674: jal         0x800A6990
     // 0x80044678: addiu       $a0, $zero, 0x42A
     ctx->r4 = ADD32(0, 0X42A);
-    func_800A6990(rdram, ctx);
+    CubeTiles_ObjInstanceAlloc(rdram, ctx);
         goto after_1;
     // 0x80044678: addiu       $a0, $zero, 0x42A
     ctx->r4 = ADD32(0, 0X42A);
@@ -3308,7 +3308,7 @@ L_80044AD8:
     // 0x80044B4C: jal         0x800A6A2C
     // 0x80044B50: sw          $zero, 0x1F64($at)
     MEM_W(0X1F64, ctx->r1) = 0;
-    func_800A6A2C(rdram, ctx);
+    CubeTiles_ObjInstanceFree(rdram, ctx);
         goto after_13;
     // 0x80044B50: sw          $zero, 0x1F64($at)
     MEM_W(0X1F64, ctx->r1) = 0;

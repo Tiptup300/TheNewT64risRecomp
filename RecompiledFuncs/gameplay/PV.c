@@ -128,7 +128,7 @@ RECOMP_FUNC void PV_ResetPlayer(uint8_t* rdram, recomp_context* ctx) {
     // 0x800535F4: jal         0x800A3460
     // 0x800535F8: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);
-    func_800A3460(rdram, ctx);
+    Minos_Reset(rdram, ctx);
         goto after_1;
     // 0x800535F8: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);
