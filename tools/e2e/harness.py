@@ -60,8 +60,8 @@ DEFAULT_WATCHES = {
     "obj_slot_buf":  (0x80129200, 4),  # g_sceneObjSlotMatrixBuf (the scene-4 crash pointer)
     # menu navigation state (found via RAM-diff exploration):
     "menu_hub_state": (0x800D7520, 4),  # g_menuHubState
-    "obj_list_ptr":   (0x800D3D00, 4),  # g_sceneObjListPtr — moves on UP/DOWN (cursor proxy)
-    "obj_iter_ptr":   (0x800D3D10, 4),  # g_sceneObjIterPtr
+    "menu_cursor":   (0x800D3D00, 4),  # g_sceneMenuCursor — main-menu widget index (UP/DOWN)
+    "menu_prev_cursor":   (0x800D3D10, 4),  # g_sceneMenuPrevCursor
     "scene_main_state": (0x800D3D24, 4),  # g_sceneMainState — changes on A (submenu enter)
     "game_type":      (0x8011EEEC, 1),  # g_selectedGameType
 }

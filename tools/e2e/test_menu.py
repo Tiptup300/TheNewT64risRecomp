@@ -4,7 +4,7 @@ and wrap, and that A enters a submenu / B backs out — all without crashing and
 without starting a game.
 
 Empirically, the main menu hub (scene 4) has 3 items; the cursor proxy
-`obj_list_ptr` (@0x800D3D00) cycles 3->5->6->3 on DOWN and reverses on UP. Selecting
+`menu_cursor` (@0x800D3D00) cycles 3->5->6->3 on DOWN and reverses on UP. Selecting
 (A) loads a submenu's scene objects (scene stays 4, scene_main_state changes); B
 frees them and returns.
 
@@ -21,12 +21,12 @@ MENU_CURSOR_VALUES = {3, 5, 6}   # the 3 main-menu item positions
 
 def step_down(g):
     g.press(Keys.DOWN, hold=0.25); _sleep(0.2)
-    return g.read("obj_list_ptr")
+    return g.read("menu_cursor")
 
 
 def step_up(g):
     g.press(Keys.UP, hold=0.25); _sleep(0.2)
-    return g.read("obj_list_ptr")
+    return g.read("menu_cursor")
 
 
 def main():
@@ -38,7 +38,7 @@ def main():
         g.press(Keys.START, hold=3.0)
         g.wait_for("scene", lambda v: v == 4, timeout=15, desc="main menu hub (scene 4)")
         _sleep(1.0)
-        start_cur = g.read("obj_list_ptr")
+        start_cur = g.read("menu_cursor")
         assert start_cur in MENU_CURSOR_VALUES, f"unexpected menu cursor {start_cur}"
         print(f"at main menu; cursor={start_cur}")
 
