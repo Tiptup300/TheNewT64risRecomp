@@ -1817,7 +1817,7 @@ RECOMP_FUNC void wonders4_AllocBuffers(uint8_t* rdram, recomp_context* ctx) {
     // 0x800481FC: jal         0x8004A34C
     // 0x80048200: sw          $t9, 0x20D4($at)
     MEM_W(0X20D4, ctx->r1) = ctx->r25;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80048200: sw          $t9, 0x20D4($at)
     MEM_W(0X20D4, ctx->r1) = ctx->r25;
@@ -2030,7 +2030,7 @@ RECOMP_FUNC void wonders4_AllocBuffer8(uint8_t* rdram, recomp_context* ctx) {
     // 0x8004833C: jal         0x8004A34C
     // 0x80048340: sw          $t7, 0x20C4($at)
     MEM_W(0X20C4, ctx->r1) = ctx->r15;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80048340: sw          $t7, 0x20C4($at)
     MEM_W(0X20C4, ctx->r1) = ctx->r15;
@@ -2164,7 +2164,7 @@ RECOMP_FUNC void wonders4_AllocBuffer16(uint8_t* rdram, recomp_context* ctx) {
     // 0x80048408: jal         0x8004A34C
     // 0x8004840C: sw          $t7, 0x20D4($at)
     MEM_W(0X20D4, ctx->r1) = ctx->r15;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8004840C: sw          $t7, 0x20D4($at)
     MEM_W(0X20D4, ctx->r1) = ctx->r15;

@@ -999,7 +999,7 @@ RECOMP_FUNC void MobilePiece_CopyTransform(uint8_t* rdram, recomp_context* ctx) 
     do_swr(rdram, 0X11, ctx->r4, ctx->r1);
 ;}
 
-RECOMP_FUNC void MobilePiece_8006531c_fourliner_calls_fun_loops_4_times_v1(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void MobilePiece_SetCubesPosition(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006531C: addiu       $sp, $sp, -0x28
@@ -1236,7 +1236,7 @@ L_80065458:
     // 0x80065498: jal         0x8006531C
     // 0x8006549C: nop
 
-    MobilePiece_8006531c_fourliner_calls_fun_loops_4_times_v1(rdram, ctx);
+    MobilePiece_SetCubesPosition(rdram, ctx);
         goto after_1;
     // 0x8006549C: nop
 

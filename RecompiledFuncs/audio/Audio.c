@@ -421,7 +421,7 @@ RECOMP_FUNC void Audio_InitAudio(uint8_t* rdram, recomp_context* ctx) {
     // 0x800849B4: jal         0x8004A34C
     // 0x800849B8: sw          $t7, -0x7224($at)
     MEM_W(-0X7224, ctx->r1) = ctx->r15;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_17;
     // 0x800849B8: sw          $t7, -0x7224($at)
     MEM_W(-0X7224, ctx->r1) = ctx->r15;
@@ -947,7 +947,7 @@ RECOMP_FUNC void Audio_FreeAudio(uint8_t* rdram, recomp_context* ctx) {
     // 0x80084CB0: jal         0x8004A34C
     // 0x80084CB4: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_1;
     // 0x80084CB4: nop
 
@@ -1253,7 +1253,7 @@ L_80084E74:
     // 0x80084E8C: jal         0x8004A34C
     // 0x80084E90: sh          $t2, 0x1582($t3)
     MEM_H(0X1582, ctx->r11) = ctx->r10;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_1;
     // 0x80084E90: sh          $t2, 0x1582($t3)
     MEM_H(0X1582, ctx->r11) = ctx->r10;
@@ -1263,7 +1263,7 @@ L_80084E74:
     // 0x80084E98: jal         0x8004A34C
     // 0x80084E9C: sb          $zero, 0x1598($t4)
     MEM_B(0X1598, ctx->r12) = 0;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_2;
     // 0x80084E9C: sb          $zero, 0x1598($t4)
     MEM_B(0X1598, ctx->r12) = 0;

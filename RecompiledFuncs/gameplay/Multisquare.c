@@ -2127,7 +2127,7 @@ RECOMP_FUNC void Multisquare_Deinit_doesnothing(uint8_t* rdram, recomp_context* 
 
 ;}
 
-RECOMP_FUNC void Multisquare_8006aebc_loops_44_times_4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Multisquare_SetActiveCellsAlpha(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006AEBC: or          $a3, $zero, $zero

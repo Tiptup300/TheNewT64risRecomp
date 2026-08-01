@@ -420,7 +420,7 @@ L_8006CE90:
     // 0x8006CEA8: jal         0x8004A34C
     // 0x8006CEAC: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_3;
     // 0x8006CEAC: nop
 

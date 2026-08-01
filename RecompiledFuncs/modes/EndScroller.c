@@ -1363,7 +1363,7 @@ RECOMP_FUNC void EndScroller_InitBackground(uint8_t* rdram, recomp_context* ctx)
     // 0x80080584: jal         0x8004A34C
     // 0x80080588: sw          $v0, 0x18($t2)
     MEM_W(0X18, ctx->r10) = ctx->r2;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_8;
     // 0x80080588: sw          $v0, 0x18($t2)
     MEM_W(0X18, ctx->r10) = ctx->r2;

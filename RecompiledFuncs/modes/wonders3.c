@@ -1184,7 +1184,7 @@ L_80046A90:
     // 0x80046AC4: jal         0x8004A34C
     // 0x80046AC8: sb          $t8, 0x0($s0)
     MEM_B(0X0, ctx->r16) = ctx->r24;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_3;
     // 0x80046AC8: sb          $t8, 0x0($s0)
     MEM_B(0X0, ctx->r16) = ctx->r24;
@@ -2582,7 +2582,7 @@ RECOMP_FUNC void wonders3_LoadWonderViewer(uint8_t* rdram, recomp_context* ctx) 
     // 0x80047308: jal         0x8004A34C
     // 0x8004730C: sw          $s0, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->r16;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8004730C: sw          $s0, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->r16;
@@ -2981,7 +2981,7 @@ L_800474FC:
     // 0x80047538: jal         0x8004A34C
     // 0x8004753C: sw          $zero, -0x4A4($at)
     MEM_W(-0X4A4, ctx->r1) = 0;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_10;
     // 0x8004753C: sw          $zero, -0x4A4($at)
     MEM_W(-0X4A4, ctx->r1) = 0;

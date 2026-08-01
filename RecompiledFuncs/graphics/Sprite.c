@@ -46,7 +46,7 @@ RECOMP_FUNC void Sprite_LoadImage(uint8_t* rdram, recomp_context* ctx) {
     // 0x800570C0: jal         0x8004A34C
     // 0x800570C4: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x800570C4: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
@@ -245,7 +245,7 @@ RECOMP_FUNC void Sprite_LoadImagePair(uint8_t* rdram, recomp_context* ctx) {
     // 0x800571F4: jal         0x8004A34C
     // 0x800571F8: sw          $s0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r16;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x800571F8: sw          $s0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r16;
@@ -8015,7 +8015,7 @@ L_8005AA94:
     ctx->r29 = ADD32(ctx->r29, 0X138);
 ;}
 
-RECOMP_FUNC void FUN_8005aa9c_prob_display_text_rgb_as_well(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Sprite_DrawScaledRGB(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8005AA9C: beq         $a1, $zero, L_8005BBF4

@@ -149,7 +149,7 @@ RECOMP_FUNC void Gbpak_ReadId(uint8_t* rdram, recomp_context* ctx) {
     ctx->r29 = ADD32(ctx->r29, 0X18);
 ;}
 
-RECOMP_FUNC void FUN_001050_gbpakReadWrite_a(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gbpak_DispatchCmd2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8003BD28: addiu       $sp, $sp, -0x18
@@ -224,7 +224,7 @@ RECOMP_FUNC void FUN_001050_gbpakReadWrite_a(uint8_t* rdram, recomp_context* ctx
     ctx->r29 = ADD32(ctx->r29, 0X18);
 ;}
 
-RECOMP_FUNC void FUN_001050_gbpakReadWrite_b(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gbpak_DispatchCmd4(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8003BDA0: addiu       $sp, $sp, -0x18

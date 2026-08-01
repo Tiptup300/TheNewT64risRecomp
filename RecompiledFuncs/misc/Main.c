@@ -2897,7 +2897,7 @@ L_8004A33C:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void main_8004A34C_threeliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Main_DrainMessageQueue(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8004A34C: lui         $t6, 0x800D
@@ -3254,7 +3254,7 @@ L_8004A4F4:
     // 0x8004A56C: jal         0x8003B29C
     // 0x8004A570: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);
-    FUN_001500_motorInit(rdram, ctx);
+    SaveData_InitMotors(rdram, ctx);
         goto after_12;
     // 0x8004A570: addiu       $a0, $a0, -0x21C0
     ctx->r4 = ADD32(ctx->r4, -0X21C0);

@@ -211,7 +211,7 @@ L_8006E194:
     // 0x8006E228: jal         0x8006E8F8
     // 0x8006E22C: addiu       $a0, $s3, 0x8
     ctx->r4 = ADD32(ctx->r19, 0X8);
-    Cube_8006e8f8_sets_struct_0x14_to_0x24_to_mostly_zeros(rdram, ctx);
+    Cube_InitPosBlock1(rdram, ctx);
         goto after_2;
     // 0x8006E22C: addiu       $a0, $s3, 0x8
     ctx->r4 = ADD32(ctx->r19, 0X8);
@@ -245,7 +245,7 @@ L_8006E194:
     // 0x8006E264: jal         0x8006E8F8
     // 0x8006E268: addiu       $a0, $s3, 0x8
     ctx->r4 = ADD32(ctx->r19, 0X8);
-    Cube_8006e8f8_sets_struct_0x14_to_0x24_to_mostly_zeros(rdram, ctx);
+    Cube_InitPosBlock1(rdram, ctx);
         goto after_3;
     // 0x8006E268: addiu       $a0, $s3, 0x8
     ctx->r4 = ADD32(ctx->r19, 0X8);

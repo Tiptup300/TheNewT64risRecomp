@@ -85,7 +85,7 @@ RECOMP_FUNC void PieceHoldPiece_MakeShadowActive(uint8_t* rdram, recomp_context*
     // 0x80065800: jal         0x8006531C
     // 0x80065804: addiu       $a0, $a0, 0x10
     ctx->r4 = ADD32(ctx->r4, 0X10);
-    MobilePiece_8006531c_fourliner_calls_fun_loops_4_times_v1(rdram, ctx);
+    MobilePiece_SetCubesPosition(rdram, ctx);
         goto after_1;
     // 0x80065804: addiu       $a0, $a0, 0x10
     ctx->r4 = ADD32(ctx->r4, 0X10);
@@ -861,7 +861,7 @@ RECOMP_FUNC void PieceHoldPiece_MakeActive(uint8_t* rdram, recomp_context* ctx) 
     // 0x80065E08: jal         0x80065710
     // 0x80065E0C: addiu       $a0, $a0, 0x538
     ctx->r4 = ADD32(ctx->r4, 0X538);
-    PieceHold_80065710_twoliner_sets_to_0_and_0xff(rdram, ctx);
+    PieceHold_ClearSlot(rdram, ctx);
         goto after_4;
     // 0x80065E0C: addiu       $a0, $a0, 0x538
     ctx->r4 = ADD32(ctx->r4, 0X538);

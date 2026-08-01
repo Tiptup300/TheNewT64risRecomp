@@ -5708,7 +5708,7 @@ L_8004D0C0:
     // 0x8004D0CC: jal         0x8004A34C
     // 0x8004D0D0: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_93;
     // 0x8004D0D0: nop
 
@@ -7151,7 +7151,7 @@ L_8004DA48:
     // 0x8004DA54: jal         0x8004A34C
     // 0x8004DA58: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_129;
     // 0x8004DA58: nop
 
@@ -7468,7 +7468,7 @@ L_8004DC4C:
     // 0x8004DC58: jal         0x8004A34C
     // 0x8004DC5C: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_140;
     // 0x8004DC5C: nop
 
@@ -8349,7 +8349,7 @@ L_8004E240:
     // 0x8004E24C: jal         0x8004A34C
     // 0x8004E250: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_165;
     // 0x8004E250: nop
 
@@ -9271,7 +9271,7 @@ L_8004E870:
     // 0x8004E87C: jal         0x8004A34C
     // 0x8004E880: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_190;
     // 0x8004E880: nop
 
@@ -10245,7 +10245,7 @@ L_8004EF00:
     // 0x8004EF0C: jal         0x8004A34C
     // 0x8004EF10: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_216;
     // 0x8004EF10: nop
 
@@ -11167,7 +11167,7 @@ L_8004F530:
     // 0x8004F53C: jal         0x8004A34C
     // 0x8004F540: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_241;
     // 0x8004F540: nop
 
@@ -12089,7 +12089,7 @@ L_8004FB60:
     // 0x8004FB6C: jal         0x8004A34C
     // 0x8004FB70: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_266;
     // 0x8004FB70: nop
 
@@ -13422,7 +13422,7 @@ L_80050468:
     // 0x80050474: jal         0x8004A34C
     // 0x80050478: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_295;
     // 0x80050478: nop
 

@@ -657,7 +657,7 @@ L_80077BF4:
     // 0x80077C90: jal         0x8005AA9C
     // 0x80077C94: sw          $t0, 0x28($sp)
     MEM_W(0X28, ctx->r29) = ctx->r8;
-    FUN_8005aa9c_prob_display_text_rgb_as_well(rdram, ctx);
+    Sprite_DrawScaledRGB(rdram, ctx);
         goto after_0;
     // 0x80077C94: sw          $t0, 0x28($sp)
     MEM_W(0X28, ctx->r29) = ctx->r8;
@@ -1915,7 +1915,7 @@ L_80078658:
 
 ;}
 
-RECOMP_FUNC void FUN_SRAM_8007868c_tenliner_loop_arg0_t(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void displayText_PruneUnkeptEntries(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007868C: addiu       $sp, $sp, -0x20

@@ -743,7 +743,7 @@ RECOMP_FUNC void wonders1_BuildWonderDisplay(uint8_t* rdram, recomp_context* ctx
     // 0x80043C8C: jal         0x8004A34C
     // 0x80043C90: sw          $s0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r16;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80043C90: sw          $s0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r16;
@@ -1753,7 +1753,7 @@ L_800442DC:
     // 0x800442E0: jal         0x8004A34C
     // 0x800442E4: sw          $zero, 0x8($t5)
     MEM_W(0X8, ctx->r13) = 0;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_2;
     // 0x800442E4: sw          $zero, 0x8($t5)
     MEM_W(0X8, ctx->r13) = 0;
@@ -3318,7 +3318,7 @@ L_80044AD8:
     // 0x80044B58: jal         0x8004A34C
     // 0x80044B5C: sw          $zero, 0x1F60($at)
     MEM_W(0X1F60, ctx->r1) = 0;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_14;
     // 0x80044B5C: sw          $zero, 0x1F60($at)
     MEM_W(0X1F60, ctx->r1) = 0;
@@ -6189,7 +6189,7 @@ RECOMP_FUNC void wonders1_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80045BE8: jal         0x8004A34C
     // 0x80045BEC: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80045BEC: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
@@ -6377,7 +6377,7 @@ RECOMP_FUNC void wonders1_Exit(uint8_t* rdram, recomp_context* ctx) {
     // 0x80045CF0: jal         0x8004A34C
     // 0x80045CF4: sw          $zero, 0x5E10($at)
     MEM_W(0X5E10, ctx->r1) = 0;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_4;
     // 0x80045CF4: sw          $zero, 0x5E10($at)
     MEM_W(0X5E10, ctx->r1) = 0;

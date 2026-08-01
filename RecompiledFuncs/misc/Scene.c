@@ -351,7 +351,7 @@ RECOMP_FUNC void Scene_SetScene4(uint8_t* rdram, recomp_context* ctx) {
     // 0x8007D21C: jal         0x8004A34C
     // 0x8007D220: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8007D220: nop
 
@@ -1068,7 +1068,7 @@ RECOMP_FUNC void Scene_ProcessObjectList(uint8_t* rdram, recomp_context* ctx) {
     // 0x8008F384: jal         0x8004A34C
     // 0x8008F388: sb          $zero, 0x37($sp)
     MEM_B(0X37, ctx->r29) = 0;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8008F388: sb          $zero, 0x37($sp)
     MEM_B(0X37, ctx->r29) = 0;
@@ -2963,7 +2963,7 @@ RECOMP_FUNC void Scene_FreeObjectSprite(uint8_t* rdram, recomp_context* ctx) {
     // 0x8008FF80: jal         0x8004A34C
     // 0x8008FF84: sw          $a0, 0x28($sp)
     MEM_W(0X28, ctx->r29) = ctx->r4;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8008FF84: sw          $a0, 0x28($sp)
     MEM_W(0X28, ctx->r29) = ctx->r4;
@@ -4577,7 +4577,7 @@ RECOMP_FUNC void Scene_UnloadObjects(uint8_t* rdram, recomp_context* ctx) {
     // 0x80090994: jal         0x8004A34C
     // 0x80090998: sw          $a0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r4;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80090998: sw          $a0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r4;
@@ -4720,7 +4720,7 @@ RECOMP_FUNC void Scene_FreeResources(uint8_t* rdram, recomp_context* ctx) {
     // 0x80090A4C: jal         0x8004A34C
     // 0x80090A50: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80090A50: nop
 
@@ -4952,7 +4952,7 @@ L_80090BA8:
     // 0x80090BA8: jal         0x8004A34C
     // 0x80090BAC: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80090BAC: nop
 
@@ -5378,7 +5378,7 @@ RECOMP_FUNC void MenuHub_StartPlaying(uint8_t* rdram, recomp_context* ctx) {
     // 0x80090E30: jal         0x8004A34C
     // 0x80090E34: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80090E34: nop
 
@@ -5505,7 +5505,7 @@ L_80090ED8:
     // 0x80090EDC: jal         0x8004A34C
     // 0x80090EE0: sb          $zero, 0x3CF0($at)
     MEM_B(0X3CF0, ctx->r1) = 0;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_7;
     // 0x80090EE0: sb          $zero, 0x3CF0($at)
     MEM_B(0X3CF0, ctx->r1) = 0;
@@ -5534,7 +5534,7 @@ L_80090EEC:
     // 0x80090F00: jal         0x8004A34C
     // 0x80090F04: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_8;
     // 0x80090F04: nop
 
@@ -5758,7 +5758,7 @@ L_80091014:
     // 0x8009103C: jal         0x8004A34C
     // 0x80091040: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_18;
     // 0x80091040: nop
 
@@ -5844,7 +5844,7 @@ L_800910A4:
     // 0x800910B8: jal         0x8004A34C
     // 0x800910BC: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_21;
     // 0x800910BC: nop
 
@@ -5897,7 +5897,7 @@ L_800910E8:
     // 0x800910FC: jal         0x8004A34C
     // 0x80091100: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_24;
     // 0x80091100: nop
 
@@ -7647,7 +7647,7 @@ L_80091C04:
     // 0x80091C1C: jal         0x8007868C
     // 0x80091C20: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_0;
     // 0x80091C20: nop
 
@@ -7696,7 +7696,7 @@ L_80091C54:
     // 0x80091C6C: jal         0x8007868C
     // 0x80091C70: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_1;
     // 0x80091C70: nop
 
@@ -7759,7 +7759,7 @@ L_80091CB8:
     // 0x80091CD0: jal         0x8007868C
     // 0x80091CD4: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_3;
     // 0x80091CD4: nop
 
@@ -7806,7 +7806,7 @@ L_80091D04:
     // 0x80091D1C: jal         0x8007868C
     // 0x80091D20: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_4;
     // 0x80091D20: nop
 
@@ -7934,7 +7934,7 @@ RECOMP_FUNC void Scene_SaveDataScreen(uint8_t* rdram, recomp_context* ctx) {
     // 0x80091DEC: jal         0x8007868C
     // 0x80091DF0: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_0;
     // 0x80091DF0: nop
 
@@ -9421,7 +9421,7 @@ L_80092690:
     // 0x800926AC: jal         0x8007868C
     // 0x800926B0: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_43;
     // 0x800926B0: nop
 
@@ -9892,7 +9892,7 @@ L_800926CC:
     // 0x800929EC: jal         0x8007868C
     // 0x800929F0: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_54;
     // 0x800929F0: nop
 
@@ -11448,7 +11448,7 @@ L_800933B8:
     // 0x8009342C: jal         0x8007868C
     // 0x80093430: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_93;
     // 0x80093430: nop
 
@@ -11841,7 +11841,7 @@ L_800934AC:
     // 0x800936E4: jal         0x8007868C
     // 0x800936E8: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_102;
     // 0x800936E8: nop
 
@@ -13247,7 +13247,7 @@ L_80093DC0:
     // 0x80094094: jal         0x8007868C
     // 0x80094098: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_134;
     // 0x80094098: nop
 
@@ -13778,7 +13778,7 @@ L_80094108:
     // 0x80094444: jal         0x8007868C
     // 0x80094448: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_146;
     // 0x80094448: nop
 
@@ -14303,7 +14303,7 @@ L_80094540:
     // 0x800947D4: jal         0x8007868C
     // 0x800947D8: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_156;
     // 0x800947D8: nop
 
@@ -14828,7 +14828,7 @@ L_800948D0:
     // 0x80094B64: jal         0x8007868C
     // 0x80094B68: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_166;
     // 0x80094B68: nop
 
@@ -15353,7 +15353,7 @@ L_80094C60:
     // 0x80094EF4: jal         0x8007868C
     // 0x80094EF8: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_176;
     // 0x80094EF8: nop
 
@@ -16381,7 +16381,7 @@ L_80095544:
     // 0x800955AC: jal         0x8007868C
     // 0x800955B0: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_196;
     // 0x800955B0: nop
 
@@ -16910,7 +16910,7 @@ L_800956A8:
     // 0x80095944: jal         0x8007868C
     // 0x80095948: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_206;
     // 0x80095948: nop
 
@@ -17481,7 +17481,7 @@ L_80095A40:
     // 0x80095D28: jal         0x8007868C
     // 0x80095D2C: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_217;
     // 0x80095D2C: nop
 
@@ -18079,7 +18079,7 @@ L_80096094:
     // 0x800960DC: jal         0x8007868C
     // 0x800960E0: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_222;
     // 0x800960E0: nop
 
@@ -18677,7 +18677,7 @@ L_80096460:
     // 0x8009646C: jal         0x8007868C
     // 0x80096470: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_229;
     // 0x80096470: nop
 
@@ -19026,7 +19026,7 @@ L_80096688:
     // 0x80096694: jal         0x8007868C
     // 0x80096698: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_234;
     // 0x80096698: nop
 
@@ -25312,7 +25312,7 @@ L_80098CE0:
     // 0x80098E00: jal         0x8007868C
     // 0x80098E04: nop
 
-    FUN_SRAM_8007868c_tenliner_loop_arg0_t(rdram, ctx);
+    displayText_PruneUnkeptEntries(rdram, ctx);
         goto after_336;
     // 0x80098E04: nop
 
@@ -26886,7 +26886,7 @@ L_800997AC:
     // 0x800997F8: jal         0x8004A34C
     // 0x800997FC: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_2;
     // 0x800997FC: nop
 
@@ -36639,7 +36639,7 @@ RECOMP_FUNC void Scene_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009D604: jal         0x8004A34C
     // 0x8009D608: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8009D608: nop
 
@@ -36701,7 +36701,7 @@ RECOMP_FUNC void Scene_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009D658: jal         0x8004A34C
     // 0x8009D65C: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_5;
     // 0x8009D65C: nop
 
@@ -36763,7 +36763,7 @@ RECOMP_FUNC void Scene_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009D6AC: jal         0x8004A34C
     // 0x8009D6B0: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_10;
     // 0x8009D6B0: nop
 
@@ -43418,7 +43418,7 @@ RECOMP_FUNC void Scene_SetLoadFlag5(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X3CF0, ctx->r1) = ctx->r14;
 ;}
 
-RECOMP_FUNC void func_800A04A8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_InitScreenState(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A04A8: lui         $t6, 0x800D
@@ -52072,7 +52072,7 @@ L_800AD9E0:
 
 ;}
 
-RECOMP_FUNC void func_800ADA34(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DSetDepthScale(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADA34: mtc1        $a1, $f12
@@ -52089,7 +52089,7 @@ RECOMP_FUNC void func_800ADA34(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X110, ctx->r4) = ctx->f14.u32l;
 ;}
 
-RECOMP_FUNC void func_800ADA48(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DSetSpriteSize(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADA48: mtc1        $a1, $f12
@@ -52206,7 +52206,7 @@ RECOMP_FUNC void Scene_Bg3DSetDamping(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800ADAD0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_BuildBgGridDL(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADAD0: addiu       $sp, $sp, -0xA8

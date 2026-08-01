@@ -244,7 +244,7 @@ L_80066A80:
     // 0x80066A88: jal         0x800666D0
     // 0x80066A8C: addiu       $a0, $a0, 0x540
     ctx->r4 = ADD32(ctx->r4, 0X540);
-    GhostPiece_800666d0_sixliner_loops_arg1_times(rdram, ctx);
+    GhostPiece_MorphCubes(rdram, ctx);
         goto after_8;
     // 0x80066A8C: addiu       $a0, $a0, 0x540
     ctx->r4 = ADD32(ctx->r4, 0X540);

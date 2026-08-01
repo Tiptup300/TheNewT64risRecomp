@@ -442,7 +442,7 @@ L_80050B7C:
     // 0x80050C78: jal         0x8006AEBC
     // 0x80050C7C: addiu       $a0, $a0, 0x44C
     ctx->r4 = ADD32(ctx->r4, 0X44C);
-    Multisquare_8006aebc_loops_44_times_4(rdram, ctx);
+    Multisquare_SetActiveCellsAlpha(rdram, ctx);
         goto after_1;
     // 0x80050C7C: addiu       $a0, $a0, 0x44C
     ctx->r4 = ADD32(ctx->r4, 0X44C);

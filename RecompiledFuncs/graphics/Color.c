@@ -1446,7 +1446,7 @@ RECOMP_FUNC void calls_game_deinit(uint8_t* rdram, recomp_context* ctx) {
     // 0x8005552C: jal         0x8004A34C
     // 0x80055530: sw          $s0, 0x20($sp)
     MEM_W(0X20, ctx->r29) = ctx->r16;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80055530: sw          $s0, 0x20($sp)
     MEM_W(0X20, ctx->r29) = ctx->r16;
@@ -1856,7 +1856,7 @@ RECOMP_FUNC void game_over_display_stuff_huge_function_q(uint8_t* rdram, recomp_
     // 0x80055794: jal         0x8004A34C
     // 0x80055798: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80055798: nop
 
@@ -1997,7 +1997,7 @@ L_80055838:
     // 0x80055860: jal         0x8004A34C
     // 0x80055864: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_4;
     // 0x80055864: nop
 
@@ -2362,7 +2362,7 @@ L_80055A7C:
     // 0x80055A7C: jal         0x8004A34C
     // 0x80055A80: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_8;
     // 0x80055A80: nop
 

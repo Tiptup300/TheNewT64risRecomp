@@ -1,7 +1,7 @@
 #include "recomp.h"
 #include "funcs.h"
 
-RECOMP_FUNC void Cube_8006e8b0_sets_struct_0x02_to_0x12_to_mostly_zeros(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Cube_InitPosBlock0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006E8B0: lw          $a3, 0x4($a0)
@@ -49,7 +49,7 @@ L_8006E8F0:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void Cube_8006e8f8_sets_struct_0x14_to_0x24_to_mostly_zeros(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Cube_InitPosBlock1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006E8F8: lw          $a3, 0x4($a0)
@@ -147,7 +147,7 @@ RECOMP_FUNC void Cube_Alloc(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006E988: jal         0x8006E8B0
     // 0x8006E98C: nop
 
-    Cube_8006e8b0_sets_struct_0x02_to_0x12_to_mostly_zeros(rdram, ctx);
+    Cube_InitPosBlock0(rdram, ctx);
         goto after_2;
     // 0x8006E98C: nop
 
@@ -161,7 +161,7 @@ RECOMP_FUNC void Cube_Alloc(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006E99C: jal         0x8006E8F8
     // 0x8006E9A0: nop
 
-    Cube_8006e8f8_sets_struct_0x14_to_0x24_to_mostly_zeros(rdram, ctx);
+    Cube_InitPosBlock1(rdram, ctx);
         goto after_3;
     // 0x8006E9A0: nop
 

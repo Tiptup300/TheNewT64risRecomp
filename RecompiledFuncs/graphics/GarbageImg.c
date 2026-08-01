@@ -611,7 +611,7 @@ L_8007485C:
     // 0x80074868: jal         0x8004A34C
     // 0x8007486C: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_10;
     // 0x8007486C: nop
 

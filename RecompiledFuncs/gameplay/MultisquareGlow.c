@@ -537,7 +537,7 @@ RECOMP_FUNC void MultisquareGlow_InitStaticMembers(uint8_t* rdram, recomp_contex
     // 0x8006B258: jal         0x8004A34C
     // 0x8006B25C: sw          $s0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r16;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8006B25C: sw          $s0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r16;

@@ -1,7 +1,7 @@
 #include "recomp.h"
 #include "funcs.h"
 
-RECOMP_FUNC void PieceHold_80065710_twoliner_sets_to_0_and_0xff(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_ClearSlot(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80065710: addiu       $t6, $zero, 0xFF

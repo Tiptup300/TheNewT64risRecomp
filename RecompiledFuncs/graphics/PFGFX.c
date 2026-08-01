@@ -3110,7 +3110,7 @@ L_80061778:
     // 0x80061778: jal         0x8004A34C
     // 0x8006177C: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8006177C: nop
 
@@ -6182,7 +6182,7 @@ RECOMP_FUNC void PFGFX_GameInit(uint8_t* rdram, recomp_context* ctx) {
     // 0x80062790: jal         0x8004A34C
     // 0x80062794: sw          $a0, 0x28($sp)
     MEM_W(0X28, ctx->r29) = ctx->r4;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80062794: sw          $a0, 0x28($sp)
     MEM_W(0X28, ctx->r29) = ctx->r4;
@@ -6388,7 +6388,7 @@ RECOMP_FUNC void PFGFX_GameInit(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006291C: jal         0x8004A34C
     // 0x80062920: sw          $t3, 0x5C($t4)
     MEM_W(0X5C, ctx->r12) = ctx->r11;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_1;
     // 0x80062920: sw          $t3, 0x5C($t4)
     MEM_W(0X5C, ctx->r12) = ctx->r11;
@@ -7767,7 +7767,7 @@ RECOMP_FUNC void PFGFX_GameDeinit(uint8_t* rdram, recomp_context* ctx) {
     // 0x800630F4: jal         0x8004A34C
     // 0x800630F8: sw          $a0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r4;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x800630F8: sw          $a0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r4;

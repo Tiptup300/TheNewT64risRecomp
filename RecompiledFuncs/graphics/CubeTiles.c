@@ -1092,7 +1092,7 @@ RECOMP_FUNC void CubeTiles_Alloc(uint8_t* rdram, recomp_context* ctx) {
     // 0x80075ED8: jal         0x8004A34C
     // 0x80075EDC: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_1;
     // 0x80075EDC: nop
 
@@ -2080,7 +2080,7 @@ RECOMP_FUNC void CubeTiles_LoadTiles(uint8_t* rdram, recomp_context* ctx) {
     // 0x800764C4: jal         0x8004A34C
     // 0x800764C8: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x800764C8: sw          $s0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r16;
@@ -5037,7 +5037,7 @@ L_800832C8:
     // 0x800832DC: jal         0x8004A34C
     // 0x800832E0: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_8;
     // 0x800832E0: nop
 
@@ -5349,7 +5349,7 @@ RECOMP_FUNC void CubeTiles_ObjDrawRotate(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A3C30(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjApplyEuler(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3C30: mtc1        $a1, $f12
@@ -5466,7 +5466,7 @@ RECOMP_FUNC void CubeTiles_ObjRotateAxis(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A3CDC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjApplyAxisRot3x3(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3CDC: mtc1        $a2, $f12
@@ -5672,7 +5672,7 @@ RECOMP_FUNC void CubeTiles_ObjScale(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A3E0C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjAlignBasis(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3E0C: addiu       $sp, $sp, -0x70
@@ -5757,7 +5757,7 @@ RECOMP_FUNC void func_800A3E0C(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A3EA0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetTranslationMtx2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3EA0: mtc1        $a1, $f12
@@ -5780,7 +5780,7 @@ RECOMP_FUNC void func_800A3EA0(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X84, ctx->r4) = ctx->f4.u32l;
 ;}
 
-RECOMP_FUNC void func_800A3EC0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjTranslateMtx2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3EC0: sw          $a3, 0xC($sp)
@@ -5827,7 +5827,7 @@ RECOMP_FUNC void func_800A3EC0(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X84, ctx->r4) = ctx->f4.u32l;
 ;}
 
-RECOMP_FUNC void func_800A3EF8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetLocalTranslationMtx2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3EF8: sw          $a3, 0xC($sp)
@@ -5986,7 +5986,7 @@ RECOMP_FUNC void func_800A3EF8(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X84, ctx->r4) = ctx->f18.u32l;
 ;}
 
-RECOMP_FUNC void func_800A3F98(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjRotateEulerMtx2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3F98: mtc1        $a1, $f12
@@ -6025,7 +6025,7 @@ RECOMP_FUNC void func_800A3F98(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A3FD0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjApplyEulerMtx2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3FD0: mtc1        $a1, $f12

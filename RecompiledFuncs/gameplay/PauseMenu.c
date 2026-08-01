@@ -1106,7 +1106,7 @@ RECOMP_FUNC void PauseMenu_Teardown(uint8_t* rdram, recomp_context* ctx) {
     // 0x80071DF4: jal         0x8004A34C
     // 0x80071DF8: sw          $a0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r4;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x80071DF8: sw          $a0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r4;
@@ -1156,7 +1156,7 @@ RECOMP_FUNC void PauseMenu_Teardown(uint8_t* rdram, recomp_context* ctx) {
     // 0x80071E38: jal         0x8004A34C
     // 0x80071E3C: sb          $zero, 0x0($t8)
     MEM_B(0X0, ctx->r24) = 0;
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_4;
     // 0x80071E3C: sb          $zero, 0x0($t8)
     MEM_B(0X0, ctx->r24) = 0;
@@ -1164,7 +1164,7 @@ RECOMP_FUNC void PauseMenu_Teardown(uint8_t* rdram, recomp_context* ctx) {
     // 0x80071E40: jal         0x8004A34C
     // 0x80071E44: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_5;
     // 0x80071E44: nop
 
@@ -1757,7 +1757,7 @@ RECOMP_FUNC void PauseMenu_Destroy(uint8_t* rdram, recomp_context* ctx) {
     // 0x800721AC: jal         0x8004A34C
     // 0x800721B0: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x800721B0: nop
 

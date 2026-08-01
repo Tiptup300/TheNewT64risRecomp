@@ -6380,7 +6380,7 @@ L_8007F7F0:
     // 0x8007F804: jal         0x8004A34C
     // 0x8007F808: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_18;
     // 0x8007F808: nop
 
@@ -6441,7 +6441,7 @@ L_8007F830:
     // 0x8007F858: jal         0x8004A34C
     // 0x8007F85C: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_20;
     // 0x8007F85C: nop
 
@@ -6782,7 +6782,7 @@ L_8007FA3C:
     // 0x8007FA44: jal         0x8004A34C
     // 0x8007FA48: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_34;
     // 0x8007FA48: nop
 
@@ -7172,7 +7172,7 @@ L_80080C10:
     // 0x80080C10: jal         0x8004A34C
     // 0x80080C14: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_3;
     // 0x80080C14: nop
 
@@ -7457,7 +7457,7 @@ L_80080D98:
     // 0x80080DAC: jal         0x8004A34C
     // 0x80080DB0: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_14;
     // 0x80080DB0: nop
 

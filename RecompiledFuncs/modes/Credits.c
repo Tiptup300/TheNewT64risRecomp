@@ -11,7 +11,7 @@ RECOMP_FUNC void Credits_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80083328: jal         0x8004A34C
     // 0x8008332C: nop
 
-    main_8004A34C_threeliner(rdram, ctx);
+    Main_DrainMessageQueue(rdram, ctx);
         goto after_0;
     // 0x8008332C: nop
 
