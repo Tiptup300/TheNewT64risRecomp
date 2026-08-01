@@ -1,6 +1,7 @@
 // The New T64ris : Recompiled — application entry point.
 // Modeled on the standard N64: Recompiled harness (BanjoRecomp-style).
 #include <cstdint>
+#include <cstdio>
 #include <cstdlib>
 #include <filesystem>
 #include <string>
@@ -88,12 +89,104 @@ static ultramodern::renderer::WindowHandle create_window(ultramodern::gfx_callba
 #endif
 }
 
+// ---------------------------------------------------------------------------
+// E2E state bridge (TNT_STATE) — export selected game RAM each frame so an
+// external test harness can wait on / assert game state. Inert (one cached
+// getenv) unless TNT_STATE_OUT is set. Companion to the TNT_INPUT injection
+// overlay; together they give scripted control + observation for E2E tests.
+//   TNT_STATE_WATCH : watch-list file, lines "name 0xADDR width" (width 1/2/4;
+//                     '#' comments ok). Re-read each dump so watches are live.
+//   TNT_STATE_OUT   : output file, atomically rewritten each frame with
+//                     "name=value" lines + "_frame=N" (a liveness heartbeat).
+// Reads mirror the recomp MEM_* swizzle: word @off, half @off^2, byte @off^3,
+// off = guest_addr - 0x80000000. Bounds-checked to the 512MB rdram window.
+// ---------------------------------------------------------------------------
+static uint8_t* g_state_rdram = nullptr;
+
+static uint32_t tnt_state_read(uint32_t addr, int width) {
+    uint32_t off = addr - 0x80000000u;
+    if (off >= 0x20000000u) return 0; // outside the mapped rdram window
+    const uint8_t* p = g_state_rdram;
+    switch (width) {
+        case 1:  return *(const uint8_t*)(p + (off ^ 3));
+        case 2:  return *(const uint16_t*)(p + (off ^ 2));
+        default: return *(const uint32_t*)(p + off);
+    }
+}
+
+static void tnt_state_dump() {
+    static bool checked = false;
+    static const char* out_path = nullptr;
+    static const char* watch_path = nullptr;
+    static unsigned long long frame = 0;
+    if (!checked) {
+        out_path = std::getenv("TNT_STATE_OUT");
+        watch_path = std::getenv("TNT_STATE_WATCH");
+        checked = true;
+    }
+    if (out_path == nullptr || g_state_rdram == nullptr) return;
+    ++frame;
+
+    std::string tmp = std::string(out_path) + ".tmp";
+    FILE* f = std::fopen(tmp.c_str(), "w");
+    if (!f) return;
+    std::fprintf(f, "_frame=%llu\n", frame);
+    if (watch_path != nullptr) {
+        if (FILE* w = std::fopen(watch_path, "r")) {
+            char line[256], name[128], addrs[64];
+            int width;
+            while (std::fgets(line, sizeof(line), w)) {
+                if (line[0] == '#' || line[0] == '\n' || line[0] == '\0') continue;
+                if (std::sscanf(line, "%127s %63s %d", name, addrs, &width) == 3) {
+                    uint32_t addr = (uint32_t)std::strtoul(addrs, nullptr, 0);
+                    std::fprintf(f, "%s=%u\n", name, tnt_state_read(addr, width));
+                }
+            }
+            std::fclose(w);
+        }
+    }
+    std::fclose(f);
+    std::rename(tmp.c_str(), out_path); // atomic swap: harness never sees a partial file
+}
+
+// E2E poke channel (TNT_STATE_POKE): write game RAM to force state for tests.
+// The named file holds lines "0xADDR width value" (width 1/2/4; '#' comments ok),
+// applied to rdram each frame (level-triggered: keep a line to hold a value, empty
+// the file to stop forcing). Writes mirror the recomp MEM_* swizzle. Inert unless
+// TNT_STATE_POKE is set. Racy vs the game thread by design — fine for coarse state.
+static void tnt_state_poke() {
+    static bool checked = false;
+    static const char* poke_path = nullptr;
+    if (!checked) { poke_path = std::getenv("TNT_STATE_POKE"); checked = true; }
+    if (poke_path == nullptr || g_state_rdram == nullptr) return;
+    FILE* p = std::fopen(poke_path, "r");
+    if (!p) return;
+    char line[256], addrs[64], vals[64];
+    int width;
+    while (std::fgets(line, sizeof(line), p)) {
+        if (line[0] == '#' || line[0] == '\n' || line[0] == '\0') continue;
+        if (std::sscanf(line, "%63s %d %63s", addrs, &width, vals) == 3) {
+            uint32_t addr = (uint32_t)std::strtoul(addrs, nullptr, 0);
+            uint32_t val  = (uint32_t)std::strtoul(vals, nullptr, 0);
+            uint32_t off = addr - 0x80000000u;
+            if (off >= 0x20000000u) continue;
+            uint8_t* r = g_state_rdram;
+            if (width == 1)      *(uint8_t*)(r + (off ^ 3)) = (uint8_t)val;
+            else if (width == 2) *(uint16_t*)(r + (off ^ 2)) = (uint16_t)val;
+            else                 *(uint32_t*)(r + off) = val;
+        }
+    }
+    std::fclose(p);
+}
+
 static void update_gfx(ultramodern::gfx_callbacks_t::gfx_data_t) {
     // Single event pump: recompinput::handle_events() polls SDL, updates game
     // input, and queues events to recompui (which processes them in its render
     // hook). Doing our own SDL_PollEvent/try_deque_event here steals events and
     // breaks menu hover/input.
     recompinput::handle_events();
+    tnt_state_poke(); // E2E poke (inert unless TNT_STATE_POKE is set)
+    tnt_state_dump(); // E2E state export (inert unless TNT_STATE_OUT is set)
 }
 
 static void vi_callback() {
@@ -104,6 +197,7 @@ static void vi_callback() {
 // ---------------------------------------------------------------------------
 static std::unique_ptr<ultramodern::renderer::RendererContext>
 create_render_context(uint8_t* rdram, ultramodern::renderer::WindowHandle window_handle, bool developer_mode) {
+    g_state_rdram = rdram; // stash for the TNT_STATE E2E bridge (see update_gfx)
     return recompui::renderer::create_render_context(
         rdram, window_handle,
         ultramodern::renderer::PresentationMode::PresentEarly,

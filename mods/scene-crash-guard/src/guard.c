@@ -24,8 +24,16 @@
 //
 // SAFE BY CONSTRUCTION: the `if` is false whenever the buffer is a real allocation,
 // so normal gameplay is completely unaffected — the guard acts ONLY in the
-// already-crashing null state. Disabled by default; enable to test the skip-to-menu
-// / attract-demo paths. Verify in-game (a clean display is needed).
+// already-crashing null state. Disabled by default.
+//
+// STATUS (proven by tools/e2e/test_crash_guard.py, 2026-08-01): INSUFFICIENT on its
+// own. This DOES stop the first crash (Scene_SetupObjectMatrices+0x128) — the E2E
+// A/B confirms obj_slot_buf becomes 0x80900000 and that store no longer faults — but
+// the scene-4-without-setup state has MORE uninitialized pointers, so the crash just
+// moves downstream to Scene_SetupObjectRenderState+0xc5d. A per-pointer repoint is
+// whack-a-mole here. The correct fix is option (c): don't enter scene 4 without its
+// resource-load step (prevent the attract-demo/forced transition). Kept as a
+// diagnostic + partial guard; not a complete fix.
 #define OBJ_SLOT_MATRIX_BUF (*(volatile unsigned int*)0x80129200)  // g_sceneObjSlotMatrixBuf
 #define SAFE_SCRATCH        0x80900000u  // unused RDRAM past 8MB, inside the 512MB map
 
