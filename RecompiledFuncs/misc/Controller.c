@@ -4625,7 +4625,7 @@ RECOMP_FUNC void Controller_CreateThread(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void FUN_003E40_8003dbc0_twentyliner_nested_loops(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Controller_TestPieceTransforms(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8003DBC0: addiu       $sp, $sp, -0x30
@@ -5314,7 +5314,7 @@ RECOMP_FUNC void func_800A08A0(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r12) = ctx->r11;
 ;}
 
-RECOMP_FUNC void func_800A08EC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Controller_ApplyPitchSetting(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A08EC: addiu       $sp, $sp, -0x18
@@ -5401,7 +5401,7 @@ RECOMP_FUNC void func_800A08EC(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A097C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Controller_ApplyVolumeSetting(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A097C: addiu       $sp, $sp, -0x18
@@ -5486,7 +5486,7 @@ RECOMP_FUNC void func_800A097C(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800A0A08(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Controller_SaveOptionByte(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A0A08: lui         $t6, 0x800D

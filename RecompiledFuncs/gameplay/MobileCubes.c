@@ -554,7 +554,7 @@ L_8006ED4C:
     // 0x8006ED4C: jal         0x80070528
     // 0x8006ED50: addiu       $a0, $s1, 0x28
     ctx->r4 = ADD32(ctx->r17, 0X28);
-    Minos_80070528_Morph(rdram, ctx);
+    Minos_Mino_Morph(rdram, ctx);
         goto after_4;
     // 0x8006ED50: addiu       $a0, $s1, 0x28
     ctx->r4 = ADD32(ctx->r17, 0X28);

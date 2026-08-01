@@ -1242,7 +1242,7 @@ L_800782EC:
     ctx->r29 = ADD32(ctx->r29, 0X40);
 ;}
 
-RECOMP_FUNC void FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void displayText_ComputeBarLevel(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80078300: lhu         $t6, 0xC0($a0)
@@ -1462,7 +1462,7 @@ L_8007841C:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void FUN_SRAM_80078424_twelveliner_div60_loop_30t_b(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void displayText_ValueToBarLevel(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80078424: andi        $a0, $a0, 0xFFFF
@@ -1672,7 +1672,7 @@ L_8007852C:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void FUN_SRAM_80078534_tenliner_loops(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void displayText_RemoveEntriesByType(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80078534: addiu       $sp, $sp, -0x20
@@ -1788,7 +1788,7 @@ L_800785AC:
     ctx->r29 = ADD32(ctx->r29, 0X20);
 ;}
 
-RECOMP_FUNC void FUN_SRAM_800785e0_sixliner_loop_arg0_t(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void displayText_ClearNonPersistentEntries(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800785E0: addiu       $sp, $sp, -0x20
@@ -2081,7 +2081,7 @@ L_8007874C:
     ctx->r29 = ADD32(ctx->r29, 0X20);
 ;}
 
-RECOMP_FUNC void FUN_SRAM_8007875c_check_gameover_conditions(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void displayText_TallyWonderProgress(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007875C: addiu       $sp, $sp, -0x40
@@ -2105,7 +2105,7 @@ RECOMP_FUNC void FUN_SRAM_8007875c_check_gameover_conditions(uint8_t* rdram, rec
     // 0x80078780: jal         0x80078300
     // 0x80078784: sb          $t7, 0x3F($sp)
     MEM_B(0X3F, ctx->r29) = ctx->r15;
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_0;
     // 0x80078784: sb          $t7, 0x3F($sp)
     MEM_B(0X3F, ctx->r29) = ctx->r15;

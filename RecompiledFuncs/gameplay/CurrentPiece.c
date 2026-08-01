@@ -147,7 +147,7 @@ RECOMP_FUNC void CurrentPiece_UpdateGhost(uint8_t* rdram, recomp_context* ctx) {
     // 0x80066A18: jal         0x8003DBC0
     // 0x80066A1C: or          $a2, $s2, $zero
     ctx->r6 = ctx->r18 | 0;
-    FUN_003E40_8003dbc0_twentyliner_nested_loops(rdram, ctx);
+    Controller_TestPieceTransforms(rdram, ctx);
         goto after_2;
     // 0x80066A1C: or          $a2, $s2, $zero
     ctx->r6 = ctx->r18 | 0;
@@ -3881,7 +3881,7 @@ RECOMP_FUNC void CurrentPiece_Spawn(uint8_t* rdram, recomp_context* ctx) {
     // 0x80068058: jal         0x8003DBC0
     // 0x8006805C: or          $a2, $s3, $zero
     ctx->r6 = ctx->r19 | 0;
-    FUN_003E40_8003dbc0_twentyliner_nested_loops(rdram, ctx);
+    Controller_TestPieceTransforms(rdram, ctx);
         goto after_13;
     // 0x8006805C: or          $a2, $s3, $zero
     ctx->r6 = ctx->r19 | 0;

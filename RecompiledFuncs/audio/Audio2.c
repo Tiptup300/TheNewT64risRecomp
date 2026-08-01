@@ -3084,7 +3084,7 @@ RECOMP_FUNC void Audio2_80087478_oneliner_calls_fun(uint8_t* rdram, recomp_conte
 
 ;}
 
-RECOMP_FUNC void Audio2_800874ac_sevenliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio2_RefillDecodeBuffer(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800874AC: addiu       $sp, $sp, -0x18
@@ -3277,7 +3277,7 @@ L_8008759C:
 
 ;}
 
-RECOMP_FUNC void func_800875E4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio2_Noop(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800875E4: jr          $ra
@@ -3305,7 +3305,7 @@ RECOMP_FUNC void Audio2_SetGlobalPitch(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X1587, ctx->r5) = ctx->r14;
 ;}
 
-RECOMP_FUNC void func_80087600(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio2_SetGlobalPan(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80087600: sll         $a0, $a0, 24

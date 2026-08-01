@@ -2528,7 +2528,7 @@ RECOMP_FUNC void Gfx_InitBackground3D(uint8_t* rdram, recomp_context* ctx) {
     // 0x8007D1EC: jal         0x8007D458
     // 0x8007D1F0: nop
 
-    func_8007D458(rdram, ctx);
+    Scene_Bg3DInitEntries(rdram, ctx);
         goto after_5;
     // 0x8007D1F0: nop
 
@@ -3167,7 +3167,7 @@ L_8007DD1C:
     // 0x8007DD6C: jal         0x800AD970
     // 0x8007DD70: nop
 
-    func_800AD970(rdram, ctx);
+    Scene_Bg3DRender(rdram, ctx);
         goto after_11;
     // 0x8007DD70: nop
 

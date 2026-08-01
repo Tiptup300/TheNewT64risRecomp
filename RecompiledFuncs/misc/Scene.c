@@ -772,7 +772,7 @@ L_8007D448:
 
 ;}
 
-RECOMP_FUNC void func_8007D458(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DInitEntries(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007D458: addiu       $t6, $zero, 0x1
@@ -32425,7 +32425,7 @@ L_8009BB84:
     // 0x8009BB98: jal         0x80078300
     // 0x8009BB9C: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_39;
     // 0x8009BB9C: nop
 
@@ -32455,7 +32455,7 @@ L_8009BB84:
     // 0x8009BBC4: jal         0x80078300
     // 0x8009BBC8: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_40;
     // 0x8009BBC8: nop
 
@@ -32553,7 +32553,7 @@ L_8009BB84:
     // 0x8009BC6C: jal         0x80078300
     // 0x8009BC70: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_42;
     // 0x8009BC70: nop
 
@@ -32656,7 +32656,7 @@ L_8009BD04:
     // 0x8009BD18: jal         0x80078300
     // 0x8009BD1C: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_44;
     // 0x8009BD1C: nop
 
@@ -32933,7 +32933,7 @@ L_8009BEC0:
     // 0x8009BEE0: jal         0x80078300
     // 0x8009BEE4: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_49;
     // 0x8009BEE4: nop
 
@@ -32963,7 +32963,7 @@ L_8009BEC0:
     // 0x8009BF0C: jal         0x80078300
     // 0x8009BF10: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_50;
     // 0x8009BF10: nop
 
@@ -33061,7 +33061,7 @@ L_8009BEC0:
     // 0x8009BFB4: jal         0x80078300
     // 0x8009BFB8: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_52;
     // 0x8009BFB8: nop
 
@@ -33164,7 +33164,7 @@ L_8009C04C:
     // 0x8009C060: jal         0x80078300
     // 0x8009C064: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_54;
     // 0x8009C064: nop
 
@@ -38101,7 +38101,7 @@ RECOMP_FUNC void Scene_ClearObjectEntry(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X1C4, ctx->r10) = ctx->r25;
 ;}
 
-RECOMP_FUNC void func_8009DFF8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_AllocAllObjectBuffers(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009DFF8: addiu       $sp, $sp, -0x18
@@ -40764,7 +40764,7 @@ RECOMP_FUNC void Scene_AllocObjectBuffers(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009F310: jal         0x8009DFF8
     // 0x8009F314: nop
 
-    func_8009DFF8(rdram, ctx);
+    Scene_AllocAllObjectBuffers(rdram, ctx);
         goto after_2;
     // 0x8009F314: nop
 
@@ -43954,7 +43954,7 @@ L_800A0A8C:
     // 0x800A0B68: jal         0x80078424
     // 0x800A0B6C: nop
 
-    FUN_SRAM_80078424_twelveliner_div60_loop_30t_b(rdram, ctx);
+    displayText_ValueToBarLevel(rdram, ctx);
         goto after_2;
     // 0x800A0B6C: nop
 
@@ -44405,7 +44405,7 @@ L_800A0D60:
     // 0x800A0E54: jal         0x80078424
     // 0x800A0E58: addu        $a1, $t4, $t8
     ctx->r5 = ADD32(ctx->r12, ctx->r24);
-    FUN_SRAM_80078424_twelveliner_div60_loop_30t_b(rdram, ctx);
+    displayText_ValueToBarLevel(rdram, ctx);
         goto after_10;
     // 0x800A0E58: addu        $a1, $t4, $t8
     ctx->r5 = ADD32(ctx->r12, ctx->r24);
@@ -44895,7 +44895,7 @@ L_800A10A8:
     // 0x800A1184: jal         0x80078424
     // 0x800A1188: nop
 
-    FUN_SRAM_80078424_twelveliner_div60_loop_30t_b(rdram, ctx);
+    displayText_ValueToBarLevel(rdram, ctx);
         goto after_2;
     // 0x800A1188: nop
 
@@ -45346,7 +45346,7 @@ L_800A137C:
     // 0x800A1470: jal         0x80078424
     // 0x800A1474: addu        $a1, $t4, $t8
     ctx->r5 = ADD32(ctx->r12, ctx->r24);
-    FUN_SRAM_80078424_twelveliner_div60_loop_30t_b(rdram, ctx);
+    displayText_ValueToBarLevel(rdram, ctx);
         goto after_10;
     // 0x800A1474: addu        $a1, $t4, $t8
     ctx->r5 = ADD32(ctx->r12, ctx->r24);
@@ -45836,7 +45836,7 @@ L_800A16C4:
     // 0x800A17A0: jal         0x80078424
     // 0x800A17A4: nop
 
-    FUN_SRAM_80078424_twelveliner_div60_loop_30t_b(rdram, ctx);
+    displayText_ValueToBarLevel(rdram, ctx);
         goto after_2;
     // 0x800A17A4: nop
 
@@ -46287,7 +46287,7 @@ L_800A1998:
     // 0x800A1A8C: jal         0x80078424
     // 0x800A1A90: addu        $a1, $t4, $t8
     ctx->r5 = ADD32(ctx->r12, ctx->r24);
-    FUN_SRAM_80078424_twelveliner_div60_loop_30t_b(rdram, ctx);
+    displayText_ValueToBarLevel(rdram, ctx);
         goto after_10;
     // 0x800A1A90: addu        $a1, $t4, $t8
     ctx->r5 = ADD32(ctx->r12, ctx->r24);
@@ -46843,7 +46843,7 @@ L_800A1D88:
     // 0x800A1E28: jal         0x80078300
     // 0x800A1E2C: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_4;
     // 0x800A1E2C: nop
 
@@ -48654,7 +48654,7 @@ L_800A29F0:
     // 0x800A29F4: jal         0x800785E0
     // 0x800A29F8: addiu       $a0, $a0, 0x2D80
     ctx->r4 = ADD32(ctx->r4, 0X2D80);
-    FUN_SRAM_800785e0_sixliner_loop_arg0_t(rdram, ctx);
+    displayText_ClearNonPersistentEntries(rdram, ctx);
         goto after_3;
     // 0x800A29F8: addiu       $a0, $a0, 0x2D80
     ctx->r4 = ADD32(ctx->r4, 0X2D80);
@@ -50419,7 +50419,7 @@ RECOMP_FUNC void Scene_FreeSceneBuffer(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800AD140(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DAddEntry(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AD140: beq         $a2, $zero, L_800AD168
@@ -50531,7 +50531,7 @@ L_800AD1DC:
 
 ;}
 
-RECOMP_FUNC void func_800AD1E4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DUpdate(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AD1E4: addiu       $sp, $sp, -0x28
@@ -50752,7 +50752,7 @@ L_800AD2E0:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_800AD2FC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DDrawEntries(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AD2FC: addiu       $sp, $sp, -0x128
@@ -51941,7 +51941,7 @@ L_800AD918:
     ctx->r29 = ADD32(ctx->r29, 0X128);
 ;}
 
-RECOMP_FUNC void func_800AD970(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DRender(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AD970: addiu       $sp, $sp, -0x18
@@ -51965,7 +51965,7 @@ RECOMP_FUNC void func_800AD970(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AD994: jal         0x800AD2FC
     // 0x800AD998: addiu       $a0, $a0, 0x8
     ctx->r4 = ADD32(ctx->r4, 0X8);
-    func_800AD2FC(rdram, ctx);
+    Scene_Bg3DDrawEntries(rdram, ctx);
         goto after_0;
     // 0x800AD998: addiu       $a0, $a0, 0x8
     ctx->r4 = ADD32(ctx->r4, 0X8);
@@ -51982,7 +51982,7 @@ RECOMP_FUNC void func_800AD970(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800AD9AC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DRenderWithMatrix(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AD9AC: addiu       $sp, $sp, -0x20
@@ -52055,7 +52055,7 @@ L_800AD9E0:
     // 0x800ADA1C: jal         0x800AD2FC
     // 0x800ADA20: addiu       $a0, $a0, 0x8
     ctx->r4 = ADD32(ctx->r4, 0X8);
-    func_800AD2FC(rdram, ctx);
+    Scene_Bg3DDrawEntries(rdram, ctx);
         goto after_1;
     // 0x800ADA20: addiu       $a0, $a0, 0x8
     ctx->r4 = ADD32(ctx->r4, 0X8);
@@ -52157,7 +52157,7 @@ RECOMP_FUNC void func_800ADA84(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0XF0, ctx->r4) = ctx->f14.u32l;
 ;}
 
-RECOMP_FUNC void func_800ADA98(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DSetLifetime(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADA98: jr          $ra
@@ -52168,7 +52168,7 @@ RECOMP_FUNC void func_800ADA98(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0XD4, ctx->r4) = ctx->r5;
 ;}
 
-RECOMP_FUNC void func_800ADAA0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DSetAccel(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADAA0: mtc1        $a1, $f12
@@ -52191,7 +52191,7 @@ RECOMP_FUNC void func_800ADAA0(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X100, ctx->r4) = ctx->f4.u32l;
 ;}
 
-RECOMP_FUNC void func_800ADAC0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DSetDamping(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADAC0: mtc1        $a1, $f12

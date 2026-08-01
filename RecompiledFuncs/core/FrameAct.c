@@ -18,7 +18,7 @@ RECOMP_FUNC void FrameAct_SetState(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X0, ctx->r14) = ctx->r4;
 ;}
 
-RECOMP_FUNC void FrameAct_80053684_threeliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void FrameAct_StartNextPieceSlide(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80053684: addiu       $sp, $sp, -0x18
@@ -57,7 +57,7 @@ RECOMP_FUNC void FrameAct_80053684_threeliner(uint8_t* rdram, recomp_context* ct
 
 ;}
 
-RECOMP_FUNC void FrameAct_calls_increment_game_time_seconds2(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void FrameAct_UpdateFallingPiece(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800536BC: addiu       $sp, $sp, -0x28
@@ -169,7 +169,7 @@ L_8005374C:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void FrameAct_80053760_mediumliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void FrameAct_UpdateMultisquare(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80053760: addiu       $sp, $sp, -0x28
@@ -286,7 +286,7 @@ L_800537F4:
     // 0x80053804: jal         0x80069EC0
     // 0x80053808: sb          $zero, 0x2($t7)
     MEM_B(0X2, ctx->r15) = 0;
-    LineScan_80069ec0_sevenliner_loops_4_times(rdram, ctx);
+    LineScan_MarkRowsDirty(rdram, ctx);
         goto after_1;
     // 0x80053808: sb          $zero, 0x2($t7)
     MEM_B(0X2, ctx->r15) = 0;
@@ -356,7 +356,7 @@ L_80053854:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void FrameAct_80053868_twentyliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void FrameAct_ProcessKeySpin(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80053868: addiu       $sp, $sp, -0x28
@@ -423,7 +423,7 @@ L_800538B4:
     // 0x800538C4: jal         0x80069EC0
     // 0x800538C8: sb          $zero, 0x2($t8)
     MEM_B(0X2, ctx->r24) = 0;
-    LineScan_80069ec0_sevenliner_loops_4_times(rdram, ctx);
+    LineScan_MarkRowsDirty(rdram, ctx);
         goto after_1;
     // 0x800538C8: sb          $zero, 0x2($t8)
     MEM_B(0X2, ctx->r24) = 0;
@@ -492,7 +492,7 @@ L_80053920:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void FrameAct_80053934_tenliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void FrameAct_ProcessLineClears(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80053934: addiu       $sp, $sp, -0x28
@@ -617,7 +617,7 @@ L_800539D4:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void FrameAct_line_253(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void FrameAct_UpdateGarbage(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800539E4: addiu       $sp, $sp, -0x28
@@ -1204,7 +1204,7 @@ L_80053D00:
     // 0x80053D04: jal         0x80053684
     // 0x80053D08: nop
 
-    FrameAct_80053684_threeliner(rdram, ctx);
+    FrameAct_StartNextPieceSlide(rdram, ctx);
         goto after_0;
     // 0x80053D08: nop
 
@@ -1221,7 +1221,7 @@ L_80053D14:
     // 0x80053D18: jal         0x800536BC
     // 0x80053D1C: nop
 
-    FrameAct_calls_increment_game_time_seconds2(rdram, ctx);
+    FrameAct_UpdateFallingPiece(rdram, ctx);
         goto after_1;
     // 0x80053D1C: nop
 
@@ -1238,7 +1238,7 @@ L_80053D28:
     // 0x80053D2C: jal         0x80053760
     // 0x80053D30: nop
 
-    FrameAct_80053760_mediumliner(rdram, ctx);
+    FrameAct_UpdateMultisquare(rdram, ctx);
         goto after_2;
     // 0x80053D30: nop
 
@@ -1255,7 +1255,7 @@ L_80053D3C:
     // 0x80053D40: jal         0x80053868
     // 0x80053D44: nop
 
-    FrameAct_80053868_twentyliner(rdram, ctx);
+    FrameAct_ProcessKeySpin(rdram, ctx);
         goto after_3;
     // 0x80053D44: nop
 
@@ -1272,7 +1272,7 @@ L_80053D50:
     // 0x80053D54: jal         0x80053934
     // 0x80053D58: nop
 
-    FrameAct_80053934_tenliner(rdram, ctx);
+    FrameAct_ProcessLineClears(rdram, ctx);
         goto after_4;
     // 0x80053D58: nop
 
@@ -1289,7 +1289,7 @@ L_80053D64:
     // 0x80053D68: jal         0x800539E4
     // 0x80053D6C: nop
 
-    FrameAct_line_253(rdram, ctx);
+    FrameAct_UpdateGarbage(rdram, ctx);
         goto after_5;
     // 0x80053D6C: nop
 

@@ -323,7 +323,7 @@ L_8006A23C:
     // 0x8006A24C: jal         0x80070860
     // 0x8006A250: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_3;
     // 0x8006A250: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);

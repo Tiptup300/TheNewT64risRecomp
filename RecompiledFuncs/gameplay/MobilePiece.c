@@ -378,7 +378,7 @@ L_80064F6C:
     // 0x80064F88: jal         0x80070528
     // 0x80064F8C: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
-    Minos_80070528_Morph(rdram, ctx);
+    Minos_Mino_Morph(rdram, ctx);
         goto after_0;
     // 0x80064F8C: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
@@ -1034,7 +1034,7 @@ L_80065334:
     // 0x80065354: jal         0x80070820
     // 0x80065358: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
-    Minos_80070820_fiveliner_sets_arg0_2_4_8_12_to_arg1(rdram, ctx);
+    Minos_Mino_SetPosition(rdram, ctx);
         goto after_0;
     // 0x80065358: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
@@ -1102,7 +1102,7 @@ L_80065398:
     // 0x800653BC: jal         0x80070860
     // 0x800653C0: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_0;
     // 0x800653C0: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
@@ -1210,7 +1210,7 @@ L_80065458:
     // 0x80065474: jal         0x800702E4
     // 0x80065478: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);
-    Minos_800702e4_nineliner(rdram, ctx);
+    Minos_Mino_Init(rdram, ctx);
         goto after_0;
     // 0x80065478: addiu       $a0, $a0, 0x18
     ctx->r4 = ADD32(ctx->r4, 0X18);

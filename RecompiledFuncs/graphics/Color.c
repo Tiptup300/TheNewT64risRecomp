@@ -1161,7 +1161,7 @@ L_800552F4:
     // 0x80055374: jal         0x8007875C
     // 0x80055378: nop
 
-    FUN_SRAM_8007875c_check_gameover_conditions(rdram, ctx);
+    displayText_TallyWonderProgress(rdram, ctx);
         goto after_4;
     // 0x80055378: nop
 
@@ -4757,7 +4757,7 @@ L_80056930:
     // 0x80056A34: jal         0x80078300
     // 0x80056A38: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_69;
     // 0x80056A38: nop
 
@@ -4776,7 +4776,7 @@ L_80056A48:
     // 0x80056A4C: jal         0x80078300
     // 0x80056A50: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_70;
     // 0x80056A50: nop
 
@@ -4795,7 +4795,7 @@ L_80056A60:
     // 0x80056A64: jal         0x80078300
     // 0x80056A68: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_71;
     // 0x80056A68: nop
 
@@ -5393,7 +5393,7 @@ L_80056DF0:
     // 0x80056E3C: jal         0x80078300
     // 0x80056E40: nop
 
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_81;
     // 0x80056E40: nop
 
@@ -5403,7 +5403,7 @@ L_80056DF0:
     // 0x80056E48: jal         0x80078300
     // 0x80056E4C: andi        $s1, $v0, 0xFF
     ctx->r17 = ctx->r2 & 0XFF;
-    FUN_SRAM_80078300_twelveliner_div60_loop_30t_a(rdram, ctx);
+    displayText_ComputeBarLevel(rdram, ctx);
         goto after_82;
     // 0x80056E4C: andi        $s1, $v0, 0xFF
     ctx->r17 = ctx->r2 & 0XFF;

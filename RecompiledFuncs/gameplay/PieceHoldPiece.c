@@ -364,7 +364,7 @@ RECOMP_FUNC void PieceHoldPiece_Update(uint8_t* rdram, recomp_context* ctx) {
     // 0x80065AF8: jal         0x8006593C
     // 0x80065AFC: addiu       $a0, $a0, 0x538
     ctx->r4 = ADD32(ctx->r4, 0X538);
-    PieceHold_8006593c_nineliner_sets_struct_stuff(rdram, ctx);
+    PieceHold_AdvanceTween(rdram, ctx);
         goto after_0;
     // 0x80065AFC: addiu       $a0, $a0, 0x538
     ctx->r4 = ADD32(ctx->r4, 0X538);
@@ -439,7 +439,7 @@ L_80065B30:
     // 0x80065B58: jal         0x80065A0C
     // 0x80065B5C: nop
 
-    PieceHold_80065a0c_tenliner_adds_sets_struct(rdram, ctx);
+    PieceHold_AdvanceSlide(rdram, ctx);
         goto after_3;
     // 0x80065B5C: nop
 
@@ -482,7 +482,7 @@ L_80065B68:
     // 0x80065B90: jal         0x80065A0C
     // 0x80065B94: nop
 
-    PieceHold_80065a0c_tenliner_adds_sets_struct(rdram, ctx);
+    PieceHold_AdvanceSlide(rdram, ctx);
         goto after_6;
     // 0x80065B94: nop
 

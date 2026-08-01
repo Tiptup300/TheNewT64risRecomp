@@ -3406,7 +3406,7 @@ L_800A9EE0:
 
 ;}
 
-RECOMP_FUNC void func_800A9EF0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Main_LoadRomAssetTable2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A9EF0: lui         $v0, 0x8013
@@ -3639,7 +3639,7 @@ L_800AA02C:
 
 ;}
 
-RECOMP_FUNC void func_800AA038(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Main_GetRomAssetId(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA038: addiu       $sp, $sp, -0x30
@@ -3725,7 +3725,7 @@ L_800AA09C:
 
 ;}
 
-RECOMP_FUNC void func_800AA0AC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Main_GetRomAssetEntry(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA0AC: addiu       $sp, $sp, -0x20
@@ -3821,7 +3821,7 @@ L_800AA124:
 
 ;}
 
-RECOMP_FUNC void func_800AA134(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Main_GetRomAssetCachePtr(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA134: lui         $t6, 0x800D

@@ -359,7 +359,7 @@ L_8006B584:
     // 0x8006B5B4: jal         0x80070860
     // 0x8006B5B8: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_1;
     // 0x8006B5B8: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
@@ -498,7 +498,7 @@ L_8006B654:
     // 0x8006B684: jal         0x80070860
     // 0x8006B688: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_1;
     // 0x8006B688: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
@@ -1429,7 +1429,7 @@ L_8006BC3C:
     // 0x8006BC50: jal         0x80070860
     // 0x8006BC54: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_0;
     // 0x8006BC54: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
@@ -1615,7 +1615,7 @@ L_8006BD68:
     // 0x8006BD78: jal         0x80070860
     // 0x8006BD7C: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_0;
     // 0x8006BD7C: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
@@ -1781,7 +1781,7 @@ L_8006BE70:
     // 0x8006BE80: jal         0x80070860
     // 0x8006BE84: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_0;
     // 0x8006BE84: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
@@ -1916,7 +1916,7 @@ L_8006BF2C:
     // 0x8006BF5C: jal         0x80070860
     // 0x8006BF60: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_1;
     // 0x8006BF60: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);

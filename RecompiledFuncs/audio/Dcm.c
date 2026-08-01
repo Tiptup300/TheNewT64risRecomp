@@ -885,7 +885,7 @@ L_80087C40:
     // 0x80087C44: jal         0x800874AC
     // 0x80087C48: nop
 
-    Audio2_800874ac_sevenliner(rdram, ctx);
+    Audio2_RefillDecodeBuffer(rdram, ctx);
         goto after_11;
     // 0x80087C48: nop
 

@@ -2570,7 +2570,7 @@ RECOMP_FUNC void Mtx_BuildRotationFixed(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800AE880(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Mtx_InvertAffineF(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AE880: addiu       $sp, $sp, -0x30
@@ -3030,7 +3030,7 @@ RECOMP_FUNC void func_800AE880(uint8_t* rdram, recomp_context* ctx) {
     ctx->r29 = ADD32(ctx->r29, 0X30);
 ;}
 
-RECOMP_FUNC void func_800AEA80(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Mtx_Cofactor3x3F(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AEA80: beq         $a1, $zero, L_800AEAA0
@@ -3516,7 +3516,7 @@ L_800AEC30:
 
 ;}
 
-RECOMP_FUNC void func_800AEC54(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Mtx_Determinant3x3F(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AEC54: lwc1        $f0, 0x0($a0)
@@ -3679,7 +3679,7 @@ RECOMP_FUNC void func_800AEC54(uint8_t* rdram, recomp_context* ctx) {
     ctx->f0.fl = ctx->f2.fl;
 ;}
 
-RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Mtx_Invert3x3F(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AECFC: addiu       $sp, $sp, -0x30
@@ -3698,7 +3698,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AED18: sdc1        $f20, 0x10($sp)
     CHECK_FR(ctx, 20);
     SD(ctx->f20.u64, 0X10, ctx->r29);
-    func_800AEC54(rdram, ctx);
+    Mtx_Determinant3x3F(rdram, ctx);
         goto after_0;
     // 0x800AED18: sdc1        $f20, 0x10($sp)
     CHECK_FR(ctx, 20);
@@ -3746,7 +3746,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AED48: jal         0x800AEA80
     // 0x800AED4C: swc1        $f2, 0x2C($sp)
     MEM_W(0X2C, ctx->r29) = ctx->f2.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_1;
     // 0x800AED4C: swc1        $f2, 0x2C($sp)
     MEM_W(0X2C, ctx->r29) = ctx->f2.u32l;
@@ -3790,7 +3790,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AED7C: jal         0x800AEA80
     // 0x800AED80: swc1        $f16, 0x0($s1)
     MEM_W(0X0, ctx->r17) = ctx->f16.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_2;
     // 0x800AED80: swc1        $f16, 0x0($s1)
     MEM_W(0X0, ctx->r17) = ctx->f16.u32l;
@@ -3810,7 +3810,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AED94: jal         0x800AEA80
     // 0x800AED98: swc1        $f18, 0x4($s1)
     MEM_W(0X4, ctx->r17) = ctx->f18.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_3;
     // 0x800AED98: swc1        $f18, 0x4($s1)
     MEM_W(0X4, ctx->r17) = ctx->f18.u32l;
@@ -3830,7 +3830,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AEDAC: jal         0x800AEA80
     // 0x800AEDB0: swc1        $f4, 0x8($s1)
     MEM_W(0X8, ctx->r17) = ctx->f4.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_4;
     // 0x800AEDB0: swc1        $f4, 0x8($s1)
     MEM_W(0X8, ctx->r17) = ctx->f4.u32l;
@@ -3850,7 +3850,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AEDC4: jal         0x800AEA80
     // 0x800AEDC8: swc1        $f6, 0xC($s1)
     MEM_W(0XC, ctx->r17) = ctx->f6.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_5;
     // 0x800AEDC8: swc1        $f6, 0xC($s1)
     MEM_W(0XC, ctx->r17) = ctx->f6.u32l;
@@ -3870,7 +3870,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AEDDC: jal         0x800AEA80
     // 0x800AEDE0: swc1        $f8, 0x10($s1)
     MEM_W(0X10, ctx->r17) = ctx->f8.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_6;
     // 0x800AEDE0: swc1        $f8, 0x10($s1)
     MEM_W(0X10, ctx->r17) = ctx->f8.u32l;
@@ -3890,7 +3890,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AEDF4: jal         0x800AEA80
     // 0x800AEDF8: swc1        $f10, 0x14($s1)
     MEM_W(0X14, ctx->r17) = ctx->f10.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_7;
     // 0x800AEDF8: swc1        $f10, 0x14($s1)
     MEM_W(0X14, ctx->r17) = ctx->f10.u32l;
@@ -3910,7 +3910,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AEE0C: jal         0x800AEA80
     // 0x800AEE10: swc1        $f16, 0x18($s1)
     MEM_W(0X18, ctx->r17) = ctx->f16.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_8;
     // 0x800AEE10: swc1        $f16, 0x18($s1)
     MEM_W(0X18, ctx->r17) = ctx->f16.u32l;
@@ -3930,7 +3930,7 @@ RECOMP_FUNC void func_800AECFC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AEE24: jal         0x800AEA80
     // 0x800AEE28: swc1        $f18, 0x1C($s1)
     MEM_W(0X1C, ctx->r17) = ctx->f18.u32l;
-    func_800AEA80(rdram, ctx);
+    Mtx_Cofactor3x3F(rdram, ctx);
         goto after_9;
     // 0x800AEE28: swc1        $f18, 0x1C($s1)
     MEM_W(0X1C, ctx->r17) = ctx->f18.u32l;
@@ -3961,7 +3961,7 @@ L_800AEE38:
     ctx->r29 = ADD32(ctx->r29, 0X30);
 ;}
 
-RECOMP_FUNC void func_800AEE4C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Mtx_MulAffineF(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AEE4C: lwc1        $f4, 0x0($a1)
@@ -4536,7 +4536,7 @@ RECOMP_FUNC void func_800AEE4C(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X38, ctx->r4) = ctx->f18.u32l;
 ;}
 
-RECOMP_FUNC void func_800AF0C4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Mtx_MulF(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AF0C4: lwc1        $f4, 0x0($a1)
@@ -5211,7 +5211,7 @@ RECOMP_FUNC void func_800AF0C4(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X2C, ctx->r4) = ctx->f8.u32l;
 ;}
 
-RECOMP_FUNC void func_800AF3A4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Mtx_Mul3x3F(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AF3A4: lwc1        $f4, 0x0($a1)

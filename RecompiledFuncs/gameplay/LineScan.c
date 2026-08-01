@@ -1,7 +1,7 @@
 #include "recomp.h"
 #include "funcs.h"
 
-RECOMP_FUNC void LineScan_80069830_elevenliner_loops_20_times(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void LineScan_UpdateLineEffects(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80069830: addiu       $sp, $sp, -0x38
@@ -1069,7 +1069,7 @@ L_80069DF0:
     ctx->r29 = ADD32(ctx->r29, 0X38);
 ;}
 
-RECOMP_FUNC void LineScan_80069e2c_fiveliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void LineScan_BeginLineClear(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80069E2C: addiu       $sp, $sp, -0x18
@@ -1179,7 +1179,7 @@ L_80069EB8:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void LineScan_80069ec0_sevenliner_loops_4_times(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void LineScan_MarkRowsDirty(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80069EC0: lui         $a1, 0x8012
@@ -1413,7 +1413,7 @@ L_8006A004:
     // 0x8006A004: jal         0x80069E2C
     // 0x8006A008: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    LineScan_80069e2c_fiveliner(rdram, ctx);
+    LineScan_BeginLineClear(rdram, ctx);
         goto after_0;
     // 0x8006A008: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -1443,7 +1443,7 @@ L_8006A024:
     // 0x8006A024: jal         0x80069830
     // 0x8006A028: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    LineScan_80069830_elevenliner_loops_20_times(rdram, ctx);
+    LineScan_UpdateLineEffects(rdram, ctx);
         goto after_2;
     // 0x8006A028: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;

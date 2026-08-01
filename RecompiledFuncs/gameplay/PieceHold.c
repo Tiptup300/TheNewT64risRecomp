@@ -16,7 +16,7 @@ RECOMP_FUNC void PieceHold_80065710_twoliner_sets_to_0_and_0xff(uint8_t* rdram, 
     MEM_B(0X1, ctx->r4) = ctx->r14;
 ;}
 
-RECOMP_FUNC void PieceHold_80065720_fiveliner_two_traps(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_SetupTween(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80065720: sh          $zero, 0x6($a0)
@@ -75,7 +75,7 @@ L_8006575C:
 
 ;}
 
-RECOMP_FUNC void PieceHold_8006593c_nineliner_sets_struct_stuff(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_AdvanceTween(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006593C: lbu         $t6, 0x0($a0)
@@ -168,7 +168,7 @@ L_800659B8:
 
 ;}
 
-RECOMP_FUNC void PieceHold_80065a0c_tenliner_adds_sets_struct(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_AdvanceSlide(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80065A0C: lbu         $t6, 0x1A($a0)
@@ -289,7 +289,7 @@ L_80065AD4:
 
 ;}
 
-RECOMP_FUNC void PieceHold_80065e20_lots_of_ifs_and_traps(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_SetupSlide(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80065E20: lhu         $t6, 0x16($sp)
@@ -685,7 +685,7 @@ RECOMP_FUNC void PieceHold_DisableAltColor(uint8_t* rdram, recomp_context* ctx) 
 
 ;}
 
-RECOMP_FUNC void PieceHold_80066048_tenliner_checks_numplayers(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PieceHold_InitPosition(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80066048: addiu       $sp, $sp, -0x28
@@ -1092,7 +1092,7 @@ RECOMP_FUNC void PieceHold_Swap(uint8_t* rdram, recomp_context* ctx) {
     // 0x800662BC: jal         0x80065E20
     // 0x800662C0: sw          $t0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r8;
-    PieceHold_80065e20_lots_of_ifs_and_traps(rdram, ctx);
+    PieceHold_SetupSlide(rdram, ctx);
         goto after_3;
     // 0x800662C0: sw          $t0, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r8;
@@ -1110,7 +1110,7 @@ RECOMP_FUNC void PieceHold_Swap(uint8_t* rdram, recomp_context* ctx) {
     // 0x800662D8: jal         0x80065720
     // 0x800662DC: nop
 
-    PieceHold_80065720_fiveliner_two_traps(rdram, ctx);
+    PieceHold_SetupTween(rdram, ctx);
         goto after_4;
     // 0x800662DC: nop
 
@@ -1230,7 +1230,7 @@ RECOMP_FUNC void PieceHold_Swap(uint8_t* rdram, recomp_context* ctx) {
     // 0x800663B8: jal         0x80065E20
     // 0x800663BC: sw          $t3, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r11;
-    PieceHold_80065e20_lots_of_ifs_and_traps(rdram, ctx);
+    PieceHold_SetupSlide(rdram, ctx);
         goto after_6;
     // 0x800663BC: sw          $t3, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->r11;
@@ -1496,7 +1496,7 @@ RECOMP_FUNC void PieceHold_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80066570: jal         0x80066048
     // 0x80066574: addiu       $a0, $a0, 0x1490
     ctx->r4 = ADD32(ctx->r4, 0X1490);
-    PieceHold_80066048_tenliner_checks_numplayers(rdram, ctx);
+    PieceHold_InitPosition(rdram, ctx);
         goto after_1;
     // 0x80066574: addiu       $a0, $a0, 0x1490
     ctx->r4 = ADD32(ctx->r4, 0X1490);

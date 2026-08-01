@@ -638,7 +638,7 @@ L_80069398:
     // 0x800693DC: jal         0x80070860
     // 0x800693E0: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070860_fortyliner(rdram, ctx);
+    Minos_Mino_StartSlide(rdram, ctx);
         goto after_3;
     // 0x800693E0: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);

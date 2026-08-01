@@ -133,7 +133,7 @@ RECOMP_FUNC void Cube_Alloc(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006E974: jal         0x80070820
     // 0x8006E978: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_80070820_fiveliner_sets_arg0_2_4_8_12_to_arg1(rdram, ctx);
+    Minos_Mino_SetPosition(rdram, ctx);
         goto after_1;
     // 0x8006E978: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
@@ -175,7 +175,7 @@ RECOMP_FUNC void Cube_Alloc(uint8_t* rdram, recomp_context* ctx) {
     // 0x8006E9B0: jal         0x800702E4
     // 0x8006E9B4: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    Minos_800702e4_nineliner(rdram, ctx);
+    Minos_Mino_Init(rdram, ctx);
         goto after_4;
     // 0x8006E9B4: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);

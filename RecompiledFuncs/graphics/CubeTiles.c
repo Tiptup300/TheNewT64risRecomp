@@ -5133,7 +5133,7 @@ L_800A3D10:
     // 0x800A3D3C: jal         0x800AF3A4
     // 0x800A3D40: sw          $at, 0x0($t0)
     MEM_W(0X0, ctx->r8) = ctx->r1;
-    func_800AF3A4(rdram, ctx);
+    Mtx_Mul3x3F(rdram, ctx);
         goto after_1;
     // 0x800A3D40: sw          $at, 0x0($t0)
     MEM_W(0X0, ctx->r8) = ctx->r1;
@@ -10653,7 +10653,7 @@ RECOMP_FUNC void func_800A57FC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A5838: jal         0x800AF0C4
     // 0x800A583C: or          $a2, $s1, $zero
     ctx->r6 = ctx->r17 | 0;
-    func_800AF0C4(rdram, ctx);
+    Mtx_MulF(rdram, ctx);
         goto after_1;
     // 0x800A583C: or          $a2, $s1, $zero
     ctx->r6 = ctx->r17 | 0;
@@ -10860,7 +10860,7 @@ RECOMP_FUNC void func_800A5930(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A595C: jal         0x800AEE4C
     // 0x800A5960: sw          $a3, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r7;
-    func_800AEE4C(rdram, ctx);
+    Mtx_MulAffineF(rdram, ctx);
         goto after_0;
     // 0x800A5960: sw          $a3, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r7;
@@ -11098,7 +11098,7 @@ L_800A5A8C:
     // 0x800A5AB4: jal         0x800AF0C4
     // 0x800A5AB8: or          $a2, $s2, $zero
     ctx->r6 = ctx->r18 | 0;
-    func_800AF0C4(rdram, ctx);
+    Mtx_MulF(rdram, ctx);
         goto after_4;
     // 0x800A5AB8: or          $a2, $s2, $zero
     ctx->r6 = ctx->r18 | 0;
@@ -11154,7 +11154,7 @@ L_800A5AE4:
     // 0x800A5AF8: jal         0x800AF0C4
     // 0x800A5AFC: or          $a2, $s4, $zero
     ctx->r6 = ctx->r20 | 0;
-    func_800AF0C4(rdram, ctx);
+    Mtx_MulF(rdram, ctx);
         goto after_7;
     // 0x800A5AFC: or          $a2, $s4, $zero
     ctx->r6 = ctx->r20 | 0;
@@ -11283,7 +11283,7 @@ L_800A5B94:
     // 0x800A5BC8: jal         0x800AE880
     // 0x800A5BCC: addiu       $a0, $a0, 0xC0
     ctx->r4 = ADD32(ctx->r4, 0XC0);
-    func_800AE880(rdram, ctx);
+    Mtx_InvertAffineF(rdram, ctx);
         goto after_9;
     // 0x800A5BCC: addiu       $a0, $a0, 0xC0
     ctx->r4 = ADD32(ctx->r4, 0XC0);
@@ -11337,7 +11337,7 @@ L_800A5B94:
     // 0x800A5C14: jal         0x800AE880
     // 0x800A5C18: addiu       $a0, $a0, 0x80
     ctx->r4 = ADD32(ctx->r4, 0X80);
-    func_800AE880(rdram, ctx);
+    Mtx_InvertAffineF(rdram, ctx);
         goto after_10;
     // 0x800A5C18: addiu       $a0, $a0, 0x80
     ctx->r4 = ADD32(ctx->r4, 0X80);
@@ -11654,7 +11654,7 @@ L_800A5DAC:
     // 0x800A5DBC: jal         0x800AF0C4
     // 0x800A5DC0: or          $a2, $s4, $zero
     ctx->r6 = ctx->r20 | 0;
-    func_800AF0C4(rdram, ctx);
+    Mtx_MulF(rdram, ctx);
         goto after_17;
     // 0x800A5DC0: or          $a2, $s4, $zero
     ctx->r6 = ctx->r20 | 0;
@@ -13106,7 +13106,7 @@ L_800A659C:
     // 0x800A659C: jal         0x800AA134
     // 0x800A65A0: lw          $a0, 0x0($s0)
     ctx->r4 = MEM_W(ctx->r16, 0X0);
-    func_800AA134(rdram, ctx);
+    Main_GetRomAssetCachePtr(rdram, ctx);
         goto after_0;
     // 0x800A65A0: lw          $a0, 0x0($s0)
     ctx->r4 = MEM_W(ctx->r16, 0X0);
@@ -13163,7 +13163,7 @@ L_800A65D4:
     // 0x800A65D4: jal         0x800AA038
     // 0x800A65D8: lw          $a0, 0x0($s0)
     ctx->r4 = MEM_W(ctx->r16, 0X0);
-    func_800AA038(rdram, ctx);
+    Main_GetRomAssetId(rdram, ctx);
         goto after_1;
     // 0x800A65D8: lw          $a0, 0x0($s0)
     ctx->r4 = MEM_W(ctx->r16, 0X0);
@@ -21497,7 +21497,7 @@ RECOMP_FUNC void CubeTiles_AssetFree(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AA49C: jal         0x800AA038
     // 0x800AA4A0: sw          $a1, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->r5;
-    func_800AA038(rdram, ctx);
+    Main_GetRomAssetId(rdram, ctx);
         goto after_0;
     // 0x800AA4A0: sw          $a1, 0x1C($sp)
     MEM_W(0X1C, ctx->r29) = ctx->r5;
