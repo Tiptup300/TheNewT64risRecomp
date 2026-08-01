@@ -1044,7 +1044,7 @@ L_8008F2F4:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_8008F360(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_ProcessObjectList(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8008F360: addiu       $sp, $sp, -0x38
@@ -3751,7 +3751,7 @@ L_80090374:
     // 0x8009045C: jal         0x8008F360
     // 0x80090460: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8008F360(rdram, ctx);
+    Scene_ProcessObjectList(rdram, ctx);
         goto after_3;
     // 0x80090460: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
@@ -4204,7 +4204,7 @@ L_800905FC:
     // 0x8009073C: jal         0x8008F360
     // 0x80090740: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8008F360(rdram, ctx);
+    Scene_ProcessObjectList(rdram, ctx);
         goto after_5;
     // 0x80090740: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
@@ -4990,7 +4990,7 @@ L_80090BA8:
     // 0x80090BDC: jal         0x8008F360
     // 0x80090BE0: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8008F360(rdram, ctx);
+    Scene_ProcessObjectList(rdram, ctx);
         goto after_3;
     // 0x80090BE0: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
@@ -36719,7 +36719,7 @@ RECOMP_FUNC void Scene_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x8009D674: jal         0x8008F360
     // 0x8009D678: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8008F360(rdram, ctx);
+    Scene_ProcessObjectList(rdram, ctx);
         goto after_6;
     // 0x8009D678: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);

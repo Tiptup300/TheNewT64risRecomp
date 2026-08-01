@@ -233,7 +233,7 @@ L_80086108:
     // 0x80086114: jal         0x8008EFA0
     // 0x80086118: addiu       $a1, $t2, 0x458
     ctx->r5 = ADD32(ctx->r10, 0X458);
-    func_8008EFA0(rdram, ctx);
+    Dcm_InitDecoder(rdram, ctx);
         goto after_5;
     // 0x80086118: addiu       $a1, $t2, 0x458
     ctx->r5 = ADD32(ctx->r10, 0X458);
@@ -686,7 +686,7 @@ L_800863F8:
     // 0x80086404: jal         0x8008EFA0
     // 0x80086408: addiu       $a1, $t3, 0x458
     ctx->r5 = ADD32(ctx->r11, 0X458);
-    func_8008EFA0(rdram, ctx);
+    Dcm_InitDecoder(rdram, ctx);
         goto after_8;
     // 0x80086408: addiu       $a1, $t3, 0x458
     ctx->r5 = ADD32(ctx->r11, 0X458);
@@ -3139,7 +3139,7 @@ L_80087500:
     // 0x80087504: jal         0x8008F0D0
     // 0x80087508: addiu       $a0, $a0, 0x458
     ctx->r4 = ADD32(ctx->r4, 0X458);
-    func_8008F0D0(rdram, ctx);
+    Dcm_DecodeSample(rdram, ctx);
         goto after_0;
     // 0x80087508: addiu       $a0, $a0, 0x458
     ctx->r4 = ADD32(ctx->r4, 0X458);
@@ -3234,7 +3234,7 @@ L_8008759C:
     // 0x800875A0: jal         0x8008F0D0
     // 0x800875A4: addiu       $a0, $a0, 0x458
     ctx->r4 = ADD32(ctx->r4, 0X458);
-    func_8008F0D0(rdram, ctx);
+    Dcm_DecodeSample(rdram, ctx);
         goto after_0;
     // 0x800875A4: addiu       $a0, $a0, 0x458
     ctx->r4 = ADD32(ctx->r4, 0X458);

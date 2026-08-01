@@ -1598,7 +1598,7 @@ RECOMP_FUNC void calls_game_deinit(uint8_t* rdram, recomp_context* ctx) {
     // 0x80055624: jal         0x8008F360
     // 0x80055628: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8008F360(rdram, ctx);
+    Scene_ProcessObjectList(rdram, ctx);
         goto after_7;
     // 0x80055628: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);

@@ -137,7 +137,7 @@ RECOMP_FUNC void Credits_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80083404: jal         0x8008F360
     // 0x80083408: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
-    func_8008F360(rdram, ctx);
+    Scene_ProcessObjectList(rdram, ctx);
         goto after_4;
     // 0x80083408: addiu       $a0, $a0, -0x6F30
     ctx->r4 = ADD32(ctx->r4, -0X6F30);
