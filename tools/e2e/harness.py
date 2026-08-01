@@ -58,6 +58,12 @@ DEFAULT_WATCHES = {
     "players":       (0x8011EF20, 1),  # g_playercount
     "frame_counter": (0x801109F4, 4),  # g_gameFrameCounter (in-game frames)
     "obj_slot_buf":  (0x80129200, 4),  # g_sceneObjSlotMatrixBuf (the scene-4 crash pointer)
+    # menu navigation state (found via RAM-diff exploration):
+    "menu_hub_state": (0x800D7520, 4),  # g_menuHubState
+    "obj_list_ptr":   (0x800D3D00, 4),  # g_sceneObjListPtr — moves on UP/DOWN (cursor proxy)
+    "obj_iter_ptr":   (0x800D3D10, 4),  # g_sceneObjIterPtr
+    "scene_main_state": (0x800D3D24, 4),  # g_sceneMainState — changes on A (submenu enter)
+    "game_type":      (0x8011EEEC, 1),  # g_selectedGameType
 }
 
 
@@ -77,9 +83,11 @@ class GameError(RuntimeError):
 
 class Game:
     def __init__(self, rom=DEFAULT_ROM, watches=None, workdir=None, no_autoboot=False,
-                 env=None, logfile=None, mods=None):
+                 env=None, logfile=None, mods=None, region=None):
         self.rom = Path(rom)
         self.watches = dict(DEFAULT_WATCHES if watches is None else watches)
+        # region: (base_addr, length) to snapshot for RAM-diff discovery, or None.
+        self.region = region
         self.no_autoboot = no_autoboot
         self.extra_env = dict(env or {})
         # mods: None = leave the installed mods.json untouched; a list of mod ids
@@ -147,6 +155,8 @@ class Game:
         env["TNT_STATE_WATCH"] = str(self.watch_path)
         env["TNT_INPUT"] = str(self.input_path)
         env["TNT_STATE_POKE"] = str(self.poke_path)
+        if self.region is not None:
+            env["TNT_STATE_REGION"] = f"0x{self.region[0]:08X} {self.region[1]}"
         if DZN.exists():
             env["VK_ICD_FILENAMES"] = str(DZN)
         if self.no_autoboot:
@@ -269,3 +279,30 @@ class Game:
         """Wait for n rendered frames (heartbeat ticks)."""
         start = self.frame()
         self.wait_for("_frame", lambda f: f >= start + n, timeout=max(5.0, n / 30.0 + 2))
+
+    # ---- RAM-diff discovery (needs region=(base,len)) ---------------------
+    def snapshot(self):
+        """Read the current region snapshot as bytes (needs region set)."""
+        return (self.workdir / "state.txt.region").read_bytes()
+
+    def diff(self, before, after, changed_only=True):
+        """Diff two region snapshots word-by-word -> [(addr, old, new)]."""
+        base = self.region[0]
+        out = []
+        n = min(len(before), len(after)) // 4
+        for i in range(n):
+            o = int.from_bytes(before[i*4:i*4+4], "little")
+            a = int.from_bytes(after[i*4:i*4+4], "little")
+            if not changed_only or o != a:
+                out.append((base + i*4, o, a))
+        return [x for x in out if x[1] != x[2]] if changed_only else out
+
+    def find_changes(self, action, settle=0.4):
+        """Snapshot, run action(), settle, snapshot, return changed [(addr,old,new)].
+        Use to discover which globals an input mutates (e.g. cursor)."""
+        self.wait_frames(2)
+        before = self.snapshot()
+        action()
+        _sleep(settle)
+        after = self.snapshot()
+        return self.diff(before, after)

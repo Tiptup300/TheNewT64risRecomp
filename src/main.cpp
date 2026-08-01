@@ -179,14 +179,47 @@ static void tnt_state_poke() {
     std::fclose(p);
 }
 
+// E2E region snapshot (TNT_STATE_REGION="0xADDR LEN"): dump LEN raw bytes of RAM
+// (word-aligned view; words are not swizzled) to <TNT_STATE_OUT>.region each frame,
+// atomically. The harness snapshots this, injects an input, snapshots again, and
+// diffs 4-byte chunks to discover exactly which globals a menu action changes
+// (changed chunk k -> guest addr = base + k*4). Inert unless the env var is set.
+static void tnt_state_region() {
+    static bool checked = false;
+    static uint32_t base = 0, len = 0;
+    static std::string out;
+    if (!checked) {
+        checked = true;
+        if (const char* r = std::getenv("TNT_STATE_REGION")) {
+            char a[64]; unsigned long l = 0;
+            if (std::sscanf(r, "%63s %lu", a, &l) == 2) {
+                base = (uint32_t)std::strtoul(a, nullptr, 0);
+                len = (uint32_t)l;
+                if (len > (1u << 20)) len = (1u << 20); // cap 1MB
+            }
+        }
+        if (const char* o = std::getenv("TNT_STATE_OUT")) out = std::string(o) + ".region";
+    }
+    if (len == 0 || out.empty() || g_state_rdram == nullptr) return;
+    uint32_t off = base - 0x80000000u;
+    if (off >= 0x20000000u || off + len > 0x20000000u) return;
+    std::string tmp = out + ".tmp";
+    if (FILE* f = std::fopen(tmp.c_str(), "wb")) {
+        std::fwrite(g_state_rdram + off, 1, len, f);
+        std::fclose(f);
+        std::rename(tmp.c_str(), out.c_str());
+    }
+}
+
 static void update_gfx(ultramodern::gfx_callbacks_t::gfx_data_t) {
     // Single event pump: recompinput::handle_events() polls SDL, updates game
     // input, and queues events to recompui (which processes them in its render
     // hook). Doing our own SDL_PollEvent/try_deque_event here steals events and
     // breaks menu hover/input.
     recompinput::handle_events();
-    tnt_state_poke(); // E2E poke (inert unless TNT_STATE_POKE is set)
-    tnt_state_dump(); // E2E state export (inert unless TNT_STATE_OUT is set)
+    tnt_state_poke();   // E2E poke (inert unless TNT_STATE_POKE is set)
+    tnt_state_dump();   // E2E state export (inert unless TNT_STATE_OUT is set)
+    tnt_state_region(); // E2E region snapshot (inert unless TNT_STATE_REGION is set)
 }
 
 static void vi_callback() {
