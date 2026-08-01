@@ -66,7 +66,9 @@ TNT_ROM="$HOME/.local/share/N64Recomp/TheNewTiptris/tnt.n64.us.z64" \
 Capture the game window **from the Windows side** (WSL2 has no Linux capture tools;
 WSLg apps are real Windows windows). Helper scripts live in `C:\Users\Public\`:
 - `winburst.ps1 <titleMatch> <outdir> <count> <delayMs>` — poll for the window
-  (EnumWindows, title contains "Tiptris"), then burst-capture the window rect.
+  (EnumWindows, title contains the match; window title is "The New T64ris :
+  Recompiled" — the helpers default to the rebrand-proof substring "Recompiled"),
+  then burst-capture the window rect.
 - `montage.ps1 <indir> <out> <cols> <tw> <th>` — contact sheet of frames.
 - `compare.ps1` — labeled before/after. `winrect.ps1` — print the window rect.
 
