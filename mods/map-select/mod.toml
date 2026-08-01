@@ -10,7 +10,8 @@ description = """
 Forces the game to play a chosen music track instead of picking one randomly. \
 Set "Song" to Random for normal behavior, or pick a specific track to hear it. \
 (Historically shipped as a "map selector" — the forced byte was RE-confirmed to be \
-the song index, not the background; the real map global is not yet identified.)"""
+the song index, not the background. There is no discrete map global: the 3D \
+background is procedurally generated each game, so a map selector isn't possible.)"""
 short_description = "Choose which music track the game plays."
 authors = [ "TntRecomp" ]
 game_id = "tnt"
