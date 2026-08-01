@@ -50,3 +50,22 @@ boundaries), data-menu/controller-pak state, screen-fade pairs, text cursors,
 sine/rand tables, per-mode presets. Going beyond ~76% would require **runtime/
 behavioral RE** (observing heap struct layouts live) or reading ROM data — neither
 is in scope. This caps the honest STATIC variable ceiling at ~76–80%.
+
+## Update 2026-08-01 (pushed to the honest static ceiling)
+
+After a 90%/90% target was set, an aggressive-but-honest **struct-field naming** pass
+(fixed-address bss fields named from their consuming os*/al*/gu* call or clear R/W
+semantics) plus a **referenced-placeholder** pass took variables 76.0% → **83.0%**
+(797/960) and functions to **90.1%** (1289/1430).
+
+**Why variables stop at ~83–88%, proven by dataxref:** of the 163 remaining D_
+placeholders, **~111 are referenced by NO code at all** (they are ROM `.rodata`
+string/table content reached only by data relocations — the recompiled *code* we work
+from contains no expression that computes them, and their only meaningful name would
+be their copyrighted content, which cannot be committed). The remaining ~52 referenced
+placeholders were deep-read and are **genuinely opaque**: write-only-zero reset flags
+in Scene_SaveDataScreen, register-spill/cursor scratch inside the CubeTiles
+ObjBuildLookAt DL-builder, Rand/math table-gen internals, a startup checksum
+accumulator, and assert-format strings. Absolute static ceiling ≈ 88% (naming EVERY
+referenced placeholder); realistic honest ceiling ≈ 83–85%. Beyond that needs runtime/
+behavioral RE or reading ROM data (out of scope). This is the honest stopping point.
