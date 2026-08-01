@@ -51302,7 +51302,7 @@ L_800AD4EC:
     // 0x800AD5C8: jal         0x800B11C4
     // 0x800AD5CC: swc1        $f6, 0x100($sp)
     MEM_W(0X100, ctx->r29) = ctx->f6.u32l;
-    func_800B11C4(rdram, ctx);
+    Math_HsvToRgb(rdram, ctx);
         goto after_2;
     // 0x800AD5CC: swc1        $f6, 0x100($sp)
     MEM_W(0X100, ctx->r29) = ctx->f6.u32l;

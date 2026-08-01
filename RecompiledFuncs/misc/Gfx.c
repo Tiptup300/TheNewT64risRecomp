@@ -3034,7 +3034,7 @@ L_8007DB40:
     // 0x8007DCB4: jal         0x800B11C4
     // 0x8007DCB8: swc1        $f10, 0x4C($sp)
     MEM_W(0X4C, ctx->r29) = ctx->f10.u32l;
-    func_800B11C4(rdram, ctx);
+    Math_HsvToRgb(rdram, ctx);
         goto after_10;
     // 0x8007DCB8: swc1        $f10, 0x4C($sp)
     MEM_W(0X4C, ctx->r29) = ctx->f10.u32l;
