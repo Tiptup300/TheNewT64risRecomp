@@ -1,4 +1,4 @@
-# TheNewTiptrisRecomp
+# TheNewT64risRecomp
 
 A work-in-progress native PC port of **The New T64ris** — an N64 game by H2O —
 built with [N64: Recompiled](https://github.com/N64Recomp/N64Recomp): static

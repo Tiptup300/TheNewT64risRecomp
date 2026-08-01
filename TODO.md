@@ -21,7 +21,10 @@
 ## UI / fonts
 - [ ] replace the placeholder primary UI font (primary.ttf is a renamed Ubuntu placeholder) with a real display face; add a bold weight for headers (theme requests bold the single-weight font can't provide)
 - [ ] ship a real icon/emoji face if needed (NotoEmoji is the only real extra face; promptfont is now the real controller-glyph font)
-- [ ] custom window title / app branding pass
+- [x] custom window title / app branding pass — app renamed "The New T64ris"
+      (window titles, program name, display name, packaging, screenshot-harness
+      title match). Data-dir key + ROM header kept as-is to avoid orphaning saves /
+      breaking ROM detection.
 - [ ] look at the animations when jumping through menus (menu transitions/navigation — check they're smooth and not janky/missing)
 
 ## Audio
@@ -42,10 +45,21 @@
 - [ ] add default mod that hides "transfer name" and "dump lines to game pak" menu options in data
 - [ ] include a mod thats not enabled by default that does a hd texture pack on the game
 - [ ] explore options to extract all texture files from the game data (dump the ROM's textures — enables the HD texture pack + asset understanding)
-- [ ] FIX map-selector mod — built but non-functional and MISTARGETED. It pokes 0x8011E4F8, but RE shows that byte is the SONG/music index (0..7), not the map: func_80090E08 fills it via func_800A35EC(0,7) then passes it straight to FUN_027BF0_check_music_settings_and_play (0x80061B18). The actual map/background global is still unidentified — need to find where the game stores/reads the background index (grep the wonder/background renderer + attract setup), then force it at its consume site. Verify with the user driving gameplay (no headless input).
-- [ ] song/playlist selector groundwork: 0x8011E4F8 = song index (0..7), consumed by FUN_027BF0_check_music_settings_and_play in func_80090E08. A RECOMP_HOOK on FUN_027BF0 overriding ctx->r4 (a0 = song index) is the correct, correctly-timed way to force the track. (Real audio needed to verify — WSLg is on dummy.)
-- [ ] EXTEND skip-intro dropdown targets — currently safe options are Off / Attract (confirmed working). Publisher target didn't skip (wrong scene value); Start menu / Menu targets CRASH (forcing scene byte 0x800CFEE8=4 bypasses the hub's setup -> func_8009EED4 segfault). Also add: skip straight into Single-Game Sprint and Single-Game Marathon. All of these are blocked on the func_8009EED4 crash + finding the correct scene/mode values (needs user testing).
-- [ ] FIX crash: func_80090E08 -> func_8009D5E4 -> func_800A0228 -> func_8009EED4+0x128 (jal guTranslate on a bad scene-object pointer). Triggered whenever the menu-hub / start-playing scene (byte 0x800CFEE8 = 4) is entered without its normal setup — e.g. skip-intro forcing scene 4, or the attract demo starting a game. This is the central blocker for skip-to-menu and reliable gameplay boot. Needs RE of func_8009EED4's scene-object init.
+- [x] map-selector mod — RESOLVED. Two findings: (1) 0x8011E4F8 = g_currentSong
+      (the music index picked by Scene_RandRange(0,7) in MenuHub_StartPlaying and
+      passed to PFGFX_SelectAndStartMusic), NOT the map. (2) There is NO discrete
+      map/background global at all — a dedicated hunt found the 3D background is
+      procedurally generated each game (Gfx_RandomizeBackgroundGrid), not chosen
+      from ~8 presets. So a map selector isn't possible. Rewrote the mod as a
+      "Music Track Selector" that forces g_currentSong by name (config `song`).
+- [ ] song/playlist selector — the map-select mod is now a basic Music Track
+      Selector (forces g_currentSong each Scene_Update). Still TODO: verify the
+      per-frame poke actually switches the *playing* track (may be mistimed); the
+      robust form is RECOMP_PATCH of PFGFX_SelectAndStartMusic overriding a0 at the
+      selection point. Also: list all songs + disable the in-game "select music"
+      option when enabled. (Real audio needed to verify — WSLg often on dummy.)
+- [ ] EXTEND skip-intro dropdown targets — currently safe options are Off / Attract (confirmed working). Publisher target didn't skip (wrong scene value); Start menu / Menu targets CRASH (forcing scene byte g_currentScene 0x800CFEE8=4 bypasses the hub's setup -> Scene_SetupObjectMatrices segfault). Also add: skip straight into Single-Game Sprint and Single-Game Marathon. All of these are blocked on the crash below + finding the correct scene/mode values (needs user testing).
+- [ ] FIX crash (names updated): MenuHub_StartPlaying (0x80090E08) -> Scene_Init (0x8009D5E4) -> Scene_SetupCameraAndObjects (0x800A0228) -> Scene_SetupObjectMatrices (0x8009EED4)+0x128 (jal guTranslate on a bad scene-object pointer: s0 = MEM_W(sceneObjTable,0x130)+index*0x1C0). Triggered whenever the menu-hub / start-playing scene (g_currentScene 0x800CFEE8 = 4) is entered without its normal setup — skip-intro forcing scene 4, or the attract demo starting a game. Central blocker for skip-to-menu + reliable gameplay boot. (Root-cause analysis in progress — see the naming-campaign-status memory.)
 - [ ] open-mods-folder button does nothing under WSLg (no xdg-open/Windows shell bridge). Wire it to the right per-OS folder-open (xdg-open / explorer.exe / open) or hide it where unsupported.
 - [ ] song/playlist selector mod — list all available songs and let the user choose which songs play; when enabled, disable the in-game Audio "select music" menu option
 - [~] configure mods without hand-relaunching — DONE via the in-game "Restart" button (config-menu header, shown while playing): re-execs the app with TNT_NO_AUTOBOOT so it lands at the launcher to toggle mods, then Start Game again. Still open: a true IN-PLACE return-to-launcher (tear down the game thread without a full process restart) + a Windows re-exec path (Linux-only /proc/self/exe today).
