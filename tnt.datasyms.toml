@@ -875,6 +875,7 @@ symbols = [
     { name = "g_sceneObjSpritesPtr", vram = 0x801291DC },
     { name = "g_sceneDataPtr", vram = 0x801291F4 },
     { name = "g_sceneObjMtxArray", vram = 0x80129040 },
+    { name = "g_sceneObjSlotMatrixBuf", vram = 0x80129200 },
     { name = "g_wonders4RatioInput1", vram = 0x801295F4 },
     { name = "g_scenePerspNorm", vram = 0x801290C0 },
     { name = "g_sceneObjTblEnd", vram = 0x801290D0 },

@@ -1,0 +1,25 @@
+# Scene-4 / start-playing crash guard (EXPERIMENTAL, disabled by default).
+[manifest]
+id = "tnt_scene_crash_guard"
+version = "0.1.0"
+display_name = "Scene Crash Guard (experimental)"
+description = """
+Prevents the SIGSEGV that happens when the menu-hub / play scene is entered without \
+its normal setup (e.g. the attract demo starting a game, or forcing scene 4). \
+Scene_SetupObjectMatrices writes matrices into an object-slot buffer that is null in \
+that state; this guard points the null pointer at unused RAM so the writes land \
+harmlessly instead of crashing. Only acts when the buffer is already null, so it \
+never affects normal gameplay. UNTESTED — enable to try the skip-to-menu / attract \
+paths and report whether the game survives past the flythrough."""
+short_description = "Guard against the scene-4/attract null-pointer crash (experimental)."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+enabled_by_default = false
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_scene_crash_guard"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
+additional_files = [ ]

@@ -59,7 +59,19 @@
       selection point. Also: list all songs + disable the in-game "select music"
       option when enabled. (Real audio needed to verify — WSLg often on dummy.)
 - [ ] EXTEND skip-intro dropdown targets — currently safe options are Off / Attract (confirmed working). Publisher target didn't skip (wrong scene value); Start menu / Menu targets CRASH (forcing scene byte g_currentScene 0x800CFEE8=4 bypasses the hub's setup -> Scene_SetupObjectMatrices segfault). Also add: skip straight into Single-Game Sprint and Single-Game Marathon. All of these are blocked on the crash below + finding the correct scene/mode values (needs user testing).
-- [ ] FIX crash (names updated): MenuHub_StartPlaying (0x80090E08) -> Scene_Init (0x8009D5E4) -> Scene_SetupCameraAndObjects (0x800A0228) -> Scene_SetupObjectMatrices (0x8009EED4)+0x128 (jal guTranslate on a bad scene-object pointer: s0 = MEM_W(sceneObjTable,0x130)+index*0x1C0). Triggered whenever the menu-hub / start-playing scene (g_currentScene 0x800CFEE8 = 4) is entered without its normal setup — skip-intro forcing scene 4, or the attract demo starting a game. Central blocker for skip-to-menu + reliable gameplay boot. (Root-cause analysis in progress — see the naming-campaign-status memory.)
+- [~] FIX crash — ROOT CAUSE FOUND + guard mod shipped (experimental, needs runtime test).
+      Chain: MenuHub_StartPlaying (0x80090E08) -> Scene_Init (0x8009D5E4) ->
+      Scene_SetupCameraAndObjects (0x800A0228) -> Scene_SetupObjectMatrices (0x8009EED4).
+      It writes 16 matrices into g_sceneObjSlotMatrixBuf @0x80129200 (scene-obj table
+      0x801290D0 + 0x130), which Scene_AllocObjectBuffers allocs on the normal load
+      path and Scene_Init frees+nulls at teardown. Entering scene 4 without the load
+      (attract-demo game start) leaves it null -> store folds into the recomp's
+      PROT_NONE guard region -> SIGSEGV. Genuine game bug (not a masking artifact).
+      GUARD: mods/scene-crash-guard (RECOMP_HOOK on Scene_SetupObjectMatrices, points
+      the null ptr at unused RAM 0x80900000; acts only in the null/broken state).
+      STILL OPEN: verify the guard at runtime (clean display needed); the real fix is
+      to route scene-4 entry through the resource-load path. RECOMP_PATCH can't be used
+      (replaces the whole function, no delegate-to-original). See tnt-scene-and-crash-re memory.
 - [ ] open-mods-folder button does nothing under WSLg (no xdg-open/Windows shell bridge). Wire it to the right per-OS folder-open (xdg-open / explorer.exe / open) or hide it where unsupported.
 - [ ] song/playlist selector mod — list all available songs and let the user choose which songs play; when enabled, disable the in-game Audio "select music" menu option
 - [~] configure mods without hand-relaunching — DONE via the in-game "Restart" button (config-menu header, shown while playing): re-execs the app with TNT_NO_AUTOBOOT so it lands at the launcher to toggle mods, then Start Game again. Still open: a true IN-PLACE return-to-launcher (tear down the game thread without a full process restart) + a Windows re-exec path (Linux-only /proc/self/exe today).
