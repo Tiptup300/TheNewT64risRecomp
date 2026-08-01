@@ -3600,7 +3600,7 @@ L_8009034C:
 
 ;}
 
-RECOMP_FUNC void func_8009035C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_LoadScreen(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009035C: addiu       $sp, $sp, -0x38

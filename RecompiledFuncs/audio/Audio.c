@@ -3002,7 +3002,7 @@ L_800858D0:
     // 0x800858DC: jal         0x80061198
     // 0x800858E0: nop
 
-    func_80061198(rdram, ctx);
+    Vi_ApplyModeBank(rdram, ctx);
         goto after_6;
     // 0x800858E0: nop
 

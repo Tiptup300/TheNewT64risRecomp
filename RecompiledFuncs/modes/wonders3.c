@@ -3129,7 +3129,7 @@ L_800475DC:
     // 0x800475FC: jal         0x8009035C
     // 0x80047600: addiu       $a0, $a0, 0x5850
     ctx->r4 = ADD32(ctx->r4, 0X5850);
-    func_8009035C(rdram, ctx);
+    Scene_LoadScreen(rdram, ctx);
         goto after_15;
     // 0x80047600: addiu       $a0, $a0, 0x5850
     ctx->r4 = ADD32(ctx->r4, 0X5850);
@@ -3174,7 +3174,7 @@ L_80047620:
     // 0x80047640: jal         0x8009035C
     // 0x80047644: addiu       $a0, $a0, 0x5D48
     ctx->r4 = ADD32(ctx->r4, 0X5D48);
-    func_8009035C(rdram, ctx);
+    Scene_LoadScreen(rdram, ctx);
         goto after_16;
     // 0x80047644: addiu       $a0, $a0, 0x5D48
     ctx->r4 = ADD32(ctx->r4, 0X5D48);

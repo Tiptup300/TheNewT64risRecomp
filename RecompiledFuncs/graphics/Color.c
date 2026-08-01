@@ -1914,7 +1914,7 @@ RECOMP_FUNC void game_over_display_stuff_huge_function_q(uint8_t* rdram, recomp_
     // 0x800557E8: jal         0x8009035C
     // 0x800557EC: addiu       $a0, $a0, 0x5D48
     ctx->r4 = ADD32(ctx->r4, 0X5D48);
-    func_8009035C(rdram, ctx);
+    Scene_LoadScreen(rdram, ctx);
         goto after_2;
     // 0x800557EC: addiu       $a0, $a0, 0x5D48
     ctx->r4 = ADD32(ctx->r4, 0X5D48);
@@ -1935,7 +1935,7 @@ L_800557F8:
     // 0x80055804: jal         0x8009035C
     // 0x80055808: addiu       $a0, $a0, 0x5850
     ctx->r4 = ADD32(ctx->r4, 0X5850);
-    func_8009035C(rdram, ctx);
+    Scene_LoadScreen(rdram, ctx);
         goto after_3;
     // 0x80055808: addiu       $a0, $a0, 0x5850
     ctx->r4 = ADD32(ctx->r4, 0X5850);
@@ -2437,7 +2437,7 @@ L_80055AAC:
     // 0x80055AEC: jal         0x8009035C
     // 0x80055AF0: addiu       $a0, $a0, 0x5D48
     ctx->r4 = ADD32(ctx->r4, 0X5D48);
-    func_8009035C(rdram, ctx);
+    Scene_LoadScreen(rdram, ctx);
         goto after_10;
     // 0x80055AF0: addiu       $a0, $a0, 0x5D48
     ctx->r4 = ADD32(ctx->r4, 0X5D48);
@@ -2458,7 +2458,7 @@ L_80055AFC:
     // 0x80055B08: jal         0x8009035C
     // 0x80055B0C: addiu       $a0, $a0, 0x5850
     ctx->r4 = ADD32(ctx->r4, 0X5850);
-    func_8009035C(rdram, ctx);
+    Scene_LoadScreen(rdram, ctx);
         goto after_11;
     // 0x80055B0C: addiu       $a0, $a0, 0x5850
     ctx->r4 = ADD32(ctx->r4, 0X5850);

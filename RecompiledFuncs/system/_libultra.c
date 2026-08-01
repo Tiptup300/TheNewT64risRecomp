@@ -824,7 +824,7 @@ L_8005EF44:
     // 0x8005EF44: jal         0x80061198
     // 0x8005EF48: nop
 
-    func_80061198(rdram, ctx);
+    Vi_ApplyModeBank(rdram, ctx);
         goto after_4;
     // 0x8005EF48: nop
 

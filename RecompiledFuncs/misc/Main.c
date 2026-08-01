@@ -1762,7 +1762,7 @@ RECOMP_FUNC void main_infinite_loop_at_end(uint8_t* rdram, recomp_context* ctx) 
     // 0x80049CB0: jal         0x80061198
     // 0x80049CB4: sb          $t6, -0x1CC($at)
     MEM_B(-0X1CC, ctx->r1) = ctx->r14;
-    func_80061198(rdram, ctx);
+    Vi_ApplyModeBank(rdram, ctx);
         goto after_2;
     // 0x80049CB4: sb          $t6, -0x1CC($at)
     MEM_B(-0X1CC, ctx->r1) = ctx->r14;
@@ -1973,7 +1973,7 @@ RECOMP_FUNC void idle(uint8_t* rdram, recomp_context* ctx) {
     // 0x80049DE0: jal         0x800611E0
     // 0x80049DE4: nop
 
-    func_800611E0(rdram, ctx);
+    Vi_LoadModeBankForTvType(rdram, ctx);
         goto after_3;
     // 0x80049DE4: nop
 
@@ -2676,7 +2676,7 @@ L_8004A20C:
     // 0x8004A20C: jal         0x80061198
     // 0x8004A210: nop
 
-    func_80061198(rdram, ctx);
+    Vi_ApplyModeBank(rdram, ctx);
         goto after_7;
     // 0x8004A210: nop
 
@@ -2849,7 +2849,7 @@ L_8004A2F8:
     // 0x8004A310: jal         0x80061198
     // 0x8004A314: sw          $t2, -0x1C8($at)
     MEM_W(-0X1C8, ctx->r1) = ctx->r10;
-    func_80061198(rdram, ctx);
+    Vi_ApplyModeBank(rdram, ctx);
         goto after_1;
     // 0x8004A314: sw          $t2, -0x1C8($at)
     MEM_W(-0X1C8, ctx->r1) = ctx->r10;

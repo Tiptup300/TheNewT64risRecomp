@@ -359,7 +359,7 @@ L_80083504:
     // 0x80083524: jal         0x8009035C
     // 0x80083528: addiu       $a0, $a0, 0x53C8
     ctx->r4 = ADD32(ctx->r4, 0X53C8);
-    func_8009035C(rdram, ctx);
+    Scene_LoadScreen(rdram, ctx);
         goto after_6;
     // 0x80083528: addiu       $a0, $a0, 0x53C8
     ctx->r4 = ADD32(ctx->r4, 0X53C8);

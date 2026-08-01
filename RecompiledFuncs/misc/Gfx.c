@@ -1162,7 +1162,7 @@ RECOMP_FUNC void Gfx_InitViMode(uint8_t* rdram, recomp_context* ctx) {
     // 0x80049AD8: jal         0x800614A8
     // 0x80049ADC: sw          $zero, 0x5C($sp)
     MEM_W(0X5C, ctx->r29) = 0;
-    func_800614A8(rdram, ctx);
+    Vi_StoreModeBankForTvType(rdram, ctx);
         goto after_0;
     // 0x80049ADC: sw          $zero, 0x5C($sp)
     MEM_W(0X5C, ctx->r29) = 0;
