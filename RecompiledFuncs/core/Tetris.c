@@ -485,7 +485,7 @@ L_80054204:
     ctx->r29 = ADD32(ctx->r29, 0X38);
 ;}
 
-RECOMP_FUNC void Tetris_FUN_80054220_fourliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Tetris_SetStateFlags3_4(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80054220: andi        $a1, $a1, 0xFF

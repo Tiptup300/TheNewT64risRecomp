@@ -36,7 +36,7 @@ RECOMP_FUNC void Board_Update(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void Board_8006D1E0_doesnothing1(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Board_EmptyStub1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006D1E0: sw          $a0, 0x0($sp)
@@ -49,7 +49,7 @@ RECOMP_FUNC void Board_8006D1E0_doesnothing1(uint8_t* rdram, recomp_context* ctx
     MEM_W(0X4, ctx->r29) = ctx->r5;
 ;}
 
-RECOMP_FUNC void Board_8006D1EC_doesnothing2(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Board_EmptyStub2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006D1EC: sw          $a0, 0x0($sp)
@@ -62,7 +62,7 @@ RECOMP_FUNC void Board_8006D1EC_doesnothing2(uint8_t* rdram, recomp_context* ctx
     MEM_W(0X4, ctx->r29) = ctx->r5;
 ;}
 
-RECOMP_FUNC void Board_8006D1F8_doesnothing3(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Board_EmptyStub3(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006D1F8: jr          $ra

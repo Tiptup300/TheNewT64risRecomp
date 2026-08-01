@@ -5269,7 +5269,7 @@ L_800A0890:
 
 ;}
 
-RECOMP_FUNC void func_800A08A0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Controller_InitPresentState(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A08A0: lui         $t6, 0x800D

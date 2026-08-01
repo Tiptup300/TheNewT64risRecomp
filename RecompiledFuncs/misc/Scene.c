@@ -36234,7 +36234,7 @@ L_8009D3E0:
     ctx->r29 = ADD32(ctx->r29, 0XC8);
 ;}
 
-RECOMP_FUNC void func_8009D400(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_DebugPrint(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009D400: addiu       $sp, $sp, -0x18
@@ -37157,7 +37157,7 @@ L_8009D914:
 
 ;}
 
-RECOMP_FUNC void func_8009D940(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_EmptyStub0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009D940: jr          $ra
@@ -48415,7 +48415,7 @@ RECOMP_FUNC void Scene_SetSelectedGameType(uint8_t* rdram, recomp_context* ctx) 
     MEM_B(-0X1114, ctx->r1) = ctx->r14;
 ;}
 
-RECOMP_FUNC void func_800A287C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_EmptyStub1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A287C: jr          $ra

@@ -1993,7 +1993,7 @@ L_800722C4:
 
 ;}
 
-RECOMP_FUNC void func_800722E0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PauseMenu_EmptyStub(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800722E0: addiu       $sp, $sp, -0x18

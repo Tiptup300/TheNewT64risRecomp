@@ -370,7 +370,7 @@ L_8005FC68:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void PFGFX_8005fc70_doesnothing(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_EmptyStub1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8005FC70: jr          $ra
@@ -723,7 +723,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_1p(uint8_t* rdram, recomp_context* ctx)
     // 0x8005FEAC: jal         0x80070C40
     // 0x8005FEB0: addiu       $a0, $zero, 0xB00
     ctx->r4 = ADD32(0, 0XB00);
-    Minos_80070c40_twoliner_set_OR_1(rdram, ctx);
+    Minos_SetRenderParamFlag1(rdram, ctx);
         goto after_0;
     // 0x8005FEB0: addiu       $a0, $zero, 0xB00
     ctx->r4 = ADD32(0, 0XB00);
@@ -751,7 +751,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_1p(uint8_t* rdram, recomp_context* ctx)
     // 0x8005FED4: jal         0x80070CB8
     // 0x8005FED8: nop
 
-    Minos_80070cb8_threeliner_set_OR_4(rdram, ctx);
+    Minos_SetRenderPosFlag4(rdram, ctx);
         goto after_2;
     // 0x8005FED8: nop
 
@@ -990,7 +990,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_2p(uint8_t* rdram, recomp_context* ctx)
     // 0x8006006C: jal         0x80070C40
     // 0x80060070: addiu       $a0, $zero, 0xA00
     ctx->r4 = ADD32(0, 0XA00);
-    Minos_80070c40_twoliner_set_OR_1(rdram, ctx);
+    Minos_SetRenderParamFlag1(rdram, ctx);
         goto after_0;
     // 0x80060070: addiu       $a0, $zero, 0xA00
     ctx->r4 = ADD32(0, 0XA00);
@@ -1018,7 +1018,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_2p(uint8_t* rdram, recomp_context* ctx)
     // 0x80060094: jal         0x80070CB8
     // 0x80060098: nop
 
-    Minos_80070cb8_threeliner_set_OR_4(rdram, ctx);
+    Minos_SetRenderPosFlag4(rdram, ctx);
         goto after_2;
     // 0x80060098: nop
 
@@ -1324,7 +1324,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_3p(uint8_t* rdram, recomp_context* ctx)
     // 0x80060294: jal         0x80070C40
     // 0x80060298: addiu       $a0, $zero, 0x800
     ctx->r4 = ADD32(0, 0X800);
-    Minos_80070c40_twoliner_set_OR_1(rdram, ctx);
+    Minos_SetRenderParamFlag1(rdram, ctx);
         goto after_0;
     // 0x80060298: addiu       $a0, $zero, 0x800
     ctx->r4 = ADD32(0, 0X800);
@@ -1352,7 +1352,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_3p(uint8_t* rdram, recomp_context* ctx)
     // 0x800602BC: jal         0x80070CB8
     // 0x800602C0: nop
 
-    Minos_80070cb8_threeliner_set_OR_4(rdram, ctx);
+    Minos_SetRenderPosFlag4(rdram, ctx);
         goto after_2;
     // 0x800602C0: nop
 
@@ -1559,7 +1559,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_4p(uint8_t* rdram, recomp_context* ctx)
     // 0x80060408: jal         0x80070C40
     // 0x8006040C: addiu       $a0, $zero, 0x800
     ctx->r4 = ADD32(0, 0X800);
-    Minos_80070c40_twoliner_set_OR_1(rdram, ctx);
+    Minos_SetRenderParamFlag1(rdram, ctx);
         goto after_0;
     // 0x8006040C: addiu       $a0, $zero, 0x800
     ctx->r4 = ADD32(0, 0X800);
@@ -1587,7 +1587,7 @@ RECOMP_FUNC void PFGFX_SetTextDisplayPos_4p(uint8_t* rdram, recomp_context* ctx)
     // 0x80060430: jal         0x80070CB8
     // 0x80060434: nop
 
-    Minos_80070cb8_threeliner_set_OR_4(rdram, ctx);
+    Minos_SetRenderPosFlag4(rdram, ctx);
         goto after_2;
     // 0x80060434: nop
 
@@ -1966,7 +1966,7 @@ L_80060644:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void PFGFX_80060654_doesnothing(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_EmptyStub2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80060654: addiu       $sp, $sp, -0x18
@@ -1976,7 +1976,7 @@ RECOMP_FUNC void PFGFX_80060654_doesnothing(uint8_t* rdram, recomp_context* ctx)
     // 0x8006065C: jal         0x8005FC70
     // 0x80060660: nop
 
-    PFGFX_8005fc70_doesnothing(rdram, ctx);
+    PFGFX_EmptyStub1(rdram, ctx);
         goto after_0;
     // 0x80060660: nop
 
@@ -3591,7 +3591,7 @@ L_80061A24:
 
 ;}
 
-RECOMP_FUNC void FUN_027BF0_80061A34_does_nothing(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_EmptyStub0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80061A34: jr          $ra

@@ -420,7 +420,7 @@ RECOMP_FUNC void gamefinish_SetResultPos(uint8_t* rdram, recomp_context* ctx) {
     do_swr(rdram, 0XB, ctx->r4, ctx->r1);
 ;}
 
-RECOMP_FUNC void gamefinish_80052D40_doesnothing(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_EmptyStub0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80052D40: jr          $ra
@@ -503,7 +503,7 @@ RECOMP_FUNC void gamefinish_SetPhase1(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X8, ctx->r4) = ctx->r15;
 ;}
 
-RECOMP_FUNC void gamefinish_80052DA0_oneliner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_ClearFlag1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80052DA0: sw          $a1, 0x4($sp)
@@ -1253,7 +1253,7 @@ L_800531DC:
     // 0x800531E4: jal         0x80052DA0
     // 0x800531E8: nop
 
-    gamefinish_80052DA0_oneliner(rdram, ctx);
+    gamefinish_ClearFlag1(rdram, ctx);
         goto after_2;
     // 0x800531E8: nop
 
@@ -1432,7 +1432,7 @@ L_800532CC:
 
 ;}
 
-RECOMP_FUNC void gamefinish_800532DC_nevercalled(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void gamefinish_ClearField38_Unused(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800532DC: jr          $ra
@@ -1637,7 +1637,7 @@ RECOMP_FUNC void gamefinish_Stop(uint8_t* rdram, recomp_context* ctx) {
     // 0x80053410: jal         0x80052D40
     // 0x80053414: addiu       $a0, $a0, 0x20
     ctx->r4 = ADD32(ctx->r4, 0X20);
-    gamefinish_80052D40_doesnothing(rdram, ctx);
+    gamefinish_EmptyStub0(rdram, ctx);
         goto after_0;
     // 0x80053414: addiu       $a0, $a0, 0x20
     ctx->r4 = ADD32(ctx->r4, 0X20);

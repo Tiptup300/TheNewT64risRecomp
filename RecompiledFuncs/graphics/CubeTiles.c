@@ -3807,7 +3807,7 @@ L_80076E8C:
 
 ;}
 
-RECOMP_FUNC void func_80076EA0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjRelocNoop0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80076EA0: jr          $ra
@@ -3818,7 +3818,7 @@ RECOMP_FUNC void func_80076EA0(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r29) = ctx->r4;
 ;}
 
-RECOMP_FUNC void func_80076EA8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjRelocNoop1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80076EA8: addiu       $sp, $sp, -0x10
@@ -22121,7 +22121,7 @@ RECOMP_FUNC void CubeTiles_ObjRelocatePtr0C(uint8_t* rdram, recomp_context* ctx)
     MEM_W(0XC, ctx->r4) = ctx->r24;
 ;}
 
-RECOMP_FUNC void func_800AA5BC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjReleaseNoop0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA5BC: sw          $a0, 0x0($sp)
@@ -22214,7 +22214,7 @@ RECOMP_FUNC void CubeTiles_ObjRelocatePtrs(uint8_t* rdram, recomp_context* ctx) 
     MEM_W(0X14, ctx->r4) = ctx->r9;
 ;}
 
-RECOMP_FUNC void func_800AA62C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjReleaseNoop1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA62C: sw          $a0, 0x0($sp)
@@ -22705,7 +22705,7 @@ L_800AA8BC:
 
 ;}
 
-RECOMP_FUNC void func_800AA8C8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjReleaseNoop2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA8C8: jr          $ra
@@ -22716,7 +22716,7 @@ RECOMP_FUNC void func_800AA8C8(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r29) = ctx->r4;
 ;}
 
-RECOMP_FUNC void func_800AA8D0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjReleaseNoop3(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA8D0: sw          $a0, 0x0($sp)
@@ -22803,7 +22803,7 @@ RECOMP_FUNC void CubeTiles_ObjRelocateOne(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X28, ctx->r4) = ctx->r24;
 ;}
 
-RECOMP_FUNC void func_800AA934(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjReleaseNoop4(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA934: sw          $a0, 0x0($sp)

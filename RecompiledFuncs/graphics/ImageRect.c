@@ -256,7 +256,7 @@ RECOMP_FUNC void ImageRect_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80075838: jal         0x800756E0
     // 0x8007583C: sw          $a0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r4;
-    func_800756E0(rdram, ctx);
+    GarbageImg_NoopStub(rdram, ctx);
         goto after_0;
     // 0x8007583C: sw          $a0, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->r4;

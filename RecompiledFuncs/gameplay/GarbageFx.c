@@ -827,7 +827,7 @@ L_80073678:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_80073688(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GarbageFx_EmptyStub0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80073688: jr          $ra
@@ -2946,7 +2946,7 @@ L_8007442C:
 
 ;}
 
-RECOMP_FUNC void func_800744C0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GarbageFx_EmptyStub1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800744C0: jr          $ra

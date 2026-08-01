@@ -1618,7 +1618,7 @@ L_800480D0:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void func_800480D8_nevercalled(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void wonders4_UnusedStub(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800480D8: jr          $ra

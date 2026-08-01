@@ -960,7 +960,7 @@ L_800864F4:
     // 0x800865B8: jal         0x80087478
     // 0x800865BC: nop
 
-    Audio2_80087478_oneliner_calls_fun(rdram, ctx);
+    Audio2_DecodeFixedSprite(rdram, ctx);
         goto after_3;
     // 0x800865BC: nop
 
@@ -1867,7 +1867,7 @@ L_80086B8C:
     // 0x80086C0C: jal         0x80087478
     // 0x80086C10: nop
 
-    Audio2_80087478_oneliner_calls_fun(rdram, ctx);
+    Audio2_DecodeFixedSprite(rdram, ctx);
         goto after_11;
     // 0x80086C10: nop
 
@@ -3047,7 +3047,7 @@ L_80087468:
     ctx->r29 = ADD32(ctx->r29, 0X58);
 ;}
 
-RECOMP_FUNC void Audio2_80087478_oneliner_calls_fun(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Audio2_DecodeFixedSprite(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80087478: addiu       $sp, $sp, -0x18
@@ -4995,7 +4995,7 @@ L_80089298:
     // 0x80089318: jal         0x80087478
     // 0x8008931C: nop
 
-    Audio2_80087478_oneliner_calls_fun(rdram, ctx);
+    Audio2_DecodeFixedSprite(rdram, ctx);
         goto after_4;
     // 0x8008931C: nop
 
@@ -5481,7 +5481,7 @@ L_80089660:
     // 0x80089680: jal         0x80087478
     // 0x80089684: addu        $a0, $t8, $t1
     ctx->r4 = ADD32(ctx->r24, ctx->r9);
-    Audio2_80087478_oneliner_calls_fun(rdram, ctx);
+    Audio2_DecodeFixedSprite(rdram, ctx);
         goto after_5;
     // 0x80089684: addu        $a0, $t8, $t1
     ctx->r4 = ADD32(ctx->r24, ctx->r9);
@@ -5706,7 +5706,7 @@ L_80089818:
     // 0x80089820: jal         0x80087478
     // 0x80089824: nop
 
-    Audio2_80087478_oneliner_calls_fun(rdram, ctx);
+    Audio2_DecodeFixedSprite(rdram, ctx);
         goto after_6;
     // 0x80089824: nop
 
@@ -5941,7 +5941,7 @@ L_800899C4:
     // 0x800899CC: jal         0x80087478
     // 0x800899D0: nop
 
-    Audio2_80087478_oneliner_calls_fun(rdram, ctx);
+    Audio2_DecodeFixedSprite(rdram, ctx);
         goto after_8;
     // 0x800899D0: nop
 

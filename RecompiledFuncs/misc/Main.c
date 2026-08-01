@@ -597,7 +597,7 @@ L_80048560:
     // 0x8004891C: jal         0x80076EA0
     // 0x80048920: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    func_80076EA0(rdram, ctx);
+    CubeTiles_ObjRelocNoop0(rdram, ctx);
         goto after_4;
     // 0x80048920: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;

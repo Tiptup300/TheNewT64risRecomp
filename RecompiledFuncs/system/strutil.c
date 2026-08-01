@@ -242,7 +242,7 @@ RECOMP_FUNC void strutil_lzo_init(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_80080EAC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void strutil_EmptyStub0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80080EAC: jr          $ra
@@ -253,7 +253,7 @@ RECOMP_FUNC void func_80080EAC(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_80080EB4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void strutil_EmptyStub1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80080EB4: sw          $a0, 0x0($sp)

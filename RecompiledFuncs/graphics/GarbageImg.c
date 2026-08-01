@@ -1163,7 +1163,7 @@ RECOMP_FUNC void GarbageImg_FreeBlend(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800756E0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GarbageImg_NoopStub(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800756E0: addiu       $sp, $sp, -0x68

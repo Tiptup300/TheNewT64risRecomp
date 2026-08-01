@@ -1276,7 +1276,7 @@ L_800729E0:
     // 0x800729F8: jal         0x800744C0
     // 0x800729FC: addiu       $a0, $a0, 0x30
     ctx->r4 = ADD32(ctx->r4, 0X30);
-    func_800744C0(rdram, ctx);
+    GarbageFx_EmptyStub1(rdram, ctx);
         goto after_4;
     // 0x800729FC: addiu       $a0, $a0, 0x30
     ctx->r4 = ADD32(ctx->r4, 0X30);

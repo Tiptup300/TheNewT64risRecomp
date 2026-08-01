@@ -2223,7 +2223,7 @@ L_80051648:
     // 0x8005165C: jal         0x80054220
     // 0x80051660: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    Tetris_FUN_80054220_fourliner(rdram, ctx);
+    Tetris_SetStateFlags3_4(rdram, ctx);
         goto after_0;
     // 0x80051660: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -2456,7 +2456,7 @@ L_800517BC:
     // 0x800517D0: jal         0x80054220
     // 0x800517D4: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    Tetris_FUN_80054220_fourliner(rdram, ctx);
+    Tetris_SetStateFlags3_4(rdram, ctx);
         goto after_0;
     // 0x800517D4: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);

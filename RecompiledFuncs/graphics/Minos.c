@@ -796,7 +796,7 @@ RECOMP_FUNC void Minos_TransformVtx_None(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r29) = ctx->r4;
 ;}
 
-RECOMP_FUNC void Minos_8006f7f0_sets_struct_0_to_0x11(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_EmitMinoTexDL(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006F7F0: lui         $a1, 0x800E
@@ -1013,7 +1013,7 @@ RECOMP_FUNC void Minos_8006f7f0_sets_struct_0_to_0x11(uint8_t* rdram, recomp_con
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void Minos_8006f994_sets_struct_0_to_0x23(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_EmitMinoTexDL2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006F994: lui         $a2, 0x800E
@@ -1400,7 +1400,7 @@ RECOMP_FUNC void Minos_8006f994_sets_struct_0_to_0x23(uint8_t* rdram, recomp_con
     ctx->r29 = ADD32(ctx->r29, 0X50);
 ;}
 
-RECOMP_FUNC void Minos_8006fc8c_twentyfive_liner(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_SetCombineMode(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8006FC8C: lui         $t6, 0x8012
@@ -1875,7 +1875,7 @@ L_8006FF58:
     // 0x8006FF64: jal         0x8006F7F0
     // 0x8006FF68: addiu       $a0, $a0, 0xB0
     ctx->r4 = ADD32(ctx->r4, 0XB0);
-    Minos_8006f7f0_sets_struct_0_to_0x11(rdram, ctx);
+    Minos_EmitMinoTexDL(rdram, ctx);
         goto after_3;
     // 0x8006FF68: addiu       $a0, $a0, 0xB0
     ctx->r4 = ADD32(ctx->r4, 0XB0);
@@ -1902,7 +1902,7 @@ L_8006FF74:
     // 0x8006FF84: jal         0x8006F7F0
     // 0x8006FF88: addiu       $a0, $a0, 0xF0
     ctx->r4 = ADD32(ctx->r4, 0XF0);
-    Minos_8006f7f0_sets_struct_0_to_0x11(rdram, ctx);
+    Minos_EmitMinoTexDL(rdram, ctx);
         goto after_4;
     // 0x8006FF88: addiu       $a0, $a0, 0xF0
     ctx->r4 = ADD32(ctx->r4, 0XF0);
@@ -1923,7 +1923,7 @@ L_8006FF94:
     // 0x8006FFA0: jal         0x8006F994
     // 0x8006FFA4: addiu       $a1, $t2, 0xF0
     ctx->r5 = ADD32(ctx->r10, 0XF0);
-    Minos_8006f994_sets_struct_0_to_0x23(rdram, ctx);
+    Minos_EmitMinoTexDL2(rdram, ctx);
         goto after_5;
     // 0x8006FFA4: addiu       $a1, $t2, 0xF0
     ctx->r5 = ADD32(ctx->r10, 0XF0);
@@ -1959,7 +1959,7 @@ L_8006FFB4:
     // 0x8006FFC4: jal         0x8006FC8C
     // 0x8006FFC8: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    Minos_8006fc8c_twentyfive_liner(rdram, ctx);
+    Minos_SetCombineMode(rdram, ctx);
         goto after_6;
     // 0x8006FFC8: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -1976,7 +1976,7 @@ L_8006FFD4:
     // 0x8006FFD8: jal         0x8006FC8C
     // 0x8006FFDC: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    Minos_8006fc8c_twentyfive_liner(rdram, ctx);
+    Minos_SetCombineMode(rdram, ctx);
         goto after_7;
     // 0x8006FFDC: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -2003,7 +2003,7 @@ L_8006FFE8:
     // 0x8006FFF8: jal         0x8006FC8C
     // 0x8006FFFC: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    Minos_8006fc8c_twentyfive_liner(rdram, ctx);
+    Minos_SetCombineMode(rdram, ctx);
         goto after_8;
     // 0x8006FFFC: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -2020,7 +2020,7 @@ L_80070008:
     // 0x8007000C: jal         0x8006FC8C
     // 0x80070010: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
-    Minos_8006fc8c_twentyfive_liner(rdram, ctx);
+    Minos_SetCombineMode(rdram, ctx);
         goto after_9;
     // 0x80070010: addiu       $a1, $zero, 0x1
     ctx->r5 = ADD32(0, 0X1);
@@ -3690,7 +3690,7 @@ L_80070C34:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void Minos_80070c40_twoliner_set_OR_1(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_SetRenderParamFlag1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80070C40: lui         $t6, 0x8012
@@ -3764,7 +3764,7 @@ RECOMP_FUNC void Minos_SetPosition(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X0, ctx->r24) = ctx->r8;
 ;}
 
-RECOMP_FUNC void Minos_80070cb8_threeliner_set_OR_4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_SetRenderPosFlag4(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80070CB8: lui         $t6, 0x8012
@@ -4011,7 +4011,7 @@ RECOMP_FUNC void Minos_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80070E70: jal         0x80070C40
     // 0x80070E74: sh          $t3, 0x5A($t4)
     MEM_H(0X5A, ctx->r12) = ctx->r11;
-    Minos_80070c40_twoliner_set_OR_1(rdram, ctx);
+    Minos_SetRenderParamFlag1(rdram, ctx);
         goto after_0;
     // 0x80070E74: sh          $t3, 0x5A($t4)
     MEM_H(0X5A, ctx->r12) = ctx->r11;
@@ -4031,7 +4031,7 @@ RECOMP_FUNC void Minos_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x80070E88: jal         0x80070CB8
     // 0x80070E8C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    Minos_80070cb8_threeliner_set_OR_4(rdram, ctx);
+    Minos_SetRenderPosFlag4(rdram, ctx);
         goto after_2;
     // 0x80070E8C: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -4167,7 +4167,7 @@ RECOMP_FUNC void Minos_BeginRender(uint8_t* rdram, recomp_context* ctx) {
     // 0x80070F54: jal         0x8006FC8C
     // 0x80070F58: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
-    Minos_8006fc8c_twentyfive_liner(rdram, ctx);
+    Minos_SetCombineMode(rdram, ctx);
         goto after_0;
     // 0x80070F58: or          $a1, $zero, $zero
     ctx->r5 = 0 | 0;
@@ -5118,12 +5118,12 @@ L_800A3224:
 
 ;}
 
-RECOMP_FUNC void func_800A32B0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_EmptyStub0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
 ;}
 
-RECOMP_FUNC void func_800A32E0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_EmptyStub1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
 ;}

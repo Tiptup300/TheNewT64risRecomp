@@ -7550,7 +7550,7 @@ L_80080E30:
     // 0x80080E30: jal         0x800722E0
     // 0x80080E34: nop
 
-    func_800722E0(rdram, ctx);
+    PauseMenu_EmptyStub(rdram, ctx);
         goto after_18;
     // 0x80080E34: nop
 
