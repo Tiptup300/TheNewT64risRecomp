@@ -8653,7 +8653,7 @@ L_800ACEF8:
     // 0x800ACF14: jal         0x800B303C
     // 0x800ACF18: sw          $a3, 0x2C($sp)
     MEM_W(0X2C, ctx->r29) = ctx->r7;
-    func_800B303C(rdram, ctx);
+    Minos_GetOrInitBg(rdram, ctx);
         goto after_1;
     // 0x800ACF18: sw          $a3, 0x2C($sp)
     MEM_W(0X2C, ctx->r29) = ctx->r7;

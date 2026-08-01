@@ -6189,7 +6189,7 @@ RECOMP_FUNC void Minos_ResetQueueState(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_800B1AB0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_SetMode(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800B1AB0: addiu       $sp, $sp, -0x18
@@ -6337,7 +6337,7 @@ L_800B1B58:
 
 ;}
 
-RECOMP_FUNC void func_800B1B64(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_GetModeDL(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800B1B64: lui         $v0, 0x800E
@@ -6456,7 +6456,7 @@ L_800B1BE8:
 
 ;}
 
-RECOMP_FUNC void func_800B1BFC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_BuildTiledQuadDL(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800B1BFC: addiu       $sp, $sp, -0x100
@@ -7385,7 +7385,7 @@ L_800B2078:
     // 0x800B21A8: jal         0x800B1B64
     // 0x800B21AC: addiu       $s0, $s0, 0x8
     ctx->r16 = ADD32(ctx->r16, 0X8);
-    func_800B1B64(rdram, ctx);
+    Minos_GetModeDL(rdram, ctx);
         goto after_0;
     // 0x800B21AC: addiu       $s0, $s0, 0x8
     ctx->r16 = ADD32(ctx->r16, 0X8);
@@ -8196,7 +8196,7 @@ L_800B25FC:
     // 0x800B26A8: jal         0x800B1B64
     // 0x800B26AC: lhu         $a0, -0x6E70($a0)
     ctx->r4 = MEM_HU(ctx->r4, -0X6E70);
-    func_800B1B64(rdram, ctx);
+    Minos_GetModeDL(rdram, ctx);
         goto after_1;
     // 0x800B26AC: lhu         $a0, -0x6E70($a0)
     ctx->r4 = MEM_HU(ctx->r4, -0X6E70);
@@ -8428,7 +8428,7 @@ L_800B27D8:
     ctx->r29 = ADD32(ctx->r29, 0X100);
 ;}
 
-RECOMP_FUNC void func_800B2810(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_BuildModeDL(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800B2810: addiu       $sp, $sp, -0x40
@@ -8496,7 +8496,7 @@ RECOMP_FUNC void func_800B2810(uint8_t* rdram, recomp_context* ctx) {
     // 0x800B288C: jal         0x800B1B64
     // 0x800B2890: lhu         $a0, -0x6E70($a0)
     ctx->r4 = MEM_HU(ctx->r4, -0X6E70);
-    func_800B1B64(rdram, ctx);
+    Minos_GetModeDL(rdram, ctx);
         goto after_0;
     // 0x800B2890: lhu         $a0, -0x6E70($a0)
     ctx->r4 = MEM_HU(ctx->r4, -0X6E70);
@@ -9290,7 +9290,7 @@ L_800B2D2C:
 
 ;}
 
-RECOMP_FUNC void func_800B2D60(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_InitBgTextures(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800B2D60: addiu       $sp, $sp, -0x20
@@ -9852,7 +9852,7 @@ L_800B2F6C:
     ctx->r29 = ADD32(ctx->r29, 0X20);
 ;}
 
-RECOMP_FUNC void func_800B303C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_GetOrInitBg(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800B303C: lui         $t6, 0x800E
@@ -9876,7 +9876,7 @@ RECOMP_FUNC void func_800B303C(uint8_t* rdram, recomp_context* ctx) {
     // 0x800B3054: jal         0x800B2D60
     // 0x800B3058: nop
 
-    func_800B2D60(rdram, ctx);
+    Minos_InitBgTextures(rdram, ctx);
         goto after_0;
     // 0x800B3058: nop
 

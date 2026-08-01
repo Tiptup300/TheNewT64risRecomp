@@ -50828,7 +50828,7 @@ L_800AD36C:
     // 0x800AD36C: jal         0x800A4B98
     // 0x800AD370: lw          $a1, 0xD0($s1)
     ctx->r5 = MEM_W(ctx->r17, 0XD0);
-    func_800A4B98(rdram, ctx);
+    CubeTiles_EmitNodeSegmentDL(rdram, ctx);
         goto after_0;
     // 0x800AD370: lw          $a1, 0xD0($s1)
     ctx->r5 = MEM_W(ctx->r17, 0XD0);

@@ -2848,7 +2848,7 @@ L_800A911C:
     // 0x800A9170: jal         0x800B1BFC
     // 0x800A9174: swc1        $f8, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->f8.u32l;
-    func_800B1BFC(rdram, ctx);
+    Minos_BuildTiledQuadDL(rdram, ctx);
         goto after_0;
     // 0x800A9174: swc1        $f8, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->f8.u32l;
@@ -3005,7 +3005,7 @@ L_800A91EC:
     // 0x800A923C: jal         0x800B1BFC
     // 0x800A9240: swc1        $f4, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->f4.u32l;
-    func_800B1BFC(rdram, ctx);
+    Minos_BuildTiledQuadDL(rdram, ctx);
         goto after_1;
     // 0x800A9240: swc1        $f4, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->f4.u32l;
@@ -3179,7 +3179,7 @@ L_800A92D0:
     // 0x800A9320: jal         0x800B1BFC
     // 0x800A9324: swc1        $f8, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->f8.u32l;
-    func_800B1BFC(rdram, ctx);
+    Minos_BuildTiledQuadDL(rdram, ctx);
         goto after_6;
     // 0x800A9324: swc1        $f8, 0x14($sp)
     MEM_W(0X14, ctx->r29) = ctx->f8.u32l;
@@ -3233,7 +3233,7 @@ L_800A92D0:
     // 0x800A9384: jal         0x800B1BFC
     // 0x800A9388: swc1        $f18, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f18.u32l;
-    func_800B1BFC(rdram, ctx);
+    Minos_BuildTiledQuadDL(rdram, ctx);
         goto after_7;
     // 0x800A9388: swc1        $f18, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f18.u32l;

@@ -985,7 +985,7 @@ RECOMP_FUNC void Stopwatch_FormatReport(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A9978: jal         0x800B1BFC
     // 0x800A997C: swc1        $f28, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f28.u32l;
-    func_800B1BFC(rdram, ctx);
+    Minos_BuildTiledQuadDL(rdram, ctx);
         goto after_0;
     // 0x800A997C: swc1        $f28, 0x18($sp)
     MEM_W(0X18, ctx->r29) = ctx->f28.u32l;
@@ -1659,7 +1659,7 @@ L_800A9CAC:
     // 0x800A9CD4: jal         0x800B1BFC
     // 0x800A9CD8: sw          $t1, 0x2C($sp)
     MEM_W(0X2C, ctx->r29) = ctx->r9;
-    func_800B1BFC(rdram, ctx);
+    Minos_BuildTiledQuadDL(rdram, ctx);
         goto after_9;
     // 0x800A9CD8: sw          $t1, 0x2C($sp)
     MEM_W(0X2C, ctx->r29) = ctx->r9;

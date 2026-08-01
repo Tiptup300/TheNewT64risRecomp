@@ -4118,7 +4118,7 @@ RECOMP_FUNC void CubeTiles_ObjFree(uint8_t* rdram, recomp_context* ctx) {
     // 0x80077048: jal         0x800A6AA8
     // 0x8007704C: or          $a0, $t7, $zero
     ctx->r4 = ctx->r15 | 0;
-    func_800A6AA8(rdram, ctx);
+    CubeTiles_ObjReleaseNode(rdram, ctx);
         goto after_0;
     // 0x8007704C: or          $a0, $t7, $zero
     ctx->r4 = ctx->r15 | 0;
@@ -6111,7 +6111,7 @@ L_800A4010:
 
 ;}
 
-RECOMP_FUNC void func_800A4054(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjStoreMatrix40(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4054: or          $t9, $a1, $zero
@@ -6217,7 +6217,7 @@ RECOMP_FUNC void CubeTiles_ObjClearFlags_0x80(uint8_t* rdram, recomp_context* ct
     MEM_W(0X0, ctx->r4) = ctx->r15;
 ;}
 
-RECOMP_FUNC void func_800A40D8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjGetChildArray(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A40D8: lw          $v1, 0x8($a0)
@@ -6872,7 +6872,7 @@ L_800A4430:
 
 ;}
 
-RECOMP_FUNC void func_800A4438(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetCamField10(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4438: lw          $t6, 0x8($a0)
@@ -6900,7 +6900,7 @@ L_800A4450:
 
 ;}
 
-RECOMP_FUNC void func_800A4458(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjGetCamField10(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4458: lw          $t6, 0x8($a0)
@@ -7000,7 +7000,7 @@ L_800A44C0:
 
 ;}
 
-RECOMP_FUNC void func_800A44C8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetCamViewportF(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A44C8: addiu       $sp, $sp, -0x10
@@ -7154,7 +7154,7 @@ L_800A4568:
     ctx->r29 = ADD32(ctx->r29, 0X10);
 ;}
 
-RECOMP_FUNC void func_800A4570(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetCamField20(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4570: lw          $t6, 0x8($a0)
@@ -7433,7 +7433,7 @@ RECOMP_FUNC void CubeTiles_ObjSetChildVec3(uint8_t* rdram, recomp_context* ctx) 
     MEM_W(0X24, ctx->r2) = ctx->f8.u32l;
 ;}
 
-RECOMP_FUNC void func_800A4740(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjAccumulateChildAxes(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4740: mtc1        $zero, $f0
@@ -7634,7 +7634,7 @@ L_800A4844:
 
 ;}
 
-RECOMP_FUNC void func_800A484C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjGetChildAnimValue(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A484C: lw          $t6, 0x8($a0)
@@ -7743,7 +7743,7 @@ L_800A48C4:
 
 ;}
 
-RECOMP_FUNC void func_800A48CC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetAnimEntryTarget(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A48CC: mtc1        $a2, $f12
@@ -7942,7 +7942,7 @@ L_800A49A0:
     MEM_B(0X1D7, ctx->r4) = ctx->r2;
 ;}
 
-RECOMP_FUNC void func_800A49B0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetFadeRange(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A49B0: bgez        $a1, L_800A49BC
@@ -8120,7 +8120,7 @@ L_800A4A7C:
 
 ;}
 
-RECOMP_FUNC void func_800A4A88(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetAnimEntryVec(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4A88: lw          $t6, 0x8($a0)
@@ -8286,7 +8286,7 @@ RECOMP_FUNC void CubeTiles_ObjClearFlags_0x4000(uint8_t* rdram, recomp_context* 
 
 ;}
 
-RECOMP_FUNC void func_800A4B80(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ResetDisplayListTail(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4B80: lui         $at, 0x800D
@@ -8299,7 +8299,7 @@ RECOMP_FUNC void func_800A4B80(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X6204, ctx->r1) = 0;
 ;}
 
-RECOMP_FUNC void func_800A4B8C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_SetDisplayListRoot(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4B8C: lui         $at, 0x800D
@@ -8312,7 +8312,7 @@ RECOMP_FUNC void func_800A4B8C(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X6200, ctx->r1) = ctx->r4;
 ;}
 
-RECOMP_FUNC void func_800A4B98(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_EmitNodeSegmentDL(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4B98: addiu       $sp, $sp, -0x20
@@ -8395,7 +8395,7 @@ RECOMP_FUNC void func_800A4B98(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X6204, ctx->r1) = ctx->r25;
 ;}
 
-RECOMP_FUNC void func_800A4C20(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_BuildNodeDisplayList(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A4C20: addiu       $sp, $sp, -0x30
@@ -10809,7 +10809,7 @@ L_800A56D8:
 
 ;}
 
-RECOMP_FUNC void func_800A56E4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ApplyMatrixRowScales(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A56E4: lwc1        $f0, 0xC($a0)
@@ -10948,7 +10948,7 @@ RECOMP_FUNC void func_800A56E4(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X38, ctx->r5) = ctx->f8.u32l;
 ;}
 
-RECOMP_FUNC void func_800A57A4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_CopyMatrixResetScales(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A57A4: beq         $a1, $a0, L_800A57E0
@@ -11009,7 +11009,7 @@ L_800A57E0:
     MEM_W(0X2C, ctx->r5) = ctx->f0.u32l;
 ;}
 
-RECOMP_FUNC void func_800A57FC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjBuildNodeMatrixTree(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A57FC: addiu       $sp, $sp, -0x80
@@ -11061,7 +11061,7 @@ RECOMP_FUNC void func_800A57FC(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A5848: jal         0x800A56E4
     // 0x800A584C: addiu       $a1, $a1, 0xC0
     ctx->r5 = ADD32(ctx->r5, 0XC0);
-    func_800A56E4(rdram, ctx);
+    CubeTiles_ApplyMatrixRowScales(rdram, ctx);
         goto after_2;
     // 0x800A584C: addiu       $a1, $a1, 0xC0
     ctx->r5 = ADD32(ctx->r5, 0XC0);
@@ -11092,7 +11092,7 @@ L_800A5870:
     // 0x800A5874: jal         0x800A57FC
     // 0x800A5878: or          $a1, $s3, $zero
     ctx->r5 = ctx->r19 | 0;
-    func_800A57FC(rdram, ctx);
+    CubeTiles_ObjBuildNodeMatrixTree(rdram, ctx);
         goto after_3;
     // 0x800A5878: or          $a1, $s3, $zero
     ctx->r5 = ctx->r19 | 0;
@@ -11393,7 +11393,7 @@ L_800A5A04:
     // 0x800A5A34: jal         0x800A57A4
     // 0x800A5A38: sw          $at, 0x0($t2)
     MEM_W(0X0, ctx->r10) = ctx->r1;
-    func_800A57A4(rdram, ctx);
+    CubeTiles_CopyMatrixResetScales(rdram, ctx);
         goto after_0;
     // 0x800A5A38: sw          $at, 0x0($t2)
     MEM_W(0X0, ctx->r10) = ctx->r1;
@@ -11451,7 +11451,7 @@ L_800A5A04:
     // 0x800A5A7C: jal         0x800A57A4
     // 0x800A5A80: addiu       $a1, $sp, 0xE0
     ctx->r5 = ADD32(ctx->r29, 0XE0);
-    func_800A57A4(rdram, ctx);
+    CubeTiles_CopyMatrixResetScales(rdram, ctx);
         goto after_1;
     // 0x800A5A80: addiu       $a1, $sp, 0xE0
     ctx->r5 = ADD32(ctx->r29, 0XE0);
@@ -11482,7 +11482,7 @@ L_800A5A8C:
     // 0x800A5AA4: jal         0x800A57A4
     // 0x800A5AA8: or          $a1, $s2, $zero
     ctx->r5 = ctx->r18 | 0;
-    func_800A57A4(rdram, ctx);
+    CubeTiles_CopyMatrixResetScales(rdram, ctx);
         goto after_3;
     // 0x800A5AA8: or          $a1, $s2, $zero
     ctx->r5 = ctx->r18 | 0;
@@ -11566,7 +11566,7 @@ L_800A5B08:
     // 0x800A5B0C: jal         0x800A56E4
     // 0x800A5B10: addiu       $a1, $a1, 0xC0
     ctx->r5 = ADD32(ctx->r5, 0XC0);
-    func_800A56E4(rdram, ctx);
+    CubeTiles_ApplyMatrixRowScales(rdram, ctx);
         goto after_8;
     // 0x800A5B10: addiu       $a1, $a1, 0xC0
     ctx->r5 = ADD32(ctx->r5, 0XC0);
@@ -12063,7 +12063,7 @@ L_800A5DC8:
     // 0x800A5DCC: jal         0x800A56E4
     // 0x800A5DD0: addiu       $a1, $a1, 0x80
     ctx->r5 = ADD32(ctx->r5, 0X80);
-    func_800A56E4(rdram, ctx);
+    CubeTiles_ApplyMatrixRowScales(rdram, ctx);
         goto after_18;
     // 0x800A5DD0: addiu       $a1, $a1, 0x80
     ctx->r5 = ADD32(ctx->r5, 0X80);
@@ -12148,7 +12148,7 @@ L_800A5E30:
     // 0x800A5E44: jal         0x800A57FC
     // 0x800A5E48: or          $a1, $s6, $zero
     ctx->r5 = ctx->r22 | 0;
-    func_800A57FC(rdram, ctx);
+    CubeTiles_ObjBuildNodeMatrixTree(rdram, ctx);
         goto after_19;
     // 0x800A5E48: or          $a1, $s6, $zero
     ctx->r5 = ctx->r22 | 0;
@@ -12189,7 +12189,7 @@ L_800A5E58:
     ctx->r29 = ADD32(ctx->r29, 0X238);
 ;}
 
-RECOMP_FUNC void func_800A5E80(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjFinalizeChildMatrices(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A5E80: addiu       $sp, $sp, -0x28
@@ -12283,7 +12283,7 @@ L_800A5EE8:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_800A5F00(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjTranslateChildMatrices(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A5F00: lw          $v1, 0x8($a0)
@@ -12690,7 +12690,7 @@ L_800A60F4:
 
 ;}
 
-RECOMP_FUNC void func_800A60FC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjComputeChildMotionDelta(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A60FC: lw          $v1, 0x8($a0)
@@ -13157,7 +13157,7 @@ L_800A6358:
 
 ;}
 
-RECOMP_FUNC void func_800A6360(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjInitChildMotionState(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A6360: lw          $v1, 0x8($a0)
@@ -13794,7 +13794,7 @@ L_800A6708:
     ctx->r29 = ADD32(ctx->r29, 0X40);
 ;}
 
-RECOMP_FUNC void func_800A6734(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjDebugPrintChildList(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A6734: addiu       $sp, $sp, -0x20
@@ -13941,7 +13941,7 @@ L_800A67DC:
 
 ;}
 
-RECOMP_FUNC void func_800A67EC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjUnlinkChild(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A67EC: addiu       $sp, $sp, -0x18
@@ -14086,7 +14086,7 @@ L_800A6890:
 
 ;}
 
-RECOMP_FUNC void func_800A689C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetSingleAssetViewport(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A689C: lw          $v0, 0x34($a0)
@@ -14251,7 +14251,7 @@ L_800A696C:
 
 ;}
 
-RECOMP_FUNC void func_800A6974(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjSetCamViewportNode(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A6974: lw          $t6, 0x8($a0)
@@ -14515,7 +14515,7 @@ RECOMP_FUNC void CubeTiles_ObjInstantiateScoped(uint8_t* rdram, recomp_context* 
 
 ;}
 
-RECOMP_FUNC void func_800A6AA8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjReleaseNode(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A6AA8: addiu       $sp, $sp, -0x18
@@ -14630,7 +14630,7 @@ RECOMP_FUNC void CubeTiles_ObjAnimateNode(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A6B34: jal         0x800A6BB0
     // 0x800A6B38: nop
 
-    func_800A6BB0(rdram, ctx);
+    CubeTiles_ObjBlendAnimTransform(rdram, ctx);
         goto after_0;
     // 0x800A6B38: nop
 
@@ -14647,7 +14647,7 @@ L_800A6B48:
     // 0x800A6B48: jal         0x800A6B60
     // 0x800A6B4C: nop
 
-    func_800A6B60(rdram, ctx);
+    CubeTiles_ObjBlendAnimTargets(rdram, ctx);
         goto after_1;
     // 0x800A6B4C: nop
 
@@ -14665,7 +14665,7 @@ L_800A6B54:
 
 ;}
 
-RECOMP_FUNC void func_800A6B60(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjBlendAnimTargets(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A6B60: lw          $v1, 0x14($a0)
@@ -14735,7 +14735,7 @@ L_800A6BA8:
 
 ;}
 
-RECOMP_FUNC void func_800A6BB0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjBlendAnimTransform(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A6BB0: lw          $v0, 0x10($a0)
@@ -15989,7 +15989,7 @@ L_800A71B8:
     ctx->r29 = ADD32(ctx->r29, 0X40);
 ;}
 
-RECOMP_FUNC void func_800A71DC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjUpdateAnimGroups(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A71DC: addiu       $sp, $sp, -0x28
@@ -16166,7 +16166,7 @@ RECOMP_FUNC void CubeTiles_ObjSetActiveCamera(uint8_t* rdram, recomp_context* ct
 
 ;}
 
-RECOMP_FUNC void func_800A72B8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_DebugPrintMatrix(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A72B8: addiu       $sp, $sp, -0x38
@@ -16289,7 +16289,7 @@ L_800A731C:
     ctx->r29 = ADD32(ctx->r29, 0X38);
 ;}
 
-RECOMP_FUNC void func_800A7374(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_EmitRenderSetupDL(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A7374: lui         $t0, 0x8013
@@ -16481,7 +16481,7 @@ L_800A74B0:
     ctx->r2 = ctx->r4 | 0;
 ;}
 
-RECOMP_FUNC void func_800A74DC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_EmitTileRenderMode(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A74DC: lui         $v1, 0x8013
@@ -20082,7 +20082,7 @@ L_800A8984:
     // 0x800A8984: jal         0x800A7374
     // 0x800A8988: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
-    func_800A7374(rdram, ctx);
+    CubeTiles_EmitRenderSetupDL(rdram, ctx);
         goto after_0;
     // 0x800A8988: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
@@ -20261,7 +20261,7 @@ L_800A8A78:
     // 0x800A8A98: jal         0x800A4B98
     // 0x800A8A9C: sw          $a1, 0x10($s3)
     MEM_W(0X10, ctx->r19) = ctx->r5;
-    func_800A4B98(rdram, ctx);
+    CubeTiles_EmitNodeSegmentDL(rdram, ctx);
         goto after_1;
     // 0x800A8A9C: sw          $a1, 0x10($s3)
     MEM_W(0X10, ctx->r19) = ctx->r5;
@@ -20894,7 +20894,7 @@ L_800A8DD0:
     // 0x800A8E3C: jal         0x800A74DC
     // 0x800A8E40: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
-    func_800A74DC(rdram, ctx);
+    CubeTiles_EmitTileRenderMode(rdram, ctx);
         goto after_8;
     // 0x800A8E40: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
@@ -21238,7 +21238,7 @@ RECOMP_FUNC void CubeTiles_ClearInstantiateScoped(uint8_t* rdram, recomp_context
     MEM_W(0X7B04, ctx->r1) = 0;
 ;}
 
-RECOMP_FUNC void func_800A9D6C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_GetAssetCount(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A9D6C: lui         $v0, 0x8013
@@ -21251,7 +21251,7 @@ RECOMP_FUNC void func_800A9D6C(uint8_t* rdram, recomp_context* ctx) {
     ctx->r2 = MEM_W(ctx->r2, -0X69F8);
 ;}
 
-RECOMP_FUNC void func_800A9D78(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_DrainAssetQueue(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A9D78: addiu       $sp, $sp, -0x28
@@ -22002,7 +22002,7 @@ L_800AA508:
 
 ;}
 
-RECOMP_FUNC void func_800AA514(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_FreeAllAssetSlots(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA514: lui         $v1, 0x8013
@@ -22104,7 +22104,7 @@ L_800AA590:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_800AA5A8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjRelocatePtr0C(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA5A8: lw          $t6, 0xC($a0)
@@ -22134,7 +22134,7 @@ RECOMP_FUNC void func_800AA5BC(uint8_t* rdram, recomp_context* ctx) {
     ctx->r2 = 0 | 0;
 ;}
 
-RECOMP_FUNC void func_800AA5C8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjReleaseAssetRef(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AA5C8: addiu       $sp, $sp, -0x18
@@ -26517,7 +26517,7 @@ L_800ABDC4:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void func_800ABDDC(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void CubeTiles_ObjInstantiateGetData(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ABDDC: addiu       $sp, $sp, -0x18

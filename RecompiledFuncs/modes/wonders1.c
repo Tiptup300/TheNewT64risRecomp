@@ -1668,7 +1668,7 @@ RECOMP_FUNC void wonders1_FreeColumnTiles(uint8_t* rdram, recomp_context* ctx) {
     // 0x8004425C: jal         0x800A6AA8
     // 0x80044260: or          $a0, $t9, $zero
     ctx->r4 = ctx->r25 | 0;
-    func_800A6AA8(rdram, ctx);
+    CubeTiles_ObjReleaseNode(rdram, ctx);
         goto after_0;
     // 0x80044260: or          $a0, $t9, $zero
     ctx->r4 = ctx->r25 | 0;
@@ -3294,7 +3294,7 @@ L_80044AD8:
     // 0x80044B38: jal         0x800A6AA8
     // 0x80044B3C: nop
 
-    func_800A6AA8(rdram, ctx);
+    CubeTiles_ObjReleaseNode(rdram, ctx);
         goto after_12;
     // 0x80044B3C: nop
 
