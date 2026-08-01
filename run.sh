@@ -38,6 +38,13 @@ fi
 # On a native Linux desktop with a normal Vulkan driver, this file won't exist
 # and the system ICD is used.
 if [ -f "dzn/dzn_icd.json" ]; then
+    # dzn_icd.json stores an ABSOLUTE library_path; a folder move/rename would
+    # leave it dangling (Vulkan then fails with "Missing VK_KHR_surface" and the
+    # app aborts at startup). Self-heal it to the current location each launch.
+    want="$here/dzn/libvulkan_dzn.so"
+    if ! grep -q "\"$want\"" dzn/dzn_icd.json 2>/dev/null; then
+        sed -i "s#\"library_path\": \"[^\"]*\"#\"library_path\": \"$want\"#" dzn/dzn_icd.json
+    fi
     export VK_ICD_FILENAMES="$here/dzn/dzn_icd.json"
 fi
 
