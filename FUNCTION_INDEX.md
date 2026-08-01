@@ -1,4 +1,4 @@
-# The New Tiptris — function index
+# The New T64ris — function index
 
 Auto-generated from `tnt.syms.toml` (1587 symbols). Grouped by subsystem (prefix before the first `_`).
 `calls` = how many other functions this one calls (its out-degree) — **high = orchestrator, 0 = leaf/helper**.

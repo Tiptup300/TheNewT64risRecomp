@@ -1,4 +1,4 @@
-# The New Tiptris — cheat codes & secrets (catalog)
+# The New T64ris — cheat codes & secrets (catalog)
 
 These are the game's **built-in** cheats, entered as a **player name** on the
 single-player name-entry screen (type the name, highlight **OK**, press **A/Accept**),

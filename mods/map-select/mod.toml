@@ -1,24 +1,28 @@
-# Map Selector — force which background/map the game uses (for testing all maps).
+# Song / Music-Track Selector.
+# NOTE: this mod dir is historically named "map-select", but RE confirmed its
+# target (0x8011E4F8 = g_currentSong) is the SONG index, not the map. It forces
+# the music track. The real map/background global is still unidentified (TODO).
 [manifest]
 id = "tnt_map_select"
-version = "1.0.0"
-display_name = "Map Selector"
+version = "1.1.0"
+display_name = "Music Track Selector"
 description = """
-Forces the game to use a chosen background/map instead of picking one randomly. \
-Set "Map" to Random for normal behavior, or pick a specific map to play/test it. \
-The map names are best-guesses from the decomp — verify and relabel in-game."""
-short_description = "Choose which map/background the game uses."
+Forces the game to play a chosen music track instead of picking one randomly. \
+Set "Song" to Random for normal behavior, or pick a specific track to hear it. \
+(Historically shipped as a "map selector" — the forced byte was RE-confirmed to be \
+the song index, not the background; the real map global is not yet identified.)"""
+short_description = "Choose which music track the game plays."
 authors = [ "TntRecomp" ]
 game_id = "tnt"
 minimum_recomp_version = "1.0.0"
 enabled_by_default = false
 
 [[manifest.config_options]]
-id = "map"
-name = "Map"
-description = "Which background to force (Random = normal)."
+id = "song"
+name = "Song"
+description = "Which music track to force (Random = normal)."
 type = "Enum"
-options = [ "Random", "0 Main", "1 Mayan", "2 Japanese", "3 Egyptian", "4 Celtic", "5 African", "6 Greek", "7 Russian" ]
+options = [ "Random", "Track 0", "Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6", "Track 7" ]
 default = "Random"
 
 [inputs]

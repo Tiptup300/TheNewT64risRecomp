@@ -1,4 +1,4 @@
-/* Minimal base stylesheet for The New Tiptris : Recompiled.
+/* Minimal base stylesheet for The New T64ris : Recompiled.
    recompui loads this via init_styling(); the launcher/menu elements extend it. */
 body {
     font-family: primary;

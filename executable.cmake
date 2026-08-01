@@ -1,4 +1,4 @@
-# Executable target for The New Tiptris : Recompiled.
+# Executable target for The New T64ris : Recompiled.
 add_executable(TntRecompiled)
 
 set(TNT_SOURCES

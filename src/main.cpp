@@ -1,4 +1,4 @@
-// The New Tiptris : Recompiled — application entry point.
+// The New T64ris : Recompiled — application entry point.
 // Modeled on the standard N64: Recompiled harness (BanjoRecomp-style).
 #include <cstdint>
 #include <cstdlib>
@@ -69,7 +69,7 @@ static ultramodern::renderer::WindowHandle create_window(ultramodern::gfx_callba
     // Windows uses the D3D12 renderer, which wants the native HWND (not a Vulkan
     // SDL window). WindowHandle is { HWND, thread_id }.
     window = SDL_CreateWindow(
-        "The New Tiptris : Recompiled",
+        "The New T64ris : Recompiled",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 960,
         SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
@@ -80,7 +80,7 @@ static ultramodern::renderer::WindowHandle create_window(ultramodern::gfx_callba
 #else
     // Linux: WindowHandle is just the SDL_Window* (SDL-Vulkan path).
     window = SDL_CreateWindow(
-        "The New Tiptris : Recompiled",
+        "The New T64ris : Recompiled",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 960,
         SDL_WINDOW_VULKAN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
@@ -267,7 +267,7 @@ int main(int argc, char** argv) {
     signal(SIGSEGV, tnt_crash_handler);
     signal(SIGABRT, tnt_crash_handler);
 #endif
-    recompui::programconfig::set_program_name("The New Tiptris : Recompiled");
+    recompui::programconfig::set_program_name("The New T64ris : Recompiled");
     SDL_SetHint(SDL_HINT_JOYSTICK_THREAD, "1");
 #ifdef __linux__
     // On Linux (incl. WSLg), most desktops route audio through PulseAudio and
@@ -309,7 +309,7 @@ int main(int argc, char** argv) {
     recomp::GameEntry game{};
     game.rom_hash = 0xEDDC4D3AEF798119ULL; // XXH3_64 of the NTSC-U ROM
     game.internal_name = "TETRIS";
-    game.display_name = "The New Tiptris";
+    game.display_name = "The New T64ris";
     game.game_id = u8"tnt.n64.us";
     game.mod_game_id = "tnt";
     game.save_type = recomp::SaveType::AllowAll;

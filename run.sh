@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Run The New Tiptris : Recompiled.
+# Run The New T64ris : Recompiled.
 #
 #   ./run.sh                 # launch (auto-boots if a ROM is already stored)
 #   ./run.sh --rom PATH      # point at a ROM (first run, or to switch ROMs)

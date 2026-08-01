@@ -1,6 +1,6 @@
 name: Release
 
-# Builds The New Tiptris for Linux (tar.gz) and Windows (zip) and publishes them.
+# Builds The New T64ris for Linux (tar.gz) and Windows (zip) and publishes them.
 #  - push a tag like v0.1.0  -> builds + attaches both archives to a GitHub Release
 #  - "Run workflow" (manual) -> builds + uploads both as run artifacts
 #

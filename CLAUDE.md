@@ -1,10 +1,10 @@
 # CLAUDE.md — working notes for this repo
 
-A native PC port of **The New Tiptris** (N64 game by H2O) via N64Recomp. See
+A native PC port of **The New T64ris** (N64 game by H2O) via N64Recomp. See
 `README.md` for the project overview and build-from-source steps.
 
 > **Naming/legal:** never say "Tetris" in commits/docs/comms — call it **The New
-> Tiptris** by **H2O**. Functional symbol names in generated code (e.g.
+> T64ris** by **H2O**. Functional symbol names in generated code (e.g.
 > `Tetris_Update`) are fine. **Never commit the ROM or any game data** (graphics,
 > audio, level data, rendered frames); only recompiled *code* is committed.
 

@@ -1,24 +1,30 @@
 #include "modding.h"
 #include "recompconfig.h"
 
-// Map/background selector. The game picks one of 8 backgrounds per game via
-// func_800A35EC(0,7) in func_80090E08 and stores the index as a byte at
-// 0x8011E4F8 (game_ptr->unkE4F8). This mod forces that byte to the configured
-// map each frame, so you can play/test a specific background instead of random.
+// Song / music-track selector.
 //
-// Config "map" (Enum) indices: 0 = Random (off), 1..8 => map index 0..7.
-// The index->name mapping (from the decomp's images.cfg order) is a best guess:
-//   0 Main, 1 Mayan, 2 Japanese, 3 Egyptian, 4 Celtic, 5 African, 6 Greek, 7 Russian
-// — verify in-game and relabel; that's exactly what this mod is for.
+// CORRECTION (RE-confirmed): the byte at 0x8011E4F8 that this mod forces is the
+// SONG index, NOT the map/background. In the scene-setup path a rand(0,7) result
+// is stored there and then read back and passed to PFGFX_SelectAndStartMusic
+// (the music-start routine, a0 = song index). It is the data symbol
+// `g_currentSong`. The old "map selector" framing was a misunderstanding — this
+// mod forces the music track. The real map/background global is still
+// unidentified (open TODO), so a true map selector isn't possible yet.
 //
-// NOTE: if the background is loaded once at game start (not re-read per frame),
-// forcing the byte here may not switch the *current* game's background — tune the
-// hook point after testing.
-#define MAP_BYTE (*(volatile unsigned char*)0x8011E4F8)
+// We reference the game variable BY NAME via the mod's data_reference_syms_files
+// (cleaner and safer than a raw pointer — the mod recompiler resolves the name to
+// the game address), matching the wonders-rebalance mod's pattern.
+//
+// CAVEAT (timing): this forces g_currentSong every Scene_Update. If the song is
+// only selected/started once per game (not re-read per frame), forcing the byte
+// here may not switch the *currently playing* track — verify in-game and, if
+// needed, retarget to a RECOMP_PATCH of PFGFX_SelectAndStartMusic overriding the
+// song argument at the actual selection point.
+extern volatile unsigned char g_currentSong;
 
-RECOMP_HOOK("Scene_Update") void tnt_force_map(void) {
-    unsigned long sel = recomp_get_config_u32("map");   // 0 = Random/off, 1..8 => map 0..7
+RECOMP_HOOK("Scene_Update") void tnt_force_song(void) {
+    unsigned long sel = recomp_get_config_u32("song");   // 0 = Random/off, 1..8 => song 0..7
     if (sel >= 1 && sel <= 8) {
-        MAP_BYTE = (unsigned char)(sel - 1);
+        g_currentSong = (unsigned char)(sel - 1);
     }
 }

@@ -64,7 +64,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/lib/N64ModernRuntime)
 
 target_include_directories(rt64 PRIVATE ${CMAKE_BINARY_DIR}/rt64/src)
 
-# RecompiledFuncs - the primary recompiler output for The New Tiptris
+# RecompiledFuncs - the primary recompiler output for The New T64ris
 add_library(RecompiledFuncs STATIC)
 target_compile_options(RecompiledFuncs PRIVATE
     -fno-strict-aliasing

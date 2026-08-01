@@ -1,4 +1,4 @@
-The New Tiptris — how to run
+The New T64ris — how to run
 =============================
 
 1. Extract this archive and run the app:

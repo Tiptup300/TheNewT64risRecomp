@@ -1,6 +1,6 @@
 # TheNewTiptrisRecomp
 
-A work-in-progress native PC port of **The New Tiptris** — an N64 game by H2O —
+A work-in-progress native PC port of **The New T64ris** — an N64 game by H2O —
 built with [N64: Recompiled](https://github.com/N64Recomp/N64Recomp): static
 recompilation of the game's MIPS code to C, run on a modern runtime + renderer.
 

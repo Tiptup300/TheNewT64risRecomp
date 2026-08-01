@@ -6,7 +6,7 @@ index bfcfef4..2e3beda 100644
  
      using default_game_input_device_mapping = std::unordered_map<GameInput, std::vector<InputField>>;
  
-+    // The New Tiptris default keyboard layout. Movement uses the arrow keys, which
++    // The New T64ris default keyboard layout. Movement uses the arrow keys, which
 +    // drive BOTH the D-pad (TNT menus/pieces read the D-pad) and the analog stick.
      default_game_input_device_mapping default_n64_mappings_keyboard = {
 -        { GameInput::A,              { InputField::keyboard(SDL_SCANCODE_SPACE) } },
