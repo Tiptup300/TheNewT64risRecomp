@@ -67,11 +67,11 @@
       path and Scene_Init frees+nulls at teardown. Entering scene 4 without the load
       (attract-demo game start) leaves it null -> store folds into the recomp's
       PROT_NONE guard region -> SIGSEGV. Genuine game bug (not a masking artifact).
-      GUARD: mods/scene-crash-guard (RECOMP_HOOK on Scene_SetupObjectMatrices, points
-      the null ptr at unused RAM 0x80900000; acts only in the null/broken state).
-      STILL OPEN: verify the guard at runtime (clean display needed); the real fix is
-      to route scene-4 entry through the resource-load path. RECOMP_PATCH can't be used
-      (replaces the whole function, no delegate-to-original). See tnt-scene-and-crash-re memory.
+      GUARD: mods/scene-crash-guard clears the first crash but E2E (tools/e2e/test_crash_guard.py)
+      showed it is INSUFFICIENT — the crash MOVES to Scene_SetupObjectRenderState+0xc5d
+      (scene-4-without-setup has multiple uninitialized pointers). Real fix = option (c):
+      prevent the bad scene entry / run the resource-load path. Now iterable via the E2E
+      harness (reproduces the crash deterministically). See tnt-scene-and-crash-re memory.
 - [ ] open-mods-folder button does nothing under WSLg (no xdg-open/Windows shell bridge). Wire it to the right per-OS folder-open (xdg-open / explorer.exe / open) or hide it where unsupported.
 - [ ] song/playlist selector mod — list all available songs and let the user choose which songs play; when enabled, disable the in-game Audio "select music" menu option
 - [~] configure mods without hand-relaunching — DONE via the in-game "Restart" button (config-menu header, shown while playing): re-execs the app with TNT_NO_AUTOBOOT so it lands at the launcher to toggle mods, then Start Game again. Still open: a true IN-PLACE return-to-launcher (tear down the game thread without a full process restart) + a Windows re-exec path (Linux-only /proc/self/exe today).

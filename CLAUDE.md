@@ -117,6 +117,26 @@ Then copy frames from `/mnt/c/Users/Public/...` and view with the Read tool.
   `ps aux | grep '[b]uild-cmake/TntRecompiled' | awk '{print $2}' | xargs -r kill -9`.
 - `zip` isn't installed; `build_mod.sh` has a Python zip fallback (`.nrm` is a zip).
 
+## E2E test harness (`tools/e2e/`)
+
+Drive the headless game from Python to iterate/regression-test: launch, **wait on
+game RAM**, assert properties, **inject input**. Three inert-by-default runtime
+channels (app side in `src/main.cpp` + the TNT_INPUT patch):
+`TNT_STATE_OUT`/`TNT_STATE_WATCH` (per-frame RAM dump + `_frame` heartbeat),
+`TNT_STATE_POKE` (force RAM), `TNT_INPUT` (inject scancodes).
+
+```python
+from harness import Game, Keys
+with Game(mods=["tnt_scene_crash_guard"]) as g:   # optional mod A/B
+    g.wait_alive(); g.wait_for("scene", lambda v: v==3)   # attract
+    g.press(Keys.START, hold=3.0)                          # -> menu (scene 4)
+    g.poke(0x800CFEE8, 1, 4)                               # force state
+```
+`tools/e2e/run.sh` runs `test_*.py`. The harness forces SDL **dummy audio** (flaky
+WSLg PulseAudio otherwise stalls boot) and paces with `select()` (SIGSTKFLT-safe).
+Validated: smoke (boot→attract) + navigate (START→scene 4) pass; the crash test
+**reproduces the scene-4 SIGSEGV** deterministically. See `tools/e2e/README.md`.
+
 ## Persistent memory
 
 Longer-lived project context lives in the memory dir (loaded via `MEMORY.md`):
