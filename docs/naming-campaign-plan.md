@@ -162,3 +162,33 @@ callgraph), and names those. This two-pass rhythm is why the campaign converges.
 Realistic outcome: most of the ~886 become confidently named over several
 sessions; a residue (functions whose purpose needs *runtime* tracing) stays
 address-named — acceptable, and the callgraph makes even those navigable.
+
+## Status — 2026-08-01 (folder now TheNewT64risRecomp)
+
+Autonomous grind toward the "88% functions AND 88% variables" goal.
+
+**Functions: 1285/1430 named (89.9%) — 88% target EXCEEDED.**
+Path: waves 4–5 (CubeTiles/Stopwatch/Math/ControllerRepeat/Gfx/Minos + gameplay/
+Mtx/misc/audio) took 80.3%→88.7%; a second sweep over parked functions (re-activated
+by newly-named callers/callees — Bg3D setters, misfiled CubeTiles-scene & VI helpers,
+Stopwatch ring-indexers) took it to 89.9%. Remaining 145 placeholders are genuine
+static residue: the CubeTiles ~9 byte-identical virtual-handler stubs + transform
+builders (~74 total), empty stubs, rmonPrintf debug wrappers, the func_800ACxxx
+gfx-builder cluster (0 static callers — reached indirectly; would need the
+TNT_INDIRECT_TRACE runtime tracer), the func_8006119x VI param-bank group, and
+Rand deep-FP math. See `docs/naming-parking-list.md`.
+
+**Variables: 695/915 named (76.0%) — honest STATIC ceiling; 88% NOT reachable statically.**
+Three dedicated data waves (15 agents) + incidental harvest. The blocker is
+structural: game state lives in heap structs behind named pointers (base+offset
+accesses, not standalone datasyms), and the remaining placeholders are dominated by
+those interior fields + ROM .rodata strings (content not in the recompiled code) +
+111 addresses referenced by no named function at all. Named the genuine standalone
+population (OS/thread/msgq globals, audio heap/DMA companions, VI+bg3d state, fault
+block, playfield draw-object/color-table arrays, data-menu/pak state, screen-fade
+pairs, text cursors, sine/rand tables, per-mode presets). Going past ~76–80% needs
+runtime/behavioral RE or reading ROM data (out of scope). Full rationale in the
+parking list.
+
+Every batch gated: `verify.sh` green (functions) + `datacoverage.py --check` clean
+(variables), one commit per batch.
