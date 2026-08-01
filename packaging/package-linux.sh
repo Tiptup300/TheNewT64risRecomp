@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Package TntRecompiled into a self-contained, relocatable Linux tarball.
 #
-#   TheNewTiptris/
-#     TheNewTiptris          (the binary, rpath $ORIGIN/lib)
+#   TheNewT64ris/
+#     TheNewT64ris          (the binary, rpath $ORIGIN/lib)
 #     assets/                (open-source UI fonts + rcss; NO game data)
 #     lib/                   (bundled app-payload libs: SDL2, freetype, codecs)
-#     TheNewTiptris.desktop
+#     TheNewT64ris.desktop
 #     RUN.txt
 #
 # We DO NOT bundle the system / GPU / desktop stack (glibc, libGL/EGL/vulkan/drm,
@@ -19,7 +19,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BIN="${1:-$ROOT/build-cmake/TntRecompiled}"
 ASSETS="${2:-$ROOT/assets}"
 OUTDIR="${3:-$ROOT/dist}"
-NAME="TheNewTiptris"
+NAME="TheNewT64ris"
 ARCH="$(uname -m)"
 
 [ -f "$BIN" ] || { echo "error: binary not found: $BIN" >&2; exit 1; }
@@ -70,7 +70,7 @@ else
 #!/usr/bin/env bash
 here="$(cd "$(dirname "$0")" && pwd)"
 export LD_LIBRARY_PATH="$here/lib:${LD_LIBRARY_PATH:-}"
-exec "$here/TheNewTiptris.bin" "$@"
+exec "$here/TheNewT64ris.bin" "$@"
 EOF
     chmod +x "$STAGE/$NAME"
 fi

@@ -2,7 +2,7 @@
 Type=Application
 Name=The New T64ris
 Comment=Native PC port (N64 game by H2O) built with N64: Recompiled
-Exec=TheNewTiptris
-Icon=TheNewTiptris
+Exec=TheNewT64ris
+Icon=TheNewT64ris
 Terminal=false
 Categories=Game;
