@@ -2038,7 +2038,7 @@ RECOMP_FUNC void func_80083160(uint8_t* rdram, recomp_context* ctx) {
     // 0x800831A0: jal         0x8007ECC8
     // 0x800831A4: nop
 
-    func_8007ECC8(rdram, ctx);
+    Gfx_BeginScreenFade1(rdram, ctx);
         goto after_1;
     // 0x800831A4: nop
 
@@ -2126,7 +2126,7 @@ L_80083204:
     // 0x80083220: jal         0x8007E9F8
     // 0x80083224: nop
 
-    func_8007E9F8(rdram, ctx);
+    Gfx_BeginScreenFade0(rdram, ctx);
         goto after_3;
     // 0x80083224: nop
 

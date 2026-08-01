@@ -2385,7 +2385,7 @@ RECOMP_FUNC void Mtx_BuildRotationFixed(uint8_t* rdram, recomp_context* ctx) {
     // 0x800AE7A4: jal         0x800A8FC8
     // 0x800AE7A8: swc1        $f8, 0x3C($sp)
     MEM_W(0X3C, ctx->r29) = ctx->f8.u32l;
-    func_800A8FC8(rdram, ctx);
+    CubeTiles_FillHalfwords(rdram, ctx);
         goto after_2;
     // 0x800AE7A8: swc1        $f8, 0x3C($sp)
     MEM_W(0X3C, ctx->r29) = ctx->f8.u32l;

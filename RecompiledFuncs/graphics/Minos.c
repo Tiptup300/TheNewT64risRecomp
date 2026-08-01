@@ -3642,7 +3642,7 @@ L_800A2F34:
 
 ;}
 
-RECOMP_FUNC void func_800A2F50(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_StepBytesToward(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A2F50: or          $v0, $zero, $zero
@@ -3731,7 +3731,7 @@ L_800A2FA0:
 
 ;}
 
-RECOMP_FUNC void func_800A2FB0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_WarpSampleIndices(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A2FB0: addi        $sp, $sp, -0x20
@@ -3924,7 +3924,7 @@ L_800A3098:
     ctx->r29 = ADD32(ctx->r29, 0X20);
 ;}
 
-RECOMP_FUNC void func_800A30F0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_WarpSamplePixels(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A30F0: addi        $sp, $sp, -0x20
@@ -4191,7 +4191,7 @@ RECOMP_FUNC void func_800A32E0(uint8_t* rdram, recomp_context* ctx) {
     int c1cs = 0;
 ;}
 
-RECOMP_FUNC void FUN_069580_800A3300_nineliner_mod300(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_QueuePush(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3300: lh          $v1, 0x0($a0)
@@ -4355,7 +4355,7 @@ L_800A33DC:
 
 ;}
 
-RECOMP_FUNC void func_800A33E4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_QueuePop(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A33E4: addiu       $sp, $sp, -0x30
@@ -4365,7 +4365,7 @@ RECOMP_FUNC void func_800A33E4(uint8_t* rdram, recomp_context* ctx) {
     // 0x800A33EC: jal         0x800A3534
     // 0x800A33F0: sw          $a0, 0x30($sp)
     MEM_W(0X30, ctx->r29) = ctx->r4;
-    func_800A3534(rdram, ctx);
+    Minos_QueueCount(rdram, ctx);
         goto after_0;
     // 0x800A33F0: sw          $a0, 0x30($sp)
     MEM_W(0X30, ctx->r29) = ctx->r4;
@@ -4488,7 +4488,7 @@ RECOMP_FUNC void Minos_Reset(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void FUN_069580_800A34A8_tenliner_allocs_heap(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_QueueInit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A34A8: addiu       $sp, $sp, -0x20
@@ -4601,7 +4601,7 @@ RECOMP_FUNC void func_800A352C(uint8_t* rdram, recomp_context* ctx) {
     ctx->r2 = MEM_W(ctx->r4, 0X14);
 ;}
 
-RECOMP_FUNC void func_800A3534(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Minos_QueueCount(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A3534: lw          $t6, 0x8($a0)

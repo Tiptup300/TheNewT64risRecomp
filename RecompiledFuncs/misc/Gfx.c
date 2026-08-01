@@ -2192,7 +2192,7 @@ RECOMP_FUNC void Gfx_InitBackground3D(uint8_t* rdram, recomp_context* ctx) {
     // 0x8007CF6C: jal         0x800A4364
     // 0x8007CF70: lui         $a1, 0x42DC
     ctx->r5 = S32(0X42DC << 16);
-    func_800A4364(rdram, ctx);
+    CubeTiles_ObjSetCamFov(rdram, ctx);
         goto after_1;
     // 0x8007CF70: lui         $a1, 0x42DC
     ctx->r5 = S32(0X42DC << 16);
@@ -2208,7 +2208,7 @@ RECOMP_FUNC void Gfx_InitBackground3D(uint8_t* rdram, recomp_context* ctx) {
     // 0x8007CF84: jal         0x800A43B0
     // 0x8007CF88: lui         $a2, 0x4280
     ctx->r6 = S32(0X4280 << 16);
-    func_800A43B0(rdram, ctx);
+    CubeTiles_ObjSetCamClip(rdram, ctx);
         goto after_2;
     // 0x8007CF88: lui         $a2, 0x4280
     ctx->r6 = S32(0X4280 << 16);
@@ -2605,7 +2605,7 @@ RECOMP_FUNC void Gfx_RenderBackground3D(uint8_t* rdram, recomp_context* ctx) {
     // 0x8007DA4C: jal         0x800AE6E4
     // 0x8007DA50: addiu       $a1, $sp, 0x38
     ctx->r5 = ADD32(ctx->r29, 0X38);
-    func_800AE6E4(rdram, ctx);
+    Gfx_Bg3DSetRot(rdram, ctx);
         goto after_0;
     // 0x8007DA50: addiu       $a1, $sp, 0x38
     ctx->r5 = ADD32(ctx->r29, 0X38);
@@ -2621,7 +2621,7 @@ RECOMP_FUNC void Gfx_RenderBackground3D(uint8_t* rdram, recomp_context* ctx) {
     // 0x8007DA64: jal         0x800AE700
     // 0x8007DA68: nop
 
-    func_800AE700(rdram, ctx);
+    Gfx_Bg3DSetScale(rdram, ctx);
         goto after_1;
     // 0x8007DA68: nop
 
@@ -4027,7 +4027,7 @@ L_8007E9E8:
     ctx->r29 = ADD32(ctx->r29, 0X48);
 ;}
 
-RECOMP_FUNC void func_8007E9F8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_BeginScreenFade0(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007E9F8: lui         $at, 0x3FF0
@@ -4481,7 +4481,7 @@ L_8007ECB8:
     ctx->r29 = ADD32(ctx->r29, 0X48);
 ;}
 
-RECOMP_FUNC void func_8007ECC8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_BeginScreenFade1(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007ECC8: lui         $at, 0x3FF0
@@ -4947,7 +4947,7 @@ L_8007EFA0:
     ctx->r29 = ADD32(ctx->r29, 0X48);
 ;}
 
-RECOMP_FUNC void func_8007EFB0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_BeginScreenFade2(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007EFB0: lui         $at, 0x3FF0
@@ -5405,7 +5405,7 @@ L_8007F278:
     ctx->r29 = ADD32(ctx->r29, 0X48);
 ;}
 
-RECOMP_FUNC void func_8007F288(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_BeginScreenFade3(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007F288: lui         $at, 0x3FF0
@@ -5450,7 +5450,7 @@ RECOMP_FUNC void func_8007F288(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X1FC, ctx->r1) = ctx->f16.u32l;
 ;}
 
-RECOMP_FUNC void func_8007F2C0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_CubeSceneInit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007F2C0: addiu       $sp, $sp, -0x18
@@ -5521,7 +5521,7 @@ RECOMP_FUNC void func_8007F2C0(uint8_t* rdram, recomp_context* ctx) {
     ctx->r29 = ADD32(ctx->r29, 0X18);
 ;}
 
-RECOMP_FUNC void func_8007F320(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_CubeSceneDeinit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007F320: addiu       $sp, $sp, -0x18
@@ -5550,7 +5550,7 @@ RECOMP_FUNC void func_8007F320(uint8_t* rdram, recomp_context* ctx) {
 
 ;}
 
-RECOMP_FUNC void func_8007F344(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_CubeSceneUpdate(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007F344: lui         $t6, 0x800D
@@ -6196,7 +6196,7 @@ L_8007F6DC:
     // 0x8007F704: jal         0x8007F2C0
     // 0x8007F708: nop
 
-    func_8007F2C0(rdram, ctx);
+    Gfx_CubeSceneInit(rdram, ctx);
         goto after_12;
     // 0x8007F708: nop
 
@@ -6268,7 +6268,7 @@ L_8007F768:
     // 0x8007F770: jal         0x8007EFB0
     // 0x8007F774: nop
 
-    func_8007EFB0(rdram, ctx);
+    Gfx_BeginScreenFade2(rdram, ctx);
         goto after_13;
     // 0x8007F774: nop
 
@@ -6388,7 +6388,7 @@ L_8007F7F0:
     // 0x8007F80C: jal         0x8007F320
     // 0x8007F810: nop
 
-    func_8007F320(rdram, ctx);
+    Gfx_CubeSceneDeinit(rdram, ctx);
         goto after_19;
     // 0x8007F810: nop
 
@@ -6549,7 +6549,7 @@ L_8007F830:
     // 0x8007F8F8: jal         0x8007F288
     // 0x8007F8FC: nop
 
-    func_8007F288(rdram, ctx);
+    Gfx_BeginScreenFade3(rdram, ctx);
         goto after_27;
     // 0x8007F8FC: nop
 
@@ -7321,7 +7321,7 @@ L_80080CF0:
     // 0x80080CF8: jal         0x8007ECC8
     // 0x80080CFC: nop
 
-    func_8007ECC8(rdram, ctx);
+    Gfx_BeginScreenFade1(rdram, ctx);
         goto after_10;
     // 0x80080CFC: nop
 
@@ -7420,7 +7420,7 @@ L_80080D78:
     // 0x80080D80: jal         0x8007E9F8
     // 0x80080D84: nop
 
-    func_8007E9F8(rdram, ctx);
+    Gfx_BeginScreenFade0(rdram, ctx);
         goto after_12;
     // 0x80080D84: nop
 
@@ -9217,7 +9217,7 @@ L_800AE694:
     ctx->r29 = ADD32(ctx->r29, 0X68);
 ;}
 
-RECOMP_FUNC void func_800AE6C8(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_Bg3DSetPos(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AE6C8: lw          $at, 0x0($a1)
@@ -9238,7 +9238,7 @@ RECOMP_FUNC void func_800AE6C8(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X130, ctx->r4) = ctx->r1;
 ;}
 
-RECOMP_FUNC void func_800AE6E4(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_Bg3DSetRot(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AE6E4: lw          $at, 0x0($a1)
@@ -9259,7 +9259,7 @@ RECOMP_FUNC void func_800AE6E4(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X13C, ctx->r4) = ctx->r1;
 ;}
 
-RECOMP_FUNC void func_800AE700(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Gfx_Bg3DSetScale(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800AE700: mtc1        $a1, $f12

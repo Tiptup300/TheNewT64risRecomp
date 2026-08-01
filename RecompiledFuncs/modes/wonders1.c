@@ -51,7 +51,7 @@ RECOMP_FUNC void wonders1_HandleButtonInput(uint8_t* rdram, recomp_context* ctx)
     // 0x80043858: jal         0x8007E9F8
     // 0x8004385C: nop
 
-    func_8007E9F8(rdram, ctx);
+    Gfx_BeginScreenFade0(rdram, ctx);
         goto after_0;
     // 0x8004385C: nop
 
@@ -1884,7 +1884,7 @@ L_8004434C:
     // 0x800443A0: jal         0x8007ECC8
     // 0x800443A4: nop
 
-    func_8007ECC8(rdram, ctx);
+    Gfx_BeginScreenFade1(rdram, ctx);
         goto after_3;
     // 0x800443A4: nop
 
@@ -3396,7 +3396,7 @@ L_80044BB4:
     // 0x80044BBC: jal         0x8007EFB0
     // 0x80044BC0: nop
 
-    func_8007EFB0(rdram, ctx);
+    Gfx_BeginScreenFade2(rdram, ctx);
         goto after_17;
     // 0x80044BC0: nop
 
@@ -5755,7 +5755,7 @@ L_800459B8:
     // 0x800459D8: jal         0x8007EFB0
     // 0x800459DC: nop
 
-    func_8007EFB0(rdram, ctx);
+    Gfx_BeginScreenFade2(rdram, ctx);
         goto after_1;
     // 0x800459DC: nop
 
@@ -5798,7 +5798,7 @@ L_800459EC:
     // 0x80045A08: jal         0x8007F288
     // 0x80045A0C: nop
 
-    func_8007F288(rdram, ctx);
+    Gfx_BeginScreenFade3(rdram, ctx);
         goto after_4;
     // 0x80045A0C: nop
 
@@ -5912,7 +5912,7 @@ L_80045A80:
     // 0x80045AA8: jal         0x8007E9F8
     // 0x80045AAC: nop
 
-    func_8007E9F8(rdram, ctx);
+    Gfx_BeginScreenFade0(rdram, ctx);
         goto after_9;
     // 0x80045AAC: nop
 
@@ -5955,7 +5955,7 @@ L_80045ABC:
     // 0x80045AD8: jal         0x8007ECC8
     // 0x80045ADC: nop
 
-    func_8007ECC8(rdram, ctx);
+    Gfx_BeginScreenFade1(rdram, ctx);
         goto after_12;
     // 0x80045ADC: nop
 
@@ -6029,7 +6029,7 @@ L_80045B0C:
     // 0x80045B28: jal         0x8007ECC8
     // 0x80045B2C: nop
 
-    func_8007ECC8(rdram, ctx);
+    Gfx_BeginScreenFade1(rdram, ctx);
         goto after_17;
     // 0x80045B2C: nop
 

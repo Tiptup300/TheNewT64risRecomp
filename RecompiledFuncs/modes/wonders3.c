@@ -2665,7 +2665,7 @@ L_80047348:
     // 0x80047384: jal         0x800A8FC8
     // 0x80047388: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);
-    func_800A8FC8(rdram, ctx);
+    CubeTiles_FillHalfwords(rdram, ctx);
         goto after_4;
     // 0x80047388: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);

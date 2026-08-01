@@ -102,7 +102,7 @@ RECOMP_FUNC void PV_ResetPlayer(uint8_t* rdram, recomp_context* ctx) {
     // 0x800535C8: jal         0x80060CA0
     // 0x800535CC: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);
-    FUN_026C80_nineliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Reset(rdram, ctx);
         goto after_0;
     // 0x800535CC: addiu       $a0, $a0, 0x28
     ctx->r4 = ADD32(ctx->r4, 0X28);

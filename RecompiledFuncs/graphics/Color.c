@@ -1558,7 +1558,7 @@ RECOMP_FUNC void calls_game_deinit(uint8_t* rdram, recomp_context* ctx) {
     // 0x800555E4: jal         0x800A8FC8
     // 0x800555E8: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
-    func_800A8FC8(rdram, ctx);
+    CubeTiles_FillHalfwords(rdram, ctx);
         goto after_5;
     // 0x800555E8: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;

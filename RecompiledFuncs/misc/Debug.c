@@ -99,7 +99,7 @@ L_8004A624:
     // 0x8004A62C: jal         0x800A3534
     // 0x8004A630: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);
-    func_800A3534(rdram, ctx);
+    Minos_QueueCount(rdram, ctx);
         goto after_0;
     // 0x8004A630: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);
@@ -120,7 +120,7 @@ L_8004A63C:
     // 0x8004A644: jal         0x800A33E4
     // 0x8004A648: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);
-    func_800A33E4(rdram, ctx);
+    Minos_QueuePop(rdram, ctx);
         goto after_1;
     // 0x8004A648: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);
@@ -132,7 +132,7 @@ L_8004A63C:
     // 0x8004A654: jal         0x800A3534
     // 0x8004A658: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);
-    func_800A3534(rdram, ctx);
+    Minos_QueueCount(rdram, ctx);
         goto after_2;
     // 0x8004A658: addiu       $a0, $a0, 0x4
     ctx->r4 = ADD32(ctx->r4, 0X4);

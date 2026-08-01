@@ -61,7 +61,7 @@ L_8006CF48:
     // 0x8006CF48: jal         0x80061740
     // 0x8006CF4C: nop
 
-    FUN_0279C0_80061740_switch_0to8_1to6_same(rdram, ctx);
+    PFGFX_SetupSceneGraphics(rdram, ctx);
         goto after_0;
     // 0x8006CF4C: nop
 
@@ -121,7 +121,7 @@ L_8006CF88:
     // 0x8006CF88: jal         0x8007F344
     // 0x8006CF8C: nop
 
-    func_8007F344(rdram, ctx);
+    Gfx_CubeSceneUpdate(rdram, ctx);
         goto after_4;
     // 0x8006CF8C: nop
 
@@ -3641,7 +3641,7 @@ L_80090374:
     // 0x800903A0: jal         0x80060AD4
     // 0x800903A4: or          $a0, $t0, $zero
     ctx->r4 = ctx->r8 | 0;
-    FUN_026C80_80060ad4_oneliner_calls_fun(rdram, ctx);
+    ControllerRepeat_ArmAll(rdram, ctx);
         goto after_0;
     // 0x800903A4: or          $a0, $t0, $zero
     ctx->r4 = ctx->r8 | 0;
@@ -3655,7 +3655,7 @@ L_80090374:
     // 0x800903B4: jal         0x80060B04
     // 0x800903B8: addiu       $a3, $zero, 0xA
     ctx->r7 = ADD32(0, 0XA);
-    FUN_026C80_80060b04_twelveliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Arm(rdram, ctx);
         goto after_1;
     // 0x800903B8: addiu       $a3, $zero, 0xA
     ctx->r7 = ADD32(0, 0XA);
@@ -3669,7 +3669,7 @@ L_80090374:
     // 0x800903C8: jal         0x80060B04
     // 0x800903CC: addiu       $a3, $zero, 0x10
     ctx->r7 = ADD32(0, 0X10);
-    FUN_026C80_80060b04_twelveliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Arm(rdram, ctx);
         goto after_2;
     // 0x800903CC: addiu       $a3, $zero, 0x10
     ctx->r7 = ADD32(0, 0X10);
@@ -3781,7 +3781,7 @@ L_80090374:
     // 0x80090488: jal         0x800A8FC8
     // 0x8009048C: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
-    func_800A8FC8(rdram, ctx);
+    CubeTiles_FillHalfwords(rdram, ctx);
         goto after_5;
     // 0x8009048C: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
@@ -4042,7 +4042,7 @@ L_800905FC:
     // 0x80090628: jal         0x80060AD4
     // 0x8009062C: or          $a0, $t0, $zero
     ctx->r4 = ctx->r8 | 0;
-    FUN_026C80_80060ad4_oneliner_calls_fun(rdram, ctx);
+    ControllerRepeat_ArmAll(rdram, ctx);
         goto after_0;
     // 0x8009062C: or          $a0, $t0, $zero
     ctx->r4 = ctx->r8 | 0;
@@ -4056,7 +4056,7 @@ L_800905FC:
     // 0x8009063C: jal         0x80060B04
     // 0x80090640: addiu       $a3, $zero, 0xA
     ctx->r7 = ADD32(0, 0XA);
-    FUN_026C80_80060b04_twelveliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Arm(rdram, ctx);
         goto after_1;
     // 0x80090640: addiu       $a3, $zero, 0xA
     ctx->r7 = ADD32(0, 0XA);
@@ -4070,7 +4070,7 @@ L_800905FC:
     // 0x80090650: jal         0x80060B04
     // 0x80090654: addiu       $a3, $zero, 0x10
     ctx->r7 = ADD32(0, 0X10);
-    FUN_026C80_80060b04_twelveliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Arm(rdram, ctx);
         goto after_2;
     // 0x80090654: addiu       $a3, $zero, 0x10
     ctx->r7 = ADD32(0, 0X10);
@@ -4234,7 +4234,7 @@ L_800905FC:
     // 0x80090768: jal         0x800A8FC8
     // 0x8009076C: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
-    func_800A8FC8(rdram, ctx);
+    CubeTiles_FillHalfwords(rdram, ctx);
         goto after_7;
     // 0x8009076C: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
@@ -5020,7 +5020,7 @@ L_80090BA8:
     // 0x80090C08: jal         0x800A8FC8
     // 0x80090C0C: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
-    func_800A8FC8(rdram, ctx);
+    CubeTiles_FillHalfwords(rdram, ctx);
         goto after_5;
     // 0x80090C0C: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
@@ -5454,7 +5454,7 @@ L_80090E90:
     // 0x80090E98: jal         0x80061B18
     // 0x80090E9C: nop
 
-    FUN_027BF0_check_music_settings_and_play(rdram, ctx);
+    PFGFX_SelectAndStartMusic(rdram, ctx);
         goto after_4;
     // 0x80090E9C: nop
 
@@ -5638,7 +5638,7 @@ L_80090F88:
     // 0x80090F90: jal         0x80061B18
     // 0x80090F94: nop
 
-    FUN_027BF0_check_music_settings_and_play(rdram, ctx);
+    PFGFX_SelectAndStartMusic(rdram, ctx);
         goto after_13;
     // 0x80090F94: nop
 
@@ -6402,7 +6402,7 @@ L_80091370:
     // 0x80091404: jal         0x80060BD4
     // 0x80091408: or          $a0, $t7, $zero
     ctx->r4 = ctx->r15 | 0;
-    FUN_026C80_GU_or_ControllerRepeat_Update(rdram, ctx);
+    ControllerRepeat_Update(rdram, ctx);
         goto after_28;
     // 0x80091408: or          $a0, $t7, $zero
     ctx->r4 = ctx->r15 | 0;
@@ -35089,7 +35089,7 @@ L_8009CC20:
     // 0x8009CCB0: jal         0x8007E9F8
     // 0x8009CCB4: nop
 
-    func_8007E9F8(rdram, ctx);
+    Gfx_BeginScreenFade0(rdram, ctx);
         goto after_83;
     // 0x8009CCB4: nop
 
@@ -35498,7 +35498,7 @@ L_8009CF60:
     // 0x8009CF68: jal         0x8007E9F8
     // 0x8009CF6C: nop
 
-    func_8007E9F8(rdram, ctx);
+    Gfx_BeginScreenFade0(rdram, ctx);
         goto after_86;
     // 0x8009CF6C: nop
 
@@ -37168,7 +37168,7 @@ RECOMP_FUNC void func_8009D940(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r29) = ctx->r4;
 ;}
 
-RECOMP_FUNC void func_8009D948(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_GetObjectEntry(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009D948: andi        $a1, $a1, 0xFF
@@ -37775,7 +37775,7 @@ L_8009DDAC:
     // 0x8009DDB4: jal         0x8009D948
     // 0x8009DDB8: nop
 
-    func_8009D948(rdram, ctx);
+    Scene_GetObjectEntry(rdram, ctx);
         goto after_0;
     // 0x8009DDB8: nop
 

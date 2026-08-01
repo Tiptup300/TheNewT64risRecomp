@@ -2309,7 +2309,7 @@ L_800516C0:
     // 0x800516EC: jal         0x80060CA0
     // 0x800516F0: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
-    FUN_026C80_nineliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Reset(rdram, ctx);
         goto after_1;
     // 0x800516F0: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
@@ -2722,7 +2722,7 @@ L_80051920:
     // 0x80051978: jal         0x80060BD4
     // 0x8005197C: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
-    FUN_026C80_GU_or_ControllerRepeat_Update(rdram, ctx);
+    ControllerRepeat_Update(rdram, ctx);
         goto after_1;
     // 0x8005197C: or          $a0, $s2, $zero
     ctx->r4 = ctx->r18 | 0;
@@ -4306,7 +4306,7 @@ L_8005223C:
     // 0x8005224C: jal         0x80062788
     // 0x80052250: nop
 
-    FUN_027BF0_Init(rdram, ctx);
+    PFGFX_GameInit(rdram, ctx);
         goto after_5;
     // 0x80052250: nop
 
@@ -4711,7 +4711,7 @@ L_80052468:
     // 0x800524A0: jal         0x80060AD4
     // 0x800524A4: or          $a0, $s5, $zero
     ctx->r4 = ctx->r21 | 0;
-    FUN_026C80_80060ad4_oneliner_calls_fun(rdram, ctx);
+    ControllerRepeat_ArmAll(rdram, ctx);
         goto after_23;
     // 0x800524A4: or          $a0, $s5, $zero
     ctx->r4 = ctx->r21 | 0;
@@ -4725,7 +4725,7 @@ L_80052468:
     // 0x800524B4: jal         0x80060B04
     // 0x800524B8: addiu       $a3, $zero, 0x4
     ctx->r7 = ADD32(0, 0X4);
-    FUN_026C80_80060b04_twelveliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Arm(rdram, ctx);
         goto after_24;
     // 0x800524B8: addiu       $a3, $zero, 0x4
     ctx->r7 = ADD32(0, 0X4);
@@ -4739,7 +4739,7 @@ L_80052468:
     // 0x800524C8: jal         0x80060B04
     // 0x800524CC: addiu       $a3, $zero, 0x10
     ctx->r7 = ADD32(0, 0X10);
-    FUN_026C80_80060b04_twelveliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Arm(rdram, ctx);
         goto after_25;
     // 0x800524CC: addiu       $a3, $zero, 0x10
     ctx->r7 = ADD32(0, 0X10);
@@ -5073,7 +5073,7 @@ L_80052684:
     // 0x80052690: jal         0x800630EC
     // 0x80052694: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    FUN_027BF0_Deinit(rdram, ctx);
+    PFGFX_GameDeinit(rdram, ctx);
         goto after_9;
     // 0x80052694: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;

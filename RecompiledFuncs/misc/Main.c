@@ -3145,7 +3145,7 @@ L_8004A490:
     // 0x8004A4BC: jal         0x800A34A8
     // 0x8004A4C0: addiu       $a0, $t5, 0x4
     ctx->r4 = ADD32(ctx->r13, 0X4);
-    FUN_069580_800A34A8_tenliner_allocs_heap(rdram, ctx);
+    Minos_QueueInit(rdram, ctx);
         goto after_9;
     // 0x8004A4C0: addiu       $a0, $t5, 0x4
     ctx->r4 = ADD32(ctx->r13, 0X4);

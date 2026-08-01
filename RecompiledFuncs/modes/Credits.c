@@ -97,7 +97,7 @@ RECOMP_FUNC void Credits_Init(uint8_t* rdram, recomp_context* ctx) {
     // 0x800833C4: jal         0x800A8FC8
     // 0x800833C8: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;
-    func_800A8FC8(rdram, ctx);
+    CubeTiles_FillHalfwords(rdram, ctx);
         goto after_2;
     // 0x800833C8: or          $a2, $zero, $zero
     ctx->r6 = 0 | 0;

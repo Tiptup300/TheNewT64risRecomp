@@ -299,7 +299,7 @@ RECOMP_FUNC void Minos_800704e0_threeliner_sets_0x130(uint8_t* rdram, recomp_con
     // 0x800704F8: jal         0x800A2F50
     // 0x800704FC: addiu       $a1, $t6, 0x24
     ctx->r5 = ADD32(ctx->r14, 0X24);
-    func_800A2F50(rdram, ctx);
+    Minos_StepBytesToward(rdram, ctx);
         goto after_0;
     // 0x800704FC: addiu       $a1, $t6, 0x24
     ctx->r5 = ADD32(ctx->r14, 0X24);

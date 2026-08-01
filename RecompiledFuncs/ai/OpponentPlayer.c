@@ -1717,7 +1717,7 @@ L_800431E4:
     // 0x80043204: jal         0x80060CA0
     // 0x80043208: or          $a0, $s3, $zero
     ctx->r4 = ctx->r19 | 0;
-    FUN_026C80_nineliner_loops_32t(rdram, ctx);
+    ControllerRepeat_Reset(rdram, ctx);
         goto after_1;
     // 0x80043208: or          $a0, $s3, $zero
     ctx->r4 = ctx->r19 | 0;

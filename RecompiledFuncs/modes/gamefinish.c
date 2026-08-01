@@ -114,7 +114,7 @@ RECOMP_FUNC void gamefinish_DrawResultSprite(uint8_t* rdram, recomp_context* ctx
     // 0x80052B54: jal         0x80060914
     // 0x80052B58: nop
 
-    FUN_026900_80060914_oneliner_shift6_2(rdram, ctx);
+    Math_CosLookup(rdram, ctx);
         goto after_0;
     // 0x80052B58: nop
 
@@ -1814,7 +1814,7 @@ RECOMP_FUNC void gamefinish_InitResultScreen(uint8_t* rdram, recomp_context* ctx
     // 0x80053510: jal         0x8006093C
     // 0x80053514: sh          $t6, -0x12C($at)
     MEM_H(-0X12C, ctx->r1) = ctx->r14;
-    FUN_026900_8006093c_rounds_floors_loops_1024t(rdram, ctx);
+    Math_InitSinTable(rdram, ctx);
         goto after_0;
     // 0x80053514: sh          $t6, -0x12C($at)
     MEM_H(-0X12C, ctx->r1) = ctx->r14;

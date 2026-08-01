@@ -3679,7 +3679,7 @@ L_80061720:
 
 ;}
 
-RECOMP_FUNC void FUN_0279C0_80061740_switch_0to8_1to6_same(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_SetupSceneGraphics(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80061740: lui         $t6, 0x800D
@@ -4374,7 +4374,7 @@ L_80061B08:
     ctx->r29 = ADD32(ctx->r29, 0X28);
 ;}
 
-RECOMP_FUNC void FUN_027BF0_check_music_settings_and_play(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_SelectAndStartMusic(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80061B18: lui         $t6, 0x800D
@@ -6794,7 +6794,7 @@ L_80062778:
 
 ;}
 
-RECOMP_FUNC void FUN_027BF0_Init(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_GameInit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80062788: addiu       $sp, $sp, -0x28
@@ -8379,7 +8379,7 @@ L_800630DC:
 
 ;}
 
-RECOMP_FUNC void FUN_027BF0_Deinit(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void PFGFX_GameDeinit(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800630EC: addiu       $sp, $sp, -0x18

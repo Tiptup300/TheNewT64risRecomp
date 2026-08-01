@@ -31,7 +31,7 @@ RECOMP_FUNC void MobilePiece_Minos_setUpdateFlag(uint8_t* rdram, recomp_context*
     // 0x80064D10: jal         0x800608F4
     // 0x80064D14: nop
 
-    FUN_026900_800608f4_oneliner_shift6_1(rdram, ctx);
+    Math_SinLookup(rdram, ctx);
         goto after_0;
     // 0x80064D14: nop
 
@@ -45,7 +45,7 @@ RECOMP_FUNC void MobilePiece_Minos_setUpdateFlag(uint8_t* rdram, recomp_context*
     // 0x80064D24: jal         0x80060914
     // 0x80064D28: nop
 
-    FUN_026900_80060914_oneliner_shift6_2(rdram, ctx);
+    Math_CosLookup(rdram, ctx);
         goto after_1;
     // 0x80064D28: nop
 
@@ -198,7 +198,7 @@ RECOMP_FUNC void MobilePiece_GetCubeBoardPos(uint8_t* rdram, recomp_context* ctx
     // 0x80064E40: jal         0x800608F4
     // 0x80064E44: nop
 
-    FUN_026900_800608f4_oneliner_shift6_1(rdram, ctx);
+    Math_SinLookup(rdram, ctx);
         goto after_0;
     // 0x80064E44: nop
 
@@ -212,7 +212,7 @@ RECOMP_FUNC void MobilePiece_GetCubeBoardPos(uint8_t* rdram, recomp_context* ctx
     // 0x80064E54: jal         0x80060914
     // 0x80064E58: nop
 
-    FUN_026900_80060914_oneliner_shift6_2(rdram, ctx);
+    Math_CosLookup(rdram, ctx);
         goto after_1;
     // 0x80064E58: nop
 

@@ -344,7 +344,7 @@ L_8003C080:
     // 0x8003C0D4: jal         0x800A3300
     // 0x8003C0D8: or          $a1, $t7, $zero
     ctx->r5 = ctx->r15 | 0;
-    FUN_069580_800A3300_nineliner_mod300(rdram, ctx);
+    Minos_QueuePush(rdram, ctx);
         goto after_5;
     // 0x8003C0D8: or          $a1, $t7, $zero
     ctx->r5 = ctx->r15 | 0;
