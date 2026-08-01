@@ -99,6 +99,16 @@ Then copy frames from `/mnt/c/Users/Public/...` and view with the Read tool.
 **Gotchas:**
 - Linux `sleep` is SIGSTKFLT-blocked (exit 144) — pace loops with PowerShell
   `Start-Sleep` (Windows side), not Linux `sleep`.
+- **`dzn/dzn_icd.json` hardcodes an ABSOLUTE `library_path` to `dzn/libvulkan_dzn.so`.**
+  It is gitignored, so a `git grep` for the repo path won't find it. If the repo
+  folder is moved/renamed, update this path or Vulkan init fails with "Missing
+  required extension: VK_KHR_surface" → the game aborts at startup (SIGABRT in
+  `ultramodern::init_events`). Fix: point `library_path` at the current
+  `$PWD/dzn/libvulkan_dzn.so`.
+- Repeated Dozen/Vulkan **startup crashes can wedge the WSLg display** for the rest
+  of the shell session: subsequent launches then fail instantly (exit 1, no log
+  written at all). If that happens, the headless harness / `TNT_INDIRECT_TRACE`
+  tracer is unusable until a fresh session with a clean display — not a code fault.
 - The app exits 139 (segfault) on window close under Dozen — **not** a real failure.
 - Launch the game **alone** in `run_in_background: true` (combining a `kill`/`&`
   in the same backgrounded command trips exit 144/1). Kill separately with
