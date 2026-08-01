@@ -64,6 +64,10 @@ DEFAULT_WATCHES = {
     "menu_prev_cursor":   (0x800D3D10, 4),  # g_sceneMenuPrevCursor
     "scene_main_state": (0x800D3D24, 4),  # g_sceneMainState — changes on A (submenu enter)
     "game_type":      (0x8011EEEC, 1),  # g_selectedGameType
+    # save/data (profile) screen state:
+    "save_cursor":    (0x800D3DEC, 1),  # g_saveDataScreenCursor (file-list highlight)
+    "obj_render_enable": (0x800D3D94, 4),  # g_sceneObjRenderEnable (input lock)
+    "pak_files":      (0x80110580, 4),  # g_dataMenuPakFileCount
 }
 
 

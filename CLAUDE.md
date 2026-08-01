@@ -27,6 +27,14 @@ level MIPS-in-C: `ctx->rN`, `MEM_W/H/B`, absolute addrs as `lui`+offset).
 `tnt.syms.toml` is the canonical symbol map — rename/regroup there (see the memory
 `tnt-source-improvement-model`).
 
+**Names are living — refine as you learn.** Whenever you work with a function or
+global whose current name is vague, generic, or turns out to be *wrong* (RE or live
+testing reveals its real role), immediately rename it to something more accurate via
+`tools/rename_sym.py` (functions gated by `verify.sh`, datasyms by `datacoverage.py
+--check`). Cross-validated corrections are the best kind (e.g. static RE + an E2E
+RAM-diff both pointing at the same role). Don't leave a known-imprecise name in place
+"for later" — fix it in the same pass, and note the old→new in the commit.
+
 - `tools/callgraph.py <fn> [--callers|--callees -d N]` — a function's callers/callees
   and call tree. **The fastest way to map a subsystem** before naming/hooking it.
 - `tools/complexity.py` — rank functions by cyclomatic complexity.

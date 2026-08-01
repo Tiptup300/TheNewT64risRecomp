@@ -333,7 +333,7 @@ symbols = [
     { name = "g_sceneObjRenderEnable", vram = 0x800D3D94 },
     { name = "handicap", vram = 0x800D3D98 },
     { name = "g_menuHubStartFlag", vram = 0x800D3D9C },
-    { name = "D_800D3DA0", vram = 0x800D3DA0 },
+    { name = "g_nameEntryAlphabet", vram = 0x800D3DA0 },
     { name = "g_saveDataScreenState", vram = 0x800D3DD0 },
     { name = "g_saveDataScreenActiveFlag", vram = 0x800D3DD4 },
     { name = "g_saveDataScreenMode", vram = 0x800D3DD8 },
