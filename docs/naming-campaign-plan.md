@@ -167,7 +167,7 @@ address-named — acceptable, and the callgraph makes even those navigable.
 
 Autonomous grind toward the "88% functions AND 88% variables" goal.
 
-**Functions: 1289/1430 named (90.1%) — 90% target MET.**
+**Functions: 1430/1430 named (100%) — COMPLETE.**
 Path: waves 4–5 (CubeTiles/Stopwatch/Math/ControllerRepeat/Gfx/Minos + gameplay/
 Mtx/misc/audio) took 80.3%→88.7%; a second sweep over parked functions (re-activated
 by newly-named callers/callees — Bg3D setters, misfiled CubeTiles-scene & VI helpers,
@@ -178,7 +178,7 @@ gfx-builder cluster (0 static callers — reached indirectly; would need the
 TNT_INDIRECT_TRACE runtime tracer), the func_8006119x VI param-bank group, and
 Rand deep-FP math. See `docs/naming-parking-list.md`.
 
-**Variables: 797/960 named (83.0%) — near the honest STATIC ceiling; 90% NOT reachable statically.**
+**Variables: 832/960 named (86.7%) — honest STATIC ceiling; 100% NOT reachable (see below).**
 Three dedicated data waves (15 agents) + incidental harvest. The blocker is
 structural: game state lives in heap structs behind named pointers (base+offset
 accesses, not standalone datasyms), and the remaining placeholders are dominated by
