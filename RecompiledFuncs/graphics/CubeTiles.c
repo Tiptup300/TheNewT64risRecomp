@@ -4685,6 +4685,402 @@ RECOMP_FUNC void CubeTiles_ObjClearAnimating(uint8_t* rdram, recomp_context* ctx
 
 ;}
 
+RECOMP_FUNC void CubeTiles_SceneInit(uint8_t* rdram, recomp_context* ctx) {
+    uint64_t hi = 0, lo = 0, result = 0;
+    int c1cs = 0;
+    // 0x80083100: addiu       $sp, $sp, -0x18
+    ctx->r29 = ADD32(ctx->r29, -0X18);
+    // 0x80083104: sw          $ra, 0x14($sp)
+    MEM_W(0X14, ctx->r29) = ctx->r31;
+    // 0x80083108: lui         $a0, 0x800D
+    ctx->r4 = S32(0X800D << 16);
+    // 0x8008310C: addiu       $a0, $a0, 0x32E0
+    ctx->r4 = ADD32(ctx->r4, 0X32E0);
+    // 0x80083110: jal         0x80076EC0
+    // 0x80083114: addiu       $a1, $zero, 0x1
+    ctx->r5 = ADD32(0, 0X1);
+    CubeTiles_ObjCreate(rdram, ctx);
+        goto after_0;
+    // 0x80083114: addiu       $a1, $zero, 0x1
+    ctx->r5 = ADD32(0, 0X1);
+    after_0:
+    // 0x80083118: lui         $a0, 0x800D
+    ctx->r4 = S32(0X800D << 16);
+    // 0x8008311C: lw          $a0, 0x32E0($a0)
+    ctx->r4 = MEM_W(ctx->r4, 0X32E0);
+    // 0x80083120: jal         0x800A4654
+    // 0x80083124: nop
+
+    wonders1_ObjClearFlag80(rdram, ctx);
+        goto after_1;
+    // 0x80083124: nop
+
+    after_1:
+    // 0x80083128: lw          $ra, 0x14($sp)
+    ctx->r31 = MEM_W(ctx->r29, 0X14);
+    // 0x8008312C: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x80083130: sw          $zero, 0x3318($at)
+    MEM_W(0X3318, ctx->r1) = 0;
+    // 0x80083134: jr          $ra
+    // 0x80083138: addiu       $sp, $sp, 0x18
+    ctx->r29 = ADD32(ctx->r29, 0X18);
+    return;
+    // 0x80083138: addiu       $sp, $sp, 0x18
+    ctx->r29 = ADD32(ctx->r29, 0X18);
+;}
+
+RECOMP_FUNC void CubeTiles_SceneFree(uint8_t* rdram, recomp_context* ctx) {
+    uint64_t hi = 0, lo = 0, result = 0;
+    int c1cs = 0;
+    // 0x8008313C: addiu       $sp, $sp, -0x18
+    ctx->r29 = ADD32(ctx->r29, -0X18);
+    // 0x80083140: sw          $ra, 0x14($sp)
+    MEM_W(0X14, ctx->r29) = ctx->r31;
+    // 0x80083144: lui         $a0, 0x800D
+    ctx->r4 = S32(0X800D << 16);
+    // 0x80083148: jal         0x80077028
+    // 0x8008314C: addiu       $a0, $a0, 0x32E0
+    ctx->r4 = ADD32(ctx->r4, 0X32E0);
+    CubeTiles_ObjFree(rdram, ctx);
+        goto after_0;
+    // 0x8008314C: addiu       $a0, $a0, 0x32E0
+    ctx->r4 = ADD32(ctx->r4, 0X32E0);
+    after_0:
+    // 0x80083150: lw          $ra, 0x14($sp)
+    ctx->r31 = MEM_W(ctx->r29, 0X14);
+    // 0x80083154: addiu       $sp, $sp, 0x18
+    ctx->r29 = ADD32(ctx->r29, 0X18);
+    // 0x80083158: jr          $ra
+    // 0x8008315C: nop
+
+    return;
+    // 0x8008315C: nop
+
+;}
+
+RECOMP_FUNC void CubeTiles_SceneUpdate(uint8_t* rdram, recomp_context* ctx) {
+    uint64_t hi = 0, lo = 0, result = 0;
+    int c1cs = 0;
+    // 0x80083160: lui         $t6, 0x800D
+    ctx->r14 = S32(0X800D << 16);
+    // 0x80083164: lw          $t6, 0x3318($t6)
+    ctx->r14 = MEM_W(ctx->r14, 0X3318);
+    // 0x80083168: addiu       $sp, $sp, -0x18
+    ctx->r29 = ADD32(ctx->r29, -0X18);
+    // 0x8008316C: bne         $t6, $zero, L_8008328C
+    if (ctx->r14 != 0) {
+        // 0x80083170: sw          $ra, 0x14($sp)
+        MEM_W(0X14, ctx->r29) = ctx->r31;
+            goto L_8008328C;
+    }
+    // 0x80083170: sw          $ra, 0x14($sp)
+    MEM_W(0X14, ctx->r29) = ctx->r31;
+    // 0x80083174: lui         $t7, 0x800D
+    ctx->r15 = S32(0X800D << 16);
+    // 0x80083178: lw          $t7, 0x331C($t7)
+    ctx->r15 = MEM_W(ctx->r15, 0X331C);
+    // 0x8008317C: nop
+
+    // 0x80083180: beq         $t7, $zero, L_800831C4
+    if (ctx->r15 == 0) {
+        // 0x80083184: nop
+    
+            goto L_800831C4;
+    }
+    // 0x80083184: nop
+
+    // 0x80083188: jal         0x80083100
+    // 0x8008318C: nop
+
+    CubeTiles_SceneInit(rdram, ctx);
+        goto after_0;
+    // 0x8008318C: nop
+
+    after_0:
+    // 0x80083190: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x80083194: sw          $zero, 0x331C($at)
+    MEM_W(0X331C, ctx->r1) = 0;
+    // 0x80083198: lui         $at, 0x42C8
+    ctx->r1 = S32(0X42C8 << 16);
+    // 0x8008319C: mtc1        $at, $f12
+    ctx->f12.u32l = ctx->r1;
+    // 0x800831A0: jal         0x8007ECC8
+    // 0x800831A4: nop
+
+    Gfx_BeginScreenFade1(rdram, ctx);
+        goto after_1;
+    // 0x800831A4: nop
+
+    after_1:
+    // 0x800831A8: addiu       $t8, $zero, 0x1
+    ctx->r24 = ADD32(0, 0X1);
+    // 0x800831AC: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x800831B0: jal         0x8007EA2C
+    // 0x800831B4: sw          $t8, 0x3324($at)
+    MEM_W(0X3324, ctx->r1) = ctx->r24;
+    Gfx_DrawScreenFade1(rdram, ctx);
+        goto after_2;
+    // 0x800831B4: sw          $t8, 0x3324($at)
+    MEM_W(0X3324, ctx->r1) = ctx->r24;
+    after_2:
+    // 0x800831B8: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x800831BC: b           L_80083304
+    // 0x800831C0: sw          $zero, 0x3320($at)
+    MEM_W(0X3320, ctx->r1) = 0;
+        goto L_80083304;
+    // 0x800831C0: sw          $zero, 0x3320($at)
+    MEM_W(0X3320, ctx->r1) = 0;
+L_800831C4:
+    // 0x800831C4: lui         $t9, 0x8012
+    ctx->r25 = S32(0X8012 << 16);
+    // 0x800831C8: addiu       $t9, $t9, -0x10D0
+    ctx->r25 = ADD32(ctx->r25, -0X10D0);
+    // 0x800831CC: lw          $t0, 0x24($t9)
+    ctx->r8 = MEM_W(ctx->r25, 0X24);
+    // 0x800831D0: nop
+
+    // 0x800831D4: andi        $t1, $t0, 0x8000
+    ctx->r9 = ctx->r8 & 0X8000;
+    // 0x800831D8: bne         $t1, $zero, L_80083204
+    if (ctx->r9 != 0) {
+        // 0x800831DC: nop
+    
+            goto L_80083204;
+    }
+    // 0x800831DC: nop
+
+    // 0x800831E0: lui         $t2, 0x800D
+    ctx->r10 = S32(0X800D << 16);
+    // 0x800831E4: lw          $t2, 0x32E0($t2)
+    ctx->r10 = MEM_W(ctx->r10, 0X32E0);
+    // 0x800831E8: lui         $t4, 0x800D
+    ctx->r12 = S32(0X800D << 16);
+    // 0x800831EC: lw          $t4, 0x3310($t4)
+    ctx->r12 = MEM_W(ctx->r12, 0X3310);
+    // 0x800831F0: lhu         $t3, 0x6($t2)
+    ctx->r11 = MEM_HU(ctx->r10, 0X6);
+    // 0x800831F4: nop
+
+    // 0x800831F8: slt         $at, $t3, $t4
+    ctx->r1 = SIGNED(ctx->r11) < SIGNED(ctx->r12) ? 1 : 0;
+    // 0x800831FC: bne         $at, $zero, L_80083248
+    if (ctx->r1 != 0) {
+        // 0x80083200: nop
+    
+            goto L_80083248;
+    }
+    // 0x80083200: nop
+
+L_80083204:
+    // 0x80083204: lui         $t5, 0x800D
+    ctx->r13 = S32(0X800D << 16);
+    // 0x80083208: lw          $t5, 0x3320($t5)
+    ctx->r13 = MEM_W(ctx->r13, 0X3320);
+    // 0x8008320C: nop
+
+    // 0x80083210: slti        $at, $t5, 0x3D
+    ctx->r1 = SIGNED(ctx->r13) < 0X3D ? 1 : 0;
+    // 0x80083214: bne         $at, $zero, L_80083248
+    if (ctx->r1 != 0) {
+        // 0x80083218: lui         $at, 0x41A0
+        ctx->r1 = S32(0X41A0 << 16);
+            goto L_80083248;
+    }
+    // 0x80083218: lui         $at, 0x41A0
+    ctx->r1 = S32(0X41A0 << 16);
+    // 0x8008321C: mtc1        $at, $f12
+    ctx->f12.u32l = ctx->r1;
+    // 0x80083220: jal         0x8007E9F8
+    // 0x80083224: nop
+
+    Gfx_BeginScreenFade0(rdram, ctx);
+        goto after_3;
+    // 0x80083224: nop
+
+    after_3:
+    // 0x80083228: addiu       $t6, $zero, 0x1
+    ctx->r14 = ADD32(0, 0X1);
+    // 0x8008322C: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x80083230: sw          $t6, 0x331C($at)
+    MEM_W(0X331C, ctx->r1) = ctx->r14;
+    // 0x80083234: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x80083238: addiu       $t7, $zero, 0x1
+    ctx->r15 = ADD32(0, 0X1);
+    // 0x8008323C: sw          $t7, 0x3318($at)
+    MEM_W(0X3318, ctx->r1) = ctx->r15;
+    // 0x80083240: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x80083244: sw          $zero, 0x3324($at)
+    MEM_W(0X3324, ctx->r1) = 0;
+L_80083248:
+    // 0x80083248: lui         $a0, 0x800D
+    ctx->r4 = S32(0X800D << 16);
+    // 0x8008324C: jal         0x80077098
+    // 0x80083250: addiu       $a0, $a0, 0x32E0
+    ctx->r4 = ADD32(ctx->r4, 0X32E0);
+    CubeTiles_ObjDraw(rdram, ctx);
+        goto after_4;
+    // 0x80083250: addiu       $a0, $a0, 0x32E0
+    ctx->r4 = ADD32(ctx->r4, 0X32E0);
+    after_4:
+    // 0x80083254: lui         $t8, 0x800D
+    ctx->r24 = S32(0X800D << 16);
+    // 0x80083258: lw          $t8, 0x3320($t8)
+    ctx->r24 = MEM_W(ctx->r24, 0X3320);
+    // 0x8008325C: lui         $t0, 0x800D
+    ctx->r8 = S32(0X800D << 16);
+    // 0x80083260: lw          $t0, 0x3324($t0)
+    ctx->r8 = MEM_W(ctx->r8, 0X3324);
+    // 0x80083264: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x80083268: addiu       $t9, $t8, 0x1
+    ctx->r25 = ADD32(ctx->r24, 0X1);
+    // 0x8008326C: beq         $t0, $zero, L_8008328C
+    if (ctx->r8 == 0) {
+        // 0x80083270: sw          $t9, 0x3320($at)
+        MEM_W(0X3320, ctx->r1) = ctx->r25;
+            goto L_8008328C;
+    }
+    // 0x80083270: sw          $t9, 0x3320($at)
+    MEM_W(0X3320, ctx->r1) = ctx->r25;
+    // 0x80083274: jal         0x8007EA2C
+    // 0x80083278: nop
+
+    Gfx_DrawScreenFade1(rdram, ctx);
+        goto after_5;
+    // 0x80083278: nop
+
+    after_5:
+    // 0x8008327C: addiu       $at, $zero, 0x1
+    ctx->r1 = ADD32(0, 0X1);
+    // 0x80083280: bne         $v0, $at, L_8008328C
+    if (ctx->r2 != ctx->r1) {
+        // 0x80083284: lui         $at, 0x800D
+        ctx->r1 = S32(0X800D << 16);
+            goto L_8008328C;
+    }
+    // 0x80083284: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x80083288: sw          $zero, 0x3324($at)
+    MEM_W(0X3324, ctx->r1) = 0;
+L_8008328C:
+    // 0x8008328C: lui         $t1, 0x800D
+    ctx->r9 = S32(0X800D << 16);
+    // 0x80083290: lw          $t1, 0x3318($t1)
+    ctx->r9 = MEM_W(ctx->r9, 0X3318);
+    // 0x80083294: addiu       $at, $zero, 0x1
+    ctx->r1 = ADD32(0, 0X1);
+    // 0x80083298: bne         $t1, $at, L_80083304
+    if (ctx->r9 != ctx->r1) {
+        // 0x8008329C: nop
+    
+            goto L_80083304;
+    }
+    // 0x8008329C: nop
+
+    // 0x800832A0: lui         $t2, 0x800D
+    ctx->r10 = S32(0X800D << 16);
+    // 0x800832A4: lw          $t2, 0x331C($t2)
+    ctx->r10 = MEM_W(ctx->r10, 0X331C);
+    // 0x800832A8: nop
+
+    // 0x800832AC: beq         $t2, $zero, L_800832BC
+    if (ctx->r10 == 0) {
+        // 0x800832B0: lui         $at, 0x800D
+        ctx->r1 = S32(0X800D << 16);
+            goto L_800832BC;
+    }
+    // 0x800832B0: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x800832B4: b           L_800832C8
+    // 0x800832B8: sw          $zero, 0x331C($at)
+    MEM_W(0X331C, ctx->r1) = 0;
+        goto L_800832C8;
+    // 0x800832B8: sw          $zero, 0x331C($at)
+    MEM_W(0X331C, ctx->r1) = 0;
+L_800832BC:
+    // 0x800832BC: lui         $a0, 0x800D
+    ctx->r4 = S32(0X800D << 16);
+    // 0x800832C0: jal         0x80077098
+    // 0x800832C4: addiu       $a0, $a0, 0x32E0
+    ctx->r4 = ADD32(ctx->r4, 0X32E0);
+    CubeTiles_ObjDraw(rdram, ctx);
+        goto after_6;
+    // 0x800832C4: addiu       $a0, $a0, 0x32E0
+    ctx->r4 = ADD32(ctx->r4, 0X32E0);
+    after_6:
+L_800832C8:
+    // 0x800832C8: jal         0x8007E750
+    // 0x800832CC: nop
+
+    Gfx_DrawScreenFade0(rdram, ctx);
+        goto after_7;
+    // 0x800832CC: nop
+
+    after_7:
+    // 0x800832D0: addiu       $at, $zero, 0x1
+    ctx->r1 = ADD32(0, 0X1);
+    // 0x800832D4: bne         $v0, $at, L_80083304
+    if (ctx->r2 != ctx->r1) {
+        // 0x800832D8: nop
+    
+            goto L_80083304;
+    }
+    // 0x800832D8: nop
+
+    // 0x800832DC: jal         0x8004A34C
+    // 0x800832E0: nop
+
+    main_8004A34C_threeliner(rdram, ctx);
+        goto after_8;
+    // 0x800832E0: nop
+
+    after_8:
+    // 0x800832E4: jal         0x8008313C
+    // 0x800832E8: nop
+
+    CubeTiles_SceneFree(rdram, ctx);
+        goto after_9;
+    // 0x800832E8: nop
+
+    after_9:
+    // 0x800832EC: addiu       $t3, $zero, 0x1
+    ctx->r11 = ADD32(0, 0X1);
+    // 0x800832F0: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x800832F4: sw          $t3, 0x331C($at)
+    MEM_W(0X331C, ctx->r1) = ctx->r11;
+    // 0x800832F8: lui         $at, 0x800D
+    ctx->r1 = S32(0X800D << 16);
+    // 0x800832FC: addiu       $t4, $zero, 0x1
+    ctx->r12 = ADD32(0, 0X1);
+    // 0x80083300: sb          $t4, -0x118($at)
+    MEM_B(-0X118, ctx->r1) = ctx->r12;
+L_80083304:
+    // 0x80083304: lw          $ra, 0x14($sp)
+    ctx->r31 = MEM_W(ctx->r29, 0X14);
+    // 0x80083308: addiu       $sp, $sp, 0x18
+    ctx->r29 = ADD32(ctx->r29, 0X18);
+    // 0x8008330C: jr          $ra
+    // 0x80083310: nop
+
+    return;
+    // 0x80083310: nop
+
+    // 0x80083314: nop
+
+    // 0x80083318: nop
+
+    // 0x8008331C: nop
+
+;}
+
 RECOMP_FUNC void CubeTiles_ObjSetVec3(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;

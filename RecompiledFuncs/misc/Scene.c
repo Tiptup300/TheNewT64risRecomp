@@ -106,7 +106,7 @@ L_8006CF78:
     // 0x8006CF78: jal         0x80083160
     // 0x8006CF7C: nop
 
-    func_80083160(rdram, ctx);
+    CubeTiles_SceneUpdate(rdram, ctx);
         goto after_3;
     // 0x8006CF7C: nop
 
@@ -396,7 +396,7 @@ RECOMP_FUNC void Scene_SetScene4(uint8_t* rdram, recomp_context* ctx) {
     ctx->r29 = ADD32(ctx->r29, 0X18);
 ;}
 
-RECOMP_FUNC void func_8007D25C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DPositionEntry(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8007D25C: addiu       $sp, $sp, -0x50
@@ -41087,7 +41087,7 @@ RECOMP_FUNC void Scene_SetObjectEntry(uint8_t* rdram, recomp_context* ctx) {
     MEM_B(0X1C8, ctx->r25) = ctx->r14;
 ;}
 
-RECOMP_FUNC void func_8009F544(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SetupObjectEntries(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x8009F544: addiu       $sp, $sp, -0x30
@@ -48748,7 +48748,7 @@ L_800A2A84:
 
 ;}
 
-RECOMP_FUNC void func_800A2A94(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SetGameStartFlag(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A2A94: lbu         $t6, 0xC($a0)
@@ -52106,7 +52106,7 @@ RECOMP_FUNC void func_800ADA48(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X108, ctx->r4) = ctx->f14.u32l;
 ;}
 
-RECOMP_FUNC void func_800ADA5C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DSetScaleX(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADA5C: mtc1        $a1, $f12
@@ -52123,7 +52123,7 @@ RECOMP_FUNC void func_800ADA5C(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0XE8, ctx->r4) = ctx->f14.u32l;
 ;}
 
-RECOMP_FUNC void func_800ADA70(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DSetScaleY(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADA70: mtc1        $a1, $f12
@@ -52140,7 +52140,7 @@ RECOMP_FUNC void func_800ADA70(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0XEC, ctx->r4) = ctx->f14.u32l;
 ;}
 
-RECOMP_FUNC void func_800ADA84(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_Bg3DSetScaleZ(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800ADA84: mtc1        $a1, $f12

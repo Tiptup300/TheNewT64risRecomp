@@ -2046,7 +2046,7 @@ L_80049E0C:
     // 0x80049E58: jal         0x80060D10
     // 0x80049E5C: nop
 
-    func_80060D10(rdram, ctx);
+    PFGFX_RequestViMode(rdram, ctx);
         goto after_4;
     // 0x80049E5C: nop
 
@@ -2120,7 +2120,7 @@ L_80049E84:
     // 0x80049ED0: jal         0x80060D10
     // 0x80049ED4: nop
 
-    func_80060D10(rdram, ctx);
+    PFGFX_RequestViMode(rdram, ctx);
         goto after_5;
     // 0x80049ED4: nop
 
@@ -2194,7 +2194,7 @@ L_80049EFC:
     // 0x80049F48: jal         0x80060D10
     // 0x80049F4C: nop
 
-    func_80060D10(rdram, ctx);
+    PFGFX_RequestViMode(rdram, ctx);
         goto after_6;
     // 0x80049F4C: nop
 

@@ -227,7 +227,7 @@ L_8004A664:
     // 0x8004A6E8: jal         0x80060D58
     // 0x8004A6EC: addiu       $a0, $zero, 0x1
     ctx->r4 = ADD32(0, 0X1);
-    func_80060D58(rdram, ctx);
+    PFGFX_ApplyViXScale(rdram, ctx);
         goto after_4;
     // 0x8004A6EC: addiu       $a0, $zero, 0x1
     ctx->r4 = ADD32(0, 0X1);
@@ -277,7 +277,7 @@ L_8004A664:
     // 0x8004A72C: jal         0x80060D58
     // 0x8004A730: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;
-    func_80060D58(rdram, ctx);
+    PFGFX_ApplyViXScale(rdram, ctx);
         goto after_8;
     // 0x8004A730: or          $a0, $zero, $zero
     ctx->r4 = 0 | 0;

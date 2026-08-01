@@ -50,7 +50,7 @@ L_80073164:
     ctx->r29 = ADD32(ctx->r29, 0X8);
 ;}
 
-RECOMP_FUNC void func_80073170(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void GarbageFx_FreeBlock(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x80073170: jr          $ra
@@ -1561,7 +1561,7 @@ L_80073AEC:
     // 0x80073B00: jal         0x80073170
     // 0x80073B04: addu        $a0, $t9, $t0
     ctx->r4 = ADD32(ctx->r25, ctx->r8);
-    func_80073170(rdram, ctx);
+    GarbageFx_FreeBlock(rdram, ctx);
         goto after_0;
     // 0x80073B04: addu        $a0, $t9, $t0
     ctx->r4 = ADD32(ctx->r25, ctx->r8);

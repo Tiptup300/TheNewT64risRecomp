@@ -734,7 +734,7 @@ L_800A978C:
     // 0x800A981C: jal         0x800A9878
     // 0x800A9820: sh          $s3, 0x40($t7)
     MEM_H(0X40, ctx->r15) = ctx->r19;
-    func_800A9878(rdram, ctx);
+    Stopwatch_AdvanceSampleReadIndex(rdram, ctx);
         goto after_0;
     // 0x800A9820: sh          $s3, 0x40($t7)
     MEM_H(0X40, ctx->r15) = ctx->r19;
@@ -742,7 +742,7 @@ L_800A978C:
     // 0x800A9824: jal         0x800A989C
     // 0x800A9828: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
-    func_800A989C(rdram, ctx);
+    Stopwatch_AdvanceHistoryWriteIndex(rdram, ctx);
         goto after_1;
     // 0x800A9828: or          $a0, $s0, $zero
     ctx->r4 = ctx->r16 | 0;
@@ -809,7 +809,7 @@ L_800A9870:
 
 ;}
 
-RECOMP_FUNC void func_800A9878(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Stopwatch_AdvanceSampleReadIndex(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A9878: lbu         $t6, 0x5($a0)
@@ -839,7 +839,7 @@ L_800A9894:
 
 ;}
 
-RECOMP_FUNC void func_800A989C(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Stopwatch_AdvanceHistoryWriteIndex(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A989C: lbu         $t6, 0x38($a0)
@@ -869,7 +869,7 @@ L_800A98B8:
 
 ;}
 
-RECOMP_FUNC void func_800A98C0(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Stopwatch_AdvanceHistoryReadIndex(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A98C0: lbu         $t6, 0x39($a0)
@@ -1671,7 +1671,7 @@ L_800A9CAC:
     // 0x800A9CE4: jal         0x800A98C0
     // 0x800A9CE8: or          $a0, $s1, $zero
     ctx->r4 = ctx->r17 | 0;
-    func_800A98C0(rdram, ctx);
+    Stopwatch_AdvanceHistoryReadIndex(rdram, ctx);
         goto after_10;
     // 0x800A9CE8: or          $a0, $s1, $zero
     ctx->r4 = ctx->r17 | 0;
