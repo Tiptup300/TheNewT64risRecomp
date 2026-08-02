@@ -241,8 +241,17 @@ create_render_context(uint8_t* rdram, ultramodern::renderer::WindowHandle window
 // Input callbacks (backed by recompinput)
 // ---------------------------------------------------------------------------
 static ultramodern::input::connected_device_info_t get_connected_device_info(int controller_num) {
-    return { controller_num == 0 ? ultramodern::input::Device::Controller
-                                 : ultramodern::input::Device::None,
+    // Number of connected controllers. Default 1; TNT_CONTROLLERS lets the E2E
+    // harness emulate 2+ so multiplayer menu items (e.g. MULTI PLAYER, greyed with
+    // a single pad) become selectable and multiplayer flows are testable.
+    static int n = -1;
+    if (n < 0) {
+        const char* e = std::getenv("TNT_CONTROLLERS");
+        n = e ? std::atoi(e) : 1;
+        if (n < 1) n = 1; else if (n > 4) n = 4;
+    }
+    return { controller_num < n ? ultramodern::input::Device::Controller
+                                : ultramodern::input::Device::None,
              ultramodern::input::Pak::None };
 }
 

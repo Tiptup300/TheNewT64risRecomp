@@ -87,7 +87,8 @@ class GameError(RuntimeError):
 
 class Game:
     def __init__(self, rom=DEFAULT_ROM, watches=None, workdir=None, no_autoboot=False,
-                 env=None, logfile=None, mods=None, region=None):
+                 env=None, logfile=None, mods=None, region=None, controllers=1):
+        self.controllers = controllers
         self.rom = Path(rom)
         self.watches = dict(DEFAULT_WATCHES if watches is None else watches)
         # region: (base_addr, length) to snapshot for RAM-diff discovery, or None.
@@ -155,6 +156,7 @@ class Game:
         # blocking boot. Audio is irrelevant to E2E; dummy always inits instantly.
         # (main.cpp only forces pulseaudio when SDL_AUDIODRIVER is unset.)
         env.setdefault("SDL_AUDIODRIVER", "dummy")
+        env["TNT_CONTROLLERS"] = str(self.controllers)
         env["TNT_STATE_OUT"] = str(self.state_path)
         env["TNT_STATE_WATCH"] = str(self.watch_path)
         env["TNT_INPUT"] = str(self.input_path)
@@ -279,10 +281,40 @@ class Game:
         if release:
             self.release()
 
+    def tap(self, *scancodes, settle=0.25):
+        """A SINGLE-STEP press: short enough (a few frames) that the game sees one
+        edge and moves exactly one item — avoids the auto-repeat that a long hold
+        triggers (which skips menu items). Use for menu cursor nav."""
+        self.hold(*scancodes)
+        _sleep(0.05)          # ~3 frames: one edge, below the auto-repeat threshold
+        self.release()
+        _sleep(settle)        # let the move + animation settle before reading
+
     def wait_frames(self, n):
         """Wait for n rendered frames (heartbeat ticks)."""
         start = self.frame()
         self.wait_for("_frame", lambda f: f >= start + n, timeout=max(5.0, n / 30.0 + 2))
+
+    # ---- visual capture (WSLg window via Windows-side winburst.ps1) --------
+    def shot(self, name="shot"):
+        """Capture the current game window to a PNG and return the local path
+        (or None). Uses winburst.ps1 (matches the "Recompiled" window title,
+        crops to the window rect). Lets us VISUALLY verify a screen, not just RAM."""
+        winout = f"C:\\Users\\Public\\tnt_shot_{name}"
+        try:
+            subprocess.run(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                            "-File", "C:\\Users\\Public\\winburst.ps1",
+                            "Recompiled", winout, "2", "120", "25"],
+                           capture_output=True, timeout=40)
+        except Exception:
+            return None
+        src = Path(f"/mnt/c/Users/Public/tnt_shot_{name}")
+        pngs = sorted(src.glob("*.png")) if src.exists() else []
+        if not pngs:
+            return None
+        dst = self.workdir / f"{name}.png"
+        dst.write_bytes(pngs[-1].read_bytes())
+        return dst
 
     # ---- RAM-diff discovery (needs region=(base,len)) ---------------------
     def snapshot(self):

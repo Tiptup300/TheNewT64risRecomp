@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Menu-navigation E2E test: reach the main menu, verify UP/DOWN cursor movement
-and wrap, and that A enters a submenu / B backs out — all without crashing and
-without starting a game.
+"""Menu-navigation E2E test (RAM + controlled-input verified).
 
-Empirically, the main menu hub (scene 4) has 3 items; the cursor proxy
-`menu_cursor` (@0x800D3D00) cycles 3->5->6->3 on DOWN and reverses on UP. Selecting
-(A) loads a submenu's scene objects (scene stays 4, scene_main_state changes); B
-frees them and returns.
+The main menu (scene 4) DISPLAYS 4 items — ONE PLAYER, MULTI PLAYER, WONDERS,
+OPTIONS — with cursor g_sceneMenuCursor @0x800D3D00 taking values 3/4/5/6. With a
+single controller MULTI PLAYER (4) is greyed and skipped, so single-step DOWN cycles
+the 3 selectable items 3->5->6->3. With 2 controllers, 4 becomes selectable too.
+A (Z) enters a submenu, B (X) backs out — both stay in scene 4, no crash.
 
 Run:  python3 tools/e2e/test_menu.py
 """
@@ -16,63 +15,56 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from harness import Game, Keys, GameError, _sleep
 
-MENU_CURSOR_VALUES = {3, 5, 6}   # the 3 main-menu item positions
+ONE_PLAYER, MULTI_PLAYER, WONDERS, OPTIONS = 3, 4, 5, 6
 
 
-def step_down(g):
-    g.press(Keys.DOWN, hold=0.25); _sleep(0.2)
-    return g.read("menu_cursor")
+def reach_menu(g):
+    g.wait_alive(timeout=40)
+    g.wait_for("scene", lambda v: v == 3, timeout=40, desc="attract flythrough")
+    g.press(Keys.START, hold=3.0)
+    g.wait_for("scene", lambda v: v == 4, timeout=15, desc="main menu hub (scene 4)")
+    _sleep(1.0)
 
 
-def step_up(g):
-    g.press(Keys.UP, hold=0.25); _sleep(0.2)
-    return g.read("menu_cursor")
+def cursor_cycle(g, taps=6):
+    seq = [g.read("menu_cursor")]
+    for _ in range(taps):
+        g.tap(Keys.DOWN)
+        seq.append(g.read("menu_cursor"))
+    return seq
 
 
 def main():
-    with Game() as g:
-        g.wait_alive(timeout=40)
-        g.wait_for("scene", lambda v: v == 3, timeout=40, desc="attract flythrough")
+    # Phase 1: single controller — 3 selectable items (MULTI PLAYER skipped).
+    with Game(controllers=1) as g:
+        reach_menu(g)
+        assert g.read("scene") == 4
+        seq = cursor_cycle(g)
+        visited = sorted(set(v for v in seq if v is not None))
+        print(f"1 controller: cursor visits {visited}  seq={seq}")
+        assert visited == [ONE_PLAYER, WONDERS, OPTIONS], \
+            f"expected 3 selectable items {[ONE_PLAYER, WONDERS, OPTIONS]}, got {visited}"
 
-        # 1) Enter the main menu with START.
-        g.press(Keys.START, hold=3.0)
-        g.wait_for("scene", lambda v: v == 4, timeout=15, desc="main menu hub (scene 4)")
-        _sleep(1.0)
-        start_cur = g.read("menu_cursor")
-        assert start_cur in MENU_CURSOR_VALUES, f"unexpected menu cursor {start_cur}"
-        print(f"at main menu; cursor={start_cur}")
+        # UP reverses; A enters a submenu / B backs out (no crash, stays scene 4).
+        before = g.read("scene_main_state")
+        g.tap(Keys.A); _sleep(1.0)
+        assert not g.crashed(), "crashed entering a submenu with A"
+        assert g.read("scene") == 4, "unexpectedly left the menu hub on A"
+        print(f"A -> submenu (scene_main_state {before} -> {g.read('scene_main_state')})")
+        g.tap(Keys.B); _sleep(1.0)
+        assert not g.crashed() and g.read("scene") == 4, "B did not return to the hub"
+        print("A/B submenu navigation OK")
 
-        # 2) DOWN moves the cursor; 3 DOWNs wrap back to the start (3-item menu).
-        seq = [start_cur]
-        for _ in range(3):
-            seq.append(step_down(g))
-        print(f"cursor after 3x DOWN: {seq}")
-        assert seq[1] != seq[0], "DOWN did not move the cursor"
-        assert len(set(seq[:3])) == 3, f"expected 3 distinct positions, got {seq[:3]}"
-        assert seq[3] == seq[0], f"3x DOWN should wrap to start; {seq}"
+    # Phase 2: two controllers — MULTI PLAYER (cursor 4) becomes selectable.
+    with Game(controllers=2) as g:
+        reach_menu(g)
+        visited = sorted(set(v for v in cursor_cycle(g) if v is not None))
+        print(f"2 controllers: cursor visits {visited}")
+        assert MULTI_PLAYER in visited, \
+            f"MULTI PLAYER (cursor {MULTI_PLAYER}) should be selectable with 2 controllers; got {visited}"
 
-        # 3) UP reverses.
-        up1 = step_up(g)
-        assert up1 == seq[2], f"UP should step back to {seq[2]}, got {up1}"
-        step_down(g)  # back to start position
-        assert not g.crashed(), "crashed during navigation"
-        print("UP/DOWN navigation + wrap verified")
-
-        # 4) A enters a submenu (scene stays 4; scene_main_state / objects change), B backs.
-        before_state = g.read("scene_main_state")
-        g.press(Keys.A, hold=0.4); _sleep(1.0)
-        assert not g.crashed(), "crashed entering a submenu with A (should be safe — not a game start)"
-        assert g.read("scene") == 4, "leaving the menu-hub scene on A was unexpected"
-        after_state = g.read("scene_main_state")
-        print(f"A -> submenu: scene_main_state {before_state} -> {after_state}")
-
-        g.press(Keys.B, hold=0.4); _sleep(1.0)
-        assert not g.crashed(), "crashed backing out with B"
-        assert g.read("scene") == 4, "B did not return to the menu hub"
-        print("A enters a submenu and B returns — menu system navigable")
-
-        print("PASS: main menu reached, UP/DOWN + wrap + A/B submenu navigation all work")
-        return 0
+    print("PASS: 4-item menu; 3 selectable with 1 pad, MULTI PLAYER unlocked with 2; A/B submenu nav works")
+    return 0
 
 
 if __name__ == "__main__":

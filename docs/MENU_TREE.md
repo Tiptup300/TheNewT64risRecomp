@@ -30,13 +30,15 @@ labels/order are only knowable at runtime — which is what the harness is for.
 
 ```
 Attract/title (scene 3)  ── A / START ──►  MENU HUB (scene 4)   ✅
-  cursor = g_sceneMenuCursor @0x800D3D00 ; ✅ 3 items, cycles 3→5→6→3 (wraps), UP reverses
-  A (Z) = select/enter,  B (X) = back  (both stay in scene 4 for submenus, no crash) ✅
-    │
-    ├─ item @cursor 3 ──► scene-4 submenu  ✅  (loads g_sceneObjBufA / textures; B frees, returns)
-    │      one of: Data/Save browser (Scene_SaveDataScreen, Scene_InitScreenState) or Records
-    ├─ item @cursor 5 ──► scene 7 (Wonders game mode)  ✅  (B returns to scene 4)
-    └─ item @cursor 6 ──► scene-4 submenu  ✅  (loads objects; B returns)
+  📷 SCREENSHOT-CONFIRMED: the menu DISPLAYS 4 items:
+       ONE PLAYER   (cursor 3)   → 1P game
+       MULTI PLAYER (cursor 4)   → VS  — GREYED/UNSELECTABLE with only 1 controller (skipped in nav)
+       WONDERS      (cursor 5)   → scene 7 (Wonders game mode) ✅
+       OPTIONS      (cursor 6)   → Options/Data (name entry lives under here)
+  cursor = g_sceneMenuCursor @0x800D3D00. With 1 controller, DOWN cycles the 3
+  SELECTABLE items 3→5→6→3 (skips MULTI PLAYER@4); UP reverses. A (Z)=select, B (X)=back.
+  (Connect a 2nd controller and MULTI PLAYER becomes selectable → cursor also visits 4.)
+  A/B enter/leave submenus within scene 4 — no crash (crash only on starting a game).
 
   Play item      → Scene_SetSelectedGameType → g_selectedGameType@0x8011EEEC,
                    g_playercount@0x8011EF20, g_sceneLoadFlag@0x800D3CF0=1 → scene 9 (gameplay)
