@@ -76,14 +76,18 @@ Nav drivers: main menu `Scene_Main` (input block 0x8009C390–0x8009D000, per-it
 `g_selectedGameType`@0x8011EEEC, `g_playercount`@0x8011EF20, `g_optionsDataMenuState`@0x800CFE50,
 `g_optionsDataSlotCursor`@0x800CFEA4, `g_saveDataScreenCursor`@0x800D3DEC.
 
-## ⚠️ There is NO name-entry / keyboard-initials screen
+## Name entry — EXISTS (create-profile), currently gated by the Controller-Pak
 
-A tree-wide static search (alphabet/"ABC" tables, per-char buffer writes, X/Y grid
-cursors, A-append/B-delete logic) found **none**. Controller-Pak save names are **fixed
-ROM constants** (via `Pfs_AllocateFile`/`Pfs_FindFile`); the player only *selects* among
-existing save files and confirms create/load/copy/delete — they never type a name. So the
-"enter names via keyboard" flow does not exist in this game. (If the harness ever observes
-a letter grid at save/high-score time, it would contradict this — none expected.)
+CORRECTION: an earlier static pass wrongly concluded "no name entry." The user
+confirmed it, and a focused RE found it: **creating a profile shows a character
+grid**. It's a sub-state of `Scene_SaveDataScreen` (input handler @0x80098478, active
+when the menu object's `+0x5D == 1`): a **3×15 = 45-cell alphabet grid**
+(table @0x800D3DA0 = `g_nameEntryAlphabet`; cell 0x2B=DEL, 0x2C=END), an **8-char name
+buffer** at `*(obj+0x08)`, grid cursor `obj+0x05`, write cursor `obj+0x04`. Input:
+Left/Right = ±1, Up/Down = ±15, Start = jump to END, A = select. Reached via the
+create-profile flow (OPTIONS→DATA, or possibly the SINGLE→NAME dropdown's "new").
+**Currently unreachable in normal play** because the runtime stubs all `osPfs*` as
+"no pak" (`pak.cpp`) — needs the mem-pak emulation to open the create-profile path.
 
 ## Covered by E2E tests (`tools/e2e/`)
 - `test_menu.py` ✅ — reach main menu, cursor 3→5→6 wrap, UP reverses, A submenu / B back.
