@@ -60,6 +60,7 @@ copied into the isolated `mods/`, and a `mods.json` written enabling exactly the
 | `test_menu.py` | main-menu nav: 3 items w/ 1 pad, MULTI PLAYER unlocked w/ 2 |
 | `test_gameplay.py` | ONE PLAYER → START → gameplay (scene 9); also a **Controller-Pak crash regression guard** (fresh isolated mem-pak) |
 | `test_mod_isolation.py` | a requested mod loads; the user's other mods don't leak in |
+| `test_mempak.py` | Controller-Pak created at the config dir; a seeded pak **survives a relaunch** and the game loads it crash-free (write/load/persist round-trip) |
 
 ## Notes / gotchas
 - Each game boot takes ~20–40s under Dozen, so the full suite is a few minutes.

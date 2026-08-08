@@ -8,6 +8,30 @@ Legend: 🟢 ready to start · 🟡 needs a decision · 🔵 research-heavy · �
 
 ---
 
+## Mods
+
+### 🟢 Rework "Skip Intro Logos" → "press any key to skip any intro screen"
+Turn the current mod (an *automatic* config-driven fast-forward that jumps scene ≤2 →
+3) into a **player-driven universal skip**: on ANY intro/pre-menu screen, pressing
+**any button at any time** skips that screen and advances toward the menu.
+- **Current:** `mods/intro-skip/src/intro.c` hooks `Scene_Update`; if `skip_to != Off`
+  it forces `SCENE`(0x800CFEE8) from ≤2 to 3 automatically (no input).
+- **Target behavior:** hook `Scene_Update` (or the input poll); when the current scene
+  is an intro phase — **0/1/2** (N64 logo, publisher/H2O, cube-tiles animation) or
+  **3** (attract flythrough/title) — and **any** controller button was just pressed
+  (`g_buttonsPressed` @0x8011EF54 edge-mask ≠ 0), advance that screen: branding/logos
+  → attract (or straight through), attract → menu.
+- **Hard constraint (known bug):** do NOT force `SCENE = 4` directly — it segfaults
+  (`MenuHub_StartPlaying`→`Scene_SetupObjectMatrices` on an unset object-slot buffer;
+  see [[tnt-scene-and-crash-re]]). Safe route: advance logos to the attract scene (3),
+  which is self-contained, and let the game's own A/Start handle 3→4 with proper setup
+  — OR fix the scene-4 setup path so a direct skip-to-menu is safe (bigger).
+- **"Any key" caveat:** a mod sees N64 button state in RAM, not raw SDL keys, so
+  "any key" = any *mapped* button. Literal any-keyboard-key would need a small runtime
+  hook (out of mod scope). D-pad/A/B/Start/Z/C all count via the edge mask.
+- **Config:** replace the `skip_to` enum with a simple on/off (default on), or keep
+  `enabled_by_default` and drop the enum entirely.
+
 ## Tooling / dev-experience
 
 ### 🟢 State-snapshot annotator — "freeze + annotate a single moment"
@@ -21,18 +45,24 @@ write-up → save a single point-in-time record (PNG + RAM + decoded globals + n
 
 ## Runtime / emulation
 
-### 🟡 Controller-Pak (osPfs) emulation — IMPLEMENTED; crash fixed; needs commit + polish
-`lib/N64ModernRuntime/librecomp/src/pak.cpp` now has a full mem-pak HLE (16-file note
-table persisted to a 32KB `mempak.bin`). **It was crashing the game** (SIGSEGV in
-`osPfsInitPak` on game start / save-data access) because the guest-RAM helpers
-**zero-extended** the 32-bit KSEG0 pointer instead of sign-extending it, landing ~4GB
-out of bounds. **Fixed 2026-08-08** (`(gpr)(int32_t)gaddr`); verified: reaches
-gameplay + menu profile listing with no crash, image created.
-- **Still to do:** (a) **commit** the pak.cpp changes — they live *uncommitted* in the
-  `lib/N64ModernRuntime` submodule working tree (prior attempt was lost this way);
-  (b) place `mempak.bin` under the config dir instead of `$HOME` (helps test
-  isolation — see unit-test-library spec); (c) verify create-profile → name save →
-  survives relaunch end-to-end. (Was task #28.)
+### 🟡 Controller-Pak (osPfs) emulation — DONE (one documented UI-automation gap)
+`lib/N64ModernRuntime/librecomp/src/pak.cpp` has a full mem-pak HLE (16-file note table
+persisted to a 32KB `mempak.bin`). Complete 2026-08-08:
+- **Crash fixed + committed** (nested repo `509f428`): guest-RAM helpers were
+  zero-extending the 32-bit KSEG0 pointer → ~4GB OOB SIGSEGV in `osPfsInitPak`; now
+  sign-extend (`(gpr)(int32_t)gaddr`). Game runs.
+- **Relocated** (`d1a1a66`): `mempak.bin` now lives in the config dir
+  (`recomp::get_config_path()`), not hardcoded `$HOME`.
+- **Persistence verified** (`tests/test_mempak.py`, 2 tests green): boot creates a
+  valid 32KB pak at the config dir; a seeded pak survives a relaunch and the game
+  loads it (osPfsInitPak→pak_load) without crashing or corrupting it — proving the
+  write/load/persist layer round-trips through the real binary.
+- **Remaining gap (documented, not a blocker):** the *interactive* create-profile →
+  name-entry keyboard → save flow is verified by RE (`docs/MENU_TREE.md`) but is not
+  UI-automatable in this WSLg setup (screenshots are occluded by overlapping windows;
+  blind keyboard/menu nav is unreliable). Would need a small runtime input hook to
+  drive the on-screen keyboard deterministically. The persistence layer that flow
+  depends on is fully covered above.
 
 ## Project / legal
 
@@ -72,6 +102,9 @@ exact array stride/max not statically pinned. Pin with the E2E RAM harness.
 ---
 
 ## Done
+- ✅ **Controller-Pak (osPfs) HLE** — crash fixed + mem-pak relocated to config dir +
+  persistence verified (`tests/test_mempak.py`). One documented UI-automation gap
+  (interactive create-profile). See mem-pak item above. (2026-08-08)
 - ✅ **Python unit-test library (pytest), mod-isolated, headless** — `tests/` +
   `tests/run.sh` (project `.venv-test`). Isolates HOME/XDG per test (never touches the
   user's mods/saves), explicit per-test mod selection (default none), seeds known-good
