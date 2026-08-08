@@ -87,9 +87,17 @@ class GameError(RuntimeError):
 
 class Game:
     def __init__(self, rom=DEFAULT_ROM, watches=None, workdir=None, no_autoboot=False,
-                 env=None, logfile=None, mods=None, region=None, controllers=1):
+                 env=None, logfile=None, mods=None, region=None, controllers=1,
+                 data_home=None):
         self.controllers = controllers
         self.rom = Path(rom)
+        # data_home: when set, the game runs with HOME + XDG_DATA_HOME redirected
+        # here, so its entire config/mods/saves tree (incl. the mem-pak) is isolated
+        # from the user's real ~/.local/share. The caller (e.g. the pytest fixtures)
+        # is responsible for seeding <data_home>/.local/share/N64Recomp/TheNewTiptris/
+        # (mods/ + mods.json). This is how tests avoid touching / inheriting the
+        # user's installed mods. When None, legacy behavior (edits the real mods.json).
+        self.data_home = Path(data_home) if data_home else None
         self.watches = dict(DEFAULT_WATCHES if watches is None else watches)
         # region: (base_addr, length) to snapshot for RAM-diff discovery, or None.
         self.region = region
@@ -141,7 +149,8 @@ class Game:
         if not self.rom.exists():
             raise GameError(f"ROM not found: {self.rom}")
         self._heal_dzn()
-        self._apply_mods()
+        if self.data_home is None:
+            self._apply_mods()  # legacy: mutate the real mods.json (non-isolated)
         # write the watch list + clear the input/state files
         self.watch_path.write_text(
             "".join(f"{n} 0x{a:08X} {w}\n" for n, (a, w) in self.watches.items()))
@@ -151,6 +160,14 @@ class Game:
             self.state_path.unlink()
 
         env = dict(os.environ)
+        # Isolated data dir: redirect HOME + XDG_DATA_HOME so SDL's pref path
+        # (config/mods/saves) and pak.cpp's $HOME-based mempak both land under a
+        # throwaway tree, never the user's real ~/.local/share. TNT_ROM is absolute,
+        # so ROM loading is unaffected by the HOME change.
+        if self.data_home is not None:
+            self.data_home.mkdir(parents=True, exist_ok=True)
+            env["HOME"] = str(self.data_home)
+            env["XDG_DATA_HOME"] = str(self.data_home / ".local" / "share")
         # Force SDL's dummy audio driver for headless testing: the WSLg PulseAudio
         # bridge is intermittent and the app's audio init can stall when it's down,
         # blocking boot. Audio is irrelevant to E2E; dummy always inits instantly.
