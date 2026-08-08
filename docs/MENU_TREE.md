@@ -95,3 +95,35 @@ a letter grid at save/high-score time, it would contradict this — none expecte
 2. `g_selectedGameType` value each Play item yields (byte from item+0x0C).
 3. Per-screen cursor min/max (no generic clamp in code).
 4. Save-pak file-count bound (dynamic = live file count).
+
+## Screenshot-confirmed submenu contents + path to gameplay (2026-08-01)
+
+Captured live via the harness (`tools/e2e/shots_tree.py`, `test_to_gameplay.py`).
+Title bar confirms the rebrand ("The New T64ris : Recompiled").
+
+```
+MAIN MENU (scene 4)  — 4 items
+├─ ONE PLAYER  → "SINGLE" screen (still scene 4):
+│     NAME:  GUEST      (profile dropdown; Up/Down cycles profiles; A accepts)
+│     OPPONENT: OFF     (value row)
+│     GAME:  MARATHON   (value row)
+│     START            (A here launches the game)
+│     → A(accept NAME) then DOWN to START then A  ⇒  GAMEPLAY (scene 9) ✅ no crash
+├─ MULTI PLAYER  → "MULTI" screen (needs 2 controllers to select):
+│     two profile dropdowns (GUEST / GUEST), GAME: MARATHON, GARBAGE: NONE
+├─ WONDERS  → scene 7: a 3D "Wonders" hall  (A HALL / B EXIT)
+└─ OPTIONS  → "OPTIONS" screen (still scene 4), 4 items:
+      SCORES · DATA · AUDIO · CREDITS      (A ACCEPT / B BACK)
+      └─ DATA → Controller-Pak / profile save screen (Scene_SaveDataScreen);
+                CREATE PROFILE → the name-entry CHARACTER GRID (obj+0x5D==1).
+                GATED: runtime stubs osPfs* as "no pak" — needs mem-pak emulation
+                (pak.cpp) to reach create-profile → name entry. TODO.
+```
+
+**Gameplay reached (scene 9):** a Marathon game on the Mayan-temple level — playfield
+well + next-piece queue + "LINES 0" HUD (screenshot g3_gameplay). Confirms the whole
+menu→game path is navigable headlessly. NOTE: starting a game the NORMAL way does NOT
+crash — the scene-4 SIGSEGV only occurs when scene 4 is forced without its resource load.
+
+**Still open:** name entry needs the Controller-Pak (mem-pak) emulation to be reachable
+in normal play; the create-profile grid itself is fully RE'd (see name-entry section).
