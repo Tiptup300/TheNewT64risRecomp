@@ -48426,7 +48426,7 @@ RECOMP_FUNC void Scene_EmptyStub1(uint8_t* rdram, recomp_context* ctx) {
     MEM_W(0X0, ctx->r29) = ctx->r4;
 ;}
 
-RECOMP_FUNC void Scene_SaveSlotStartGame(uint8_t* rdram, recomp_context* ctx) {
+RECOMP_FUNC void Scene_SingleStartGame(uint8_t* rdram, recomp_context* ctx) {
     uint64_t hi = 0, lo = 0, result = 0;
     int c1cs = 0;
     // 0x800A2884: addiu       $sp, $sp, -0x20

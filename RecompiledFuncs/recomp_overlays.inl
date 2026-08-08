@@ -1029,7 +1029,7 @@ static FuncEntry section_0_text_funcs[] = {
     { .func = Scene_DrawRecordsScreen, .offset = 0x00067A3C, .rom_size = 0x000000B0 },
     { .func = Scene_SetSelectedGameType, .offset = 0x00067AEC, .rom_size = 0x00000010 },
     { .func = Scene_EmptyStub1, .offset = 0x00067AFC, .rom_size = 0x00000008 },
-    { .func = Scene_SaveSlotStartGame, .offset = 0x00067B04, .rom_size = 0x00000210 },
+    { .func = Scene_SingleStartGame, .offset = 0x00067B04, .rom_size = 0x00000210 },
     { .func = Scene_SetGameStartFlag, .offset = 0x00067D14, .rom_size = 0x00000010 },
     { .func = Scene_UpdateSaveSlotScreen, .offset = 0x00067D24, .rom_size = 0x00000388 },
     { .func = Scene_InitObjectViewState, .offset = 0x000680AC, .rom_size = 0x000000C4 },

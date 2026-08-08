@@ -1030,7 +1030,7 @@ void Scene_DrawCenteredText(uint8_t* rdram, recomp_context* ctx);
 void Scene_DrawRecordsScreen(uint8_t* rdram, recomp_context* ctx);
 void Scene_SetSelectedGameType(uint8_t* rdram, recomp_context* ctx);
 void Scene_EmptyStub1(uint8_t* rdram, recomp_context* ctx);
-void Scene_SaveSlotStartGame(uint8_t* rdram, recomp_context* ctx);
+void Scene_SingleStartGame(uint8_t* rdram, recomp_context* ctx);
 void Scene_SetGameStartFlag(uint8_t* rdram, recomp_context* ctx);
 void Scene_UpdateSaveSlotScreen(uint8_t* rdram, recomp_context* ctx);
 void Scene_InitObjectViewState(uint8_t* rdram, recomp_context* ctx);

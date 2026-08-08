@@ -1031,7 +1031,7 @@ functions = [
     { name = "Scene_DrawRecordsScreen", vram = 0x800A27BC, size = 0xB0 },
     { name = "Scene_SetSelectedGameType", vram = 0x800A286C, size = 0x10 },
     { name = "Scene_EmptyStub1", vram = 0x800A287C, size = 0x8 },
-    { name = "Scene_SaveSlotStartGame", vram = 0x800A2884, size = 0x210 },
+    { name = "Scene_SingleStartGame", vram = 0x800A2884, size = 0x210 },
     { name = "Scene_SetGameStartFlag", vram = 0x800A2A94, size = 0x10 },
     { name = "Scene_UpdateSaveSlotScreen", vram = 0x800A2AA4, size = 0x388 },
     { name = "Scene_InitObjectViewState", vram = 0x800A2E2C, size = 0xC4 },
