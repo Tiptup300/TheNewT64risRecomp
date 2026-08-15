@@ -65,6 +65,7 @@ static const char *const STAGE_NAMES[N_STAGES] = {
 
 static int s_state = ST_IDLE;
 static int s_cursor = 0;
+static int s_chosen = -1;             // stage picked this launch (-1 = none), forced at Game_Init
 static unsigned int s_captured = 0;   // buttons captured at Scene_Main entry this frame
 static unsigned int s_prev = 0;       // previous frame's captured mask (edge detection)
 static int s_cooldown = 0;            // ignore input briefly after opening (swallow the launch press)
@@ -125,7 +126,9 @@ RECOMP_HOOK_RETURN("Scene_Main") void tnt_stage_screen(void) {
     else if (edge & BTN_UP)   s_cursor = (s_cursor + N_STAGES - 1) % N_STAGES;
     else if (edge & BTN_A) {                 // OK: pick this stage and let the game start
         G_STAGE_CHOICE = (unsigned int)s_cursor;
-        G_CURRENT_SONG = (unsigned char)s_cursor;  // best-effort thematic music
+        s_chosen = s_cursor;                 // forced again at Game_Init (after the game's
+                                             // own randomize) so the theme actually sticks
+        G_CURRENT_SONG = (unsigned char)s_cursor;
         s_state = ST_DONE;
         G_LOAD_FLAG = 1;                     // re-arm; next MenuHub tick launches
         return;                              // stop drawing this frame
@@ -136,7 +139,11 @@ RECOMP_HOOK_RETURN("Scene_Main") void tnt_stage_screen(void) {
     draw_screen();
 }
 
-// --- 4. Reset for the next game once a launch actually happens. ---
+// --- 4. At launch: force the chosen theme (after the game's own randomize) and reset. ---
 RECOMP_HOOK("Game_Init") void tnt_stage_reset(void) {
+    if (s_chosen >= 0) {
+        G_CURRENT_SONG = (unsigned char)s_chosen;   // stick the picked theme past MenuHub's rand
+    }
+    s_chosen = -1;
     s_state = ST_IDLE;
 }

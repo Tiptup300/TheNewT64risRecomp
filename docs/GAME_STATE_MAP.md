@@ -45,12 +45,23 @@ resource-load step first, and skipping it leaves scene-object buffers null →
 
 | name | addr | w | meaning |
 |---|---|---|---|
-| `g_currentSong` | `0x8011E4F8` | 1 | music track 0..7 (forced by `mods/map-select`) |
+| `g_currentSong` | `0x8011E4F8` | 1 | **stage/theme index 0..7** — selects the gameplay ENVIRONMENT *and* its music (see note) |
 | `g_gameMode` | `0x80110A01` | 1 | game mode |
 | `g_gameInitialized` | `0x80110A02` | 1 | 1 after `Game_Init` |
 | `g_playercount` | `0x8011EF20` | 1 | 1 or 2 |
 | `g_selectedGameType` | `0x8011EEEC` | 1 | selected mode from the menu |
 | `g_gameFrameCounter` | `0x801109F4` | 4 | advances every gameplay frame (a timer signal) |
+
+> **`g_currentSong` is really the STAGE/THEME selector (live-proven correction).** It's an
+> index 0..7 over the game's 8 culture themes — **Africa, Celtic, Egypt, Greek, Japan,
+> Mayan, Russia, Industrial** — and it drives the **visible gameplay environment**, not
+> just music. Proven by `mods/stage-select` + `tools/e2e/drive_stage_full.py`: forcing it
+> to 6 loaded the **Russian** cathedral level (onion domes, St. Basil's, matryoshka). This
+> **corrects** the earlier `mods/map-select` conclusion ("background is procedural, no
+> discrete map"): there ARE 8 discrete themed environments, chosen by this byte. The game
+> **randomizes it at launch** inside `MenuHub_StartPlaying`, so to force a stage a mod must
+> re-write it *after* that — `stage-select` writes it in a `Game_Init` hook, which sticks.
+> (Name kept as `g_currentSong` for now since it is the song index too; role documented.)
 
 ---
 

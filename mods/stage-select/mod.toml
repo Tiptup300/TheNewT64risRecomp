@@ -9,10 +9,11 @@ description = """
 Adds a new screen to the ONE PLAYER flow: after the SINGLE setup screen, pressing \
 Accept opens a SELECT STAGE menu instead of starting the game immediately. Move with \
 Up/Down between the 8 real stage themes (Africa, Celtic, Egypt, Greek, Japan, Mayan, \
-Russia, Industrial), press A to pick one and start, or B to go back to the SINGLE \
-screen. The picked theme sets the music (best-effort); changing the actual level/stage \
-visuals is a procedural-background limitation and is left for later. Disabled by default."""
-short_description = "New in-flow SELECT STAGE screen (8 real themes) before a single game starts."
+Russia, Industrial), press A to pick one and start the game IN THAT STAGE, or B to go \
+back to the SINGLE screen. Picking a stage actually loads its environment (e.g. Russia \
+loads the cathedral level) — the theme index drives both the level visuals and its \
+music. Disabled by default."""
+short_description = "New in-flow SELECT STAGE screen: pick 1 of 8 real stages and play it."
 authors = [ "TntRecomp" ]
 game_id = "tnt"
 minimum_recomp_version = "1.0.0"

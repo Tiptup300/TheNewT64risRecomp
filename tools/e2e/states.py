@@ -24,7 +24,7 @@ GLOBALS = {
     "scene_changed":    (0x800CFD48, 1, "g_sceneChanged — set to 1 to force a scene transition"),
 
     # --- session / mode ---
-    "song":             (0x8011E4F8, 1, "g_currentSong — music track index 0..7"),
+    "song":             (0x8011E4F8, 1, "g_currentSong — STAGE/THEME index 0..7 (env+music): Africa/Celtic/Egypt/Greek/Japan/Mayan/Russia/Industrial"),
     "game_mode":        (0x80110A01, 1, "g_gameMode"),
     "game_init":        (0x80110A02, 1, "g_gameInitialized — 1 after Game_Init"),
     "players":          (0x8011EF20, 1, "g_playercount"),
