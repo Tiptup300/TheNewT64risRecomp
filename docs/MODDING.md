@@ -81,6 +81,31 @@ crash-absorbing scratch buffer). The game never touches either.
 
 ---
 
+## 2b. Calling a game function from a mod (proven)
+
+A mod can **call** game functions, not just hook them — but **not** by declaring the
+symbol and calling it directly. A direct call compiles to a `jal` (R_MIPS_26), and the
+mod linker can't reach the game's address from the mod's load region — the build fails
+with `relocation truncated to fit: R_MIPS_26 against '<fn>'`.
+
+**The recipe that works:** call through a **function pointer at the absolute guest
+address**. That emits an indirect `jalr`, which the recomp runtime dispatches by guest
+address (exactly how the game's own `LOOKUP_FUNC(item+0x28)` indirect calls work):
+
+```c
+typedef void (*displayText_fn)(void *gdl, void *font, int x, int y,
+                               const char *str, int r, int g, int b, int a);
+#define DrawText ((displayText_fn)0x80077960)   // displayText_XY_RGBA_2
+DrawText((void*)0x800E20C0, (void*)0x80128F28, 20, 20, "HELLO", 0xFF,0xFF,0xFF,0xFF);
+```
+
+Get the function's address + signature from `tnt.syms.toml` + `tools/callgraph.py` (args
+`a0..a3` then stack). **Proven** in `mods/new-screen-poc`: a mod hooks `Scene_Main`'s
+return and calls the game's text drawer to render its own text on the menu (see
+`docs/ADDING-A-MENU-SCREEN.md`). Caveats: match the ABI exactly (o32: first 4 int/ptr
+args in registers, the rest on the stack); and prefer calling from a `RECOMP_HOOK_RETURN`
+so the game state the function expects (render context, etc.) is already set up.
+
 ## 3. Config options (per-mod settings in the Mods menu)
 
 Declare options in `mod.toml`; read them at runtime with `recompconfig.h`. This is how

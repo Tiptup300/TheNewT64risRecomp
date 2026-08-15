@@ -320,13 +320,18 @@ class Game:
     # ---- visual capture (WSLg window via Windows-side winburst.ps1) --------
     def shot(self, name="shot"):
         """Capture the current game window to a PNG and return the local path
-        (or None). Uses winburst.ps1 (matches the "Recompiled" window title,
-        crops to the window rect). Lets us VISUALLY verify a screen, not just RAM."""
+        (or None). Uses winburst.ps1 (matches the game window title, crops to the
+        window rect). Lets us VISUALLY verify a screen, not just RAM.
+
+        Match on "T64ris" (unique to "The New T64ris : Recompiled"), NOT "Recompiled":
+        a wedged half-initialized instance keeps the ultramodern default title
+        "Xbox Recompiled Game", and matching "Recompiled" would capture that blank
+        zombie window instead of the game. "T64ris" can only match the real window."""
         winout = f"C:\\Users\\Public\\tnt_shot_{name}"
         try:
             subprocess.run(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
                             "-File", "C:\\Users\\Public\\winburst.ps1",
-                            "Recompiled", winout, "2", "120", "25"],
+                            "T64ris", winout, "2", "120", "25"],
                            capture_output=True, timeout=40)
         except Exception:
             return None

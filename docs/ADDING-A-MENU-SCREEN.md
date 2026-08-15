@@ -146,11 +146,21 @@ own. It's more invasive but avoids the "can a mod call a game function" question
 
 ---
 
-## 6. Open questions (to settle at runtime)
+## 6. Settled at runtime (via `mods/new-screen-poc`)
 
-- Does a MIPS mod calling `displayText_XY_RGBA_2` link and run? (the POC's first test)
-- Immediate-draw vs. `g_gdl`-enqueue (affects which hook/where to draw).
+- **Can a MIPS mod call `displayText_XY_RGBA_2`? YES** — but not by a direct
+  extern-symbol call (that fails to link: `R_MIPS_26 relocation truncated`). Call it
+  **through a function pointer at the absolute guest address** (`((fn)0x80077960)(...)`),
+  which emits an indirect `jalr` the runtime dispatches by guest address. Verified: the
+  text renders on the menu in the game font, no crash. (General recipe — see
+  `docs/MODDING.md` §2b.)
+- **Draw timing:** drawing from `RECOMP_HOOK_RETURN("Scene_Main")` renders correctly
+  (the text appears composited over the menu), so the return hook is the right place —
+  no separate flush handling was needed.
+
+### Still open
 - Meaning of item flag bit `0x8` and sceneCtx fields `+0x114/+0x11C/+0x120/+0x128/
-  +0x134` (not determinable statically).
+  +0x134` (not determinable statically) — only relevant if you grow this into a true
+  engine-native item rather than an overlay.
 
 _See `docs/GAME_STATE_MAP.md` for the addresses, `docs/MODDING.md` for hook/patch rules._
