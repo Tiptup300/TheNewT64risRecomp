@@ -1,0 +1,26 @@
+# new-screen-poc — proof of concept for a mod-drawn menu screen.
+# Stage 1: draw a custom string on the scene-4 menu by CALLING the game's text drawer
+# from a Scene_Main return hook. Tests "can a mod call a game function?" before we
+# build an OK/BACK screen and a level-select shell. See docs/ADDING-A-MENU-SCREEN.md.
+[manifest]
+id = "tnt_new_screen_poc"
+version = "0.1.0"
+display_name = "New Screen POC (experimental)"
+description = """
+Experimental proof of concept: draws a custom text string on the main menu by calling \
+the game's own text drawer (displayText_XY_RGBA_2) from a Scene_Main return hook, gated \
+to the menu-hub scene. If the text appears, a mod can render its own on-screen content \
+— the basis for a new menu screen (OK/BACK, then a level-select shell). Draws only; \
+changes nothing about gameplay. Disabled by default."""
+short_description = "POC: draw custom text on the menu via the game's text drawer."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+enabled_by_default = false
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_new_screen_poc"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
+additional_files = [ ]
