@@ -62,6 +62,20 @@ static const char *const STAGE_NAMES[N_STAGES] = {
     "AFRICA", "CELTIC", "EGYPT", "GREEK",
     "JAPAN", "MAYAN", "RUSSIA", "INDUSTRIAL",
 };
+// Per-stage swatch colors (a color-coded "icon" per row). The game font has no picture
+// glyphs, but it renders '-' as a solid box, so a short run of them drawn in these
+// colors makes a small colored bar next to each name.
+static const unsigned char STAGE_RGB[N_STAGES][3] = {
+    {0xE0, 0x80, 0x20},  // Africa     - earthy orange
+    {0x30, 0xC0, 0x40},  // Celtic     - green
+    {0xE0, 0xC0, 0x30},  // Egypt      - gold
+    {0x70, 0x90, 0xF0},  // Greek      - marble blue
+    {0xE0, 0x30, 0x30},  // Japan      - red
+    {0x20, 0xC0, 0xB0},  // Mayan      - jade
+    {0xA0, 0x50, 0xE0},  // Russia     - royal purple
+    {0x90, 0x90, 0x90},  // Industrial - steel gray
+};
+#define SWATCH "----"   // '-' renders as a solid box in the game font -> a colored bar
 
 static int s_state = ST_IDLE;
 static int s_cursor = 0;
@@ -103,11 +117,20 @@ static void draw_screen(void) {
     DrawText(G_GDL, G_FONT8, 30, 26, "SELECT STAGE", 0xFF, 0xF0, 0x40, 0xFF);
     int y = 52;
     for (int i = 0; i < N_STAGES; i++) {
+        const unsigned char *c = STAGE_RGB[i];
+        // cursor marker
         if (i == s_cursor) {
-            DrawText(G_GDL, G_FONT8, 22, y, ">", 0xFF, 0xF0, 0x40, 0xFF);
-            DrawText(G_GDL, G_FONT8, 40, y, STAGE_NAMES[i], 0xFF, 0xF0, 0x40, 0xFF);
+            DrawText(G_GDL, G_FONT8, 18, y, ">", 0xFF, 0xF0, 0x40, 0xFF);
+        }
+        // color-coded swatch "icon" (brighter for the highlighted row)
+        int hi = (i == s_cursor);
+        DrawText(G_GDL, G_FONT8, 34, y, SWATCH,
+                 c[0], c[1], c[2], hi ? 0xFF : 0xC0);
+        // stage name
+        if (hi) {
+            DrawText(G_GDL, G_FONT8, 74, y, STAGE_NAMES[i], 0xFF, 0xF0, 0x40, 0xFF);
         } else {
-            DrawText(G_GDL, G_FONT8, 40, y, STAGE_NAMES[i], 0xC0, 0xC0, 0xC0, 0xFF);
+            DrawText(G_GDL, G_FONT8, 74, y, STAGE_NAMES[i], 0xC0, 0xC0, 0xC0, 0xFF);
         }
         y += 17;
     }
