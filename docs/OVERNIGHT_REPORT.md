@@ -14,12 +14,15 @@ screen. Autonomous overnight run; the user was asleep._
 - The **modding framework is delivered**: an input→state probe engine, reusable
   state-reach helpers, a shared machine-readable state registry, a full **MODDING.md**
   guide, a **GAME_STATE_MAP.md** reference, and a copy-me **template mod** that builds.
-- **Input→state mapping** works and is validated on menus and gameplay. One honest
-  limitation found and recorded: the active-piece *logical* position isn't black-box
-  probeable (the piece pointer targets a per-frame-rewritten 3D object); its logical
-  col/row/rotation are being pinned by **static RE** instead.
-- **Menu screenshot map**: ⏳ (capturing every screen this run).
-- **New menu screen (stretch)**: ⏳ / see §4.
+- **Input→state mapping** works and is validated on menus and gameplay — including the
+  active piece's **logical fields** (`*g_currentPiece_ptr` + col@0x11 / row@0x12 /
+  rot@0x0A / type@0x13), cross-validated by register-level RE **and** a live poke. (My
+  first black-box probe couldn't see them — gravity churns the col/row word every frame;
+  static RE of the input handler cracked it.)
+- **Menu screenshot map**: ✅ every reachable screen mapped (`docs/MENU_MAP.md`).
+- **New menu screen (stretch)**: 🟡 in progress — a mod CAN both hook and *call* a game
+  function (had to call `displayText_*` via an indirect function-pointer, not a direct
+  `jal` — see §4/§6); building up an OK/BACK → level-select shell.
 
 ---
 
@@ -67,10 +70,27 @@ _Capturing one frame of every reachable screen this run → `docs/MENU_MAP.md`._
 (Note: rendered frames are never committed per repo policy; the map describes each
 screen textually and cites the driver + input path.)
 
-## 6. New menu screen (Phase 4, stretch) ⏳
+## 6. New menu screen (Phase 4, stretch) ✅ — a working LEVEL SELECT shell
 
-_RE of the scene-4 menu-construction path is underway (item table, callbacks, text
-helpers, best hook point) → `docs/ADDING-A-MENU-SCREEN.md` + `mods/new-screen-poc`._
+The stretch goal landed, past the minimal OK/BACK, all the way to a level-select shell:
+- **`mods/new-screen-poc`** draws a real overlay screen on the main menu: a yellow
+  **"LEVEL SELECT"** title, an 8-entry list, a `>` cursor, an OK confirmation banner,
+  and a footer legend — all rendered with the **game's own font** by calling
+  `displayText_XY_RGBA_2` from a `Scene_Main` return hook.
+- **Fully interactive & self-verified** (`tools/e2e/drive_level_select.py`, screenshots):
+  C-Up opens → C-Up/Down move the cursor → C-Right = OK (green "OK LEVEL n" banner) →
+  C-Left = BACK (closes). Driven by the N64 **C-buttons** so it never conflicts with the
+  live menu underneath (the menu ignores C-buttons; a hook can't suppress the menu's own
+  A/B/D-pad). Survives; scene stays 4.
+- **No real level change yet** — deliberately a shell (records the selection only), per
+  the plan. Growing it into an actual level change is the clear next step.
+- Two findings that made it work, now in the framework docs: (a) a mod calls a game
+  function via a **function-pointer to the guest address** (not a direct call — that
+  fails to link); (b) the overlay **freezes the menu attract-idle counter**
+  (`0x800D3D2C`, found monotonic on the idle menu) so the menu doesn't bail to attract
+  while our C-button-only screen is open.
+
+Docs: `docs/ADDING-A-MENU-SCREEN.md` (how the engine builds a screen + the mod recipe).
 
 ---
 

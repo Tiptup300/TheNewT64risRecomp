@@ -128,21 +128,40 @@ Track your own previous-frame mask to get clean edges (see `mods/template-basic`
 
 ---
 
-## 5. The staged plan (`mods/new-screen-poc`)
+## 5. The built shell (`mods/new-screen-poc`) — DONE through level-select
 
-- **4a — minimal overlay:** on the main menu, when a mod-owned flag/hotkey is set, draw
-  "OK / BACK" and read A/B (A clears the flag = "OK", B clears it = "BACK"). Proves we
-  can render our own text on a menu and respond. *(This is the overlay recipe above.)*
-- **4b — one option + cursor:** draw two lines, a `>` cursor, move it with UP/DOWN, A
-  on each line does something distinct. Cursor is just a mod-owned int.
-- **4c — LEVEL SELECT shell:** a titled screen, a scrollable list of level entries, a
-  cursor, OK/BACK. Selection state only — **no real level change** yet.
+The staged plan (4a minimal overlay → 4b cursor+option → 4c level-select shell) is
+implemented and verified in one mod. What it does and the two tricks that made it work:
 
-If calling `displayText_*` from a mod turns out not to link/load, the fallback that is
-guaranteed to work is to influence the game's **own** engine via RAM: flip an item's
-`+0x24` flags / `+0x28` callback / cursor in the item table `*(0x801290D0 + 0x124)` =
-`g_sceneViewObjBuf @ 0x800D4E1C`. That reuses the engine's drawing instead of doing our
-own. It's more invasive but avoids the "can a mod call a game function" question.
+**The screen.** A `RECOMP_HOOK_RETURN("Scene_Main")` (gated on scene 4) draws, with
+`displayText_XY_RGBA_2`, a "LEVEL SELECT" title, an 8-entry list, a `>` cursor, an OK
+banner, and a footer legend — all in the game font, composited over the live menu.
+
+**Trick 1 — C-button-only controls.** A hook can't suppress the menu's own A/B/D-pad
+handling (registers are restored after the hook). So the overlay is driven entirely by
+the **N64 C-buttons**, which the menu ignores: C-Up opens; open, C-Up/C-Down move the
+cursor, C-Right = OK, C-Left = BACK. Bits: C-Right `0x0001`, C-Left `0x0002`,
+C-Down `0x0004`, C-Up `0x0008` in `g_buttonsPressed` @0x8011EF54. The mod tracks the
+previous-frame mask itself for clean edges + a short cooldown.
+
+**Trick 2 — freeze the attract-idle timer.** The main menu returns to the attract demo
+after being idle, and C-buttons don't count as menu activity to reset it — so while the
+overlay is open the mod zeroes the menu idle counter **`0x800D3D2C`** (found by watching
+which words increment monotonically on the idle menu) each frame. Without this, the menu
+bails to attract mid-interaction.
+
+**Font caveat:** the menu font has **no `-` glyph** (it renders as a box). Labels use
+only letters, digits and spaces.
+
+**Still a shell:** OK only records the selection (a mod int + banner). Wiring a real
+level change is the next step — likely writing the chosen level into the game's
+start-of-game state (find the level/speed global the play-start path reads) rather than
+anything in this screen.
+
+**Fallback (not needed, kept for reference):** if calling `displayText_*` hadn't worked,
+the guaranteed-safe alternative is to drive the game's **own** engine via RAM — flip an
+item's `+0x24` flags / `+0x28` callback / cursor in the item table
+`*(0x801290D0 + 0x124)` = `g_sceneViewObjBuf @ 0x800D4E1C` — reusing the engine's drawing.
 
 ---
 
