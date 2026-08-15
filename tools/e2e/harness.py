@@ -68,6 +68,11 @@ DEFAULT_WATCHES = {
     "save_cursor":    (0x800D3DEC, 1),  # g_saveDataScreenCursor (file-list highlight)
     "obj_render_enable": (0x800D3D94, 4),  # g_sceneObjRenderEnable (input lock)
     "pak_files":      (0x80110580, 4),  # g_dataMenuPakFileCount
+    # gameplay (scene 9) pointers — the piece struct is heap-allocated (~0x8023xxxx):
+    "piece_ptr":      (0x8011FB70, 4),  # g_currentPiece_ptr -> active piece struct
+    "mobile_cubes_ptr": (0x8011FBF0, 4),  # g_mobileCubes_ptr -> locked/board cubes
+    "minos_ptr":      (0x8011FC10, 4),  # g_minos_ptr
+    "buttons_pressed": (0x8011EF54, 4),  # g_buttonsPressed — per-frame edge-input mask
 }
 
 

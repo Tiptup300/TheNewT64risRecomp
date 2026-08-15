@@ -1,0 +1,36 @@
+# template-basic — the canonical starting point for a new TntRecomp mod.
+# Copy this directory, rename id/mod_filename/display_name, and edit src/template.c.
+# It demonstrates hook + config + scene-gate + input-read + safe RAM write in one
+# small, 100%-safe mod (it only writes its own scratch word). See docs/MODDING.md.
+[manifest]
+id = "tnt_template_basic"
+version = "1.0.0"
+display_name = "Template: Basic Mod"
+description = """
+A copy-me starting point for modding The New T64ris. When enabled, it counts A-button \
+presses during gameplay into a scratch RAM word (0x807FFF00) — a safe, observable \
+no-op that shows the five moves most mods make: hook a per-frame function, read a \
+config option, gate on the game scene, read the input mask, and write game RAM \
+safely. Replace the body with your own effect."""
+short_description = "Copy-me mod template (hook + config + scene-gate + input + RAM write)."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+# Disabled by default: it's a template, not a feature.
+enabled_by_default = false
+
+# A minimal config option, read at runtime via recomp_get_config_u32("enabled").
+[[manifest.config_options]]
+id = "enabled"
+name = "Enabled"
+description = "Turn the template's example behavior on or off."
+type = "Enum"
+options = [ "Off", "On" ]
+default = "Off"
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_template_basic"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
+additional_files = [ ]

@@ -93,15 +93,35 @@ mask), and the live piece/board hang off three pointers:
 | `g_minos_ptr` | `0x8011FC10` | 4 | → mino set |
 | `g_buttonsPressed` | `0x8011EF54` | 4 | per-frame edge-triggered input mask |
 
-### Active-piece fields — input → what moves
-<!-- PROBE-GAMEPLAY: filled from probe_inputs.py gameplay (reproducibility-filtered,
-     gravity subtracted as control noise). Each row = an address the input reliably
-     moves during play, with the field role inferred from the driving input. -->
-_(Pending the gameplay probe pass; populated with the exact `*g_currentPiece_ptr`
-field offsets that LEFT/RIGHT move (column), that A/B move (rotation), and that DOWN
-moves (row/drop), each confirmed by driving the input and watching it change. Gravity —
-which moves the row on its own — is filtered out as control noise so only
-input-attributable fields remain.)_
+### Active-piece object vs. logical piece state — a probing finding
+
+`g_currentPiece_ptr` points to a **heap object that is rewritten wholesale every
+frame** (measured at 0x80231e78 and 0x80290860 across runs — the base moves per run
+because it's heap-allocated). `tools/e2e/probe_piece.py` dereferences the pointer and
+scans a ±0x200 window around it; the **gravity/animation noise floor covers almost the
+entire window** (nearly every 4-byte offset changes on its own each frame). So the
+object at `*g_currentPiece_ptr` is the piece's **3D/render/animation object** (fall
+interpolation, rotation tween, alpha pulse), *not* a clean logical struct — a per-input
+delta cannot be isolated from it by black-box RAM diffing.
+
+**Conclusion (reproduced, not guessed):** the *logical* piece state — integer column
+(X), row (Y), rotation index, piece/shape id — lives in a **separate compact location**,
+found by reading the gameplay input handler statically (which store fires when
+`g_buttonsPressed & <left-bit>` is set), not by probing. That static RE is tracked
+below; the resulting addresses will be confirmed by a targeted poke in a live run
+before they're recorded here.
+
+<!-- PIECE-LOGICAL-STATE: to be filled from the gameplay input→state static RE (the
+     move/rotate/drop handler reading 0x8011EF54) + a confirming live poke. -->
+_(Logical column/row/rotation/type addresses: pending the static-RE pass on the
+gameplay input handler; each will be confirmed by poking it and watching the piece move
+before being recorded.)_
+
+What IS confirmed here: input **does** register during play (the wide-region probe and
+the earlier full-region probe both saw board/render RAM move on LEFT/RIGHT/DOWN), and
+the three gameplay pointers (`g_currentPiece_ptr`, `g_mobileCubes_ptr`, `g_minos_ptr`)
+are live and dereferenceable. Per-frame input arrives through `g_buttonsPressed`
+(0x8011EF54).
 
 ---
 
