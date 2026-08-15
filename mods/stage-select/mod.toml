@@ -1,0 +1,26 @@
+# stage-select — a new in-flow menu screen: pick a named STAGE between the SINGLE
+# setup screen and the game starting. The 8 stages are the game's real culture themes
+# (Africa/Celtic/Egypt/Greek/Japan/Mayan/Russia/Industrial). See docs/ADDING-A-MENU-SCREEN.md.
+[manifest]
+id = "tnt_stage_select"
+version = "0.1.0"
+display_name = "Stage Select (experimental)"
+description = """
+Adds a new screen to the ONE PLAYER flow: after the SINGLE setup screen, pressing \
+Accept opens a SELECT STAGE menu instead of starting the game immediately. Move with \
+Up/Down between the 8 real stage themes (Africa, Celtic, Egypt, Greek, Japan, Mayan, \
+Russia, Industrial), press A to pick one and start, or B to go back to the SINGLE \
+screen. The picked theme sets the music (best-effort); changing the actual level/stage \
+visuals is a procedural-background limitation and is left for later. Disabled by default."""
+short_description = "New in-flow SELECT STAGE screen (8 real themes) before a single game starts."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+enabled_by_default = false
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_stage_select"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
+additional_files = [ ]
