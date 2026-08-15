@@ -111,17 +111,47 @@ found by reading the gameplay input handler statically (which store fires when
 below; the resulting addresses will be confirmed by a targeted poke in a live run
 before they're recorded here.
 
-<!-- PIECE-LOGICAL-STATE: to be filled from the gameplay input→state static RE (the
-     move/rotate/drop handler reading 0x8011EF54) + a confirming live poke. -->
-_(Logical column/row/rotation/type addresses: pending the static-RE pass on the
-gameplay input handler; each will be confirmed by poking it and watching the piece move
-before being recorded.)_
+### Logical piece state — `*g_currentPiece_ptr + offset` (one pointer deep)
 
-What IS confirmed here: input **does** register during play (the wide-region probe and
-the earlier full-region probe both saw board/render RAM move on LEFT/RIGHT/DOWN), and
-the three gameplay pointers (`g_currentPiece_ptr`, `g_mobileCubes_ptr`, `g_minos_ptr`)
-are live and dereferenceable. Per-frame input arrives through `g_buttonsPressed`
-(0x8011EF54).
+Dereference `g_currentPiece_ptr` (0x8011FB70) to the heap base **P** (~0x8029xxxx–
+0x802Bxxxx, varies per run), then:
+
+| field | offset | width | type | notes |
+|---|---|---|---|---|
+| rotation | `P+0x0A` | 1 | u8 `& 3` | 0..3; A rotates CW, B CCW |
+| **column (X)** | `P+0x11` | 1 | **s8** | LEFT −1, RIGHT +1 (collision-gated) |
+| **row (Y)** | `P+0x12` | 1 | **s8** | **increases downward**; gravity/soft-drop step it |
+| piece type | `P+0x13` | 1 | u8 | indexes `g_pieceDef_ptr_arr` @0x800D0110 |
+| decoded input | `P+0x02` | 1 | u8 | bit0=L, bit1=R, bit3=rotCW, bit4=rotCCW |
+
+The **render/animation** sub-object at `P+0x20`… (mesh, alt-color @+0x518, interpolation
+fixed-points @+0x2E/+0x30, gravity @+0x06) is rewritten every frame — that churn is why
+a blind RAM-diff of the piece window finds nothing (the col+row word also churns because
+gravity steps row each frame). The logical header bytes above are read-modify-written
+incrementally (e.g. MoveLeft does `col = col − 1`), so they **persist** frame to frame.
+
+**How input reaches these (static RE, register-level):** raw N64 buttons →
+`Tetris_CheckButtons` (0x80053F50) sets the decoded-input byte `P+0x02` (Left=0x0200,
+Right=0x0100, A=0x8000, B=0x4000, Down=0x0400 soft-drop, Up=0x0800 hard-drop, C-Up=0x20
+hold — read from the controller-repeat struct `*g_PV_ptr`+0x28, **not** `g_buttonsPressed`).
+Then `CurrentPiece_HandleInput` (0x80067708) dispatches to `CurrentPiece_MoveLeft`
+(0x8006715C, `sb col-1,0x11`), `_MoveRight` (0x80067254, `sb col+1,0x11`),
+`_TryRotate`→`_TryTransform` (`sb (rot+drot)&3,0x0A`), and `_TryStepDown`
+(`TryTransform dy=+1` → `sb row+1,0x12`). Collision test `CurrentPiece_CanPlace`
+(0x80066D0C) and lock `CurrentPiece_Lock` (0x80067604) read the same col/row/rot,
+confirming their meaning. All names are in `tnt.syms.toml`.
+
+**Confirmation status:** column (`+0x11`) and row (`+0x12`) are **live-confirmed** —
+`tools/e2e/verify_piece.py` drove LEFT/RIGHT and watched `+0x11` move (0→1) and watched
+`+0x12` advance under gravity (5→7), and a poke of `+0x11` changed the value. Rotation
+(`+0x0A`) and type (`+0x13`) are **RE-confirmed** with quoted stores (the live A-rotate
+in that run was collision-gated so `+0x0A` didn't visibly change — expected, not a
+contradiction). Also confirmed: the three gameplay pointers are live/dereferenceable.
+
+> Capture caveat found during this verify: a second window titled "Xbox Recompiled
+> Game" (a stale/wedged blank instance) can exist and steal `winburst.ps1` captures
+> (its "Recompiled" title substring matches). Prefer RAM assertions for gameplay proof;
+> kill stray instances before relying on a screenshot.
 
 ---
 

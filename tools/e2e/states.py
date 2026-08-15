@@ -45,11 +45,23 @@ GLOBALS = {
     # --- scene object system (the scene-4 crash pointer) ---
     "obj_slot_buf":     (0x80129200, 4, "g_sceneObjSlotMatrixBuf — null when scene 4 entered w/o setup -> SIGSEGV"),
 
-    # --- gameplay (scene 9) pointers; fields confirmed by probe_inputs.py gameplay ---
-    "piece_ptr":        (0x8011FB70, 4, "g_currentPiece_ptr — active piece struct (pos/rot move on L/R/A)"),
+    # --- gameplay (scene 9) pointers ---
+    "piece_ptr":        (0x8011FB70, 4, "g_currentPiece_ptr — deref to active piece; logical fields at PIECE_FIELDS"),
     "mobile_cubes_ptr": (0x8011FBF0, 4, "g_mobileCubes_ptr — locked/board cubes"),
     "minos_ptr":        (0x8011FC10, 4, "g_minos_ptr"),
-    "buttons_pressed":  (0x8011EF54, 4, "g_buttonsPressed — per-frame edge-triggered input mask"),
+    "buttons_pressed":  (0x8011EF54, 4, "g_buttonsPressed — a menu-side edge mask (NOT the gameplay piece input path)"),
+    "pv_ptr":           (0x8011F210, 4, "g_PV_ptr — controller struct; gameplay masks at *this+0x28+{0x84 edge,0x88 held,0x8C special}"),
+    "piece_def_arr":    (0x800D0110, 4, "g_pieceDef_ptr_arr — shape/rotation table, indexed by piece type"),
+}
+
+# Logical active-piece fields, at *g_currentPiece_ptr + offset (deref one pointer).
+# Confirmed: col/row live (verify_piece.py), rot/type by register-level RE.
+PIECE_FIELDS = {
+    "rot":  (0x0A, 1, False, "rotation index 0..3 (u8 & 3); A=CW, B=CCW"),
+    "col":  (0x11, 1, True,  "column X (s8); LEFT -1, RIGHT +1"),
+    "row":  (0x12, 1, True,  "row Y (s8); increases downward; gravity/soft-drop step it"),
+    "type": (0x13, 1, False, "piece type/shape id (u8) -> piece_def_arr"),
+    "input":(0x02, 1, False, "decoded-input byte: bit0=L bit1=R bit3=rotCW bit4=rotCCW"),
 }
 
 # ---------------------------------------------------------------------------
