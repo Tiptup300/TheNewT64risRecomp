@@ -98,16 +98,37 @@ Docs: `docs/ADDING-A-MENU-SCREEN.md` (how the engine builds a screen + the mod r
 - `51dee79` input-probe engine + reach-helpers
 - `25c06b3` modding guide + state map + shared state registry
 - `925faf3` piece-struct probe + template mod + gameplay-pointer watches
-- _(more below as work lands)_
+- `1aa5738` menu-screen how-to (scene-4 RE) + report scaffold
+- `2ed9ca1` MENU_MAP.md — every reachable menu screen
+- `1c6ca8a` logical piece fields cross-validated (RE + live poke)
+- `e871f61` new-screen-poc stage 1 PROVEN (mod draws text on the menu)
+- `7099691` document mod→game-fn calls; fix screenshot to target the game window
+- `0779971` new-screen-poc: working LEVEL SELECT shell (stretch goal complete)
 
 ## Verification
-- `verify.sh` unaffected (no symbol/C-in-tree changes); `mods/template-basic` builds
-  (`build_mod.sh`). Every recorded address was driven-and-watched or is flagged pending
-  a confirming poke.
+- **`./tools/verify.sh` → GREEN** (symbol invariant + cmake configure + build/link;
+  1430 functions). No recompiled C or symbols were changed — only docs, `tools/e2e/*`,
+  and `mods/*` were added.
+- All five new mods build via `./mods/build_mod.sh` (`template-basic`, `new-screen-poc`
+  are new). Every recorded address was driven-and-watched (or cross-validated by RE +
+  live poke); nothing is left as an unverified guess.
+- Not run tonight to avoid wedging the flaky WSLg/Dozen display across many launches:
+  the full `tests/run.sh` pytest suite (each new tool was instead validated by a direct
+  headless run). Worth a pass in the morning.
 
 ## Next steps for the morning
-- Confirm the logical piece-state addresses from the RE pass with a live poke; fold into
-  `GAME_STATE_MAP.md` + `states.py`.
-- Finish `docs/MENU_MAP.md` (all screens) and `docs/ADDING-A-MENU-SCREEN.md`.
-- Take `mods/new-screen-poc` as far as it goes (OK/BACK → +option → level-select shell);
-  report exactly where it lands.
+- **Wire a real level change** into `new-screen-poc`: find the level/speed global the
+  play-start path reads and write the chosen level when OK is pressed (the shell already
+  captures the selection). That turns the shell into a real feature.
+- Optionally make the overlay reachable from a real menu item (item-table route in
+  `ADDING-A-MENU-SCREEN.md` §5 fallback) instead of a C-button hotkey.
+- Run `tests/run.sh` for a full regression pass; consider promoting
+  `drive_level_select.py` / `verify_piece.py` into `test_*.py` regression tests.
+- Deepen the piece struct if useful (next-queue/hold pointers, board array via
+  `g_mobileCubes_ptr`), reusing `probe_piece.py`/`verify_piece.py`.
+
+## Screenshots to double-check (in the harness workdir, not committed)
+- `/tmp/tnt_e2e/ls_1_open.png`, `ls_2_cursor3.png`, `ls_3_ok3.png`, `ls_4_closed.png` —
+  the LEVEL SELECT shell open / cursor-moved / OK / closed.
+- `/tmp/tnt_e2e/00_mainmenu.png`, `1_oneplayer_entered.png`, `4_options_entered.png`,
+  `3_wonders_entered.png` — the menu map screens. Regenerate any with the reach-helpers.
