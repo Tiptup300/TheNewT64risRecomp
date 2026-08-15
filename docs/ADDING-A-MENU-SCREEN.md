@@ -182,4 +182,31 @@ item's `+0x24` flags / `+0x28` callback / cursor in the item table
   +0x134` (not determinable statically) — only relevant if you grow this into a true
   engine-native item rather than an overlay.
 
+---
+
+## 7. Inserting a screen INTO a flow (the `mods/stage-select` technique)
+
+The overlay above appears *on top of* a screen. To insert a screen *into* the flow — e.g.
+between the SINGLE setup and the game starting — intercept the launch instead of drawing over it:
+
+- **The launch is a two-step latch.** Accept on SINGLE runs `Scene_SingleStartGame`, which only
+  sets `g_sceneLoadFlag` @0x800D3CF0 = 1. `MenuHub_StartPlaying` @0x80090E08 commits on the *next*
+  scene-4 frame (`g_currentScene=9` + `Game_Init`), and is a no-op while the latch is 0.
+- **Defer:** `RECOMP_HOOK("MenuHub_StartPlaying")` — when the latch is armed (==1) and you haven't
+  shown yet, set your state to SHOWING and **write the latch back to 0** (the game waits). Keep it
+  0 while your screen is up. To proceed, set it to 1 (next tick launches). To go back, leave it 0.
+- **Own the input:** while your screen is up, `RECOMP_HOOK("Scene_Main")` (entry) captures
+  `g_buttonsPressed` @0x8011EF54 into your own var and then **zeroes it**, so the SINGLE menu behind
+  ignores input; read your captured value in the `RECOMP_HOOK_RETURN("Scene_Main")` draw hook and use
+  the real Up/Down + A/B.
+- **Reset per game:** `RECOMP_HOOK("Game_Init")` fires at the actual launch — reset your state there
+  (and it's the right place to force any value the game randomizes at launch; see below).
+
+**Making a launch-time choice stick.** `MenuHub_StartPlaying` randomizes `g_currentSong`
+(0x8011E4F8 — the **stage/theme** index, which selects the gameplay environment, not just music)
+each launch. Writing it from your screen gets overwritten. Write it again in the `Game_Init` hook
+(after the randomize) and it holds — `stage-select` uses this so the picked stage's level actually
+loads. Note a *live preview* of a stage isn't possible (no stored thumbnails; env builds at scene
+load), but the real level does load on Accept.
+
 _See `docs/GAME_STATE_MAP.md` for the addresses, `docs/MODDING.md` for hook/patch rules._
