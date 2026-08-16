@@ -1,0 +1,28 @@
+# recompui-demo — proof that mods can build a REAL recompui screen in TheNewT64ris.
+# Press Z on the main menu (scene 4) to toggle a styled, interactive recompui panel with a
+# title, a live click-counter label, and two buttons (COUNT +1 / CLOSE). While shown it
+# CAPTURES INPUT (the game menu behind it gets nothing) -- the clean solution to the input
+# leak the overlay stage-select hit. This is the reusable "new screen" framework path.
+# Requires the app built with recompui::register_ui_exports() wiring (src/main.cpp).
+[manifest]
+id = "tnt_recompui_demo"
+version = "1.0.0"
+display_name = "Demo: recompui Screen"
+description = """
+Proof-of-concept for the recompui-based new-screen framework. Press Z on the main menu to \
+toggle a real recompui panel (title, live click counter, COUNT/CLOSE buttons) that captures \
+input while open. Demonstrates context creation, flexbox layout, styled text/buttons, click \
+callbacks, and per-frame callback pumping -- the building blocks for adding brand-new menus \
+and states to the game."""
+short_description = "Press Z on the menu: a real, interactive recompui panel (framework demo)."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+enabled_by_default = false
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_recompui_demo"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
+additional_files = [ ]

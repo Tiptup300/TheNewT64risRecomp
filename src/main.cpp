@@ -22,6 +22,7 @@
 #endif
 
 #include "librecomp/game.hpp"
+#include "librecomp/overlays.hpp"   // recomp::overlays::register_base_export (recompui unlock)
 #include "librecomp/rsp.hpp"
 #include "ultramodern/ultramodern.hpp"
 #include "ultramodern/renderer_context.hpp"
@@ -50,6 +51,14 @@ extern "C" void recomp_entrypoint(uint8_t* rdram, recomp_context* ctx);
 extern gpr get_entrypoint_address();
 // Defined in register_overlays.cpp
 namespace tnt { void register_overlays(); }
+// Defined in recompui (lib/RecompFrontend/recompui/src/api/ui_api.cpp); registers the
+// recompui_* guest exports so mods can build UI. Declared in recompui's internal header
+// only, so forward-declare it here. Called once before recomp::start() (see call site).
+namespace recompui { void register_ui_exports(); }
+// Dispatches queued recompui callbacks (button clicks etc.) to guest code. Defined in
+// recompui (ui_api_events.cpp) but never registered/called by stock runtime; we register it
+// as a base export so a mod can pump it each frame (RECOMP_HOOK on a per-frame game fn).
+extern "C" void recomp_run_ui_callbacks(uint8_t* rdram, recomp_context* ctx);
 
 // ---------------------------------------------------------------------------
 // Globals the RecompFrontend (recompui) expects the app to provide.
@@ -581,6 +590,16 @@ int main(int argc, char** argv) {
             }
         });
     }
+
+    // Enable the recompui mod-facing API (the ~130 recompui_* guest exports) so mods can
+    // build their own UI screens (element trees, images, callbacks, input capture). Stock
+    // N64ModernRuntime defines register_ui_exports() but never calls it, so mods importing
+    // recompui_* would fail to load ("Imported function not found"). We register here, before
+    // recomp::start() spins up the game thread + loads mods, so the exports exist when a mod
+    // resolves its imports. (register_ui_exports also registers the image exports.) Declared
+    // at file scope below (tnt_register_ui_exports_fwd); the symbol is linked into the app.
+    recompui::register_ui_exports();
+    recomp::overlays::register_base_export("recomp_run_ui_callbacks", recomp_run_ui_callbacks);
 
     TRACE("calling recomp::start");
     recomp::start(

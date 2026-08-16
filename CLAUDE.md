@@ -58,6 +58,13 @@ RecompModTool). See `mods/README.md`.
 - ⚠️ **This runtime does NOT export `recomp_printf`** (or the rest of
   `recomputils.h`). Including `recomputils.h` makes a mod fail to load
   ("Imported function not found"). No mod-side logging is available.
+- ✅ **recompui IS available to mods** (enabled in `src/main.cpp` via
+  `recompui::register_ui_exports()` + a `recomp_run_ui_callbacks` base export). Include
+  `recompui.h` (in `mods/common/include/`) to build REAL UI screens — element trees, styled
+  text/buttons, images, click callbacks, and **input capture** (the game behind gets no input,
+  the clean fix for the overlay input-leak). This is the framework for new menus/screens/states;
+  see `docs/MODDING-UI.md` and the reference mod `mods/recompui-demo`. The in-game-aesthetic
+  (block-background + native fade) path is separate — see `docs/STAGE_SELECT_ENHANCEMENTS.md`.
 - Install: drop the `.nrm` in `~/.local/share/N64Recomp/TheNewTiptris/mods/`
   (or use the in-game Mods menu). `enabled_by_default = true` auto-enables it.
 
