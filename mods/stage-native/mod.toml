@@ -1,0 +1,24 @@
+# stage-native — engine-native SELECT STAGE screen (experiment stage 1: mechanism validation).
+# Goal: an in-game menu on the block background with the game's own font + native transition,
+# replacing the SINGLE screen (no overlay, no input leak). Stage 1 only proves Scene_LoadScreen
+# works from a mod by swapping in an existing (game-over) item table on launch-intercept.
+[manifest]
+id = "tnt_stage_native"
+version = "0.1.0"
+display_name = "Stage Native (experiment)"
+description = """
+Engine-native SELECT STAGE work-in-progress. Intercepts the single-player launch and calls the \
+game's Scene_LoadScreen to replace the SINGLE screen with a real in-game screen on the block \
+background. Experimental; disabled by default."""
+short_description = "Experiment: engine-native in-game screen via Scene_LoadScreen."
+authors = [ "TntRecomp" ]
+game_id = "tnt"
+minimum_recomp_version = "1.0.0"
+enabled_by_default = false
+
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "tnt_stage_native"
+func_reference_syms_file = "../../tnt.syms.toml"
+data_reference_syms_files = [ "../../tnt.datasyms.toml" ]
+additional_files = [ ]

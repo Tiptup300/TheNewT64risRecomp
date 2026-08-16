@@ -73,6 +73,43 @@ your own image buffer with a w/h/format header + texels and feed `Color_DrawTexR
 
 ---
 
+## (3) PARASITE approach to in-game menus (in progress — mods/stage-native)
+
+Design (user's): don't REPLACE a hub screen (impossible cleanly — see below); instead sit on an
+existing scene-4 host, **disable its input**, **disable its foreground rendering (keep the
+background)**, and draw our own screen (parasite) on top with the game font — then abstract it
+into a reusable "add a menu" primitive.
+
+**Validated (screenshots, `tools/e2e/probe_native.py`):**
+- Step 1 (hold the launch) + Step 4 (draw parasite via `displayText_XY_RGBA_2` @0x80077960 in a
+  `RECOMP_HOOK_RETURN("Scene_Main")`) WORK — "PARASITE SCREEN" text renders on top in the game font.
+- `Scene_LoadScreen(gameoverTableA)` from a mod runs without crashing but does NOT replace SINGLE
+  (the hub keeps drawing it) — table swap alone is insufficient.
+
+**Blocker — Step 3 (disable foreground, keep background):**
+- `g_sceneObjRenderEnable @0x800D3D94 = 0` does NOT blank the foreground; it left SINGLE fully
+  visible and spilled garbled debug stats → it gates a debug overlay, not the menu foreground.
+- Structural finding: **neither `Scene_Init` nor `Scene_Main` renders a separate 3D world** — the
+  menu's stone-wall/wooden-frame BACKGROUND is drawn as SPRITES *inside* `Scene_Main`, in the same
+  per-item draw loop (0x800999EC computes 0x38·i into the item iterator `s0`, type-branches per
+  item) that also draws the SINGLE title/rows. So background and foreground are interleaved items
+  in one loop; there is no single global that disables just the foreground.
+- The SINGLE "title/frame/OPPONENT/GAME/footer" are NOT hidden by zeroing item RGB/alpha (proven)
+  — they're likely drawn via a sprite path or inline, not the RGB-tinted text path.
+
+**Next steps to crack Step 3 (multi-cycle, live-iterated):**
+1. Dump the active item table at runtime (`*(sceneCtx+0x124)`, sceneCtx=0x801290D0 → ptr @0x801291F4)
+   on the SINGLE screen: enumerate the 0x38-byte items and classify each as background vs foreground
+   (by its `+0x24` flags / sprite id). If the title/frame ARE items, Step 3 = blank the foreground
+   items (leave background items) — tractable.
+2. If title/frame are truly inline (not items), find the inline draw call(s) in `Scene_Main`'s
+   foreground region (after 0x80099A28) and gate them with a targeted `RECOMP_PATCH`, OR pick a
+   host screen whose foreground is pure item-objects.
+3. Input disable: freeze the host's cursor/state and intercept its accept so it can't act while the
+   parasite owns input (the menu consumes `g_buttonsPressed` inline, so full hook-suppression isn't
+   possible — freeze state instead).
+Then abstract 1–3 into a reusable primitive (pick host, blank foreground items, own input, draw).
+
 ## (2) Real transition + non-overlay screen — NOT DONE (proven recipe, large build)
 
 **Current limitation:** the SELECT STAGE screen is drawn *over* the (frozen) SINGLE screen; it
