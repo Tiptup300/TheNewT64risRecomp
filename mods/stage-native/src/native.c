@@ -51,6 +51,10 @@ RECOMP_HOOK("MenuHub_StartPlaying") void tnt_native_intercept(void) {
             s_state = ST_SHOWING;
             s_saved_render = G_OBJ_RENDER;
             G_LOAD_FLAG = 0;                // hold the launch
+            // Settle the leave-transition the Accept started, so SINGLE's rows don't stay frozen
+            // mid-slide at the top of the screen (that was the "garbled" text).
+            *(volatile unsigned char *)0x800D3E34 = 0;   // g_sceneMainDecayActive = idle
+            *(volatile unsigned int  *)0x800D3E2C = 0;   // g_sceneMainDecayValue = 0
         }
     } else if (s_state == ST_SHOWING) {
         G_LOAD_FLAG = 0;                    // keep holding
@@ -76,7 +80,6 @@ static int s_dumped = 0;
 RECOMP_HOOK("Scene_Update") void tnt_native_blank(void) {
     if (G_CURRENT_SCENE == SCENE_MENU_HUB && s_state == ST_SHOWING) {
         G_MENU_IDLE = 0;                    // don't idle out to attract
-        G_DEBUG_PRINT_ACTIVE = 0;           // try to kill the held-state debug stats overlay
         unsigned int tbl = SCENE_CTX_TABLE_PTR;
         if (!s_dumped) { s_dumped = 1; DUMP[0] = tbl; }
         // Blank foreground items by zeroing alpha (+0x1C) each frame, up to the terminator.

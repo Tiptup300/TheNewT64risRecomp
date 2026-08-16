@@ -86,29 +86,35 @@ into a reusable "add a menu" primitive.
 - `Scene_LoadScreen(gameoverTableA)` from a mod runs without crashing but does NOT replace SINGLE
   (the hub keeps drawing it) — table swap alone is insufficient.
 
-**Blocker — Step 3 (disable foreground, keep background):**
-- `g_sceneObjRenderEnable @0x800D3D94 = 0` does NOT blank the foreground; it left SINGLE fully
-  visible and spilled garbled debug stats → it gates a debug overlay, not the menu foreground.
-- Structural finding: **neither `Scene_Init` nor `Scene_Main` renders a separate 3D world** — the
-  menu's stone-wall/wooden-frame BACKGROUND is drawn as SPRITES *inside* `Scene_Main`, in the same
-  per-item draw loop (0x800999EC computes 0x38·i into the item iterator `s0`, type-branches per
-  item) that also draws the SINGLE title/rows. So background and foreground are interleaved items
-  in one loop; there is no single global that disables just the foreground.
-- The SINGLE "title/frame/OPPONENT/GAME/footer" are NOT hidden by zeroing item RGB/alpha (proven)
-  — they're likely drawn via a sprite path or inline, not the RGB-tinted text path.
+**Step 3 SOLVED — blank the foreground via the item table.** The scene-4 screen IS drawn from an
+item table at `sceneCtx+0x124` (sceneCtx=0x801290D0 → ptr @0x801291F4); 0x38-byte items, terminator
+`(+0x24 & 0x8000)`. Structural note: neither `Scene_Init` nor `Scene_Main` renders a separate 3D
+world — the stone-wall BACKGROUND is itself an item, drawn in `Scene_Main`'s per-item loop
+(0x800999EC computes 0x38·i into iterator `s0`) alongside the foreground items.
+- **SINGLE item map (dumped live, `tools/e2e/dump_table.py`):** 9 items (0..7 + terminator@8).
+  **item 0 = stone-block BACKGROUND (keep)**; items 1..7 = wooden frame + "SINGLE" title +
+  NAME/OPPONENT/GAME rows + footer = **FOREGROUND (hide)**.
+- **Hide an item = zero its alpha (+0x1C) every frame.** Keep item 0, hide 1..7 → a clean
+  stone-block background with the whole menu foreground gone. (The earlier "zeroing RGB/alpha
+  didn't hide it" note was wrong — zeroing +0x1C alpha DOES hide these sprite items.)
+- Steps 1 (hold launch), 3 (blank foreground), 4 (draw parasite via displayText @0x80077960) all
+  working — see `mods/stage-native` + `tools/e2e/probe_native.py`.
 
-**Next steps to crack Step 3 (multi-cycle, live-iterated):**
-1. Dump the active item table at runtime (`*(sceneCtx+0x124)`, sceneCtx=0x801290D0 → ptr @0x801291F4)
-   on the SINGLE screen: enumerate the 0x38-byte items and classify each as background vs foreground
-   (by its `+0x24` flags / sprite id). If the title/frame ARE items, Step 3 = blank the foreground
-   items (leave background items) — tractable.
-2. If title/frame are truly inline (not items), find the inline draw call(s) in `Scene_Main`'s
-   foreground region (after 0x80099A28) and gate them with a targeted `RECOMP_PATCH`, OR pick a
-   host screen whose foreground is pure item-objects.
-3. Input disable: freeze the host's cursor/state and intercept its accept so it can't act while the
-   parasite owns input (the menu consumes `g_buttonsPressed` inline, so full hook-suppression isn't
-   possible — freeze state instead).
-Then abstract 1–3 into a reusable primitive (pick host, blank foreground items, own input, draw).
+**Held-state text overlay (unresolved).** A game-font line ("VOWZ VX 4(6..3%..)") appears in the
+HELD-launch state (present with zero item-hiding; stage-select happened to cover it with its list).
+Ruled OUT (tested, no effect): `g_sceneObjRenderEnable`, `g_debugPrintActive`, `g_gameInitialized`,
+`g_gameState`, and clearing the transition decay (`g_sceneMainDecayActive @0x800D3E34` /
+`g_sceneMainDecayValue @0x800D3E2C`). A `displayText_XY_RGBA_2` hook capture *suggested* the strings
+are menu-row text ("OPPONENT:"/"MARATHON", byte-swapped) drawn at the wrong position, but the hook's
+stack-arg marshaling looked unreliable (captured y-values the filter should have excluded) — weak
+lead. NEXT: reliable capture (confirm displayText arg order + 5th stack arg for str), OR restructure
+so the game never enters the half-launched state (intercept the SINGLE Accept *before* it arms the
+launch, using a stable host).
+
+**Remaining after that:** input ownership (freeze the host's cursor/state + intercept its accept so
+it can't act while the parasite owns input — the menu consumes `g_buttonsPressed` inline, so freeze
+state rather than rely on hook-suppression); the real SELECT STAGE list; then **abstract steps 1–4
+into a reusable "add a menu" primitive** (pick host, blank foreground items, own input, draw).
 
 ## (2) Real transition + non-overlay screen — NOT DONE (proven recipe, large build)
 
