@@ -8,9 +8,32 @@ blocked, and the concrete recipes so a future session can pick up without re-der
 ## Baseline that ships and works (`mods/stage-select`, committed)
 In-flow SELECT STAGE screen: after ONE PLAYER → SINGLE, Accept opens it (game held via the
 `g_sceneLoadFlag` latch); Up/Down navigate the 8 real culture themes; Accept picks one and
-**launches into that actual level** (`g_currentSong` forced at `Game_Init`); Back returns to
-SINGLE. Each row has a **color-coded swatch icon**. All verified end-to-end by screenshots +
-RAM checks (`tools/e2e/drive_stage_select.py`, `drive_stage_full.py`).
+**launches into that actual themed level**; Back returns to SINGLE. Each row has a
+**color-coded swatch icon**. Verified end-to-end (`tools/e2e/verify_stage_load.py`).
+
+## CORRECTION — the real environment selector is `0x8011EEF8`, not `g_currentSong`
+Earlier notes said `g_currentSong` @0x8011E4F8 loads the level. **Wrong** — that byte is the
+MUSIC only. The visible themed 3D environment is chosen by a **separate byte at `0x8011EEF8`**
+(a field of the `g_game` struct @0x80110A00). `MenuHub_StartPlaying` randomizes it; `Game_Init`
+reads it at 0x80052248 → `PFGFX_GameInit`, whose 8-way jump table (0x800DD37C) loads that
+theme's CubeTiles/scene. The prior "0x80052248 reads g_currentSong" was an address-arithmetic
+misread (base is `$s0=g_game=0x80110A00`, so `0x7FFF+0x64F9` = **0x8011EEF8**). The mod now
+forces `0x8011EEF8` at the `Game_Init` hook → picking a stage loads that stage's environment,
+**confirmed E2E** (`0x8011EEF8 == picked index` every run, distinct themed level each). Residual
+non-determinism (decorative grid particles, exact song roll) does not change which of the 8
+themed scenes loads.
+
+## KNOWN LIMITATION — overlay input leak (the SINGLE menu behind still reacts)
+The screen is an overlay on the live SINGLE screen, and Up/Down still moves the SINGLE menu
+behind it. RE traced *why a `RECOMP_HOOK` can't fix it*: Scene_Main re-polls the controller
+mid-frame (`Controller_SendRecvMsg` @0x800997CC), and the menu's nav **populates + consumes +
+clears `g_buttonsPressed` INLINE** in Scene_Main's logic — captures placed at Scene_Main entry,
+`Gfx_SetupRenderState` (after the poll), and `Scene_SaveDataScreen` entry all either miss the
+window or get overwritten before the nav reads the mask. There is no function boundary between
+the populate and the consume to hook. Options: (a) a `RECOMP_PATCH` of the menu logic, or
+(b) the engine-native transition below (hide SINGLE entirely → no live menu → nothing to leak).
+Option (b) is the same build the user asked for ("transition + blocks background"), so it is the
+recommended path and subsumes this fix.
 
 ---
 
