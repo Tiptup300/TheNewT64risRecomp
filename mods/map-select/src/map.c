@@ -8,11 +8,14 @@
 // is stored there and then read back and passed to PFGFX_SelectAndStartMusic
 // (the music-start routine, a0 = song index). It is the data symbol
 // `g_currentSong`. The old "map selector" framing was a misunderstanding — this
-// mod forces the music track. A dedicated RE hunt found there is NO discrete
-// map/background global: the in-game 3D background is procedurally generated each
-// game (Gfx_RandomizeBackgroundGrid — a random particle field), not chosen from
-// ~8 presets. So a true "select 1 of 8 maps" mod isn't possible; this byte only
-// ever controlled the song.
+// mod forces the music track.
+//
+// NOTE (corrected 2026-08-16): an earlier version of this comment claimed there is
+// NO discrete map/background global. That was WRONG. There ARE 8 discrete themed
+// levels, selected by a SEPARATE byte at 0x8011EEF8 (read at Game_Init ->
+// PFGFX_GameInit's 8-way jump). See `mods/stage-select` (which forces 0x8011EEF8 to
+// load a chosen stage) and docs/STAGE_SELECT_ENHANCEMENTS.md. This mod still targets
+// g_currentSong on purpose: it selects the MUSIC, not the level.
 //
 // We reference the game variable BY NAME via the mod's data_reference_syms_files
 // (cleaner and safer than a raw pointer — the mod recompiler resolves the name to
