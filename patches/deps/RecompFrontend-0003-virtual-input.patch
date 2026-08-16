@@ -1,5 +1,5 @@
 diff --git a/recompinput/src/input_state.cpp b/recompinput/src/input_state.cpp
-index 03ed871..3708fd4 100644
+index 03ed871..54cae7d 100644
 --- a/recompinput/src/input_state.cpp
 +++ b/recompinput/src/input_state.cpp
 @@ -2,6 +2,9 @@
@@ -12,16 +12,18 @@ index 03ed871..3708fd4 100644
  
  #include "recompinput/recompinput.h"
  #include "recompinput/input_state.h"
-@@ -31,8 +34,35 @@ static struct {
+@@ -31,8 +34,41 @@ static struct {
      InputArray<bool> rumble_active{};
  } InputState;
  
 +// Debug virtual-input overlay. WSLg/Wayland forbids external synthetic key injection
 +// (see the input diagnosis), so for headless automation the game reads a control file
 +// named by the TNT_INPUT env var: whitespace/newline-separated SDL scancodes that are
-+// currently "held". Each poll their state is OR'd onto the real keyboard state, letting
-+// a script drive menus/gameplay. Inert (zero overhead beyond one getenv) when TNT_INPUT
-+// is unset. Level-triggered: write scancodes to hold keys, empty the file to release.
++// currently "held". While TNT_INPUT is set the injected file is the SOLE key source —
++// the real keyboard is IGNORED — so automated tests get exclusive control and a stray
++// physical keypress (or window focus) can't leak in and corrupt a run. Inert (zero
++// overhead beyond one getenv) when TNT_INPUT is unset. Level-triggered: write scancodes
++// to hold keys, empty the file to release.
 +static const char* g_tnt_input_path = nullptr;
 +static bool g_tnt_input_checked = false;
 +static std::vector<Uint8> g_tnt_merged;
@@ -34,7 +36,11 @@ index 03ed871..3708fd4 100644
 +        g_tnt_input_checked = true;
 +    }
 +    if (g_tnt_input_path != nullptr && InputState.numkeys > 0) {
-+        g_tnt_merged.assign(real_keys, real_keys + InputState.numkeys);
++        // Exclusive control: start from all-keys-up (ignore the real keyboard) so only
++        // the injected scancodes are seen. This prevents stray physical input from
++        // breaking automated tests.
++        (void)real_keys;
++        g_tnt_merged.assign((size_t)InputState.numkeys, (Uint8)0);
 +        if (FILE* f = std::fopen(g_tnt_input_path, "r")) {
 +            int sc;
 +            while (std::fscanf(f, "%d", &sc) == 1) {

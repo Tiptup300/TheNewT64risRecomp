@@ -27,10 +27,12 @@
 #       width showed it as flickering garbage every other frame.
 #   RecompFrontend-0003-virtual-input                   -> recompinput/src/input_state.cpp
 #       Debug virtual-input overlay: when the TNT_INPUT env var names a file, poll_inputs
-#       ORs the SDL scancodes listed in it onto the real keyboard state each poll. Lets a
-#       script drive menus/gameplay headless — WSLg/Wayland forbids external synthetic key
-#       injection, so this in-app channel is the only reliable path. Inert unless TNT_INPUT
-#       is set. Scancodes: Start=40(RETURN), A=29(Z), B=27(X), D-pad=79-82(arrows).
+#       uses the SDL scancodes listed in it as the SOLE key state each poll (the real
+#       keyboard is IGNORED while TNT_INPUT is set, so tests get exclusive control and a
+#       stray physical keypress can't corrupt a run). Lets a script drive menus/gameplay
+#       headless — WSLg/Wayland forbids external synthetic key injection, so this in-app
+#       channel is the only reliable path. Inert unless TNT_INPUT is set.
+#       Scancodes: Start=40(RETURN), A=29(Z), B=27(X), D-pad=79-82(arrows).
 #   RecompFrontend-0002-restart-button                  -> recompui/src/config/ui_config.cpp
 #       Adds a "Restart" (Reset.svg) button to the config-menu header, shown only
 #       while a game is running. Re-execs the app with TNT_NO_AUTOBOOT so it lands

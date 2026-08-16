@@ -89,9 +89,11 @@ Then copy frames from `/mnt/c/Users/Public/...` and view with the Read tool.
   dep patch). WSLg/Wayland blocks *external* synthetic input (Windows SendKeys/
   PostMessage hit the RAIL proxy, not the Wayland stream; xdotool is X11-only;
   ydotool needs root uinput the compositor ignores) — so input is injected from
-  *inside* the app instead. Launch with `TNT_INPUT=/path/to/file`; `poll_inputs()`
-  ORs the SDL scancodes listed in that file onto the real keyboard each controller
-  poll. Drive it from bash: write scancodes to hold keys, empty the file to release
+  *inside* the app instead. Launch with `TNT_INPUT=/path/to/file`; while set,
+  `poll_inputs()` uses the SDL scancodes in that file as the SOLE key state each
+  controller poll — the **real keyboard is ignored**, so tests get exclusive control
+  and a stray physical keypress can't corrupt a run.
+  Drive it from bash: write scancodes to hold keys, empty the file to release
   (pace with PowerShell `Start-Sleep`). Key scancodes: **Start=40** (RETURN),
   **A=29** (Z, accept), **B=27** (X, back), **D-pad Up/Down/Left/Right=82/81/80/79**.
   Tip: hold ~1-2s to land the press on the intended screen (a brief tap can fall in

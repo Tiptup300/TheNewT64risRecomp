@@ -323,15 +323,16 @@ class Game:
         (or None). Uses winburst.ps1 (matches the game window title, crops to the
         window rect). Lets us VISUALLY verify a screen, not just RAM.
 
-        Match on "T64ris" (unique to "The New T64ris : Recompiled"), NOT "Recompiled":
-        a wedged half-initialized instance keeps the ultramodern default title
-        "Xbox Recompiled Game", and matching "Recompiled" would capture that blank
-        zombie window instead of the game. "T64ris" can only match the real window."""
+        Match on "New T64ris" (the game title is "The New T64ris : Recompiled"), NOT
+        "Recompiled" (a wedged half-init instance keeps the default "Xbox Recompiled
+        Game") and NOT bare "T64ris" (a dev terminal/editor showing the repo path
+        "TheNewT64risRecompiled" also contains it). "New T64ris" has a space, so it
+        matches only the real game window, not the space-free repo path."""
         winout = f"C:\\Users\\Public\\tnt_shot_{name}"
         try:
             subprocess.run(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
                             "-File", "C:\\Users\\Public\\winburst.ps1",
-                            "T64ris", winout, "2", "120", "25"],
+                            "New T64ris", winout, "2", "120", "25"],
                            capture_output=True, timeout=40)
         except Exception:
             return None
