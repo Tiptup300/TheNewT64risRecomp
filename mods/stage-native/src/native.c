@@ -27,6 +27,10 @@ typedef void (*displayText_fn)(void *gdl, void *font, int x, int y,
                                const char *str, int r, int g, int b, int a);
 #define DrawText ((displayText_fn)0x80077960)          // displayText_XY_RGBA_2
 
+typedef void (*fade_fn)(float frames);
+#define BeginFade ((fade_fn)0x8007E9F8)                 // Gfx_BeginScreenFade0 (game uses 9.0)
+#define FADE_FRAMES 9.0f
+
 #define G_CURRENT_SCENE (*(volatile unsigned char *)0x800CFEE8) // g_currentScene (4 = menu hub)
 #define G_LOAD_FLAG     (*(volatile unsigned char *)0x800D3CF0) // g_sceneLoadFlag (launch latch)
 #define G_MENU_IDLE     (*(volatile unsigned int  *)0x800D3D2C) // g_sceneMainTimer (attract idle)
@@ -117,6 +121,7 @@ RECOMP_HOOK("MenuHub_StartPlaying") void tnt_native_intercept(void) {
             s_cooldown = 10;
             s_saved = 0;
             G_LOAD_FLAG = 0;                // hold the launch
+            BeginFade(FADE_FRAMES);         // native fade-in transition onto our screen
         }
     } else if (s_state == ST_SHOWING) {
         G_LOAD_FLAG = 0;                    // keep holding
@@ -186,6 +191,7 @@ RECOMP_HOOK_RETURN("Scene_Main") void tnt_native_screen(void) {
         return;
     } else if (edge & BTN_B) {               // back: restore SINGLE exactly, stay on it
         restore_foreground(SCENE_CTX_TABLE_PTR);
+        BeginFade(FADE_FRAMES);              // native fade-out transition back to SINGLE
         s_state = ST_IDLE;                   // latch stays 0 -> no launch
         return;
     }
