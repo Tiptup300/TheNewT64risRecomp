@@ -73,7 +73,20 @@ your own image buffer with a w/h/format header + texels and feed `Color_DrawTexR
 
 ---
 
-## (3) PARASITE approach to in-game menus (in progress — mods/stage-native)
+## (3) PARASITE approach to in-game menus — WORKING (mods/stage-native)
+
+**STATUS: done and E2E-verified.** `mods/stage-native` is a real in-game SELECT STAGE: SINGLE →
+START → the stage menu opens on the clean stone-block background in the game's own font (SINGLE
+foreground blanked via item alphas), Up/Down navigate the 8 themes, A picks + starts the game in
+that stage, B returns to SINGLE fully intact. Input ownership: capture g_buttonsPressed at
+Scene_Main entry then zero it (denies B/A to the host) + re-assert the host's saved menu state in
+the Scene_Main return hook (undoes leaked-input effects); all mod state is in mod static memory
+(safe 0x81000000+ region), no raw high-RAM. The earlier held-state text artifact was two things:
+(a) the mod's own stack-corrupting scratch writes at 0x807FF000 (removed), and (b) leaked input
+half-driving the host (fixed by the input ownership above). Verified: `tools/e2e/test_stage_select.py`
+(open / back-safe / pick → gameplay, no crash). The notes below are the historical investigation.
+
+### Historical investigation (how we got here)
 
 Design (user's): don't REPLACE a hub screen (impossible cleanly — see below); instead sit on an
 existing scene-4 host, **disable its input**, **disable its foreground rendering (keep the

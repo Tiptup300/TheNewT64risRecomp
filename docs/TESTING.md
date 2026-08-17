@@ -87,6 +87,7 @@ pytest suite; the pytest layer is the more structured home for new regression te
 | `test_to_gameplay.py` | full menu → ONE PLAYER → SINGLE → ACCEPT → gameplay (scene 9), screenshotting each transition |
 | `test_new_screen.py` | a mod can CALL a game function (`displayText_XY_RGBA_2` via indirect jalr) from a hook and draw text without crashing (`mods/new-screen-poc`) |
 | `test_crash_guard.py` | A/B: forcing scene 4 without its resource load SIGSEGVs **without** `mods/scene-crash-guard` and **survives with** it |
+| `test_stage_select.py` | the in-game SELECT STAGE (`mods/stage-native`): the stage menu **opens** (SINGLE foreground blanked onto the block background), **Back returns to SINGLE without corrupting it** (foreground restored + re-openable), and **picking a stage reaches gameplay** (scene 9) with the chosen theme and **no crash** |
 
 ### Not tests — investigation harnesses in `tools/e2e/`
 The rest of `tools/e2e/*.py` are tools, not pass/fail tests: `harness.py`/`e2e_helpers.py`/`states.py`
@@ -105,7 +106,8 @@ The rest of `tools/e2e/*.py` are tools, not pass/fail tests: `harness.py`/`e2e_h
 - **pytest suite (`tests/`)**: ✅ **9 passed** in 274s (4m34s) — test_boot ··, test_gameplay ·,
   test_mempak ··, test_menu ··, test_mod_isolation ··.
 - **e2e suite (`tools/e2e/`)**: ✅ **6 passed, 0 failed** — test_smoke, test_menu, test_navigate,
-  test_new_screen, test_to_gameplay, test_crash_guard.
+  test_new_screen, test_to_gameplay, test_crash_guard. (`test_stage_select.py` was added after this
+  run and passes standalone — see `mods/stage-native`; re-run `tools/e2e/run.sh` to include it.)
 
 ## Gotchas
 - Each game boot is ~20–40 s under Dozen, so the pytest + e2e suites take a few minutes each.

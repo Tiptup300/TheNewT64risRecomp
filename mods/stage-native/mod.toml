@@ -4,13 +4,14 @@
 # works from a mod by swapping in an existing (game-over) item table on launch-intercept.
 [manifest]
 id = "tnt_stage_native"
-version = "0.1.0"
-display_name = "Stage Native (experiment)"
+version = "1.0.0"
+display_name = "In-Game Select Stage"
 description = """
-Engine-native SELECT STAGE work-in-progress. Intercepts the single-player launch and calls the \
-game's Scene_LoadScreen to replace the SINGLE screen with a real in-game screen on the block \
-background. Experimental; disabled by default."""
-short_description = "Experiment: engine-native in-game screen via Scene_LoadScreen."
+An in-game SELECT STAGE menu. After ONE PLAYER -> SINGLE, pressing START opens a stage picker \
+drawn in the game's own font on the block-stone background (the SINGLE foreground is hidden, not \
+overlaid). Up/Down move between the 8 culture stages; A starts the game IN that stage; B returns \
+to SINGLE unchanged. Verified end to end (tools/e2e/test_stage_select.py). Disabled by default."""
+short_description = "In-game stage picker on the block background (open/back/pick -> gameplay)."
 authors = [ "TntRecomp" ]
 game_id = "tnt"
 minimum_recomp_version = "1.0.0"
